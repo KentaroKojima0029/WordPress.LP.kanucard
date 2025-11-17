@@ -1,0 +1,730 @@
+/**
+ * Kanucard Landing Page - LP専用スタイルシート
+ * JINテーマとの競合を避けるため、全てのクラスにlp-プレフィックスを使用
+ */
+
+/* リセットと基本設定（LP専用） */
+.lp-site * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.lp-site {
+    --lp-primary-color: #2563eb;
+    --lp-secondary-color: #1e40af;
+    --lp-accent-color: #f59e0b;
+    --lp-success-color: #10b981;
+    --lp-text-dark: #1f2937;
+    --lp-text-light: #6b7280;
+    --lp-text-muted: #9ca3af;
+    --lp-bg-light: #f9fafb;
+    --lp-bg-white: #ffffff;
+    --lp-bg-dark: #111827;
+    --lp-border-color: #e5e7eb;
+    --lp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --lp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --lp-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --lp-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+    --lp-max-width: 1200px;
+    --lp-transition: all 0.3s ease;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+    line-height: 1.7;
+    color: var(--lp-text-dark);
+    background-color: var(--lp-bg-white);
+    overflow-x: hidden;
+}
+
+.lp-container {
+    max-width: var(--lp-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* LPヘッダー */
+.lp-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--lp-shadow-sm);
+    z-index: 1000;
+    transition: var(--lp-transition);
+}
+
+.lp-header.scrolled {
+    box-shadow: var(--lp-shadow-md);
+}
+
+.lp-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
+.lp-site-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--lp-primary-color);
+    text-decoration: none;
+    transition: var(--lp-transition);
+}
+
+.lp-site-logo:hover {
+    color: var(--lp-secondary-color);
+}
+
+.lp-main-navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.lp-main-navigation li {
+    margin: 0;
+}
+
+.lp-main-navigation a {
+    color: var(--lp-text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--lp-transition);
+    position: relative;
+}
+
+.lp-main-navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--lp-primary-color);
+    transition: var(--lp-transition);
+}
+
+.lp-main-navigation a:hover::after {
+    width: 100%;
+}
+
+.lp-main-navigation a:hover {
+    color: var(--lp-primary-color);
+}
+
+.lp-cta-button {
+    background: var(--lp-primary-color);
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--lp-transition);
+    display: inline-block;
+}
+
+.lp-cta-button:hover {
+    background: var(--lp-secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--lp-shadow-lg);
+    color: white !important;
+}
+
+.lp-mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.lp-mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--lp-text-dark);
+    margin: 5px 0;
+    transition: var(--lp-transition);
+    border-radius: 2px;
+}
+
+/* ヒーローセクション */
+.lp-hero-section {
+    padding: 150px 0 100px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.lp-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+    background-size: cover;
+}
+
+.lp-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.lp-hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: white;
+}
+
+.lp-hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lp-hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.lp-btn-primary,
+.lp-btn-secondary {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--lp-transition);
+    display: inline-block;
+}
+
+.lp-btn-primary {
+    background: white;
+    color: var(--lp-primary-color) !important;
+}
+
+.lp-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lp-shadow-xl);
+    color: var(--lp-primary-color) !important;
+}
+
+.lp-btn-secondary {
+    background: transparent;
+    color: white !important;
+    border: 2px solid white;
+}
+
+.lp-btn-secondary:hover {
+    background: white;
+    color: var(--lp-primary-color) !important;
+}
+
+/* 特徴セクション */
+.lp-features-section {
+    padding: 100px 0;
+    background: var(--lp-bg-light);
+}
+
+.lp-section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--lp-text-dark);
+    font-weight: 700;
+}
+
+.lp-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.lp-feature-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: var(--lp-shadow-md);
+    transition: var(--lp-transition);
+    text-align: center;
+}
+
+.lp-feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--lp-shadow-xl);
+}
+
+.lp-feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--lp-primary-color);
+}
+
+.lp-feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--lp-text-dark);
+    font-weight: 600;
+}
+
+.lp-feature-description {
+    color: var(--lp-text-light);
+    line-height: 1.8;
+}
+
+/* サービスセクション */
+.lp-services-section {
+    padding: 100px 0;
+    background: var(--lp-bg-white);
+}
+
+.lp-services-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.lp-services-text .lp-section-title {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.lp-services-description {
+    color: var(--lp-text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.lp-services-list {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.lp-services-list li {
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+}
+
+.lp-services-list i {
+    color: var(--lp-success-color);
+    font-size: 1.2rem;
+}
+
+.lp-services-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: var(--lp-shadow-lg);
+}
+
+/* 実績セクション */
+.lp-stats-section {
+    padding: 80px 0;
+    background: var(--lp-primary-color);
+    color: white;
+}
+
+.lp-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+
+.lp-stat-item {
+    padding: 2rem;
+}
+
+.lp-stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.lp-stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* お客様の声セクション */
+.lp-testimonials-section {
+    padding: 100px 0;
+    background: var(--lp-bg-light);
+}
+
+.lp-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.lp-testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--lp-shadow-md);
+    transition: var(--lp-transition);
+}
+
+.lp-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--lp-shadow-lg);
+}
+
+.lp-testimonial-content {
+    margin-bottom: 1.5rem;
+}
+
+.lp-testimonial-content p {
+    font-style: italic;
+    color: var(--lp-text-light);
+    line-height: 1.8;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.lp-testimonial-content p::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 3rem;
+    color: var(--lp-primary-color);
+    opacity: 0.3;
+}
+
+.lp-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lp-author-avatar {
+    font-size: 2.5rem;
+    color: var(--lp-text-muted);
+}
+
+.lp-author-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.lp-author-info p {
+    font-size: 0.875rem;
+    color: var(--lp-text-muted);
+}
+
+/* CTAセクション */
+.lp-cta-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+}
+
+.lp-cta-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: white;
+}
+
+.lp-cta-description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lp-btn-cta {
+    background: white;
+    color: var(--lp-primary-color) !important;
+    padding: 1.25rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: var(--lp-transition);
+    display: inline-block;
+}
+
+.lp-btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lp-shadow-xl);
+    color: var(--lp-primary-color) !important;
+}
+
+/* コンタクトセクション */
+.lp-contact-section {
+    padding: 100px 0;
+    background: var(--lp-bg-white);
+}
+
+.lp-contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+}
+
+.lp-contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.lp-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.lp-contact-item i {
+    font-size: 1.5rem;
+    color: var(--lp-primary-color);
+    width: 30px;
+}
+
+.lp-contact-form {
+    background: var(--lp-bg-light);
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.lp-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.lp-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.lp-required {
+    color: #ef4444;
+}
+
+.lp-form-group input,
+.lp-form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--lp-border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--lp-transition);
+}
+
+.lp-form-group input:focus,
+.lp-form-group textarea:focus {
+    outline: none;
+    border-color: var(--lp-primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.lp-btn-submit {
+    background: var(--lp-primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--lp-transition);
+    width: 100%;
+}
+
+.lp-btn-submit:hover {
+    background: var(--lp-secondary-color);
+    transform: translateY(-2px);
+}
+
+.lp-form-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+}
+
+.lp-form-message.success {
+    background: #d1fae5;
+    color: #065f46;
+    display: block;
+}
+
+.lp-form-message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    display: block;
+}
+
+/* フッター */
+.lp-site-footer {
+    padding: 60px 0 30px;
+    background: var(--lp-bg-dark);
+    color: white;
+}
+
+.lp-footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.lp-footer-logo {
+    color: white !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.lp-footer-navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.lp-footer-navigation a {
+    color: white !important;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: var(--lp-transition);
+}
+
+.lp-footer-navigation a:hover {
+    opacity: 1;
+}
+
+.lp-footer-social {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.lp-social-link {
+    color: white !important;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    transition: var(--lp-transition);
+}
+
+.lp-social-link:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+.lp-footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    opacity: 0.6;
+    font-size: 0.875rem;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+    .lp-services-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .lp-services-image {
+        order: -1;
+    }
+
+    .lp-contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .lp-hero-title {
+        font-size: 2.5rem;
+    }
+
+    .lp-hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .lp-hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lp-main-navigation,
+    .lp-header-cta {
+        display: none;
+    }
+
+    .lp-mobile-menu-toggle {
+        display: block;
+    }
+
+    .lp-features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .lp-footer-social {
+        justify-content: center;
+    }
+
+    .lp-section-title {
+        font-size: 2rem;
+    }
+
+    .lp-cta-title {
+        font-size: 2rem;
+    }
+
+    .lp-stat-number {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lp-hero-section {
+        padding: 120px 0 80px;
+    }
+
+    .lp-hero-title {
+        font-size: 2rem;
+    }
+
+    .lp-section-title {
+        font-size: 1.75rem;
+    }
+
+    .lp-feature-card {
+        padding: 1.5rem;
+    }
+
+    .lp-contact-form {
+        padding: 1.5rem;
+    }
+}
