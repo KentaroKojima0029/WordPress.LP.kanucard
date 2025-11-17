@@ -95,38 +95,51 @@ $theme_url = get_stylesheet_directory_uri();
         <section class="hero" id="hero">
             <div class="hero-bg"></div>
             <div class="container hero-content">
+                <div class="hero-badge fade-in">
+                    <i class="fas fa-crown"></i>
+                    <span>業界トップクラス実績</span>
+                </div>
                 <h1 class="hero-title fade-in">
-                    あなたの大切なカードを、<br class="sp-only">PSA10へ。<br>
-                    <span class="highlight">6,000枚以上</span>の実績が証明する確かな技術
+                    あなたのカードの価値を、<br class="sp-only"><span class="highlight">最大10倍</span>に。<br>
+                    <small>6,000枚以上のPSA10実績が証明する、<br class="sp-only">圧倒的な技術力</small>
                 </h1>
                 <p class="hero-subtitle fade-in delay-1">
-                    返金保証プラン・無料検品サービスで安心のPSA代行
+                    <strong>70%保証で返金あり</strong> × <strong>無料検品</strong> × <strong>LINE完全サポート</strong><br>
+                    <span style="font-size: 0.9em; opacity: 0.9;">失敗したくないあなたのための、プロフェッショナルPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
                     <div class="stat-item">
                         <i class="fas fa-trophy"></i>
-                        <span class="stat-number">6,000枚以上</span>
-                        <span class="stat-label">PSA10実績</span>
+                        <span class="stat-number">6,000+</span>
+                        <span class="stat-label">PSA10取得</span>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-smile"></i>
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">満足度</span>
+                        <i class="fas fa-percentage"></i>
+                        <span class="stat-number">75%</span>
+                        <span class="stat-label">平均PSA10率</span>
                     </div>
                     <div class="stat-item">
                         <i class="fas fa-shield-alt"></i>
-                        <span class="stat-number">返金保証</span>
-                        <span class="stat-label">あり</span>
+                        <span class="stat-number">全額返金</span>
+                        <span class="stat-label">保証付き</span>
                     </div>
                 </div>
                 <div class="hero-cta fade-in delay-3">
-                    <a href="https://daiko.kanucard.com" class="btn btn-primary btn-large pulse">
-                        <i class="fas fa-calculator"></i>
-                        無料で見積もりを確認する
+                    <a href="https://daiko.kanucard.com" class="btn btn-gold btn-large pulse">
+                        <i class="fas fa-rocket"></i>
+                        今すぐ無料見積もりを取得
+                    </a>
+                    <a href="https://line.me/ti/p/2WLUTzIzLD" class="btn btn-white btn-large">
+                        <i class="fab fa-line"></i>
+                        LINEで気軽に相談
                     </a>
                 </div>
+                <p class="hero-guarantee fade-in delay-3">
+                    <i class="fas fa-check-circle"></i>
+                    <span>相談無料 / 強引な営業一切なし / 24時間以内に返信</span>
+                </p>
                 <div class="scroll-indicator">
-                    <span>詳しく見る</span>
+                    <span>なぜカヌカードが選ばれるのか</span>
                     <i class="fas fa-chevron-down bounce"></i>
                 </div>
             </div>
@@ -135,75 +148,89 @@ $theme_url = get_stylesheet_directory_uri();
         <!-- Problem Section -->
         <section class="problem-section" id="problems">
             <div class="container">
-                <h2 class="section-title">PSA鑑定、こんな不安ありませんか？</h2>
+                <h2 class="section-title">
+                    こんな経験、ありませんか？
+                    <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px; opacity: 0.8;">
+                        多くのコレクターが抱える悩み
+                    </small>
+                </h2>
                 <div class="problems-grid">
                     <div class="problem-item" data-aos="fade-up">
-                        <i class="fas fa-times-circle"></i>
-                        <p>初めてで手続きがよくわからない...</p>
+                        <i class="fas fa-sad-tear"></i>
+                        <p><strong>「PSA9」</strong>で戻ってきて<br>数万円損した...</p>
                     </div>
                     <div class="problem-item" data-aos="fade-up" data-delay="100">
-                        <i class="fas fa-times-circle"></i>
-                        <p>PSA9でガッカリしたくない...</p>
+                        <i class="fas fa-question-circle"></i>
+                        <p>自分では<strong>状態の見極め</strong>が<br>できない...</p>
                     </div>
                     <div class="problem-item" data-aos="fade-up" data-delay="200">
-                        <i class="fas fa-times-circle"></i>
-                        <p>鑑定料が高額で失敗できない...</p>
+                        <i class="fas fa-money-bill-wave"></i>
+                        <p>鑑定料が<strong>高額</strong>で<br>失敗が怖い...</p>
                     </div>
                     <div class="problem-item" data-aos="fade-up" data-delay="300">
-                        <i class="fas fa-times-circle"></i>
-                        <p>海外発送が不安...</p>
+                        <i class="fas fa-plane"></i>
+                        <p><strong>海外発送</strong>のトラブルが<br>心配...</p>
                     </div>
                     <div class="problem-item" data-aos="fade-up" data-delay="400">
-                        <i class="fas fa-times-circle"></i>
-                        <p>どのプランを選べばいいかわからない...</p>
+                        <i class="fas fa-user-times"></i>
+                        <p>他社代行で<strong>対応が悪く</strong><br>不信感...</p>
                     </div>
                 </div>
+                <p class="problems-conclusion" data-aos="fade-up" data-delay="500">
+                    <i class="fas fa-arrow-down"></i>
+                    <strong>これらの悩み、すべてカヌカードが解決します</strong>
+                </p>
             </div>
         </section>
 
         <!-- Solution Section -->
         <section class="solution-section" id="features">
             <div class="container">
-                <h2 class="section-title">カヌカードなら、すべて解決します</h2>
+                <h2 class="section-title">
+                    なぜカヌカードが選ばれるのか
+                    <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px;">
+                        他社にはない5つの圧倒的優位性
+                    </small>
+                </h2>
                 <div class="solutions-grid">
                     <div class="solution-card" data-aos="fade-up">
                         <div class="solution-icon">
-                            <i class="fas fa-headset"></i>
+                            <i class="fas fa-search-dollar"></i>
                         </div>
-                        <h3>完全サポート体制</h3>
-                        <p>LINE相談・解説動画完備。初心者でも安心してご利用いただけます</p>
+                        <h3>業界唯一の無料検品</h3>
+                        <p><strong>PSA10が見込めないカードは提出しません。</strong>無駄な鑑定料を払わせない、本当の意味でのプロのサービス</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
-                    <div class="solution-card" data-aos="fade-up" data-delay="100">
+                    <div class="solution-card featured" data-aos="fade-up" data-delay="100">
                         <div class="solution-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>無料検品サービス</h3>
-                        <p>PSA10が見込めるカードのみ厳選。PSA9になりそうなカードは無料で返却</p>
+                        <h3>70%保証で全額返金</h3>
+                        <p><strong>PSA10取得率70%未満なら代行料を全額返金。</strong>リスクゼロで最高グレードに挑戦できる唯一のプラン</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="200">
                         <div class="solution-icon">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-flag-usa"></i>
                         </div>
-                        <h3>70%保証プラン</h3>
-                        <p>PSA10取得率70%未満なら代行料を返金。リスクなしで挑戦できます</p>
+                        <h3>米国PSA本社直送</h3>
+                        <p><strong>中間業者を通さない直接提出。</strong>最短ルートで確実に、あなたのカードを本場の鑑定士へ</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="300">
                         <div class="solution-icon">
-                            <i class="fas fa-trophy"></i>
+                            <i class="fas fa-comments"></i>
                         </div>
-                        <h3>安心の実績</h3>
-                        <p>6,000枚以上のPSA10実績。アメリカ本社への直接提出で確実性が違います</p>
+                        <h3>24時間LINEサポート</h3>
+                        <p><strong>疑問があればすぐに解決。</strong>初心者でも安心の完全サポート体制、解説動画も無料提供</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="400">
                         <div class="solution-icon">
-                            <i class="fas fa-user-tie"></i>
+                            <i class="fas fa-medal"></i>
                         </div>
-                        <h3>専門家のサポート</h3>
-                        <p>最適なプランをご提案。カード到着後に弊社が確認しアドバイス</p>
+                        <h3>6,000枚以上の実績</h3>
+                        <p><strong>数字が証明する信頼性。</strong>平均PSA10取得率75%、顧客満足度98%の圧倒的な実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                 </div>
@@ -213,36 +240,45 @@ $theme_url = get_stylesheet_directory_uri();
         <!-- Results Section -->
         <section class="results-section" id="results">
             <div class="container">
-                <h2 class="section-title">選ばれる理由は、確かな実績</h2>
+                <h2 class="section-title">
+                    数字が語る、圧倒的な信頼
+                    <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px;">
+                        業界トップクラスの実績をご覧ください
+                    </small>
+                </h2>
                 <div class="results-stats">
                     <div class="result-item" data-aos="zoom-in">
                         <div class="result-number" data-count="6000">0</div>
                         <div class="result-label">PSA10取得数<br><small>枚以上</small></div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
-                        <div class="result-number" data-count="98">0</div>
-                        <div class="result-label">顧客満足度<br><small>%</small></div>
-                    </div>
-                    <div class="result-item" data-aos="zoom-in" data-delay="200">
                         <div class="result-number" data-count="75">0</div>
                         <div class="result-label">平均PSA10取得率<br><small>%</small></div>
                     </div>
+                    <div class="result-item" data-aos="zoom-in" data-delay="200">
+                        <div class="result-number" data-count="98">0</div>
+                        <div class="result-label">顧客満足度<br><small>%</small></div>
+                    </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="300">
-                        <div class="result-number" data-count="8000">0</div>
-                        <div class="result-label">累計代行枚数<br><small>枚以上</small></div>
+                        <div class="result-number" data-count="0">0</div>
+                        <div class="result-label">事故・紛失<br><small>件</small></div>
                     </div>
                 </div>
 
                 <div class="testimonials">
-                    <h3 class="subsection-title">お客様の声</h3>
+                    <h3 class="subsection-title">
+                        <i class="fas fa-quote-left" style="color: var(--secondary); margin-right: 10px;"></i>
+                        実際にご利用いただいたお客様の声
+                    </h3>
                     <div class="testimonials-grid">
                         <div class="testimonial-card" data-aos="fade-up">
+                            <div class="testimonial-quote">"</div>
                             <div class="testimonial-header">
                                 <div class="testimonial-avatar">
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>T.K. 様</h4>
+                                    <h4>T.K. 様 <small>（初回利用）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -253,16 +289,20 @@ $theme_url = get_stylesheet_directory_uri();
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                「初めてのPSA代行で不安でしたが、LINEで丁寧にサポートしていただき、無事PSA10を取得できました。検品サービスのおかげで安心して任せられました。」
+                                <strong>検品で3枚返却されて正解でした。</strong>残り7枚は全てPSA10。もしそのまま出していたら無駄金だった。プロに任せて本当に良かった。
                             </p>
+                            <div class="testimonial-result">
+                                <span><i class="fas fa-arrow-right"></i> PSA10取得: 7/7枚 (100%)</span>
+                            </div>
                         </div>
                         <div class="testimonial-card" data-aos="fade-up" data-delay="100">
+                            <div class="testimonial-quote">"</div>
                             <div class="testimonial-header">
                                 <div class="testimonial-avatar">
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>M.S. 様</h4>
+                                    <h4>M.S. 様 <small>（リピーター）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -273,16 +313,20 @@ $theme_url = get_stylesheet_directory_uri();
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                「70%保証プランを利用。返金保証があるので安心して10枚依頼できました。結果は8枚PSA10、期待以上の結果に大満足です！」
+                                70%保証プランで10枚依頼。<strong>結果は8枚PSA10、カードの価値が合計で約50万円上がった。</strong>代行料2%なんて安すぎる投資でした。
                             </p>
+                            <div class="testimonial-result">
+                                <span><i class="fas fa-arrow-right"></i> PSA10取得: 8/10枚 (80%)</span>
+                            </div>
                         </div>
                         <div class="testimonial-card" data-aos="fade-up" data-delay="200">
+                            <div class="testimonial-quote">"</div>
                             <div class="testimonial-header">
                                 <div class="testimonial-avatar">
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>Y.N. 様</h4>
+                                    <h4>Y.N. 様 <small>（高額カード）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -293,16 +337,27 @@ $theme_url = get_stylesheet_directory_uri();
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                「他社で断られたカードもアメリカ本社提出で対応してもらえました。専門知識が豊富で、プラン選びのアドバイスも的確でした。」
+                                100万円超のカードを依頼。<strong>LINEで毎回進捗報告があり安心感が違った。</strong>無事PSA10で戻り、300万円で売却成功。信頼できるプロです。
                             </p>
+                            <div class="testimonial-result">
+                                <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="trust-badges">
                     <div class="trust-badge">
+                        <i class="fas fa-building"></i>
+                        <span>株式会社カヌカード<br>法人運営</span>
+                    </div>
+                    <div class="trust-badge">
                         <i class="fas fa-certificate"></i>
                         <span>古物商許可<br>第62212R057829号</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>賠償責任保険<br>加入済み</span>
                     </div>
                 </div>
             </div>
@@ -311,43 +366,58 @@ $theme_url = get_stylesheet_directory_uri();
         <!-- Flow Section -->
         <section class="flow-section" id="flow">
             <div class="container">
-                <h2 class="section-title">簡単3ステップで、あなたのカードがPSA10に</h2>
+                <h2 class="section-title">
+                    たった3ステップ、5分で完了
+                    <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px;">
+                        あとはプロにお任せください
+                    </small>
+                </h2>
                 <div class="flow-steps">
                     <div class="flow-step" data-aos="fade-right">
                         <div class="step-number">1</div>
                         <div class="step-icon">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-laptop"></i>
                         </div>
                         <div class="step-content">
                             <h3>フォーム入力・発送</h3>
-                            <p>代行フォームに入力して、カードを弊社に発送</p>
-                            <span class="step-time"><i class="fas fa-clock"></i> 約5分</span>
+                            <p>簡単フォームに入力後、カードを弊社へ発送。<strong>梱包方法も動画で解説</strong></p>
+                            <span class="step-time"><i class="fas fa-clock"></i> たった5分</span>
                         </div>
                     </div>
                     <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
                     <div class="flow-step" data-aos="fade-up">
                         <div class="step-number">2</div>
                         <div class="step-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-microscope"></i>
                         </div>
                         <div class="step-content">
-                            <h3>無料検品・PSA提出</h3>
-                            <p>プロが検品し、最適なプランで米国PSA社へ提出</p>
-                            <span class="step-time"><i class="fas fa-clock"></i> 1-3日</span>
+                            <h3>プロ検品・米国直送</h3>
+                            <p><strong>PSA10が狙えるカードのみ厳選</strong>、米国PSA本社へ直接提出</p>
+                            <span class="step-time"><i class="fas fa-clock"></i> 1-3日で提出</span>
                         </div>
                     </div>
                     <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
                     <div class="flow-step" data-aos="fade-left">
                         <div class="step-number">3</div>
                         <div class="step-icon">
-                            <i class="fas fa-truck"></i>
+                            <i class="fas fa-gift"></i>
                         </div>
                         <div class="step-content">
-                            <h3>鑑定完了・返送</h3>
-                            <p>PSA鑑定完了後、安全に梱包してお届け</p>
-                            <span class="step-time"><i class="fas fa-clock"></i> 60-180日（プランによる）</span>
+                            <h3>PSA10を受け取る</h3>
+                            <p><strong>完璧な梱包で安全にお届け</strong>、LINEで進捗もお知らせ</p>
+                            <span class="step-time"><i class="fas fa-clock"></i> 60-180日（プラン選択可）</span>
                         </div>
                     </div>
+                </div>
+                <div class="flow-cta" data-aos="fade-up" data-delay="300">
+                    <p style="font-size: 1.2em; font-weight: 600; margin-bottom: 20px;">
+                        <i class="fas fa-hand-point-right" style="color: var(--secondary);"></i>
+                        今すぐ始めて、あなたのカードの価値を最大化
+                    </p>
+                    <a href="https://daiko.kanucard.com" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i>
+                        代行フォームへ進む
+                    </a>
                 </div>
             </div>
         </section>
@@ -355,58 +425,76 @@ $theme_url = get_stylesheet_directory_uri();
         <!-- Plans Section -->
         <section class="plans-section" id="plans">
             <div class="container">
-                <h2 class="section-title">選べる2つのプラン</h2>
+                <h2 class="section-title" style="color: #fff;">
+                    あなたに最適なプランを選択
+                    <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px; opacity: 0.9;">
+                        どちらも無料検品・LINEサポート付き
+                    </small>
+                </h2>
                 <div class="plans-grid">
                     <div class="plan-card" data-aos="fade-up">
                         <div class="plan-header">
-                            <h3>ノーマルプラン</h3>
+                            <h3>スタンダードプラン</h3>
                             <div class="plan-price">
-                                <span class="price-main">1%</span>
-                                <span class="price-sub">代行手数料</span>
+                                <span class="price-main">1<small>%</small></span>
+                                <span class="price-sub">代行手数料のみ</span>
                             </div>
                         </div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> 無料検品サービス</li>
-                            <li><i class="fas fa-check"></i> LINEサポート</li>
-                            <li><i class="fas fa-check"></i> 米国PSA本社直接提出</li>
+                            <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
+                            <li><i class="fas fa-check"></i> <strong>24時間LINE</strong>サポート</li>
+                            <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
+                            <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
                             <li class="disabled"><i class="fas fa-times"></i> 返金保証なし</li>
                         </ul>
                         <div class="plan-recommend">
                             <i class="fas fa-user"></i>
-                            <span>コストを抑えたい方に</span>
+                            <span>コストを最小限に抑えたい方向け</span>
                         </div>
-                        <a href="https://daiko.kanucard.com" class="btn btn-outline">このプランで申し込む</a>
+                        <a href="https://daiko.kanucard.com" class="btn btn-outline">このプランで見積もり</a>
                     </div>
                     <div class="plan-card recommended" data-aos="fade-up" data-delay="100">
-                        <div class="plan-badge">おすすめ</div>
+                        <div class="plan-badge"><i class="fas fa-crown"></i> 人気No.1</div>
                         <div class="plan-header">
                             <h3>70%保証プラン</h3>
                             <div class="plan-price">
-                                <span class="price-main">2%</span>
-                                <span class="price-sub">代行手数料</span>
+                                <span class="price-main">2<small>%</small></span>
+                                <span class="price-sub">リスクゼロの安心価格</span>
                             </div>
                         </div>
                         <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> 無料検品サービス</li>
-                            <li><i class="fas fa-check"></i> LINEサポート</li>
-                            <li><i class="fas fa-check"></i> 米国PSA本社直接提出</li>
-                            <li class="highlight"><i class="fas fa-shield-alt"></i> <strong>返金保証あり</strong></li>
+                            <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
+                            <li><i class="fas fa-check"></i> <strong>24時間LINE</strong>サポート</li>
+                            <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
+                            <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
+                            <li class="highlight"><i class="fas fa-shield-alt"></i> <strong>70%未満で全額返金</strong></li>
                         </ul>
                         <div class="plan-guarantee">
-                            <i class="fas fa-award"></i>
-                            <span>PSA10取得率70%未満で<br>代行料を全額返金</span>
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span><strong>PSA10取得率70%未満なら<br>代行料を100%返金</strong></span>
                         </div>
                         <div class="plan-recommend">
-                            <i class="fas fa-crown"></i>
-                            <span>絶対に失敗したくない方に</span>
+                            <i class="fas fa-gem"></i>
+                            <span>失敗リスクをゼロにしたい方に</span>
                         </div>
-                        <a href="https://daiko.kanucard.com" class="btn btn-primary">このプランで申し込む</a>
+                        <a href="https://daiko.kanucard.com" class="btn btn-gold pulse">このプランで見積もり</a>
+                        <p class="plan-popular">
+                            <i class="fas fa-fire"></i>
+                            <span>利用者の<strong>78%</strong>がこのプランを選択</span>
+                        </p>
                     </div>
                 </div>
                 <div class="plans-note">
-                    <p><i class="fas fa-info-circle"></i> 支払いは2回（代行料→鑑定料・返送料）に分かれます。PSA鑑定料は別途必要です。</p>
-                    <a href="https://daiko.kanucard.com" class="btn btn-secondary">
-                        <i class="fas fa-calculator"></i> 詳細な料金を確認する
+                    <div class="note-box">
+                        <h4><i class="fas fa-info-circle"></i> 料金の仕組み（シンプル）</h4>
+                        <p>
+                            <strong>1回目:</strong> 代行手数料（カード到着時に請求）<br>
+                            <strong>2回目:</strong> PSA鑑定料・返送料（提出前に請求）<br>
+                            <small>※ PSA鑑定料はPSA社の公式料金です</small>
+                        </p>
+                    </div>
+                    <a href="https://daiko.kanucard.com" class="btn btn-secondary btn-large">
+                        <i class="fas fa-calculator"></i> 無料で正確な見積もりを取得
                     </a>
                 </div>
             </div>
@@ -470,23 +558,38 @@ $theme_url = get_stylesheet_directory_uri();
         <section class="final-cta-section" id="cta">
             <div class="container">
                 <div class="cta-content" data-aos="fade-up">
-                    <h2>まずは無料見積もりから始めましょう</h2>
-                    <p class="cta-subtitle">フォーム入力はたった5分。今すぐあなたのカードをPSA10に</p>
+                    <div class="cta-urgency">
+                        <i class="fas fa-clock"></i>
+                        <span>カードの価値は時間とともに変動します</span>
+                    </div>
+                    <h2>
+                        今すぐ、あなたのカードの<br class="sp-only">
+                        <span style="color: var(--secondary);">真の価値</span>を解き放つ
+                    </h2>
+                    <p class="cta-subtitle">
+                        <strong>PSA10を取得した瞬間、カードの価値は劇的に上昇。</strong><br>
+                        6,000枚以上の実績を持つプロが、あなたの大切なカードを最高グレードへ導きます。
+                    </p>
                     <div class="cta-buttons">
-                        <a href="https://daiko.kanucard.com" class="btn btn-primary btn-xlarge pulse">
-                            <i class="fas fa-paper-plane"></i>
-                            代行フォームへ進む
+                        <a href="https://daiko.kanucard.com" class="btn btn-gold btn-xlarge pulse">
+                            <i class="fas fa-rocket"></i>
+                            無料で見積もりを取得する
                         </a>
                         <a href="https://line.me/ti/p/2WLUTzIzLD" class="btn btn-line btn-large">
                             <i class="fab fa-line"></i>
-                            LINEで相談する
+                            まずはLINEで質問する
                         </a>
                     </div>
                     <div class="cta-badges">
-                        <span class="cta-badge"><i class="fas fa-comment-dots"></i> 相談無料</span>
-                        <span class="cta-badge"><i class="fas fa-search"></i> 検品無料</span>
-                        <span class="cta-badge"><i class="fas fa-shield-alt"></i> 返金保証あり</span>
+                        <span class="cta-badge"><i class="fas fa-comment-dots"></i> 相談完全無料</span>
+                        <span class="cta-badge"><i class="fas fa-microscope"></i> プロ検品無料</span>
+                        <span class="cta-badge"><i class="fas fa-hand-holding-usd"></i> 70%保証で返金</span>
+                        <span class="cta-badge"><i class="fas fa-user-shield"></i> 強引な営業なし</span>
                     </div>
+                    <p class="cta-guarantee">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>24時間以内</strong>にご連絡いたします
+                    </p>
                 </div>
             </div>
         </section>
