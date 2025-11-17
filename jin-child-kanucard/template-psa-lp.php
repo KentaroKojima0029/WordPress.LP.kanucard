@@ -484,6 +484,113 @@ $theme_url = get_stylesheet_directory_uri();
                         </p>
                     </div>
                 </div>
+
+                <!-- 70% Guarantee Explanation -->
+                <div class="guarantee-explanation" data-aos="fade-up">
+                    <h3 class="guarantee-title">
+                        <i class="fas fa-shield-alt"></i>
+                        70%保証プランの仕組み
+                    </h3>
+                    <p class="guarantee-intro">具体例でわかりやすく解説します</p>
+
+                    <div class="guarantee-flow">
+                        <div class="guarantee-step">
+                            <div class="step-icon-circle">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <div class="step-number-badge">STEP 1</div>
+                            <h4>無料検品後、10枚以上で依頼</h4>
+                            <div class="step-illustration">
+                                <div class="cards-stack">
+                                    <div class="card-item"><i class="fas fa-id-card"></i></div>
+                                    <div class="card-item"><i class="fas fa-id-card"></i></div>
+                                    <div class="card-item"><i class="fas fa-id-card"></i></div>
+                                    <div class="card-count">×10枚</div>
+                                </div>
+                            </div>
+                            <p>弊社の無料検品を通過した<br><strong>10枚以上</strong>のカードをご依頼</p>
+                        </div>
+
+                        <div class="guarantee-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+
+                        <div class="guarantee-step">
+                            <div class="step-icon-circle warning">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="step-number-badge">STEP 2</div>
+                            <h4>PSA鑑定結果を確認</h4>
+                            <div class="step-illustration">
+                                <div class="result-display">
+                                    <div class="result-psa10">
+                                        <span class="result-grade">PSA10</span>
+                                        <span class="result-count">6枚</span>
+                                    </div>
+                                    <div class="result-other">
+                                        <span class="result-grade">PSA9以下</span>
+                                        <span class="result-count">4枚</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>10枚中6枚がPSA10...<br><strong>取得率60%</strong>（70%未満）</p>
+                        </div>
+
+                        <div class="guarantee-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+
+                        <div class="guarantee-step highlight">
+                            <div class="step-icon-circle success">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="step-number-badge success">STEP 3</div>
+                            <h4>差額分を返金！</h4>
+                            <div class="step-illustration">
+                                <div class="refund-calculation">
+                                    <div class="calc-item">
+                                        <span>保証ライン</span>
+                                        <strong>70%</strong>
+                                    </div>
+                                    <div class="calc-minus">−</div>
+                                    <div class="calc-item">
+                                        <span>実際の取得率</span>
+                                        <strong>60%</strong>
+                                    </div>
+                                    <div class="calc-equals">=</div>
+                                    <div class="calc-result">
+                                        <span>返金率</span>
+                                        <strong class="refund-amount">40%</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <p><strong>代行料の40%を返金！</strong><br>リスクを最小限に抑えられます</p>
+                        </div>
+                    </div>
+
+                    <div class="guarantee-notes">
+                        <h4><i class="fas fa-exclamation-triangle"></i> ご利用にあたっての注意事項</h4>
+                        <ul>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <strong>ポケモンカード限定：</strong>70%保証プランはポケモンカードのみ対象です
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <strong>無料検品は必須：</strong>検品後に10枚未満となった場合、ノーマルプランへ移行します
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <strong>多めのご依頼推奨：</strong>検品で返却される可能性を考慮し、余裕を持った枚数でご依頼ください
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <strong>返金対象は代行料のみ：</strong>PSA鑑定料は返金対象外となります
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="plans-note">
                     <div class="note-box">
                         <h4><i class="fas fa-info-circle"></i> 料金の仕組み（シンプル）</h4>
