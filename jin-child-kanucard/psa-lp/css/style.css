@@ -1076,6 +1076,11 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto 4rem;
 }
 
+.plans-note {
+    text-align: center;
+    margin-top: 3rem;
+}
+
 .plan-card {
     background: white;
     border-radius: 32px;
@@ -1684,10 +1689,11 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 12px;
     margin-bottom: 2rem;
     text-align: left;
+    color: var(--text);
 }
 
 .note-box h4 {
-    color: var(--primary);
+    color: var(--primary) !important;
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
 }
@@ -1695,11 +1701,11 @@ h1, h2, h3, h4, h5, h6 {
 .note-box p {
     font-size: 0.95rem;
     line-height: 1.8;
-    color: var(--text-secondary);
+    color: var(--text-secondary) !important;
 }
 
 .note-box small {
-    color: var(--text-muted);
+    color: var(--text-muted) !important;
 }
 
 /* CTA Urgency */
@@ -1750,6 +1756,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 3rem;
     margin-top: 4rem;
     box-shadow: var(--shadow-lg);
+    color: var(--text);
 }
 
 .guarantee-title {
