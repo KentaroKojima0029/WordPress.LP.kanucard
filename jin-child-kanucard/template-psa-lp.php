@@ -18,7 +18,7 @@ $theme_url = get_stylesheet_directory_uri();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PSA鑑定代行 | 実績6,000枚以上・返金保証 | カヌカード</title>
-    <meta name="description" content="PSA鑑定代行なら実績6,000枚以上のカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のLINEサポート完備。">
+    <meta name="description" content="PSA鑑定代行なら実績6,000枚以上のカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のメッセージサポート完備。">
 
     <!-- OGP -->
     <meta property="og:title" content="PSA鑑定代行 | 実績6,000枚以上・返金保証 | カヌカード">
@@ -104,7 +104,7 @@ $theme_url = get_stylesheet_directory_uri();
                     <small>6,000枚以上のPSA10実績が証明する、<br class="sp-only">圧倒的な技術力</small>
                 </h1>
                 <p class="hero-subtitle fade-in delay-1">
-                    <strong>70%保証で返金あり</strong> × <strong>無料検品</strong> × <strong>LINE完全サポート</strong><br>
+                    <strong>70%保証で返金あり</strong> × <strong>無料検品</strong> × <strong>24時間メッセージサポート</strong><br>
                     <span style="font-size: 0.9em; opacity: 0.9;">失敗したくないあなたのための、プロフェッショナルPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
@@ -129,9 +129,9 @@ $theme_url = get_stylesheet_directory_uri();
                         <i class="fas fa-rocket"></i>
                         今すぐ無料見積もりを取得
                     </a>
-                    <a href="https://line.me/ti/p/2WLUTzIzLD" class="btn btn-white btn-large">
-                        <i class="fab fa-line"></i>
-                        LINEで気軽に相談
+                    <a href="https://daiko.kanucard.com" class="btn btn-white btn-large">
+                        <i class="fas fa-comments"></i>
+                        メッセージで気軽に相談
                     </a>
                 </div>
                 <p class="hero-guarantee fade-in delay-3">
@@ -221,8 +221,8 @@ $theme_url = get_stylesheet_directory_uri();
                         <div class="solution-icon">
                             <i class="fas fa-comments"></i>
                         </div>
-                        <h3>24時間LINEサポート</h3>
-                        <p><strong>疑問があればすぐに解決。</strong>初心者でも安心の完全サポート体制、解説動画も無料提供</p>
+                        <h3>24時間メッセージサポート</h3>
+                        <p><strong>疑問があればすぐに解決。</strong>代行アプリ内のメッセージ機能で安心の完全サポート体制、解説動画も無料提供</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="400">
@@ -337,13 +337,51 @@ $theme_url = get_stylesheet_directory_uri();
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                100万円超のカードを依頼。<strong>LINEで毎回進捗報告があり安心感が違った。</strong>無事PSA10で戻り、300万円で売却成功。信頼できるプロです。
+                                100万円超のカードを依頼。<strong>アプリ内メッセージで毎回進捗報告があり安心感が違った。</strong>無事PSA10で戻り、300万円で売却成功。信頼できるプロです。
                             </p>
                             <div class="testimonial-result">
                                 <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- PSA Graded Cards Gallery -->
+                <div class="graded-gallery-section" data-aos="fade-up">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-images" style="color: var(--secondary); margin-right: 10px;"></i>
+                        実際にPSA10を取得したカードたち
+                    </h3>
+                    <p class="gallery-intro">6,000枚以上のPSA10実績の一部をご紹介</p>
+
+                    <div class="gallery-scroll-container">
+                        <div class="gallery-cards">
+                            <!-- カード画像のプレースホルダー。実際の画像URLに差し替えてください -->
+                            <div class="gallery-card">
+                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-1.jpg" alt="PSA10鑑定品" loading="lazy">
+                            </div>
+                            <div class="gallery-card">
+                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-2.jpg" alt="PSA10鑑定品" loading="lazy">
+                            </div>
+                            <div class="gallery-card">
+                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-3.jpg" alt="PSA10鑑定品" loading="lazy">
+                            </div>
+                            <div class="gallery-card">
+                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-4.jpg" alt="PSA10鑑定品" loading="lazy">
+                            </div>
+                            <div class="gallery-card">
+                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-5.jpg" alt="PSA10鑑定品" loading="lazy">
+                            </div>
+                            <div class="gallery-card">
+                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-6.jpg" alt="PSA10鑑定品" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="gallery-note">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>スクロールして他のカードも見る</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </p>
                 </div>
 
                 <div class="trust-badges">
@@ -404,7 +442,7 @@ $theme_url = get_stylesheet_directory_uri();
                         </div>
                         <div class="step-content">
                             <h3>PSA10を受け取る</h3>
-                            <p><strong>完璧な梱包で安全にお届け</strong>、LINEで進捗もお知らせ</p>
+                            <p><strong>完璧な梱包で安全にお届け</strong>、アプリ内メッセージで進捗もお知らせ</p>
                             <span class="step-time"><i class="fas fa-clock"></i> 60-180日（プラン選択可）</span>
                         </div>
                     </div>
@@ -428,7 +466,7 @@ $theme_url = get_stylesheet_directory_uri();
                 <h2 class="section-title" style="color: #fff;">
                     あなたに最適なプランを選択
                     <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px; opacity: 0.9;">
-                        どちらも無料検品・LINEサポート付き
+                        どちらも無料検品・メッセージサポート付き
                     </small>
                 </h2>
                 <div class="plans-grid">
@@ -442,7 +480,7 @@ $theme_url = get_stylesheet_directory_uri();
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
-                            <li><i class="fas fa-check"></i> <strong>24時間LINE</strong>サポート</li>
+                            <li><i class="fas fa-check"></i> <strong>24時間メッセージ</strong>サポート</li>
                             <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
                             <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
                             <li class="disabled"><i class="fas fa-times"></i> 返金保証なし</li>
@@ -464,7 +502,7 @@ $theme_url = get_stylesheet_directory_uri();
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
-                            <li><i class="fas fa-check"></i> <strong>24時間LINE</strong>サポート</li>
+                            <li><i class="fas fa-check"></i> <strong>24時間メッセージ</strong>サポート</li>
                             <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
                             <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
                             <li class="highlight"><i class="fas fa-shield-alt"></i> <strong>70%未満で全額返金</strong></li>
@@ -630,7 +668,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>ご安心ください。LINE相談で24時間対応しており、解説動画も完備しています。初心者の方でも一から丁寧にサポートいたします。</p>
+                            <p>ご安心ください。代行アプリ内のメッセージ機能で24時間対応しており、解説動画も完備しています。初心者の方でも一から丁寧にサポートいたします。</p>
                         </div>
                     </div>
                     <div class="faq-item" data-aos="fade-up">
@@ -666,7 +704,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>初めての方や高額カードをお持ちの方には「70%保証プラン」をおすすめします。LINEでご相談いただければ、最適なプランをご提案いたします。</p>
+                            <p>初めての方や高額カードをお持ちの方には「70%保証プラン」をおすすめします。代行アプリ内のメッセージでご相談いただければ、最適なプランをご提案いたします。</p>
                         </div>
                     </div>
                 </div>
@@ -694,9 +732,9 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-rocket"></i>
                             無料で見積もりを取得する
                         </a>
-                        <a href="https://line.me/ti/p/2WLUTzIzLD" class="btn btn-line btn-large">
-                            <i class="fab fa-line"></i>
-                            まずはLINEで質問する
+                        <a href="https://daiko.kanucard.com" class="btn btn-secondary btn-large">
+                            <i class="fas fa-comments"></i>
+                            まずはメッセージで質問する
                         </a>
                     </div>
                     <div class="cta-badges">
@@ -728,7 +766,7 @@ $theme_url = get_stylesheet_directory_uri();
                     <ul>
                         <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">メインサイト</a></li>
                         <li><a href="https://daiko.kanucard.com">代行フォーム</a></li>
-                        <li><a href="https://line.me/ti/p/2WLUTzIzLD">LINE相談</a></li>
+                        <li><a href="https://daiko.kanucard.com">メッセージ相談</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">

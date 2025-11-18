@@ -201,6 +201,19 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+.btn-secondary {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
 .btn-gold {
     background: var(--gradient-gold);
     color: white;
@@ -2187,6 +2200,141 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+/* ========================================
+   PSA Graded Cards Gallery
+======================================== */
+.graded-gallery-section {
+    margin: 4rem 0;
+    padding: 3rem 0;
+    background: linear-gradient(180deg, rgba(240, 249, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 24px;
+}
+
+.graded-gallery-section .subsection-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.gallery-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+.gallery-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding: 1.5rem 0;
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* カスタムスクロールバー */
+.gallery-scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gallery-scroll-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.gallery-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--gradient-gold);
+    border-radius: 4px;
+}
+
+.gallery-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+}
+
+.gallery-cards {
+    display: flex;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.gallery-card {
+    flex-shrink: 0;
+    width: 280px;
+    height: 400px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.gallery-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
+
+.gallery-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(30, 58, 138, 0.25);
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 1rem;
+    background: white;
+}
+
+.gallery-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.gallery-note i {
+    color: var(--secondary);
+    animation: arrowBounce 1.5s infinite;
+}
+
+.gallery-note i.fa-arrow-left {
+    animation-direction: alternate;
+}
+
+.gallery-note i.fa-arrow-right {
+    animation-direction: alternate-reverse;
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
 /* Trust Badges Enhanced */
 .trust-badges {
     display: flex;
@@ -2486,6 +2634,31 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         text-align: center;
         padding: 1rem;
+    }
+
+    .graded-gallery-section {
+        padding: 2rem 0;
+        margin: 2rem 0;
+    }
+
+    .graded-gallery-section .subsection-title {
+        font-size: 1.4rem;
+        padding: 0 1rem;
+    }
+
+    .gallery-intro {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .gallery-card {
+        width: 240px;
+        height: 340px;
+    }
+
+    .gallery-note {
+        font-size: 0.85rem;
+        padding: 0 1rem;
     }
 
     .footer-main {
