@@ -574,28 +574,28 @@ $theme_url = get_stylesheet_directory_uri();
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div class="note-content">
-                                    <span class="note-heading">ポケモンカード限定：</span>
+                                    <span class="note-heading">ポケモンカード限定<span class="note-colon">：</span></span>
                                     <span class="note-text">70%保証プランはポケモンカードのみ対象です</span>
                                 </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div class="note-content">
-                                    <span class="note-heading">無料検品は必須：</span>
+                                    <span class="note-heading">無料検品は必須<span class="note-colon">：</span></span>
                                     <span class="note-text">検品後に10枚未満となった場合、ノーマルプランへ移行します</span>
                                 </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div class="note-content">
-                                    <span class="note-heading">多めのご依頼推奨：</span>
+                                    <span class="note-heading">多めのご依頼推奨<span class="note-colon">：</span></span>
                                     <span class="note-text">検品で返却される可能性を考慮し、余裕を持った枚数でご依頼ください</span>
                                 </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div class="note-content">
-                                    <span class="note-heading">返金対象は代行料のみ：</span>
+                                    <span class="note-heading">返金対象は代行料のみ<span class="note-colon">：</span></span>
                                     <span class="note-text">PSA鑑定料は返金対象外となります</span>
                                 </div>
                             </li>
