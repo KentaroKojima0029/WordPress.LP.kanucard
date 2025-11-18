@@ -2172,18 +2172,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .guarantee-notes .note-content {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 4px;
 }
 
 .guarantee-notes .note-heading {
     color: #B45309;
     font-weight: 700;
+    display: block;
 }
 
 .guarantee-notes .note-text {
     color: var(--text);
+    display: block;
 }
 
 /* Trust Badges Enhanced */
