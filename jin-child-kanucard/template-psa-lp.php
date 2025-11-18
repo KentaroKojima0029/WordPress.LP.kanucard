@@ -573,19 +573,31 @@ $theme_url = get_stylesheet_directory_uri();
                         <ul>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <strong>ポケモンカード限定：</strong>70%保証プランはポケモンカードのみ対象です
+                                <div class="note-content">
+                                    <span class="note-heading">ポケモンカード限定：</span>
+                                    <span class="note-text">70%保証プランはポケモンカードのみ対象です</span>
+                                </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <strong>無料検品は必須：</strong>検品後に10枚未満となった場合、ノーマルプランへ移行します
+                                <div class="note-content">
+                                    <span class="note-heading">無料検品は必須：</span>
+                                    <span class="note-text">検品後に10枚未満となった場合、ノーマルプランへ移行します</span>
+                                </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <strong>多めのご依頼推奨：</strong>検品で返却される可能性を考慮し、余裕を持った枚数でご依頼ください
+                                <div class="note-content">
+                                    <span class="note-heading">多めのご依頼推奨：</span>
+                                    <span class="note-text">検品で返却される可能性を考慮し、余裕を持った枚数でご依頼ください</span>
+                                </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
-                                <strong>返金対象は代行料のみ：</strong>PSA鑑定料は返金対象外となります
+                                <div class="note-content">
+                                    <span class="note-heading">返金対象は代行料のみ：</span>
+                                    <span class="note-text">PSA鑑定料は返金対象外となります</span>
+                                </div>
                             </li>
                         </ul>
                     </div>
