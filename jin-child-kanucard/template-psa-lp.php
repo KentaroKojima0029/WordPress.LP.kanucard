@@ -17,12 +17,12 @@ $theme_url = get_stylesheet_directory_uri();
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PSA鑑定代行 | 実績6,000枚以上・返金保証 | カヌカード</title>
-    <meta name="description" content="PSA鑑定代行なら実績6,000枚以上のカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のメッセージサポート完備。">
+    <title>PSA鑑定代行 | 実績7,000枚以上・返金保証 | カヌカード</title>
+    <meta name="description" content="PSA鑑定代行なら実績7,000枚以上のカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のメッセージサポート完備。">
 
     <!-- OGP -->
-    <meta property="og:title" content="PSA鑑定代行 | 実績6,000枚以上・返金保証 | カヌカード">
-    <meta property="og:description" content="6,000枚以上のPSA10実績。70%保証プランで安心の返金保証付き。">
+    <meta property="og:title" content="PSA鑑定代行 | 実績7,000枚以上・返金保証 | カヌカード">
+    <meta property="og:description" content="7,000枚以上のPSA10実績。70%保証プランで安心の返金保証付き。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo get_permalink(); ?>">
     <meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
@@ -51,7 +51,7 @@ $theme_url = get_stylesheet_directory_uri();
             "name": "株式会社カヌカード",
             "url": "https://kanucard.com"
         },
-        "description": "PSA鑑定代行サービス。6,000枚以上のPSA10実績、70%保証プランで返金保証付き。",
+        "description": "PSA鑑定代行サービス。7,000枚以上のPSA10実績、70%保証プランで返金保証付き。",
         "areaServed": "JP"
     }
     </script>
@@ -100,8 +100,8 @@ $theme_url = get_stylesheet_directory_uri();
                     <span>業界トップクラス実績</span>
                 </div>
                 <h1 class="hero-title fade-in">
-                    あなたのカードの価値を、<br class="sp-only"><span class="highlight">最大10倍</span>に。<br>
-                    <small>6,000枚以上のPSA10実績が証明する、<br class="sp-only">圧倒的な技術力</small>
+                    あなたのカードの価値を、<br class="sp-only"><span class="highlight">さらに高く</span>。<br>
+                    <small>7,000枚以上のPSA10実績が証明する、<br class="sp-only">圧倒的な技術力</small>
                 </h1>
                 <p class="hero-subtitle fade-in delay-1">
                     <strong>70%保証で返金あり</strong> × <strong>無料検品</strong> × <strong>24時間メッセージサポート</strong><br>
@@ -110,7 +110,7 @@ $theme_url = get_stylesheet_directory_uri();
                 <div class="hero-stats fade-in delay-2">
                     <div class="stat-item">
                         <i class="fas fa-trophy"></i>
-                        <span class="stat-number">6,000+</span>
+                        <span class="stat-number">7,000+</span>
                         <span class="stat-label">PSA10取得</span>
                     </div>
                     <div class="stat-item">
@@ -126,11 +126,9 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
                 <div class="hero-cta fade-in delay-3">
                     <a href="https://daiko.kanucard.com" class="btn btn-gold btn-large pulse">
-                        <i class="fas fa-rocket"></i>
                         今すぐ無料見積もりを取得
                     </a>
                     <a href="https://daiko.kanucard.com" class="btn btn-white btn-large">
-                        <i class="fas fa-comments"></i>
                         メッセージで気軽に相談
                     </a>
                 </div>
@@ -229,7 +227,7 @@ $theme_url = get_stylesheet_directory_uri();
                         <div class="solution-icon">
                             <i class="fas fa-medal"></i>
                         </div>
-                        <h3>6,000枚以上の実績</h3>
+                        <h3>7,000枚以上の実績</h3>
                         <p><strong>数字が証明する信頼性。</strong>平均PSA10取得率75%、顧客満足度98%の圧倒的な実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
@@ -248,7 +246,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </h2>
                 <div class="results-stats">
                     <div class="result-item" data-aos="zoom-in">
-                        <div class="result-number" data-count="6000">0</div>
+                        <div class="result-number" data-count="7000">0</div>
                         <div class="result-label">PSA10取得数<br><small>枚以上</small></div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
@@ -352,7 +350,7 @@ $theme_url = get_stylesheet_directory_uri();
                         <i class="fas fa-images" style="color: var(--secondary); margin-right: 10px;"></i>
                         実際にPSA10を取得したカードたち
                     </h3>
-                    <p class="gallery-intro">6,000枚以上のPSA10実績の一部をご紹介</p>
+                    <p class="gallery-intro">7,000枚以上のPSA10実績の一部をご紹介</p>
 
                     <div class="gallery-scroll-container">
                         <div class="gallery-cards">
@@ -470,9 +468,10 @@ $theme_url = get_stylesheet_directory_uri();
                     </small>
                 </h2>
                 <div class="plans-grid">
-                    <div class="plan-card" data-aos="fade-up">
+                    <div class="plan-card recommended" data-aos="fade-up">
+                        <div class="plan-badge"><i class="fas fa-crown"></i> 人気No.1</div>
                         <div class="plan-header">
-                            <h3>スタンダードプラン</h3>
+                            <h3>ノーマルプラン</h3>
                             <div class="plan-price">
                                 <span class="price-main">1<small>%</small></span>
                                 <span class="price-sub">代行手数料のみ</span>
@@ -489,10 +488,13 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-user"></i>
                             <span>コストを最小限に抑えたい方向け</span>
                         </div>
-                        <a href="https://daiko.kanucard.com" class="btn btn-outline">このプランで見積もり</a>
+                        <a href="https://daiko.kanucard.com" class="btn btn-gold pulse">このプランで見積もり</a>
+                        <p class="plan-popular">
+                            <i class="fas fa-fire"></i>
+                            <span>利用者の<strong>78%</strong>がこのプランを選択</span>
+                        </p>
                     </div>
-                    <div class="plan-card recommended" data-aos="fade-up" data-delay="100">
-                        <div class="plan-badge"><i class="fas fa-crown"></i> 人気No.1</div>
+                    <div class="plan-card" data-aos="fade-up" data-delay="100">
                         <div class="plan-header">
                             <h3>70%保証プラン</h3>
                             <div class="plan-price">
@@ -513,13 +515,9 @@ $theme_url = get_stylesheet_directory_uri();
                         </div>
                         <div class="plan-recommend">
                             <i class="fas fa-gem"></i>
-                            <span>失敗リスクをゼロにしたい方に</span>
+                            <span>失敗リスクを限りなく低くしたい方に</span>
                         </div>
-                        <a href="https://daiko.kanucard.com" class="btn btn-gold pulse">このプランで見積もり</a>
-                        <p class="plan-popular">
-                            <i class="fas fa-fire"></i>
-                            <span>利用者の<strong>78%</strong>がこのプランを選択</span>
-                        </p>
+                        <a href="https://daiko.kanucard.com" class="btn btn-outline">このプランで見積もり</a>
                     </div>
                 </div>
 
@@ -725,7 +723,7 @@ $theme_url = get_stylesheet_directory_uri();
                     </h2>
                     <p class="cta-subtitle">
                         <strong>PSA10を取得した瞬間、カードの価値は劇的に上昇。</strong><br>
-                        6,000枚以上の実績を持つプロが、あなたの大切なカードを最高グレードへ導きます。
+                        7,000枚以上の実績を持つプロが、あなたの大切なカードを最高グレードへ導きます。
                     </p>
                     <div class="cta-buttons">
                         <a href="https://daiko.kanucard.com" class="btn btn-gold btn-xlarge pulse">
