@@ -79,6 +79,7 @@ html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 body {
@@ -87,12 +88,21 @@ body {
     color: var(--text);
     background: var(--bg-white);
     overflow-x: hidden;
+    min-width: 320px;
+    width: 100%;
 }
 
 .container {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 24px;
+    width: 100%;
+}
+
+main {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 img {
@@ -795,6 +805,7 @@ h1, h2, h3, h4, h5, h6 {
 .results-section {
     padding: var(--section-padding) 0;
     background: var(--bg-light);
+    overflow: hidden;
 }
 
 .results-stats {
@@ -2212,6 +2223,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 3rem 0;
     background: linear-gradient(180deg, rgba(240, 249, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
     border-radius: 24px;
+    overflow: hidden;
 }
 
 .graded-gallery-section .subsection-title {
