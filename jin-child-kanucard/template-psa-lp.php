@@ -15,7 +15,6 @@ $theme_url = get_stylesheet_directory_uri();
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PSA鑑定代行 | 実績7,000枚以上・返金保証 | カヌカード</title>
     <meta name="description" content="PSA鑑定代行なら実績7,000枚以上のカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のメッセージサポート完備。">
@@ -35,10 +34,28 @@ $theme_url = get_stylesheet_directory_uri();
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- PSA LP Styles -->
+    <?php wp_head(); ?>
+
+    <!-- Viewport - must be after wp_head to prevent override -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+    <!-- PSA LP Styles - loaded after wp_head to override parent theme -->
     <link rel="stylesheet" href="<?php echo $theme_url; ?>/psa-lp/css/style.css">
 
-    <?php wp_head(); ?>
+    <!-- Force responsive styles -->
+    <style>
+        @viewport { width: device-width; }
+        html, body {
+            -webkit-text-size-adjust: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+        }
+        @media screen and (max-width: 768px) {
+            .sp-only { display: inline !important; }
+            .main-nav, .header-cta { display: none !important; }
+            .mobile-toggle { display: block !important; }
+        }
+    </style>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
