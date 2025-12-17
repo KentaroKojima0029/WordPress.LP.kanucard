@@ -2753,14 +2753,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /* iPhone SE and smaller devices (375px and below) */
 @media (max-width: 375px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero {
+        padding: 120px 16px 60px;
+    }
+
     .hero-title {
-        font-size: 1.6rem;
-        line-height: 1.35;
+        font-size: 1.5rem;
+        line-height: 1.4;
     }
 
     .hero-title small {
-        font-size: 0.85rem;
-        line-height: 1.6;
+        font-size: 0.8rem;
+        line-height: 1.5;
     }
 
     .hero-title-line,
@@ -2768,36 +2776,196 @@ h1, h2, h3, h4, h5, h6 {
         display: inline;
     }
 
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .hero-stats {
+        gap: 0.75rem;
+    }
+
+    .stat-item {
+        min-width: auto;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    .stat-item i {
+        font-size: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
     .btn-large {
-        padding: 1rem 1.75rem;
-        font-size: 0.95rem;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 100%;
     }
 
     .btn-xlarge {
-        padding: 1.1rem 2rem;
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    .hero-cta .btn {
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .problems-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .problem-item {
+        padding: 1.25rem;
+    }
+
+    .problem-item i {
+        font-size: 1.5rem;
+    }
+
+    .problem-item p {
         font-size: 1rem;
     }
 
+    .solutions-grid {
+        grid-template-columns: 1fr;
+    }
+
     .solution-card {
-        padding: 2rem;
+        padding: 1.5rem;
+    }
+
+    .solution-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .solution-icon i {
+        font-size: 1.75rem;
+    }
+
+    .flow-step {
+        min-width: auto;
+        width: 100%;
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .step-icon i {
+        font-size: 2rem;
+    }
+
+    .plans-grid {
+        grid-template-columns: 1fr;
     }
 
     .plan-card {
-        padding: 2rem;
+        padding: 1.5rem;
+    }
+
+    .price-main {
+        font-size: 3rem;
+    }
+
+    .guarantee-explanation {
+        padding: 1.5rem 1rem;
+    }
+
+    .guarantee-title {
+        font-size: 1.3rem;
+    }
+
+    .step-icon-circle {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+
+    .refund-calculation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .calc-minus,
+    .calc-equals {
+        font-size: 1.25rem;
     }
 
     .results-stats {
         grid-template-columns: 1fr;
     }
 
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
     .trust-badges {
         flex-direction: column;
         align-items: center;
+        gap: 0.75rem;
+    }
+
+    .trust-badge {
+        width: 100%;
+        justify-content: center;
     }
 
     .faq-question {
+        font-size: 0.95rem;
+        padding: 1.25rem;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 1.25rem 1.25rem;
+    }
+
+    .cta-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta-subtitle {
         font-size: 1rem;
-        padding: 1.5rem;
+    }
+
+    .cta-badges {
+        gap: 0.75rem;
+    }
+
+    .cta-badge {
+        font-size: 0.9rem;
+    }
+
+    .gallery-card {
+        width: 200px;
+        height: 280px;
+    }
+
+    .footer-main {
+        gap: 2rem;
     }
 }
 
@@ -2921,6 +3089,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-submit button {
     min-width: 280px;
+    max-width: 100%;
 }
 
 /* Success and Error Messages */
