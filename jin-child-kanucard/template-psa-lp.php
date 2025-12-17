@@ -100,8 +100,9 @@ $theme_url = get_stylesheet_directory_uri();
                     <span>業界トップクラス実績</span>
                 </div>
                 <h1 class="hero-title fade-in">
-                    あなたのカードの価値を、<br class="sp-only"><span class="highlight">さらに高く</span>。<br>
-                    <small>7,000枚以上のPSA10実績が証明する、<br class="sp-only">圧倒的な技術力</small>
+                    <span class="hero-title-line">あなたのカードの価値を、</span><br class="sp-only">
+                    <span class="hero-title-line"><span class="highlight">さらに高く。</span></span><br>
+                    <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する、</span><br class="sp-only"><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
                 <p class="hero-subtitle fade-in delay-1">
                     <strong>70%保証で返金あり</strong> × <strong>無料検品</strong> × <strong>24時間メッセージサポート</strong><br>
@@ -342,6 +343,128 @@ $theme_url = get_stylesheet_directory_uri();
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Review Form Section -->
+                <div class="review-form-section" data-aos="fade-up">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-pen" style="color: var(--secondary); margin-right: 10px;"></i>
+                        あなたの声をお聞かせください
+                    </h3>
+                    <p class="review-form-intro">ご利用いただいた感想やご意見をお待ちしております</p>
+
+                    <?php
+                    $review_success = false;
+                    $review_error = '';
+
+                    if (isset($_POST['submit_review']) && check_admin_referer('psa_review_form', 'psa_review_nonce')) {
+                        $review_name = sanitize_text_field($_POST['review_name']);
+                        $review_rating = intval($_POST['review_rating']);
+                        $review_message = sanitize_textarea_field($_POST['review_message']);
+
+                        if (empty($review_name) || empty($review_rating) || empty($review_message)) {
+                            $review_error = 'すべての項目を入力してください。';
+                        } elseif ($review_rating < 1 || $review_rating > 5) {
+                            $review_error = '評価は1〜5の範囲で選択してください。';
+                        } else {
+                            // メール送信
+                            $to = 'collection@kanucard.com';
+                            $subject = 'PSA代行LPに新しい口コミが投稿されました';
+                            $message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
+                            $message .= "お名前: " . $review_name . "\n";
+                            $message .= "評価: " . str_repeat('★', $review_rating) . str_repeat('☆', 5 - $review_rating) . " (" . $review_rating . "/5)\n";
+                            $message .= "メッセージ:\n" . $review_message . "\n\n";
+                            $message .= "投稿日時: " . current_time('Y-m-d H:i:s') . "\n";
+                            $message .= "投稿元URL: " . get_permalink() . "\n";
+
+                            $headers = array('Content-Type: text/plain; charset=UTF-8');
+
+                            if (wp_mail($to, $subject, $message, $headers)) {
+                                $review_success = true;
+                            } else {
+                                $review_error = '送信に失敗しました。しばらくしてから再度お試しください。';
+                            }
+                        }
+                    }
+                    ?>
+
+                    <?php if ($review_success): ?>
+                        <div class="review-success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
+                        </div>
+                    <?php else: ?>
+                        <?php if ($review_error): ?>
+                            <div class="review-error-message">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p><?php echo esc_html($review_error); ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <form method="post" class="review-form" id="reviewForm">
+                            <?php wp_nonce_field('psa_review_form', 'psa_review_nonce'); ?>
+
+                            <div class="form-group">
+                                <label for="review_name">
+                                    <i class="fas fa-user"></i> お名前<span class="required">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="review_name"
+                                    name="review_name"
+                                    placeholder="例: 山田 太郎"
+                                    maxlength="50"
+                                    required
+                                    value="<?php echo isset($_POST['review_name']) ? esc_attr($_POST['review_name']) : ''; ?>"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-star"></i> 評価<span class="required">*</span>
+                                </label>
+                                <div class="star-rating-input">
+                                    <input type="radio" id="star5" name="review_rating" value="5" required>
+                                    <label for="star5" title="5つ星"><i class="fas fa-star"></i></label>
+
+                                    <input type="radio" id="star4" name="review_rating" value="4">
+                                    <label for="star4" title="4つ星"><i class="fas fa-star"></i></label>
+
+                                    <input type="radio" id="star3" name="review_rating" value="3">
+                                    <label for="star3" title="3つ星"><i class="fas fa-star"></i></label>
+
+                                    <input type="radio" id="star2" name="review_rating" value="2">
+                                    <label for="star2" title="2つ星"><i class="fas fa-star"></i></label>
+
+                                    <input type="radio" id="star1" name="review_rating" value="1">
+                                    <label for="star1" title="1つ星"><i class="fas fa-star"></i></label>
+                                </div>
+                                <p class="rating-description">クリックして評価してください</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="review_message">
+                                    <i class="fas fa-comment"></i> ご感想・メッセージ<span class="required">*</span>
+                                </label>
+                                <textarea
+                                    id="review_message"
+                                    name="review_message"
+                                    rows="5"
+                                    placeholder="ご利用いただいた感想やご意見をお聞かせください..."
+                                    maxlength="1000"
+                                    required
+                                ><?php echo isset($_POST['review_message']) ? esc_textarea($_POST['review_message']) : ''; ?></textarea>
+                                <p class="char-count"><span id="charCount">0</span> / 1000文字</p>
+                            </div>
+
+                            <div class="form-submit">
+                                <button type="submit" name="submit_review" class="btn btn-primary btn-large">
+                                    <i class="fas fa-paper-plane"></i>
+                                    口コミを投稿する
+                                </button>
+                            </div>
+                        </form>
+                    <?php endif; ?>
                 </div>
 
                 <!-- PSA Graded Cards Gallery -->
@@ -605,7 +728,7 @@ $theme_url = get_stylesheet_directory_uri();
                     </div>
 
                     <div class="guarantee-notes">
-                        <h4><i class="fas fa-exclamation-triangle"></i> ご利用にあたっての注意事項</h4>
+                        <h4><i class="fas fa-exclamation-triangle"></i> 70％保証プランご利用の確認事項</h4>
                         <ul>
                             <li>
                                 <i class="fas fa-check-circle"></i>

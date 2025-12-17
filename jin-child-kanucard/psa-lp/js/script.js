@@ -264,4 +264,95 @@
     // 初期化時にアクティブナビゲーションを有効化
     updateActiveNav();
 
+    /**
+     * 口コミフォーム - 文字数カウンター
+     */
+    function initReviewFormCharCounter() {
+        const reviewTextarea = document.getElementById('review_message');
+        const charCountSpan = document.getElementById('charCount');
+
+        if (reviewTextarea && charCountSpan) {
+            // 初期値を設定
+            charCountSpan.textContent = reviewTextarea.value.length;
+
+            // 入力時に文字数を更新
+            reviewTextarea.addEventListener('input', function() {
+                const currentLength = this.value.length;
+                const maxLength = parseInt(this.getAttribute('maxlength')) || 1000;
+
+                charCountSpan.textContent = currentLength;
+
+                // 文字数が上限に近づいたら色を変える
+                const charCountElement = charCountSpan.parentElement;
+                if (currentLength >= maxLength * 0.9) {
+                    charCountElement.style.color = '#D97706'; // warning color
+                } else if (currentLength >= maxLength) {
+                    charCountElement.style.color = '#DC2626'; // danger color
+                } else {
+                    charCountElement.style.color = '#94A3B8'; // default muted color
+                }
+            });
+        }
+    }
+
+    /**
+     * 口コミフォーム - 星評価のインタラクション
+     */
+    function initReviewFormStarRating() {
+        const starInputs = document.querySelectorAll('.star-rating-input input[type="radio"]');
+        const starLabels = document.querySelectorAll('.star-rating-input label');
+
+        if (starInputs.length > 0) {
+            // ラベルにホバー効果を追加
+            starLabels.forEach(function(label, index) {
+                label.addEventListener('mouseenter', function() {
+                    // ホバー中の星とそれより前の星をハイライト
+                    for (let i = starLabels.length - 1; i >= index; i--) {
+                        starLabels[i].style.color = '#F59E0B';
+                    }
+                });
+
+                label.addEventListener('mouseleave', function() {
+                    // 選択されている星以外をデフォルト色に戻す
+                    const checkedInput = document.querySelector('.star-rating-input input[type="radio"]:checked');
+                    starLabels.forEach(function(lbl, idx) {
+                        const correspondingInput = starInputs[starLabels.length - 1 - idx];
+                        if (!checkedInput || correspondingInput !== checkedInput) {
+                            lbl.style.color = '#CBD5E1';
+                        }
+                    });
+
+                    // 選択されている星をハイライト
+                    if (checkedInput) {
+                        const checkedIndex = Array.from(starInputs).indexOf(checkedInput);
+                        for (let i = starLabels.length - 1; i >= (starLabels.length - 1 - checkedIndex); i--) {
+                            starLabels[i].style.color = '#F59E0B';
+                        }
+                    }
+                });
+            });
+
+            // 星を選択した時の処理
+            starInputs.forEach(function(input) {
+                input.addEventListener('change', function() {
+                    if (this.checked) {
+                        const rating = parseInt(this.value);
+                        // 選択された星とそれより前の星をハイライト
+                        for (let i = starLabels.length - 1; i >= (starLabels.length - rating); i--) {
+                            starLabels[i].style.color = '#F59E0B';
+                        }
+                        // それ以外の星をデフォルト色に
+                        for (let i = 0; i < (starLabels.length - rating); i++) {
+                            starLabels[i].style.color = '#CBD5E1';
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    // 口コミフォーム機能を初期化
+    initReviewFormCharCounter();
+    initReviewFormStarRating();
+
 })();
