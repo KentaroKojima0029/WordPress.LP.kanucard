@@ -153,14 +153,15 @@ $theme_url = get_stylesheet_directory_uri();
                 min-width: auto !important;
             }
 
-            /* Plan badge - outside card */
+            /* Plan badge - attached to card top */
             .plan-card.recommended {
-                margin-top: 2.5rem !important;
+                margin-top: 2rem !important;
             }
 
             .plan-badge {
-                top: -2.5rem !important;
-                border-radius: 20px !important;
+                top: 0 !important;
+                transform: translateX(-50%) translateY(-100%) !important;
+                border-radius: 12px 12px 0 0 !important;
             }
 
             /* Flow arrows - hide */
