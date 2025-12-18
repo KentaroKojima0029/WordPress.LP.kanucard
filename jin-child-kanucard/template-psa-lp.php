@@ -158,7 +158,6 @@ $theme_url = get_stylesheet_directory_uri();
                 overflow: visible !important;
             }
 
-            .plan-card.recommended,
             .plan-card.has-badge {
                 margin-top: 2.5rem !important;
                 border: 4px solid #D4AF37 !important;
@@ -791,8 +790,7 @@ $theme_url = get_stylesheet_directory_uri();
                     </small>
                 </h2>
                 <div class="plans-grid">
-                    <div class="plan-card recommended" data-aos="fade-up">
-                        <div class="plan-badge">人気No.1</div>
+                    <div class="plan-card" data-aos="fade-up">
                         <div class="plan-header">
                             <h3>ノーマルプラン</h3>
                             <div class="plan-price">
