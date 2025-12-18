@@ -170,6 +170,7 @@ $theme_url = get_stylesheet_directory_uri();
                 border-radius: 12px 12px 0 0 !important;
                 white-space: nowrap !important;
                 padding: 0.5rem 2rem !important;
+                background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%) !important;
             }
 
             /* Flow arrows - hide */
