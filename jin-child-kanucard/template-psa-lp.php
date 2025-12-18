@@ -1164,7 +1164,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <button type="submit" class="btn btn-gold btn-large estimate-submit">
-                    見積もりを計算
+                    計算する
                 </button>
             </form>
 
