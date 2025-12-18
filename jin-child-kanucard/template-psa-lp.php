@@ -154,8 +154,12 @@ $theme_url = get_stylesheet_directory_uri();
             }
 
             /* Plan badge - attached to card top */
+            .plan-card {
+                overflow: visible !important;
+            }
+
             .plan-card.recommended {
-                margin-top: 2rem !important;
+                margin-top: 2.5rem !important;
             }
 
             .plan-badge {
