@@ -431,14 +431,30 @@
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            // フォームと結果をリセット
+            if (form) form.reset();
+            if (resultDiv) resultDiv.style.display = 'none';
+            // PSAプランをリセット
+            if (psaPlanSelect) {
+                psaPlanSelect.innerHTML = '<option value="">先に代行プランを選択してください</option>';
+                psaPlanSelect.disabled = true;
+            }
         }
 
         if (closeBtn) {
-            closeBtn.addEventListener('click', closeModal);
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeModal();
+            });
         }
 
         if (overlay) {
-            overlay.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeModal();
+            });
         }
 
         // ESCキーで閉じる
