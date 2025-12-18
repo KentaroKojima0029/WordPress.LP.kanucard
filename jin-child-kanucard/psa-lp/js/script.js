@@ -355,4 +355,92 @@
     initReviewFormCharCounter();
     initReviewFormStarRating();
 
+    /**
+     * 簡易見積もりモーダル
+     */
+    function initEstimateModal() {
+        const modal = document.getElementById('estimateModal');
+        const openBtn = document.getElementById('openEstimateModal');
+        const closeBtn = document.getElementById('closeEstimateModal');
+        const overlay = modal ? modal.querySelector('.estimate-modal-overlay') : null;
+        const form = document.getElementById('estimateForm');
+        const resultDiv = document.getElementById('estimateResult');
+
+        if (!modal || !openBtn) return;
+
+        // モーダルを開く
+        openBtn.addEventListener('click', function() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // モーダルを閉じる
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', closeModal);
+        }
+
+        // ESCキーで閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // 見積もり計算
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const agencyPlan = parseFloat(document.getElementById('agencyPlan').value);
+                const psaPlan = parseFloat(document.getElementById('psaPlan').value);
+                const cardCount = parseInt(document.getElementById('cardCount').value);
+                const cardValue = parseFloat(document.getElementById('cardValue').value);
+
+                if (!agencyPlan || !psaPlan || !cardCount || !cardValue) {
+                    alert('すべての項目を入力してください');
+                    return;
+                }
+
+                // 為替レート（仮: 1ドル = 150円）
+                const exchangeRate = 150;
+
+                // PSA鑑定料（ドル → 円）
+                const psaFee = psaPlan * cardCount * exchangeRate;
+
+                // 代行手数料（カード申告額の1%または2%）
+                const agencyFee = cardValue * (agencyPlan / 100);
+
+                // 合計
+                const total = psaFee + agencyFee;
+
+                // 結果を表示
+                document.getElementById('resultPsaFee').textContent = formatCurrency(psaFee);
+                document.getElementById('resultAgencyFee').textContent = formatCurrency(agencyFee);
+                document.getElementById('resultTotal').textContent = formatCurrency(total);
+
+                resultDiv.style.display = 'block';
+
+                // 結果までスクロール
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        }
+
+        // 通貨フォーマット
+        function formatCurrency(value) {
+            return '¥' + Math.round(value).toLocaleString('ja-JP');
+        }
+    }
+
+    // 見積もりモーダルを初期化
+    initEstimateModal();
+
 })();

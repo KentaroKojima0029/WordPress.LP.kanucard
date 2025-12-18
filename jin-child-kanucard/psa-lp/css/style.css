@@ -3365,3 +3365,246 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.95rem;
     }
 }
+/* ========================================
+   Quick Estimate CTA
+======================================== */
+.quick-estimate-cta {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem 0;
+}
+
+.quick-estimate-cta .btn {
+    font-size: 1.2rem;
+    padding: 1.25rem 3rem;
+}
+
+/* ========================================
+   Estimate Modal
+======================================== */
+.estimate-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.estimate-modal.active {
+    display: flex;
+}
+
+.estimate-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.estimate-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.estimate-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.estimate-modal-close:hover {
+    color: var(--text);
+    transform: rotate(90deg);
+}
+
+.estimate-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.estimate-modal-title i {
+    color: var(--gold);
+    margin-right: 0.5rem;
+}
+
+.estimate-modal-desc {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.estimate-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.estimate-form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.estimate-form-group select,
+.estimate-form-group input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition-fast);
+    background: white;
+}
+
+.estimate-form-group select:focus,
+.estimate-form-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.input-with-unit {
+    position: relative;
+}
+
+.input-with-unit input {
+    padding-right: 3rem;
+}
+
+.input-with-unit .unit {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.estimate-submit {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.estimate-result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+    border-radius: 16px;
+    border: 2px solid var(--gold);
+}
+
+.estimate-result h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.estimate-result-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.estimate-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.estimate-result-item:last-child {
+    border-bottom: none;
+}
+
+.estimate-result-item .label {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.estimate-result-item .value {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+.estimate-result-item.total {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--gold);
+    border-bottom: none;
+}
+
+.estimate-result-item.total .label {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.estimate-result-item.total .value {
+    font-size: 1.4rem;
+    color: var(--gold-dark);
+}
+
+.estimate-note {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Mobile adjustments for modal */
+@media (max-width: 768px) {
+    .estimate-modal-content {
+        padding: 1.5rem;
+        width: 95%;
+        max-height: 85vh;
+    }
+
+    .estimate-modal-title {
+        font-size: 1.25rem;
+    }
+
+    .quick-estimate-cta .btn {
+        width: 100%;
+        font-size: 1rem;
+    }
+}

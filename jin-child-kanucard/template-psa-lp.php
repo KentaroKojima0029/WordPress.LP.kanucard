@@ -844,6 +844,13 @@ $theme_url = get_stylesheet_directory_uri();
                     </div>
                 </div>
 
+                <!-- Quick Estimate Button -->
+                <div class="quick-estimate-cta" data-aos="fade-up">
+                    <button type="button" class="btn btn-gold btn-large" id="openEstimateModal">
+                        <i class="fas fa-calculator"></i> 簡易見積もり
+                    </button>
+                </div>
+
                 <!-- 70% Guarantee Explanation -->
                 <div class="guarantee-explanation" data-aos="fade-up">
                     <h3 class="guarantee-title">
@@ -1111,6 +1118,78 @@ $theme_url = get_stylesheet_directory_uri();
             </div>
         </div>
     </footer>
+
+    <!-- Estimate Modal -->
+    <div class="estimate-modal" id="estimateModal">
+        <div class="estimate-modal-overlay"></div>
+        <div class="estimate-modal-content">
+            <button type="button" class="estimate-modal-close" id="closeEstimateModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="estimate-modal-title">
+                <i class="fas fa-calculator"></i> 簡易見積もり
+            </h3>
+            <p class="estimate-modal-desc">代行料金の目安を計算できます</p>
+
+            <form class="estimate-form" id="estimateForm">
+                <div class="estimate-form-group">
+                    <label for="agencyPlan">代行プラン</label>
+                    <select id="agencyPlan" required>
+                        <option value="">選択してください</option>
+                        <option value="1">ノーマルプラン（1%）</option>
+                        <option value="2">70%保証プラン（2%）</option>
+                    </select>
+                </div>
+
+                <div class="estimate-form-group">
+                    <label for="psaPlan">PSA社のプラン</label>
+                    <select id="psaPlan" required>
+                        <option value="">選択してください</option>
+                        <option value="25">バリュー（$25/枚）</option>
+                        <option value="75">レギュラー（$75/枚）</option>
+                        <option value="150">エクスプレス（$150/枚）</option>
+                        <option value="300">スーパーエクスプレス（$300/枚）</option>
+                    </select>
+                </div>
+
+                <div class="estimate-form-group">
+                    <label for="cardCount">提出枚数</label>
+                    <input type="number" id="cardCount" min="1" max="1000" placeholder="例: 10" required>
+                </div>
+
+                <div class="estimate-form-group">
+                    <label for="cardValue">カードの申告額（税抜合計）</label>
+                    <div class="input-with-unit">
+                        <input type="number" id="cardValue" min="0" placeholder="例: 100000" required>
+                        <span class="unit">円</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-gold btn-large estimate-submit">
+                    見積もりを計算
+                </button>
+            </form>
+
+            <div class="estimate-result" id="estimateResult" style="display: none;">
+                <h4>見積もり結果</h4>
+                <div class="estimate-result-items">
+                    <div class="estimate-result-item">
+                        <span class="label">PSA鑑定料</span>
+                        <span class="value" id="resultPsaFee">-</span>
+                    </div>
+                    <div class="estimate-result-item">
+                        <span class="label">代行手数料</span>
+                        <span class="value" id="resultAgencyFee">-</span>
+                    </div>
+                    <div class="estimate-result-item total">
+                        <span class="label">合計（税抜）</span>
+                        <span class="value" id="resultTotal">-</span>
+                    </div>
+                </div>
+                <p class="estimate-note">※ 為替レートや送料等により実際の金額は変動します</p>
+            </div>
+        </div>
+    </div>
 
     <!-- PSA LP Scripts -->
     <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js"></script>
