@@ -167,6 +167,8 @@ $theme_url = get_stylesheet_directory_uri();
                 top: 0 !important;
                 transform: translateX(-50%) translateY(-100%) !important;
                 border-radius: 12px 12px 0 0 !important;
+                white-space: nowrap !important;
+                padding: 0.5rem 2rem !important;
             }
 
             /* Flow arrows - hide */
@@ -788,7 +790,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </h2>
                 <div class="plans-grid">
                     <div class="plan-card recommended" data-aos="fade-up">
-                        <div class="plan-badge"><i class="fas fa-crown"></i> 人気No.1</div>
+                        <div class="plan-badge">人気No.1</div>
                         <div class="plan-header">
                             <h3>ノーマルプラン</h3>
                             <div class="plan-price">
@@ -814,7 +816,7 @@ $theme_url = get_stylesheet_directory_uri();
                         </p>
                     </div>
                     <div class="plan-card has-badge" data-aos="fade-up" data-delay="100">
-                        <div class="plan-badge secondary"><i class="fas fa-heart"></i> 初めての方にオススメ</div>
+                        <div class="plan-badge secondary">初めての方にオススメ</div>
                         <div class="plan-header">
                             <h3>70%保証プラン</h3>
                             <div class="plan-price">

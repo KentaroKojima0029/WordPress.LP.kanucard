@@ -2773,11 +2773,13 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .plan-badge {
-        font-size: 0.8rem;
-        padding: 0.5rem 1.5rem;
+        font-size: 0.85rem;
+        padding: 0.5rem 2rem;
         top: 0;
         transform: translateX(-50%) translateY(-100%);
         border-radius: 12px 12px 0 0;
+        white-space: nowrap;
+        min-width: max-content;
     }
 
     .plan-header {
