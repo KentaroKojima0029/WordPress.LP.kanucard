@@ -161,6 +161,8 @@ $theme_url = get_stylesheet_directory_uri();
             .plan-card.recommended,
             .plan-card.has-badge {
                 margin-top: 2.5rem !important;
+                border: 4px solid #D4AF37 !important;
+                box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2) !important;
             }
 
             .plan-badge {
