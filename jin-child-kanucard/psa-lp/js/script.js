@@ -368,6 +368,59 @@
 
         if (!modal || !openBtn) return;
 
+        // PSAプランのデータ
+        const psaPlans = {
+            japan: [
+                { value: '2980', label: 'バリューバルク' },
+                { value: '3980', label: 'バリュー' },
+                { value: '6980', label: 'バリュー・プラス' },
+                { value: '9980', label: 'レギュラー' }
+            ],
+            usa: [
+                { value: '3400', label: 'バリューバルク' },
+                { value: '4400', label: 'バリュー' },
+                { value: '7100', label: 'バリュー・プラス' },
+                { value: '24000', label: 'レギュラー' }
+            ]
+        };
+
+        // 代行プラン選択時にPSAプランを更新
+        const agencyPlanSelect = document.getElementById('agencyPlan');
+        const psaPlanSelect = document.getElementById('psaPlan');
+
+        if (agencyPlanSelect && psaPlanSelect) {
+            agencyPlanSelect.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const region = selectedOption.getAttribute('data-region');
+
+                // PSAプランをリセット
+                psaPlanSelect.innerHTML = '';
+
+                if (region && psaPlans[region]) {
+                    // プランを追加
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.textContent = '選択してください';
+                    psaPlanSelect.appendChild(defaultOption);
+
+                    psaPlans[region].forEach(function(plan) {
+                        const option = document.createElement('option');
+                        option.value = plan.value;
+                        option.textContent = plan.label;
+                        psaPlanSelect.appendChild(option);
+                    });
+
+                    psaPlanSelect.disabled = false;
+                } else {
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.textContent = '先に代行プランを選択してください';
+                    psaPlanSelect.appendChild(defaultOption);
+                    psaPlanSelect.disabled = true;
+                }
+            });
+        }
+
         // モーダルを開く
         openBtn.addEventListener('click', function() {
             modal.classList.add('active');

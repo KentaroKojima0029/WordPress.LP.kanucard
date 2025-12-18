@@ -3608,3 +3608,10 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1rem;
     }
 }
+
+/* Disabled select style */
+.estimate-form-group select:disabled {
+    background-color: #F1F5F9;
+    color: #94A3B8;
+    cursor: not-allowed;
+}
