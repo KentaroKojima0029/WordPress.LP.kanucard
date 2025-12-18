@@ -158,7 +158,8 @@ $theme_url = get_stylesheet_directory_uri();
                 overflow: visible !important;
             }
 
-            .plan-card.recommended {
+            .plan-card.recommended,
+            .plan-card.has-badge {
                 margin-top: 2.5rem !important;
             }
 
@@ -812,7 +813,8 @@ $theme_url = get_stylesheet_directory_uri();
                             <span>利用者の<strong>78%</strong>がこのプランを選択</span>
                         </p>
                     </div>
-                    <div class="plan-card" data-aos="fade-up" data-delay="100">
+                    <div class="plan-card has-badge" data-aos="fade-up" data-delay="100">
+                        <div class="plan-badge secondary"><i class="fas fa-heart"></i> 初めての方にオススメ</div>
                         <div class="plan-header">
                             <h3>70%保証プラン</h3>
                             <div class="plan-price">
