@@ -810,7 +810,6 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-user"></i>
                             <span>コストを最小限に抑えたい方向け</span>
                         </div>
-                        <a href="https://daiko.kanucard.com" class="btn btn-gold pulse">このプランで見積もり</a>
                         <p class="plan-popular">
                             <i class="fas fa-fire"></i>
                             <span>利用者の<strong>78%</strong>がこのプランを選択</span>
@@ -840,7 +839,6 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-gem"></i>
                             <span>失敗リスクを限りなく低くしたい方に</span>
                         </div>
-                        <a href="https://daiko.kanucard.com" class="btn btn-outline">このプランで見積もり</a>
                     </div>
                 </div>
 
