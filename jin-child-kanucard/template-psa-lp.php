@@ -976,9 +976,6 @@ $theme_url = get_stylesheet_directory_uri();
                             <small>※ PSA鑑定料はPSA社の公式料金です</small>
                         </p>
                     </div>
-                    <a href="https://daiko.kanucard.com" class="btn btn-secondary btn-large">
-                        <i class="fas fa-calculator"></i> 無料で正確な見積もりを取得
-                    </a>
                 </div>
             </div>
         </section>
