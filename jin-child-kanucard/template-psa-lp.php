@@ -1136,8 +1136,14 @@ $theme_url = get_stylesheet_directory_uri();
                     <label for="agencyPlan">代行プラン</label>
                     <select id="agencyPlan" required>
                         <option value="">選択してください</option>
-                        <option value="1">ノーマルプラン（1%）</option>
-                        <option value="2">70%保証プラン（2%）</option>
+                        <optgroup label="日本経由">
+                            <option value="5.7">日本 ノーマル</option>
+                            <option value="6.8">日本 70%保証</option>
+                        </optgroup>
+                        <optgroup label="アメリカ経由">
+                            <option value="6.8">アメリカ ノーマル</option>
+                            <option value="8.5">アメリカ 70%保証</option>
+                        </optgroup>
                     </select>
                 </div>
 
@@ -1145,10 +1151,18 @@ $theme_url = get_stylesheet_directory_uri();
                     <label for="psaPlan">PSA社のプラン</label>
                     <select id="psaPlan" required>
                         <option value="">選択してください</option>
-                        <option value="25">バリュー（$25/枚）</option>
-                        <option value="75">レギュラー（$75/枚）</option>
-                        <option value="150">エクスプレス（$150/枚）</option>
-                        <option value="300">スーパーエクスプレス（$300/枚）</option>
+                        <optgroup label="日本経由">
+                            <option value="2980">日本 バリューバルク</option>
+                            <option value="3980">日本 バリュー</option>
+                            <option value="6980">日本 バリュー・プラス</option>
+                            <option value="9980">日本 レギュラー</option>
+                        </optgroup>
+                        <optgroup label="アメリカ経由">
+                            <option value="3400">アメリカ バリューバルク</option>
+                            <option value="4400">アメリカ バリュー</option>
+                            <option value="7100">アメリカ バリュー・プラス</option>
+                            <option value="24000">アメリカ レギュラー</option>
+                        </optgroup>
                     </select>
                 </div>
 

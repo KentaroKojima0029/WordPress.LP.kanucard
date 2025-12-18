@@ -410,13 +410,10 @@
                     return;
                 }
 
-                // 為替レート（仮: 1ドル = 150円）
-                const exchangeRate = 150;
+                // PSA鑑定料（円/枚 × 枚数）
+                const psaFee = psaPlan * cardCount;
 
-                // PSA鑑定料（ドル → 円）
-                const psaFee = psaPlan * cardCount * exchangeRate;
-
-                // 代行手数料（カード申告額の1%または2%）
+                // 代行手数料（カード申告額 × %）
                 const agencyFee = cardValue * (agencyPlan / 100);
 
                 // 合計
