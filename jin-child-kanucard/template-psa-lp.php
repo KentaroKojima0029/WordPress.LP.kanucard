@@ -300,14 +300,14 @@ $theme_url = get_stylesheet_directory_uri();
                 <div class="hero-slider-track">
                     <?php
                     $slider_images = array(
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627094.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627100.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627107.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627112.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627111.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627118.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627127.jpg',
-                        'https://kanucard.com/wp-content/uploads/2024/12/110627140.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627094.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627100.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627107.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627112.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627111.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627118.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627127.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/06/110627140.jpg',
                     );
                     // 2回ループしてシームレスに
                     for ($i = 0; $i < 2; $i++):
