@@ -492,13 +492,20 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 2段目スライダー（逆方向） */
+/* 2段目スライダー（逆方向・上部に小さく） */
 .hero-slider-2 {
-    top: calc(42px + 220px);
+    top: 10px;
+}
+
+.hero-slider-2 .hero-slider-item {
+    width: 100px;
+    height: 140px;
+    border-radius: 8px;
 }
 
 .hero-slider-track-reverse {
     animation: slideFlowReverse 50s linear infinite;
+    gap: 1rem;
 }
 
 @keyframes slideFlowReverse {
@@ -517,7 +524,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-slider-2 {
-        top: calc(40px + 160px);
+        top: 5px;
+    }
+
+    .hero-slider-2 .hero-slider-item {
+        width: 70px;
+        height: 100px;
     }
 
     .hero-slider-item {
