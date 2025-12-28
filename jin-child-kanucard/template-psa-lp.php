@@ -321,7 +321,7 @@ $theme_url = get_stylesheet_directory_uri();
                     </div>
                     <div class="stat-item">
                         <i class="fas fa-shield-alt"></i>
-                        <span class="stat-number">全額返金</span>
+                        <span class="stat-number">一部返金</span>
                         <span class="stat-label">保証付き</span>
                     </div>
                 </div>
@@ -404,8 +404,8 @@ $theme_url = get_stylesheet_directory_uri();
                         <div class="solution-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>70%保証で全額返金</h3>
-                        <p><strong>PSA10取得率70%未満なら代行料を全額返金。</strong>リスクゼロで最高グレードに挑戦できる唯一のプラン</p>
+                        <h3>70%保証で一部返金</h3>
+                        <p><strong>PSA10取得率70%未満なら代行料を一部返金。</strong>リスクゼロで最高グレードに挑戦できる唯一のプラン</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="200">
@@ -829,7 +829,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <li><i class="fas fa-check"></i> <strong>24時間メッセージ</strong>サポート</li>
                             <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
                             <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
-                            <li class="highlight"><i class="fas fa-shield-alt"></i> <strong>70%未満で全額返金</strong></li>
+                            <li class="highlight"><i class="fas fa-shield-alt"></i> <strong>70%未満で一部返金</strong></li>
                         </ul>
                         <div class="plan-guarantee">
                             <i class="fas fa-hand-holding-usd"></i>
