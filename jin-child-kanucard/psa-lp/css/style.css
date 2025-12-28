@@ -590,15 +590,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-feature-item:nth-child(1) {
-        transform: translateX(-1.5rem);
+        transform: translateX(-3.5rem);
     }
 
     .hero-feature-item:nth-child(2) {
-        transform: translateX(1.5rem);
+        transform: translateX(3.5rem);
     }
 
     .hero-feature-item:nth-child(3) {
-        transform: translateX(-1.5rem);
+        transform: translateX(-3.5rem);
     }
 }
 
@@ -610,15 +610,15 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-feature-item:nth-child(1) {
-        transform: translateX(-1rem);
+        transform: translateX(-2.5rem);
     }
 
     .hero-feature-item:nth-child(2) {
-        transform: translateX(1rem);
+        transform: translateX(2.5rem);
     }
 
     .hero-feature-item:nth-child(3) {
-        transform: translateX(-1rem);
+        transform: translateX(-2.5rem);
     }
 }
 
