@@ -739,44 +739,6 @@ $theme_url = get_stylesheet_directory_uri();
                     <?php endif; ?>
                 </div>
 
-                <!-- PSA Graded Cards Gallery -->
-                <div class="graded-gallery-section" data-aos="fade-up">
-                    <h3 class="subsection-title">
-                        <i class="fas fa-images" style="color: var(--secondary); margin-right: 10px;"></i>
-                        実際にPSA10を取得したカードたち
-                    </h3>
-                    <p class="gallery-intro">7,000枚以上のPSA10実績の一部をご紹介</p>
-
-                    <div class="gallery-scroll-container">
-                        <div class="gallery-cards">
-                            <!-- カード画像のプレースホルダー。実際の画像URLに差し替えてください -->
-                            <div class="gallery-card">
-                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-1.jpg" alt="PSA10鑑定品" loading="lazy">
-                            </div>
-                            <div class="gallery-card">
-                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-2.jpg" alt="PSA10鑑定品" loading="lazy">
-                            </div>
-                            <div class="gallery-card">
-                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-3.jpg" alt="PSA10鑑定品" loading="lazy">
-                            </div>
-                            <div class="gallery-card">
-                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-4.jpg" alt="PSA10鑑定品" loading="lazy">
-                            </div>
-                            <div class="gallery-card">
-                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-5.jpg" alt="PSA10鑑定品" loading="lazy">
-                            </div>
-                            <div class="gallery-card">
-                                <img src="https://kanucard.com/wp-content/uploads/psa-cards/card-6.jpg" alt="PSA10鑑定品" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-                    <p class="gallery-note">
-                        <i class="fas fa-arrow-left"></i>
-                        <span>スクロールして他のカードも見る</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </p>
-                </div>
-
                 <div class="trust-badges">
                     <div class="trust-badge">
                         <i class="fas fa-building"></i>
