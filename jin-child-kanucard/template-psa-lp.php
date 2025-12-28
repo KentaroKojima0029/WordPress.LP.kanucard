@@ -690,13 +690,22 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     ?>
 
                     <?php if ($review_success): ?>
-                        <div class="review-success-message" id="reviewSuccessMessage">
-                            <i class="fas fa-check-circle"></i>
-                            <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
-                            <button type="button" class="btn btn-success-dismiss" onclick="document.getElementById('reviewSuccessMessage').style.display='none';">
-                                確認
-                            </button>
+                        <div class="review-modal-overlay" id="reviewSuccessModal">
+                            <div class="review-modal-content">
+                                <i class="fas fa-check-circle"></i>
+                                <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
+                                <button type="button" class="btn btn-success-dismiss" id="reviewModalCloseBtn">
+                                    確認
+                                </button>
+                            </div>
                         </div>
+                        <script>
+                            document.getElementById('reviewModalCloseBtn').addEventListener('click', function() {
+                                // モーダルを閉じてURLパラメータなしのページに戻る
+                                var url = window.location.href.split('?')[0];
+                                window.location.href = url + '#results';
+                            });
+                        </script>
                     <?php endif; ?>
 
                     <?php if ($review_error): ?>
