@@ -296,59 +296,11 @@
     }
 
     /**
-     * 口コミフォーム - 星評価のインタラクション
+     * 口コミフォーム - 星評価のインタラクション（CSSのみで動作、JSは補助）
      */
     function initReviewFormStarRating() {
-        const starInputs = document.querySelectorAll('.star-rating-input input[type="radio"]');
-        const starLabels = document.querySelectorAll('.star-rating-input label');
-
-        if (starInputs.length > 0) {
-            // ラベルにホバー効果を追加
-            starLabels.forEach(function(label, index) {
-                label.addEventListener('mouseenter', function() {
-                    // ホバー中の星とそれより前の星をハイライト
-                    for (let i = starLabels.length - 1; i >= index; i--) {
-                        starLabels[i].style.color = '#F59E0B';
-                    }
-                });
-
-                label.addEventListener('mouseleave', function() {
-                    // 選択されている星以外をデフォルト色に戻す
-                    const checkedInput = document.querySelector('.star-rating-input input[type="radio"]:checked');
-                    starLabels.forEach(function(lbl, idx) {
-                        const correspondingInput = starInputs[starLabels.length - 1 - idx];
-                        if (!checkedInput || correspondingInput !== checkedInput) {
-                            lbl.style.color = '#CBD5E1';
-                        }
-                    });
-
-                    // 選択されている星をハイライト
-                    if (checkedInput) {
-                        const checkedIndex = Array.from(starInputs).indexOf(checkedInput);
-                        for (let i = starLabels.length - 1; i >= (starLabels.length - 1 - checkedIndex); i--) {
-                            starLabels[i].style.color = '#F59E0B';
-                        }
-                    }
-                });
-            });
-
-            // 星を選択した時の処理
-            starInputs.forEach(function(input) {
-                input.addEventListener('change', function() {
-                    if (this.checked) {
-                        const rating = parseInt(this.value);
-                        // 選択された星とそれより前の星をハイライト
-                        for (let i = starLabels.length - 1; i >= (starLabels.length - rating); i--) {
-                            starLabels[i].style.color = '#F59E0B';
-                        }
-                        // それ以外の星をデフォルト色に
-                        for (let i = 0; i < (starLabels.length - rating); i++) {
-                            starLabels[i].style.color = '#CBD5E1';
-                        }
-                    }
-                });
-            });
-        }
+        // CSSの:checked ~ labelで動作するため、JSは不要
+        // 必要に応じて追加の処理をここに記述
     }
 
     // 口コミフォーム機能を初期化
