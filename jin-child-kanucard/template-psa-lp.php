@@ -1185,7 +1185,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <div class="estimate-form-group">
-                    <label for="cardValue">カードの申告額（税抜合計）</label>
+                    <label for="cardValue">カードの合計申告額</label>
                     <div class="input-with-unit">
                         <input type="number" id="cardValue" min="0" placeholder="例: 100000" required>
                         <span class="unit">円</span>
