@@ -305,7 +305,7 @@ $theme_url = get_stylesheet_directory_uri();
                     <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する、</span><br class="sp-only"><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
                 <p class="hero-subtitle fade-in delay-1">
-                    <strong>70%保証で返金あり</strong> × <strong>無料検品</strong> × <strong>24時間メッセージサポート</strong><br>
+                    <a href="#guarantee-explanation" class="hero-link"><strong>70%保証で返金あり</strong></a> × <strong>無料検品</strong> × <strong>24時間メッセージサポート</strong><br>
                     <span style="font-size: 0.9em; opacity: 0.9;">失敗したくないあなたのための、プロフェッショナルPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
@@ -850,7 +850,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- 70% Guarantee Explanation -->
-                <div class="guarantee-explanation" data-aos="fade-up">
+                <div class="guarantee-explanation" id="guarantee-explanation" data-aos="fade-up">
                     <h3 class="guarantee-title">
                         <i class="fas fa-shield-alt"></i>
                         70%保証プランの仕組み

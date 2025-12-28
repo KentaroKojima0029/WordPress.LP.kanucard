@@ -523,6 +523,21 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.7;
 }
 
+.hero-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.hero-link:hover {
+    color: var(--gold);
+    text-decoration-thickness: 3px;
+}
+
 .hero-stats {
     display: flex;
     justify-content: center;
