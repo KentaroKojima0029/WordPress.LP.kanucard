@@ -348,7 +348,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
                 <p class="hero-guarantee fade-in delay-3">
                     <i class="fas fa-check-circle"></i>
-                    <span>相談無料 / 強引な営業一切なし / 24時間以内に返信</span>
+                    <span>相談無料 / 強引な営業一切なし / 24時間チャット</span>
                 </p>
                 <div class="scroll-indicator">
                     <span>なぜカヌカードが選ばれるのか</span>
