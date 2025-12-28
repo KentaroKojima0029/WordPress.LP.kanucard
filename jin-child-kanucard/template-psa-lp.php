@@ -323,6 +323,36 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
             </div>
 
+            <!-- 流れる画像スライダー 2段目（逆方向） -->
+            <div class="hero-slider hero-slider-2">
+                <div class="hero-slider-track hero-slider-track-reverse">
+                    <?php
+                    $slider_images_2 = array(
+                        'https://kanucard.com/wp-content/uploads/2025/12/137366398-front.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137366395-front.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521474-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521472-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521458-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521455-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521451-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521436-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521431-front-scaled.jpg',
+                        'https://kanucard.com/wp-content/uploads/2025/12/137521426-front-scaled.jpg',
+                    );
+                    // 2回ループしてシームレスに
+                    for ($i = 0; $i < 2; $i++):
+                        foreach ($slider_images_2 as $image):
+                    ?>
+                    <div class="hero-slider-item">
+                        <img src="<?php echo esc_url($image); ?>" alt="PSA鑑定カード">
+                    </div>
+                    <?php
+                        endforeach;
+                    endfor;
+                    ?>
+                </div>
+            </div>
+
             <div class="container hero-content">
                 <div class="hero-badge fade-in">
                     <i class="fas fa-crown"></i>

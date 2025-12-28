@@ -492,10 +492,32 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* 2段目スライダー（逆方向） */
+.hero-slider-2 {
+    top: calc(42px + 220px);
+}
+
+.hero-slider-track-reverse {
+    animation: slideFlowReverse 50s linear infinite;
+}
+
+@keyframes slideFlowReverse {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 /* スマホ対応 */
 @media screen and (max-width: 768px) {
     .hero-slider {
         top: 40px;
+    }
+
+    .hero-slider-2 {
+        top: calc(40px + 160px);
     }
 
     .hero-slider-item {
