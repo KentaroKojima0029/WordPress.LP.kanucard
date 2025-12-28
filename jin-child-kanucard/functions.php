@@ -133,9 +133,24 @@ add_filter( 'body_class', 'jin_child_kanucard_body_class' );
  * PSA LP 口コミ管理画面
  */
 function psa_lp_reviews_admin_menu() {
+    // 未確認の口コミ数を取得
+    $reviews = get_option( 'psa_lp_reviews', array() );
+    $unread_count = 0;
+    foreach ( $reviews as $review ) {
+        if ( empty( $review['read'] ) ) {
+            $unread_count++;
+        }
+    }
+
+    // バッジ付きメニュータイトル
+    $menu_title = 'PSA LP 口コミ';
+    if ( $unread_count > 0 ) {
+        $menu_title .= sprintf( ' <span class="awaiting-mod">%d</span>', $unread_count );
+    }
+
     add_menu_page(
         'PSA LP 口コミ管理',
-        'PSA LP 口コミ',
+        $menu_title,
         'manage_options',
         'psa-lp-reviews',
         'psa_lp_reviews_admin_page',
@@ -146,24 +161,72 @@ function psa_lp_reviews_admin_menu() {
 add_action( 'admin_menu', 'psa_lp_reviews_admin_menu' );
 
 function psa_lp_reviews_admin_page() {
+    $reviews = get_option( 'psa_lp_reviews', array() );
+
     // 口コミ削除処理
     if ( isset( $_GET['delete_review'] ) && isset( $_GET['_wpnonce'] ) ) {
         if ( wp_verify_nonce( $_GET['_wpnonce'], 'delete_review_' . $_GET['delete_review'] ) ) {
-            $reviews = get_option( 'psa_lp_reviews', array() );
             $reviews = array_filter( $reviews, function( $r ) {
                 return $r['id'] !== $_GET['delete_review'];
             });
             update_option( 'psa_lp_reviews', array_values( $reviews ) );
+            $reviews = array_values( $reviews );
             echo '<div class="notice notice-success"><p>口コミを削除しました。</p></div>';
         }
     }
 
-    $reviews = get_option( 'psa_lp_reviews', array() );
-    $reviews = array_reverse( $reviews ); // 新しい順に表示
+    // 確認済みにする処理
+    if ( isset( $_GET['mark_read'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'mark_read_' . $_GET['mark_read'] ) ) {
+            foreach ( $reviews as &$r ) {
+                if ( $r['id'] === $_GET['mark_read'] ) {
+                    $r['read'] = true;
+                    break;
+                }
+            }
+            unset( $r );
+            update_option( 'psa_lp_reviews', $reviews );
+            echo '<div class="notice notice-success"><p>確認済みにしました。</p></div>';
+        }
+    }
+
+    // 全て確認済みにする処理
+    if ( isset( $_GET['mark_all_read'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'mark_all_read' ) ) {
+            foreach ( $reviews as &$r ) {
+                $r['read'] = true;
+            }
+            unset( $r );
+            update_option( 'psa_lp_reviews', $reviews );
+            echo '<div class="notice notice-success"><p>全て確認済みにしました。</p></div>';
+        }
+    }
+
+    // 未確認件数をカウント
+    $unread_count = 0;
+    foreach ( $reviews as $review ) {
+        if ( empty( $review['read'] ) ) {
+            $unread_count++;
+        }
+    }
+
+    $reviews_display = array_reverse( $reviews ); // 新しい順に表示
     ?>
+    <style>
+        .psa-review-unread { background-color: #fff8e5 !important; }
+        .psa-review-unread td { border-left: 3px solid #f0c14b; }
+        .psa-badge-new { background: #d63638; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin-left: 5px; }
+    </style>
     <div class="wrap">
         <h1>PSA LP 口コミ管理</h1>
-        <p>投稿された口コミ一覧です。（<?php echo count( $reviews ); ?>件）</p>
+        <p>
+            投稿された口コミ一覧です。（<?php echo count( $reviews ); ?>件）
+            <?php if ( $unread_count > 0 ): ?>
+                <span class="psa-badge-new">未確認: <?php echo $unread_count; ?>件</span>
+                <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&mark_all_read=1' ), 'mark_all_read' ); ?>"
+                   class="button button-secondary" style="margin-left: 10px;">全て確認済みにする</a>
+            <?php endif; ?>
+        </p>
 
         <?php if ( empty( $reviews ) ): ?>
             <p>まだ口コミはありません。</p>
@@ -171,21 +234,34 @@ function psa_lp_reviews_admin_page() {
             <table class="wp-list-table widefat fixed striped">
                 <thead>
                     <tr>
+                        <th style="width: 40px;">状態</th>
                         <th style="width: 120px;">投稿日時</th>
                         <th style="width: 100px;">お名前</th>
                         <th style="width: 80px;">評価</th>
                         <th>メッセージ</th>
-                        <th style="width: 80px;">操作</th>
+                        <th style="width: 150px;">操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ( $reviews as $review ): ?>
-                        <tr>
+                    <?php foreach ( $reviews_display as $review ): ?>
+                        <?php $is_unread = empty( $review['read'] ); ?>
+                        <tr class="<?php echo $is_unread ? 'psa-review-unread' : ''; ?>">
+                            <td>
+                                <?php if ( $is_unread ): ?>
+                                    <span class="psa-badge-new">NEW</span>
+                                <?php else: ?>
+                                    <span style="color: #999;">✓</span>
+                                <?php endif; ?>
+                            </td>
                             <td><?php echo esc_html( $review['date'] ); ?></td>
                             <td><?php echo esc_html( $review['name'] ); ?></td>
                             <td><?php echo str_repeat( '★', $review['rating'] ) . str_repeat( '☆', 5 - $review['rating'] ); ?></td>
                             <td><?php echo nl2br( esc_html( $review['message'] ) ); ?></td>
                             <td>
+                                <?php if ( $is_unread ): ?>
+                                    <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&mark_read=' . $review['id'] ), 'mark_read_' . $review['id'] ); ?>"
+                                       class="button button-small button-primary">確認済み</a>
+                                <?php endif; ?>
                                 <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&delete_review=' . $review['id'] ), 'delete_review_' . $review['id'] ); ?>"
                                    onclick="return confirm('この口コミを削除しますか？');"
                                    class="button button-small">削除</a>
