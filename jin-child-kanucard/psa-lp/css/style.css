@@ -594,7 +594,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-feature-item:nth-child(2) {
-        transform: translateX(0);
+        transform: translateX(1.5rem);
     }
 
     .hero-feature-item:nth-child(3) {
@@ -611,6 +611,10 @@ h1, h2, h3, h4, h5, h6 {
 
     .hero-feature-item:nth-child(1) {
         transform: translateX(-1rem);
+    }
+
+    .hero-feature-item:nth-child(2) {
+        transform: translateX(1rem);
     }
 
     .hero-feature-item:nth-child(3) {
