@@ -850,8 +850,8 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- 70% Guarantee Explanation -->
-                <div class="guarantee-explanation" id="guarantee-explanation" data-aos="fade-up">
-                    <h3 class="guarantee-title">
+                <div class="guarantee-explanation" data-aos="fade-up">
+                    <h3 class="guarantee-title" id="guarantee-explanation">
                         <i class="fas fa-shield-alt"></i>
                         70%保証プランの仕組み
                     </h3>
