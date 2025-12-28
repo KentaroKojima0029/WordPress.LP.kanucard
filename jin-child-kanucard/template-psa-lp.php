@@ -398,9 +398,9 @@ $theme_url = get_stylesheet_directory_uri();
                     </div>
                 </div>
                 <div class="hero-cta fade-in delay-3">
-                    <a href="https://daiko.kanucard.com" class="btn btn-gold btn-large pulse">
-                        今すぐ無料見積もりを取得
-                    </a>
+                    <button id="openEstimateModalHero" class="btn btn-gold btn-large pulse">
+                        <i class="fas fa-calculator"></i> 簡易見積もり
+                    </button>
                     <a href="https://daiko.kanucard.com" class="btn btn-white btn-large">
                         メッセージで気軽に相談
                     </a>

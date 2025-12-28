@@ -361,12 +361,13 @@
     function initEstimateModal() {
         const modal = document.getElementById('estimateModal');
         const openBtn = document.getElementById('openEstimateModal');
+        const openBtnHero = document.getElementById('openEstimateModalHero');
         const closeBtn = document.getElementById('closeEstimateModal');
         const overlay = modal ? modal.querySelector('.estimate-modal-overlay') : null;
         const form = document.getElementById('estimateForm');
         const resultDiv = document.getElementById('estimateResult');
 
-        if (!modal || !openBtn) return;
+        if (!modal) return;
 
         // PSAプランのデータ
         const psaPlans = {
@@ -422,10 +423,17 @@
         }
 
         // モーダルを開く
-        openBtn.addEventListener('click', function() {
+        function openModal() {
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-        });
+        }
+
+        if (openBtn) {
+            openBtn.addEventListener('click', openModal);
+        }
+        if (openBtnHero) {
+            openBtnHero.addEventListener('click', openModal);
+        }
 
         // モーダルを閉じる
         function closeModal() {
