@@ -468,7 +468,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-slider-track {
     display: flex;
     gap: 1.5rem;
-    animation: slideFlow 60s linear infinite;
+    animation: slideFlow 120s linear infinite;
     width: max-content;
 }
 
@@ -509,7 +509,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-slider-track-reverse {
-    animation: slideFlowReverse 50s linear infinite;
+    animation: slideFlowReverse 100s linear infinite;
     gap: 1rem;
 }
 
