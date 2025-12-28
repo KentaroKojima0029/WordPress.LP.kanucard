@@ -331,7 +331,7 @@ $theme_url = get_stylesheet_directory_uri();
                 <h1 class="hero-title fade-in">
                     <span class="hero-title-line">あなたのカードの価値を、</span><br class="sp-only">
                     <span class="hero-title-line"><span class="highlight">さらに高く。</span></span><br>
-                    <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する、</span><br class="sp-only"><span class="hero-subtitle-line">圧倒的な技術力</span></small>
+                    <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する</span><br><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
                 <div class="hero-features fade-in delay-1">
                     <div class="hero-feature-item hero-link" onclick="var el = document.getElementById('guarantee-explanation'); if(el){ el.scrollIntoView({behavior: 'smooth', block: 'start'}); }">
@@ -348,7 +348,7 @@ $theme_url = get_stylesheet_directory_uri();
                     </div>
                 </div>
                 <p class="hero-subtitle fade-in delay-1">
-                    <span style="font-size: 0.95em; opacity: 0.9;">失敗したくないあなたのための、プロフェッショナルPSA代行</span>
+                    <span style="font-size: 0.95em; opacity: 0.9;">失敗したくないあなたのための<br>プロフェッショナルPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
                     <div class="stat-item">
@@ -419,7 +419,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
                 <p class="problems-conclusion" data-aos="fade-up" data-delay="500">
                     <i class="fas fa-arrow-down"></i>
-                    <strong>これらの悩み、すべてカヌカードが解決します</strong>
+                    <strong>これらの悩み<br>すべてカヌカードが解決します</strong>
                 </p>
             </div>
         </section>
@@ -439,7 +439,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-search-dollar"></i>
                         </div>
                         <h3>業界唯一の無料検品</h3>
-                        <p><strong>PSA10が見込めないカードは提出しません。</strong>無駄な鑑定料を払わせない、本当の意味でのプロのサービス</p>
+                        <p>PSA10が見込めないカードは提出しない。<br>無駄な鑑定料を払わせない<br>本当の意味でのプロのサービス</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card featured" data-aos="fade-up" data-delay="100">
@@ -447,7 +447,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <h3>70%保証で一部返金</h3>
-                        <p><strong>PSA10取得率70%未満なら代行料を一部返金。</strong>リスクゼロで最高グレードに挑戦できる唯一のプラン</p>
+                        <p>PSA10取得率70%未満なら代行料を一部返金。<br>リスクゼロで最高グレードに挑戦できる唯一のプラン</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="200">
@@ -455,7 +455,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-flag-usa"></i>
                         </div>
                         <h3>米国PSA本社直送</h3>
-                        <p><strong>中間業者を通さない直接提出。</strong>最短ルートで確実に、あなたのカードを本場の鑑定士へ</p>
+                        <p>中間業者を通さない直接提出。<br>最短ルートで確実に、あなたのカードを本場の鑑定士へ</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="300">
@@ -463,7 +463,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-comments"></i>
                         </div>
                         <h3>24時間メッセージサポート</h3>
-                        <p><strong>疑問があればすぐに解決。</strong>代行アプリ内のメッセージ機能で安心の完全サポート体制、解説動画も無料提供</p>
+                        <p>疑問があればすぐに解決。<br>代行アプリ内のメッセージ機能で安心の完全サポート体制、解説動画も無料提供</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="400">
@@ -471,7 +471,7 @@ $theme_url = get_stylesheet_directory_uri();
                             <i class="fas fa-medal"></i>
                         </div>
                         <h3>7,000枚以上の実績</h3>
-                        <p><strong>数字が証明する信頼性。</strong>平均PSA10取得率75%、顧客満足度98%の圧倒的な実績</p>
+                        <p>数字が証明する信頼性。<br>平均PSA10取得率75%、顧客満足度98%の圧倒的な実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                 </div>
