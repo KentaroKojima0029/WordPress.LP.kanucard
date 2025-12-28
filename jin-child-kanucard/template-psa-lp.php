@@ -381,20 +381,34 @@ $theme_url = get_stylesheet_directory_uri();
                     <span style="font-size: 0.95em; opacity: 0.9;">失敗したくないあなたのための<br>プロフェッショナルPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
-                    <div class="stat-item">
-                        <i class="fas fa-trophy"></i>
-                        <span class="stat-number">7,000+</span>
-                        <span class="stat-label">PSA10取得</span>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number">7,000<span class="stat-plus">+</span></span>
+                            <span class="stat-label">PSA10取得</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <i class="fas fa-percentage"></i>
-                        <span class="stat-number">75%</span>
-                        <span class="stat-label">平均PSA10率</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number">75<span class="stat-unit">%</span></span>
+                            <span class="stat-label">平均PSA10率</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span class="stat-number">一部返金</span>
-                        <span class="stat-label">保証付き</span>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card stat-card-guarantee">
+                        <div class="stat-icon-wrap">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number stat-text">一部返金</span>
+                            <span class="stat-label">保証付き</span>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-cta fade-in delay-3">
