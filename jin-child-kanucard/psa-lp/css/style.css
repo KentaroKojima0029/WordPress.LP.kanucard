@@ -490,8 +490,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 1段目の画像下部を透明グラデーション */
 .hero-slider:not(.hero-slider-2) .hero-slider-item {
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
 @keyframes slideFlow {
