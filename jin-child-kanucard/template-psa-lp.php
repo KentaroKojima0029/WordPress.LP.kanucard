@@ -640,7 +640,7 @@ $theme_url = get_stylesheet_directory_uri();
                             $review_error = '評価は1〜5の範囲で選択してください。';
                         } else {
                             // メール送信
-                            $to = 'collection@kanucard.com';
+                            $to = 'contact@kanucard.com';
                             $subject = 'PSA代行LPに新しい口コミが投稿されました';
                             $message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
                             $message .= "お名前: " . $review_name . "\n";
@@ -734,6 +734,7 @@ $theme_url = get_stylesheet_directory_uri();
                                     <i class="fas fa-paper-plane"></i>
                                     口コミを投稿する
                                 </button>
+                                <p class="form-note">※管理者に内容が送信されます</p>
                             </div>
                         </form>
                     <?php endif; ?>
