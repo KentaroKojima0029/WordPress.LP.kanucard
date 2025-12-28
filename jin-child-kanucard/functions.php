@@ -128,3 +128,73 @@ function jin_child_kanucard_body_class( $classes ) {
     return $classes;
 }
 add_filter( 'body_class', 'jin_child_kanucard_body_class' );
+
+/**
+ * PSA LP 口コミ管理画面
+ */
+function psa_lp_reviews_admin_menu() {
+    add_menu_page(
+        'PSA LP 口コミ管理',
+        'PSA LP 口コミ',
+        'manage_options',
+        'psa-lp-reviews',
+        'psa_lp_reviews_admin_page',
+        'dashicons-star-filled',
+        30
+    );
+}
+add_action( 'admin_menu', 'psa_lp_reviews_admin_menu' );
+
+function psa_lp_reviews_admin_page() {
+    // 口コミ削除処理
+    if ( isset( $_GET['delete_review'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'delete_review_' . $_GET['delete_review'] ) ) {
+            $reviews = get_option( 'psa_lp_reviews', array() );
+            $reviews = array_filter( $reviews, function( $r ) {
+                return $r['id'] !== $_GET['delete_review'];
+            });
+            update_option( 'psa_lp_reviews', array_values( $reviews ) );
+            echo '<div class="notice notice-success"><p>口コミを削除しました。</p></div>';
+        }
+    }
+
+    $reviews = get_option( 'psa_lp_reviews', array() );
+    $reviews = array_reverse( $reviews ); // 新しい順に表示
+    ?>
+    <div class="wrap">
+        <h1>PSA LP 口コミ管理</h1>
+        <p>投稿された口コミ一覧です。（<?php echo count( $reviews ); ?>件）</p>
+
+        <?php if ( empty( $reviews ) ): ?>
+            <p>まだ口コミはありません。</p>
+        <?php else: ?>
+            <table class="wp-list-table widefat fixed striped">
+                <thead>
+                    <tr>
+                        <th style="width: 120px;">投稿日時</th>
+                        <th style="width: 100px;">お名前</th>
+                        <th style="width: 80px;">評価</th>
+                        <th>メッセージ</th>
+                        <th style="width: 80px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ( $reviews as $review ): ?>
+                        <tr>
+                            <td><?php echo esc_html( $review['date'] ); ?></td>
+                            <td><?php echo esc_html( $review['name'] ); ?></td>
+                            <td><?php echo str_repeat( '★', $review['rating'] ) . str_repeat( '☆', 5 - $review['rating'] ); ?></td>
+                            <td><?php echo nl2br( esc_html( $review['message'] ) ); ?></td>
+                            <td>
+                                <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&delete_review=' . $review['id'] ), 'delete_review_' . $review['id'] ); ?>"
+                                   onclick="return confirm('この口コミを削除しますか？');"
+                                   class="button button-small">削除</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+    <?php
+}

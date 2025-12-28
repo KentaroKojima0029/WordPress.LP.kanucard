@@ -639,23 +639,32 @@ $theme_url = get_stylesheet_directory_uri();
                         } elseif ($review_rating < 1 || $review_rating > 5) {
                             $review_error = '評価は1〜5の範囲で選択してください。';
                         } else {
-                            // メール送信
+                            // 口コミをデータベースに保存
+                            $reviews = get_option('psa_lp_reviews', array());
+                            $new_review = array(
+                                'id' => uniqid(),
+                                'name' => $review_name,
+                                'rating' => $review_rating,
+                                'message' => $review_message,
+                                'date' => current_time('Y-m-d H:i:s'),
+                                'status' => 'pending' // pending, approved, rejected
+                            );
+                            $reviews[] = $new_review;
+                            update_option('psa_lp_reviews', $reviews);
+
+                            // メール送信を試みる（失敗しても口コミは保存済み）
                             $to = 'contact@kanucard.com';
                             $subject = 'PSA代行LPに新しい口コミが投稿されました';
-                            $message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
-                            $message .= "お名前: " . $review_name . "\n";
-                            $message .= "評価: " . str_repeat('★', $review_rating) . str_repeat('☆', 5 - $review_rating) . " (" . $review_rating . "/5)\n";
-                            $message .= "メッセージ:\n" . $review_message . "\n\n";
-                            $message .= "投稿日時: " . current_time('Y-m-d H:i:s') . "\n";
-                            $message .= "投稿元URL: " . get_permalink() . "\n";
-
+                            $email_message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
+                            $email_message .= "お名前: " . $review_name . "\n";
+                            $email_message .= "評価: " . str_repeat('★', $review_rating) . str_repeat('☆', 5 - $review_rating) . " (" . $review_rating . "/5)\n";
+                            $email_message .= "メッセージ:\n" . $review_message . "\n\n";
+                            $email_message .= "投稿日時: " . current_time('Y-m-d H:i:s') . "\n";
+                            $email_message .= "投稿元URL: " . get_permalink() . "\n";
                             $headers = array('Content-Type: text/plain; charset=UTF-8');
+                            wp_mail($to, $subject, $email_message, $headers); // 送信結果は無視
 
-                            if (wp_mail($to, $subject, $message, $headers)) {
-                                $review_success = true;
-                            } else {
-                                $review_error = '送信に失敗しました。しばらくしてから再度お試しください。';
-                            }
+                            $review_success = true;
                         }
                     }
                     ?>
