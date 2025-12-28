@@ -40,7 +40,7 @@ $theme_url = get_stylesheet_directory_uri();
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
     <!-- PSA LP Styles - loaded after wp_head to override parent theme -->
-    <link rel="stylesheet" href="<?php echo $theme_url; ?>/psa-lp/css/style.css">
+    <link rel="stylesheet" href="<?php echo $theme_url; ?>/psa-lp/css/style.css?v=<?php echo time(); ?>">
 
     <!-- Force responsive styles - Critical mobile overrides -->
     <style>
@@ -1185,7 +1185,7 @@ $theme_url = get_stylesheet_directory_uri();
     </div>
 
     <!-- PSA LP Scripts -->
-    <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js"></script>
+    <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js?v=<?php echo time(); ?>"></script>
 
     <?php wp_footer(); ?>
 </body>
