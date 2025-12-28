@@ -447,6 +447,65 @@ h1, h2, h3, h4, h5, h6 {
     z-index: -1;
 }
 
+/* Hero Image Slider - 流れる画像 */
+.hero-slider {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.hero-slider-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: slideFlow 60s linear infinite;
+    width: max-content;
+}
+
+.hero-slider-item {
+    flex-shrink: 0;
+    width: 180px;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-slider-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes slideFlow {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+    .hero-slider {
+        top: 70px;
+    }
+
+    .hero-slider-item {
+        width: 120px;
+        height: 170px;
+    }
+
+    .hero-slider-track {
+        gap: 1rem;
+    }
+}
+
 .hero-bg::after {
     content: '';
     position: absolute;
