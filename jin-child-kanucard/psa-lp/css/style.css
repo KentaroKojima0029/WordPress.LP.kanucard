@@ -455,9 +455,14 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     overflow: hidden;
     z-index: 0;
-    opacity: 0.3;
+    opacity: 0.7;
     pointer-events: none;
     padding: 10px 0;
+}
+
+/* 2段目は少し薄く */
+.hero-slider-2 {
+    opacity: 0.4;
 }
 
 .hero-slider-track {
