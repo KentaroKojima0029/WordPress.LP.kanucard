@@ -688,12 +688,24 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     ?>
 
                     <?php if ($review_success): ?>
-                        <div class="review-success-message">
+                        <div class="review-success-message" id="reviewSuccessMessage">
                             <i class="fas fa-check-circle"></i>
                             <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
                         </div>
-                    <?php else: ?>
-                        <?php if ($review_error): ?>
+                        <script>
+                            // 5秒後に成功メッセージをフェードアウトして非表示
+                            setTimeout(function() {
+                                var msg = document.getElementById('reviewSuccessMessage');
+                                if (msg) {
+                                    msg.style.transition = 'opacity 0.5s ease';
+                                    msg.style.opacity = '0';
+                                    setTimeout(function() { msg.style.display = 'none'; }, 500);
+                                }
+                            }, 5000);
+                        </script>
+                    <?php endif; ?>
+
+                    <?php if ($review_error): ?>
                             <div class="review-error-message">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <p><?php echo esc_html($review_error); ?></p>
@@ -764,7 +776,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="form-note">※管理者に内容が送信されます</p>
                             </div>
                         </form>
-                    <?php endif; ?>
                 </div>
 
                 <div class="trust-badges">
