@@ -270,7 +270,7 @@ $theme_url = get_stylesheet_directory_uri();
                     ?>
                     <img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php bloginfo( 'name' ); ?>" width="150" height="40">
                 <?php else : ?>
-                    <img src="https://kanucard.com/wp-content/uploads/2024/01/logo.png" alt="カヌカード" width="150" height="40">
+                    <span class="site-logo-text">カヌカード</span>
                 <?php endif; ?>
             </a>
             <nav class="main-nav">
