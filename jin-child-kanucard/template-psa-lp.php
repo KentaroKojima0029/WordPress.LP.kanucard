@@ -554,7 +554,7 @@ $theme_url = get_stylesheet_directory_uri();
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                70%保証プランで10枚依頼。<strong>結果は8枚PSA10、カードの価値が合計で約50万円上がった。</strong>代行料2%なんて安すぎる投資でした。
+                                70%保証プランで10枚依頼。結果は8枚PSA10、カードの価値が合計で約50万円上がった。代行料を払う価値のある投資でした。
                             </p>
                             <div class="testimonial-result">
                                 <span><i class="fas fa-arrow-right"></i> PSA10取得: 8/10枚 (80%)</span>
@@ -578,7 +578,7 @@ $theme_url = get_stylesheet_directory_uri();
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                100万円超のカードを依頼。<strong>アプリ内メッセージで毎回進捗報告があり安心感が違った。</strong>無事PSA10で戻り、300万円で売却成功。信頼できるプロです。
+                                100万円超のカードを依頼。アプリ内メッセージで毎回進捗報告があり安心感が違った。
                             </p>
                             <div class="testimonial-result">
                                 <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
