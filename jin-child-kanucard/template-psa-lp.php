@@ -48,7 +48,9 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         wp_mail($to, $subject, $email_message, $headers);
 
         // PRGパターン: リダイレクトして重複送信を防止
-        wp_safe_redirect(add_query_arg('review_submitted', '1', get_permalink()) . '#results');
+        $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
+        $redirect_url = add_query_arg('review_submitted', '1', $current_url) . '#results';
+        wp_safe_redirect($redirect_url);
         exit;
     }
 }
@@ -691,18 +693,10 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="review-success-message" id="reviewSuccessMessage">
                             <i class="fas fa-check-circle"></i>
                             <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
+                            <button type="button" class="btn btn-success-dismiss" onclick="document.getElementById('reviewSuccessMessage').style.display='none';">
+                                確認
+                            </button>
                         </div>
-                        <script>
-                            // 5秒後に成功メッセージをフェードアウトして非表示
-                            setTimeout(function() {
-                                var msg = document.getElementById('reviewSuccessMessage');
-                                if (msg) {
-                                    msg.style.transition = 'opacity 0.5s ease';
-                                    msg.style.opacity = '0';
-                                    setTimeout(function() { msg.style.display = 'none'; }, 500);
-                                }
-                            }, 5000);
-                        </script>
                     <?php endif; ?>
 
                     <?php if ($review_error): ?>

@@ -3591,7 +3591,25 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--success);
     font-size: 1.1rem;
     font-weight: 500;
-    margin: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.btn-success-dismiss {
+    background: var(--success);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-success-dismiss:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 .review-error-message {
