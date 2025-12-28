@@ -304,9 +304,22 @@ $theme_url = get_stylesheet_directory_uri();
                     <span class="hero-title-line"><span class="highlight">さらに高く。</span></span><br>
                     <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する、</span><br class="sp-only"><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
+                <div class="hero-features fade-in delay-1">
+                    <div class="hero-feature-item hero-link" onclick="var el = document.getElementById('guarantee-explanation'); if(el){ el.scrollIntoView({behavior: 'smooth', block: 'start'}); }">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>70%保証で返金あり</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="fas fa-search"></i>
+                        <span>無料検品</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <i class="fas fa-comments"></i>
+                        <span>24時間メッセージサポート</span>
+                    </div>
+                </div>
                 <p class="hero-subtitle fade-in delay-1">
-                    <span class="hero-link" style="cursor: pointer;" onclick="var el = document.getElementById('guarantee-explanation'); if(el){ el.scrollIntoView({behavior: 'smooth', block: 'start'}); }"><strong>70%保証で返金あり</strong></span> × <strong>無料検品</strong> × <strong>24時間メッセージサポート</strong><br>
-                    <span style="font-size: 0.9em; opacity: 0.9;">失敗したくないあなたのための、プロフェッショナルPSA代行</span>
+                    <span style="font-size: 0.95em; opacity: 0.9;">失敗したくないあなたのための、プロフェッショナルPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
                     <div class="stat-item">

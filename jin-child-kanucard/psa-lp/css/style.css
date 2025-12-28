@@ -519,24 +519,72 @@ h1, h2, h3, h4, h5, h6 {
 .hero-subtitle {
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     opacity: 0.95;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     font-weight: 400;
     line-height: 1.7;
 }
 
-.hero-link {
-    color: #fff;
-    text-decoration: underline;
-    text-decoration-color: var(--gold);
-    text-underline-offset: 4px;
-    text-decoration-thickness: 2px;
-    transition: var(--transition-fast);
-    cursor: pointer;
+/* Hero Features - 3つの特徴バッジ */
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.hero-link:hover {
+.hero-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.875rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.hero-feature-item i {
     color: var(--gold);
-    text-decoration-thickness: 3px;
+    font-size: 1.1rem;
+}
+
+.hero-feature-item.hero-link {
+    cursor: pointer;
+    border-color: var(--gold);
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.hero-feature-item.hero-link:hover {
+    background: rgba(245, 158, 11, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+}
+
+.hero-feature-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+    .hero-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .hero-feature-item {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
 }
 
 /* スクロール位置調整 */
