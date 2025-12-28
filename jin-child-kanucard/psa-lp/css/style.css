@@ -614,7 +614,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .hero-feature-item:nth-child(2) {
-        transform: translateX(4rem);
+        transform: translateX(5rem);
     }
 
     .hero-feature-item:nth-child(3) {
