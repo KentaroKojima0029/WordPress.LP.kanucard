@@ -1431,11 +1431,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .plan-title-highlight {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 3rem;
+    font-weight: 900;
     color: var(--primary);
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 1.5rem 0;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .plan-description {
@@ -3088,7 +3093,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .plan-title-highlight {
-        font-size: 2rem;
+        font-size: 2.25rem;
+        margin: 1.25rem 0;
     }
 
     .plan-description {
