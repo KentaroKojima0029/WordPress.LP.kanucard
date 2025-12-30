@@ -279,19 +279,19 @@ function psa_lp_reviews_admin_page() {
  */
 function psa_lp_contacts_admin_menu() {
     $unread_count = psa_lp_get_unread_contacts_count();
-    $menu_title = 'PSA LP お問い合わせ';
+    $menu_title = 'PSA LP';
     if ( $unread_count > 0 ) {
         $menu_title .= ' <span class="awaiting-mod">' . $unread_count . '</span>';
     }
 
-    add_menu_page(
-        'PSA LP お問い合わせ',
-        $menu_title,
-        'manage_options',
-        'psa-lp-contacts',
-        'psa_lp_contacts_page',
-        'dashicons-email-alt',
-        27
+    // Contact Form 7の「お問い合わせ」メニューのサブメニューとして追加
+    add_submenu_page(
+        'wpcf7',                    // 親メニューのスラッグ（Contact Form 7）
+        'PSA LP お問い合わせ',       // ページタイトル
+        $menu_title,                // メニュータイトル
+        'manage_options',           // 権限
+        'psa-lp-contacts',          // スラッグ
+        'psa_lp_contacts_page'      // コールバック関数
     );
 }
 add_action( 'admin_menu', 'psa_lp_contacts_admin_menu' );
