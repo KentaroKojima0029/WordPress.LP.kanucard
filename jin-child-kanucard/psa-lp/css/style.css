@@ -428,7 +428,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     color: white;
     padding: 140px 24px 100px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-bg {
