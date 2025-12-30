@@ -14,6 +14,7 @@
         initMobileMenu();
         initFAQ();
         initCounterAnimation();
+        initAccessButton();
     });
 
     /**
@@ -468,5 +469,36 @@
 
     // 見積もりモーダルを初期化
     initEstimateModal();
+
+    /**
+     * アクセスボタン（ドロップダウン）
+     */
+    function initAccessButton() {
+        var accessButton = document.getElementById('accessButton');
+        var wrapper = document.querySelector('.access-button-wrapper');
+
+        if (!accessButton || !wrapper) return;
+
+        // ボタンクリックでドロップダウン表示/非表示
+        accessButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            wrapper.classList.toggle('open');
+        });
+
+        // ドロップダウン外クリックで閉じる
+        document.addEventListener('click', function(e) {
+            if (!wrapper.contains(e.target)) {
+                wrapper.classList.remove('open');
+            }
+        });
+
+        // ドロップダウン内のボタンクリック時も閉じる（見積もりモーダル以外）
+        var dropdownLinks = wrapper.querySelectorAll('.access-button-dropdown a');
+        dropdownLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                wrapper.classList.remove('open');
+            });
+        });
+    }
 
 })();

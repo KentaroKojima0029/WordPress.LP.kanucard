@@ -3982,3 +3982,76 @@ h1, h2, h3, h4, h5, h6 {
     color: #94A3B8;
     cursor: not-allowed;
 }
+
+/* ========================================
+   Access Button Dropdown
+======================================== */
+.access-button-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.access-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.access-button i {
+    transition: transform 0.3s ease;
+}
+
+.access-button-wrapper.open .access-button i {
+    transform: rotate(90deg);
+}
+
+.access-button-dropdown {
+    position: absolute;
+    top: calc(100% + 1rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    min-width: 280px;
+}
+
+.access-button-wrapper.open .access-button-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.access-button-dropdown .btn {
+    width: 100%;
+    white-space: nowrap;
+    box-shadow: var(--shadow-lg);
+}
+
+.access-button-dropdown .btn-white {
+    background: #fff;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.access-button-dropdown .btn-white:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .access-button-dropdown {
+        min-width: 260px;
+    }
+    
+    .access-button-dropdown .btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}

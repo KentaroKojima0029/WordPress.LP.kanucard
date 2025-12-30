@@ -456,12 +456,19 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                 </div>
                 <div class="hero-cta fade-in delay-3">
-                    <button id="openEstimateModalHero" class="btn btn-gold btn-large pulse">
-                        <i class="fas fa-calculator"></i> 簡易見積もり
-                    </button>
-                    <a href="https://daiko.kanucard.com" class="btn btn-white btn-large">
-                        メッセージで気軽に相談
-                    </a>
+                    <div class="access-button-wrapper">
+                        <button class="btn btn-gold btn-xlarge pulse access-button" id="accessButton">
+                            <i class="fas fa-arrow-right"></i> アクセスボタン
+                        </button>
+                        <div class="access-button-dropdown" id="accessButtonDropdown">
+                            <button id="openEstimateModalHero" class="btn btn-gold btn-large">
+                                <i class="fas fa-calculator"></i> 簡易見積もり
+                            </button>
+                            <a href="https://daiko.kanucard.com" class="btn btn-white btn-large">
+                                <i class="fas fa-comments"></i> メッセージで気軽に相談
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <p class="hero-guarantee fade-in delay-3">
                     <i class="fas fa-check-circle"></i>
