@@ -274,3 +274,177 @@ function psa_lp_reviews_admin_page() {
     </div>
     <?php
 }
+/**
+ * PSA LP お問い合わせ管理メニューを追加
+ */
+function psa_lp_contacts_admin_menu() {
+    $unread_count = psa_lp_get_unread_contacts_count();
+    $menu_title = 'PSA LP お問い合わせ';
+    if ( $unread_count > 0 ) {
+        $menu_title .= ' <span class="awaiting-mod">' . $unread_count . '</span>';
+    }
+
+    add_menu_page(
+        'PSA LP お問い合わせ',
+        $menu_title,
+        'manage_options',
+        'psa-lp-contacts',
+        'psa_lp_contacts_page',
+        'dashicons-email-alt',
+        27
+    );
+}
+add_action( 'admin_menu', 'psa_lp_contacts_admin_menu' );
+
+/**
+ * 未読のお問い合わせ数を取得
+ */
+function psa_lp_get_unread_contacts_count() {
+    $contacts = get_option( 'psa_lp_contacts', array() );
+    $count = 0;
+    foreach ( $contacts as $contact ) {
+        if ( empty( $contact['read'] ) ) {
+            $count++;
+        }
+    }
+    return $count;
+}
+
+/**
+ * PSA LP お問い合わせ管理ページ
+ */
+function psa_lp_contacts_page() {
+    $contacts = get_option( 'psa_lp_contacts', array() );
+
+    // 確認済みにする
+    if ( isset( $_GET['mark_read'] ) && isset( $_GET['_wpnonce'] ) ) {
+        $contact_id = sanitize_text_field( $_GET['mark_read'] );
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'mark_read_contact_' . $contact_id ) ) {
+            foreach ( $contacts as &$contact ) {
+                if ( $contact['id'] === $contact_id ) {
+                    $contact['read'] = true;
+                    break;
+                }
+            }
+            update_option( 'psa_lp_contacts', $contacts );
+            wp_redirect( admin_url( 'admin.php?page=psa-lp-contacts&marked=1' ) );
+            exit;
+        }
+    }
+
+    // 全て確認済みにする
+    if ( isset( $_GET['mark_all_read'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'mark_all_read_contacts' ) ) {
+            foreach ( $contacts as &$contact ) {
+                $contact['read'] = true;
+            }
+            update_option( 'psa_lp_contacts', $contacts );
+            wp_redirect( admin_url( 'admin.php?page=psa-lp-contacts&all_marked=1' ) );
+            exit;
+        }
+    }
+
+    // 削除
+    if ( isset( $_GET['delete_contact'] ) && isset( $_GET['_wpnonce'] ) ) {
+        $contact_id = sanitize_text_field( $_GET['delete_contact'] );
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'delete_contact_' . $contact_id ) ) {
+            $contacts = array_filter( $contacts, function( $c ) use ( $contact_id ) {
+                return $c['id'] !== $contact_id;
+            } );
+            update_option( 'psa_lp_contacts', array_values( $contacts ) );
+            wp_redirect( admin_url( 'admin.php?page=psa-lp-contacts&deleted=1' ) );
+            exit;
+        }
+    }
+
+    // 新しい順に並べ替え
+    $contacts_display = array_reverse( $contacts );
+    $unread_count = psa_lp_get_unread_contacts_count();
+
+    ?>
+    <style>
+        .psa-contact-unread { background-color: #fff8e1 !important; }
+        .psa-badge-new {
+            background: #d63638;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .psa-contact-message {
+            max-width: 400px;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+    <div class="wrap">
+        <h1>PSA LP お問い合わせ管理</h1>
+
+        <?php if ( isset( $_GET['marked'] ) ): ?>
+            <div class="notice notice-success is-dismissible"><p>確認済みにしました。</p></div>
+        <?php endif; ?>
+        <?php if ( isset( $_GET['all_marked'] ) ): ?>
+            <div class="notice notice-success is-dismissible"><p>全て確認済みにしました。</p></div>
+        <?php endif; ?>
+        <?php if ( isset( $_GET['deleted'] ) ): ?>
+            <div class="notice notice-success is-dismissible"><p>削除しました。</p></div>
+        <?php endif; ?>
+
+        <p>
+            お問い合わせ件数: <strong><?php echo count( $contacts ); ?></strong> 件
+            <?php if ( $unread_count > 0 ): ?>
+                （未読: <strong style="color: #d63638;"><?php echo $unread_count; ?></strong> 件）
+                <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-contacts&mark_all_read=1' ), 'mark_all_read_contacts' ); ?>"
+                   class="button button-secondary" style="margin-left: 10px;">全て確認済みにする</a>
+            <?php endif; ?>
+        </p>
+
+        <?php if ( empty( $contacts ) ): ?>
+            <p>まだお問い合わせはありません。</p>
+        <?php else: ?>
+            <table class="wp-list-table widefat fixed striped">
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">状態</th>
+                        <th style="width: 140px;">受信日時</th>
+                        <th style="width: 120px;">お名前</th>
+                        <th style="width: 180px;">メールアドレス</th>
+                        <th>お問い合わせ内容</th>
+                        <th style="width: 150px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ( $contacts_display as $contact ): ?>
+                        <?php $is_unread = empty( $contact['read'] ); ?>
+                        <tr class="<?php echo $is_unread ? 'psa-contact-unread' : ''; ?>">
+                            <td>
+                                <?php if ( $is_unread ): ?>
+                                    <span class="psa-badge-new">NEW</span>
+                                <?php else: ?>
+                                    <span style="color: #999;">✓</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo esc_html( $contact['date'] ); ?></td>
+                            <td><?php echo esc_html( $contact['name'] ); ?></td>
+                            <td><a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>"><?php echo esc_html( $contact['email'] ); ?></a></td>
+                            <td class="psa-contact-message"><?php echo nl2br( esc_html( $contact['message'] ) ); ?></td>
+                            <td>
+                                <?php if ( $is_unread ): ?>
+                                    <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-contacts&mark_read=' . $contact['id'] ), 'mark_read_contact_' . $contact['id'] ); ?>"
+                                       class="button button-small button-primary">確認済み</a>
+                                <?php endif; ?>
+                                <a href="mailto:<?php echo esc_attr( $contact['email'] ); ?>?subject=Re: PSA代行お問い合わせ"
+                                   class="button button-small">返信</a>
+                                <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-contacts&delete_contact=' . $contact['id'] ), 'delete_contact_' . $contact['id'] ); ?>"
+                                   onclick="return confirm('このお問い合わせを削除しますか？');"
+                                   class="button button-small">削除</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+    <?php
+}

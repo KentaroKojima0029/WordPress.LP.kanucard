@@ -24,6 +24,19 @@ if (isset($_POST['submit_contact']) && isset($_POST['psa_contact_nonce']) && wp_
     } elseif (!is_email($contact_email)) {
         $psa_contact_error = '正しいメールアドレスを入力してください。';
     } else {
+        // WordPressに保存
+        $contacts = get_option('psa_lp_contacts', array());
+        $new_contact = array(
+            'id' => uniqid(),
+            'name' => $contact_name,
+            'email' => $contact_email,
+            'message' => $contact_message,
+            'date' => current_time('Y-m-d H:i:s'),
+            'read' => false
+        );
+        $contacts[] = $new_contact;
+        update_option('psa_lp_contacts', $contacts);
+
         // メール送信
         $to = 'contact@kanucard.com';
         $subject = '【PSA代行LP】新しいお問い合わせ';
@@ -39,12 +52,9 @@ if (isset($_POST['submit_contact']) && isset($_POST['psa_contact_nonce']) && wp_
             'Content-Type: text/plain; charset=UTF-8',
             'Reply-To: ' . $contact_name . ' <' . $contact_email . '>'
         );
+        wp_mail($to, $subject, $email_message, $headers);
 
-        if (wp_mail($to, $subject, $email_message, $headers)) {
-            $psa_contact_success = true;
-        } else {
-            $psa_contact_error = '送信に失敗しました。しばらく経ってから再度お試しください。';
-        }
+        $psa_contact_success = true;
     }
 }
 
