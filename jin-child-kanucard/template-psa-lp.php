@@ -861,7 +861,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </ul>
                         <div class="plan-guarantee">
                             <i class="fas fa-hand-holding-usd"></i>
-                            <span><strong>PSA10取得率70%未満なら<br>代行料を100%返金</strong></span>
+                            <span><strong>PSA10取得率70%未満なら<br>代行料を一部返金</strong></span>
                         </div>
                         <div class="plan-recommend">
                             <i class="fas fa-gem"></i>
