@@ -15,6 +15,7 @@
         initFAQ();
         initCounterAnimation();
         initAccessButton();
+        initContactModal();
     });
 
     /**
@@ -499,6 +500,62 @@
                 wrapper.classList.remove('open');
             });
         });
+    }
+
+    /**
+     * お問い合わせモーダル
+     */
+    function initContactModal() {
+        var modal = document.getElementById('contactModal');
+        var openBtn = document.getElementById('openContactModal');
+        var closeBtn = document.getElementById('closeContactModal');
+        var overlay = modal ? modal.querySelector('.contact-modal-overlay') : null;
+        var wrapper = document.querySelector('.access-button-wrapper');
+
+        if (!modal || !openBtn) return;
+
+        // 開くボタン
+        openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // ドロップダウンを閉じる
+            if (wrapper) {
+                wrapper.classList.remove('open');
+            }
+        });
+
+        // 閉じるボタン
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // オーバーレイクリックで閉じる
+        if (overlay) {
+            overlay.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // ESCキーで閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // フォーム送信後にモーダルを開く（エラーまたは成功時）
+        var hasError = modal.querySelector('.contact-error-message');
+        var hasSuccess = modal.querySelector('.contact-success-message');
+        if (hasError || hasSuccess) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
 
 })();

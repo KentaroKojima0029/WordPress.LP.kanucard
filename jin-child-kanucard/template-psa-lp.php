@@ -11,6 +11,43 @@
 // アセットのベースURL
 $theme_url = get_stylesheet_directory_uri();
 
+// お問い合わせフォーム処理
+$psa_contact_error = '';
+$psa_contact_success = false;
+if (isset($_POST['submit_contact']) && isset($_POST['psa_contact_nonce']) && wp_verify_nonce($_POST['psa_contact_nonce'], 'psa_contact_form')) {
+    $contact_name = sanitize_text_field($_POST['contact_name']);
+    $contact_email = sanitize_email($_POST['contact_email']);
+    $contact_message = sanitize_textarea_field($_POST['contact_message']);
+
+    if (empty($contact_name) || empty($contact_email) || empty($contact_message)) {
+        $psa_contact_error = 'すべての項目を入力してください。';
+    } elseif (!is_email($contact_email)) {
+        $psa_contact_error = '正しいメールアドレスを入力してください。';
+    } else {
+        // メール送信
+        $to = 'contact@kanucard.com';
+        $subject = '【PSA代行LP】新しいお問い合わせ';
+        $email_message = "PSA代行LPから新しいお問い合わせがありました。\n\n";
+        $email_message .= "━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        $email_message .= "お名前: " . $contact_name . "\n";
+        $email_message .= "メールアドレス: " . $contact_email . "\n";
+        $email_message .= "━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+        $email_message .= "【お問い合わせ内容】\n" . $contact_message . "\n\n";
+        $email_message .= "━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        $email_message .= "送信日時: " . current_time('Y-m-d H:i:s') . "\n";
+        $headers = array(
+            'Content-Type: text/plain; charset=UTF-8',
+            'Reply-To: ' . $contact_name . ' <' . $contact_email . '>'
+        );
+
+        if (wp_mail($to, $subject, $email_message, $headers)) {
+            $psa_contact_success = true;
+        } else {
+            $psa_contact_error = '送信に失敗しました。しばらく経ってから再度お試しください。';
+        }
+    }
+}
+
 // 口コミフォーム処理（リダイレクトのためHTML出力前に実行）
 $psa_review_error = '';
 if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_verify_nonce($_POST['psa_review_nonce'], 'psa_review_form')) {
@@ -465,9 +502,9 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <button id="openEstimateModalHero" class="btn btn-gold btn-large">
                                 <i class="fas fa-calculator"></i> 簡易見積もり
                             </button>
-                            <a href="https://daiko.kanucard.com" class="btn btn-white btn-large">
+                            <button id="openContactModal" class="btn btn-white btn-large">
                                 <i class="fas fa-comments"></i> メッセージで気軽に相談
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1276,6 +1313,87 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </div>
                 <p class="estimate-note">※ 為替レートや送料等により実際の金額は変動します</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="contact-modal-overlay"></div>
+        <div class="contact-modal-content">
+            <button type="button" class="contact-modal-close" id="closeContactModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="contact-modal-title">
+                <i class="fas fa-comments"></i> お問い合わせ
+            </h3>
+            <p class="contact-modal-desc">ご質問・ご相談はこちらからお気軽にどうぞ</p>
+
+            <?php if ($psa_contact_success): ?>
+                <div class="contact-success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <p>お問い合わせを送信しました。<br>24時間以内にご返信いたします。</p>
+                </div>
+            <?php else: ?>
+                <?php if ($psa_contact_error): ?>
+                    <div class="contact-error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span><?php echo esc_html($psa_contact_error); ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <form method="post" class="contact-form" id="contactForm">
+                    <?php wp_nonce_field('psa_contact_form', 'psa_contact_nonce'); ?>
+
+                    <div class="contact-form-group">
+                        <label for="contact_name">
+                            <i class="fas fa-user"></i> お名前 <span class="required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="contact_name"
+                            name="contact_name"
+                            placeholder="例: 山田 太郎"
+                            maxlength="50"
+                            required
+                            value="<?php echo isset($_POST['contact_name']) ? esc_attr($_POST['contact_name']) : ''; ?>"
+                        >
+                    </div>
+
+                    <div class="contact-form-group">
+                        <label for="contact_email">
+                            <i class="fas fa-envelope"></i> メールアドレス <span class="required">*</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="contact_email"
+                            name="contact_email"
+                            placeholder="例: example@email.com"
+                            maxlength="100"
+                            required
+                            value="<?php echo isset($_POST['contact_email']) ? esc_attr($_POST['contact_email']) : ''; ?>"
+                        >
+                    </div>
+
+                    <div class="contact-form-group">
+                        <label for="contact_message">
+                            <i class="fas fa-comment-dots"></i> お問い合わせ内容 <span class="required">*</span>
+                        </label>
+                        <textarea
+                            id="contact_message"
+                            name="contact_message"
+                            rows="5"
+                            placeholder="ご質問やご相談内容をご記入ください..."
+                            maxlength="2000"
+                            required
+                        ><?php echo isset($_POST['contact_message']) ? esc_textarea($_POST['contact_message']) : ''; ?></textarea>
+                    </div>
+
+                    <button type="submit" name="submit_contact" class="btn btn-primary btn-large contact-submit">
+                        <i class="fas fa-paper-plane"></i> 送信する
+                    </button>
+                    <p class="contact-note">※ 24時間以内にご返信いたします</p>
+                </form>
+            <?php endif; ?>
         </div>
     </div>
 
