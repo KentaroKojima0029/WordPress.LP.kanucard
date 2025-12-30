@@ -49,7 +49,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 
         // PRGパターン: リダイレクトして重複送信を防止
         $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
-        $redirect_url = add_query_arg('review_submitted', '1', $current_url) . '#results';
+        $redirect_url = add_query_arg('review_submitted', '1', $current_url) . '#review';
         wp_safe_redirect($redirect_url);
         exit;
     }
@@ -675,121 +675,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                 </div>
 
-                <!-- Review Form Section -->
-                <div class="review-form-section" data-aos="fade-up">
-                    <h3 class="subsection-title">
-                        <i class="fas fa-pen" style="color: var(--secondary); margin-right: 10px;"></i>
-                        あなたの声をお聞かせください
-                    </h3>
-                    <p class="review-form-intro">ご利用いただいた感想やご意見をお待ちしております</p>
-
-                    <?php
-                    // URLパラメータで成功状態を確認（リダイレクト後）
-                    $review_success = isset($_GET['review_submitted']) && $_GET['review_submitted'] === '1';
-                    $review_error = $psa_review_error; // テンプレート上部で設定されたエラー
-                    ?>
-
-                    <div class="review-modal-overlay" id="reviewSuccessModal" style="display: none;">
-                        <div class="review-modal-content">
-                            <i class="fas fa-check-circle"></i>
-                            <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
-                            <button type="button" class="btn btn-success-dismiss" id="reviewModalCloseBtn">
-                                確認
-                            </button>
-                        </div>
-                    </div>
-                    <script>
-                        (function() {
-                            // URLパラメータをチェック
-                            var urlParams = new URLSearchParams(window.location.search);
-                            if (urlParams.get('review_submitted') === '1') {
-                                // モーダルを表示
-                                document.getElementById('reviewSuccessModal').style.display = 'flex';
-                                // 即座にURLパラメータを削除（リロードなし）
-                                var cleanUrl = window.location.pathname + '#results';
-                                window.history.replaceState({}, document.title, cleanUrl);
-                            }
-
-                            // 確認ボタンのクリックでモーダルを閉じる
-                            document.getElementById('reviewModalCloseBtn').addEventListener('click', function() {
-                                document.getElementById('reviewSuccessModal').style.display = 'none';
-                            });
-                        })();
-                    </script>
-
-                    <?php if ($review_error): ?>
-                            <div class="review-error-message">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <p><?php echo esc_html($review_error); ?></p>
-                            </div>
-                        <?php endif; ?>
-
-                        <form method="post" class="review-form" id="reviewForm">
-                            <?php wp_nonce_field('psa_review_form', 'psa_review_nonce'); ?>
-
-                            <div class="form-group">
-                                <label for="review_name">
-                                    <i class="fas fa-user"></i> お名前<span class="required">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="review_name"
-                                    name="review_name"
-                                    placeholder="例: 山田 太郎"
-                                    maxlength="50"
-                                    required
-                                    value="<?php echo isset($_POST['review_name']) ? esc_attr($_POST['review_name']) : ''; ?>"
-                                >
-                            </div>
-
-                            <div class="form-group">
-                                <label>
-                                    <i class="fas fa-star"></i> 評価<span class="required">*</span>
-                                </label>
-                                <div class="star-rating-input">
-                                    <input type="radio" id="star5" name="review_rating" value="5" required>
-                                    <label for="star5" title="5つ星"><i class="fas fa-star"></i></label>
-
-                                    <input type="radio" id="star4" name="review_rating" value="4">
-                                    <label for="star4" title="4つ星"><i class="fas fa-star"></i></label>
-
-                                    <input type="radio" id="star3" name="review_rating" value="3">
-                                    <label for="star3" title="3つ星"><i class="fas fa-star"></i></label>
-
-                                    <input type="radio" id="star2" name="review_rating" value="2">
-                                    <label for="star2" title="2つ星"><i class="fas fa-star"></i></label>
-
-                                    <input type="radio" id="star1" name="review_rating" value="1">
-                                    <label for="star1" title="1つ星"><i class="fas fa-star"></i></label>
-                                </div>
-                                <p class="rating-description">クリックして評価してください</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="review_message">
-                                    <i class="fas fa-comment"></i> ご感想・メッセージ<span class="required">*</span>
-                                </label>
-                                <textarea
-                                    id="review_message"
-                                    name="review_message"
-                                    rows="5"
-                                    placeholder="ご利用いただいた感想やご意見をお聞かせください..."
-                                    maxlength="1000"
-                                    required
-                                ><?php echo isset($_POST['review_message']) ? esc_textarea($_POST['review_message']) : ''; ?></textarea>
-                                <p class="char-count"><span id="charCount">0</span> / 1000文字</p>
-                            </div>
-
-                            <div class="form-submit">
-                                <button type="submit" name="submit_review" class="btn btn-primary btn-large">
-                                    <i class="fas fa-paper-plane"></i>
-                                    口コミを投稿する
-                                </button>
-                                <p class="form-note">※管理者に内容が送信されます</p>
-                            </div>
-                        </form>
-                </div>
-
                 <div class="trust-badges">
                     <div class="trust-badge">
                         <i class="fas fa-building"></i>
@@ -1116,6 +1001,123 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Review Form Section -->
+        <section class="review-form-section" id="review">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-pen" style="color: var(--secondary); margin-right: 10px;"></i>
+                    あなたの声をお聞かせください
+                </h2>
+                <p class="review-form-intro">ご利用いただいた感想やご意見をお待ちしております</p>
+
+                <?php
+                // URLパラメータで成功状態を確認（リダイレクト後）
+                $review_success = isset($_GET['review_submitted']) && $_GET['review_submitted'] === '1';
+                $review_error = $psa_review_error; // テンプレート上部で設定されたエラー
+                ?>
+
+                <div class="review-modal-overlay" id="reviewSuccessModal" style="display: none;">
+                    <div class="review-modal-content">
+                        <i class="fas fa-check-circle"></i>
+                        <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
+                        <button type="button" class="btn btn-success-dismiss" id="reviewModalCloseBtn">
+                            確認
+                        </button>
+                    </div>
+                </div>
+                <script>
+                    (function() {
+                        // URLパラメータをチェック
+                        var urlParams = new URLSearchParams(window.location.search);
+                        if (urlParams.get('review_submitted') === '1') {
+                            // モーダルを表示
+                            document.getElementById('reviewSuccessModal').style.display = 'flex';
+                            // 即座にURLパラメータを削除（リロードなし）
+                            var cleanUrl = window.location.pathname + '#review';
+                            window.history.replaceState({}, document.title, cleanUrl);
+                        }
+
+                        // 確認ボタンのクリックでモーダルを閉じる
+                        document.getElementById('reviewModalCloseBtn').addEventListener('click', function() {
+                            document.getElementById('reviewSuccessModal').style.display = 'none';
+                        });
+                    })();
+                </script>
+
+                <?php if ($review_error): ?>
+                    <div class="review-error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p><?php echo esc_html($review_error); ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <form method="post" class="review-form" id="reviewForm">
+                    <?php wp_nonce_field('psa_review_form', 'psa_review_nonce'); ?>
+
+                    <div class="form-group">
+                        <label for="review_name">
+                            <i class="fas fa-user"></i> お名前<span class="required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="review_name"
+                            name="review_name"
+                            placeholder="例: 山田 太郎"
+                            maxlength="50"
+                            required
+                            value="<?php echo isset($_POST['review_name']) ? esc_attr($_POST['review_name']) : ''; ?>"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-star"></i> 評価<span class="required">*</span>
+                        </label>
+                        <div class="star-rating-input">
+                            <input type="radio" id="star5" name="review_rating" value="5" required>
+                            <label for="star5" title="5つ星"><i class="fas fa-star"></i></label>
+
+                            <input type="radio" id="star4" name="review_rating" value="4">
+                            <label for="star4" title="4つ星"><i class="fas fa-star"></i></label>
+
+                            <input type="radio" id="star3" name="review_rating" value="3">
+                            <label for="star3" title="3つ星"><i class="fas fa-star"></i></label>
+
+                            <input type="radio" id="star2" name="review_rating" value="2">
+                            <label for="star2" title="2つ星"><i class="fas fa-star"></i></label>
+
+                            <input type="radio" id="star1" name="review_rating" value="1">
+                            <label for="star1" title="1つ星"><i class="fas fa-star"></i></label>
+                        </div>
+                        <p class="rating-description">クリックして評価してください</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review_message">
+                            <i class="fas fa-comment"></i> ご感想・メッセージ<span class="required">*</span>
+                        </label>
+                        <textarea
+                            id="review_message"
+                            name="review_message"
+                            rows="5"
+                            placeholder="ご利用いただいた感想やご意見をお聞かせください..."
+                            maxlength="1000"
+                            required
+                        ><?php echo isset($_POST['review_message']) ? esc_textarea($_POST['review_message']) : ''; ?></textarea>
+                        <p class="char-count"><span id="charCount">0</span> / 1000文字</p>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" name="submit_review" class="btn btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i>
+                            口コミを投稿する
+                        </button>
+                        <p class="form-note">※管理者に内容が送信されます</p>
+                    </div>
+                </form>
             </div>
         </section>
 
