@@ -896,7 +896,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
 
                         <div class="guarantee-arrow">
-                            <i class="fas fa-chevron-right"></i>
+                            <i class="fas fa-chevron-right arrow-desktop"></i>
+                            <i class="fas fa-chevron-down arrow-mobile"></i>
                         </div>
 
                         <div class="guarantee-step">
@@ -906,22 +907,29 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <div class="step-number-badge">STEP 2</div>
                             <h4>PSA鑑定結果を確認</h4>
                             <div class="step-illustration">
-                                <div class="result-display">
-                                    <div class="result-psa10">
-                                        <span class="result-grade">PSA10</span>
-                                        <span class="result-count">6枚</span>
+                                <div class="result-bar-container">
+                                    <div class="result-bar">
+                                        <div class="result-bar-psa10" style="width: 60%;">
+                                            <span class="bar-label">PSA10</span>
+                                            <span class="bar-count">6枚</span>
+                                        </div>
+                                        <div class="result-bar-other" style="width: 40%;">
+                                            <span class="bar-label">9以下</span>
+                                            <span class="bar-count">4枚</span>
+                                        </div>
                                     </div>
-                                    <div class="result-other">
-                                        <span class="result-grade">PSA9以下</span>
-                                        <span class="result-count">4枚</span>
+                                    <div class="result-bar-legend">
+                                        <span class="legend-total">10枚中</span>
+                                        <span class="legend-rate">取得率 <strong>60%</strong></span>
                                     </div>
                                 </div>
                             </div>
-                            <p>10枚中6枚がPSA10...<br><strong>取得率60%</strong>（70%未満）</p>
+                            <p>PSA10が<strong>70%未満</strong>の場合<br>返金対象になります</p>
                         </div>
 
                         <div class="guarantee-arrow">
-                            <i class="fas fa-chevron-right"></i>
+                            <i class="fas fa-chevron-right arrow-desktop"></i>
+                            <i class="fas fa-chevron-down arrow-mobile"></i>
                         </div>
 
                         <div class="guarantee-step highlight">
