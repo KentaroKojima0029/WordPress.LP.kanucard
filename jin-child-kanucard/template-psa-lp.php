@@ -516,7 +516,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <i class="fas fa-comments"></i> メッセージで気軽に相談
                             </button>
                             <a href="#review" class="btn btn-white btn-large" id="goToReviewSection">
-                                <i class="fas fa-pen"></i> 口コミを投稿
+                                <i class="fas fa-pen"></i> 口コミを送信
                             </a>
                         </div>
                     </div>

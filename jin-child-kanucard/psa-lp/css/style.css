@@ -4056,18 +4056,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .access-button-dropdown .btn {
     width: 100%;
+    height: 56px;
     min-height: 56px;
+    max-height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 0 1.5rem;
+    font-size: 0.95rem;
     font-weight: 600;
     border-radius: 12px;
     transition: all 0.3s ease;
     text-decoration: none;
     box-sizing: border-box;
+    white-space: nowrap;
 }
 
 .access-button-dropdown .btn-gold {
