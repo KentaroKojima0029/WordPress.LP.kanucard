@@ -689,24 +689,33 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     $review_error = $psa_review_error; // テンプレート上部で設定されたエラー
                     ?>
 
-                    <?php if ($review_success): ?>
-                        <div class="review-modal-overlay" id="reviewSuccessModal">
-                            <div class="review-modal-content">
-                                <i class="fas fa-check-circle"></i>
-                                <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
-                                <button type="button" class="btn btn-success-dismiss" id="reviewModalCloseBtn">
-                                    確認
-                                </button>
-                            </div>
+                    <div class="review-modal-overlay" id="reviewSuccessModal" style="display: none;">
+                        <div class="review-modal-content">
+                            <i class="fas fa-check-circle"></i>
+                            <p>口コミをご投稿いただき、ありがとうございました！<br>内容を確認の上、掲載させていただきます。</p>
+                            <button type="button" class="btn btn-success-dismiss" id="reviewModalCloseBtn">
+                                確認
+                            </button>
                         </div>
-                        <script>
+                    </div>
+                    <script>
+                        (function() {
+                            // URLパラメータをチェック
+                            var urlParams = new URLSearchParams(window.location.search);
+                            if (urlParams.get('review_submitted') === '1') {
+                                // モーダルを表示
+                                document.getElementById('reviewSuccessModal').style.display = 'flex';
+                                // 即座にURLパラメータを削除（リロードなし）
+                                var cleanUrl = window.location.pathname + '#results';
+                                window.history.replaceState({}, document.title, cleanUrl);
+                            }
+
+                            // 確認ボタンのクリックでモーダルを閉じる
                             document.getElementById('reviewModalCloseBtn').addEventListener('click', function() {
-                                // モーダルを閉じてURLパラメータなしのページに戻る
-                                var url = window.location.href.split('?')[0];
-                                window.location.href = url + '#results';
+                                document.getElementById('reviewSuccessModal').style.display = 'none';
                             });
-                        </script>
-                    <?php endif; ?>
+                        })();
+                    </script>
 
                     <?php if ($review_error): ?>
                             <div class="review-error-message">
