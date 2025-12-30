@@ -493,13 +493,26 @@
             }
         });
 
-        // ドロップダウン内のボタンクリック時も閉じる（見積もりモーダル以外）
+        // ドロップダウン内のリンククリック時も閉じる
         var dropdownLinks = wrapper.querySelectorAll('.access-button-dropdown a');
         dropdownLinks.forEach(function(link) {
             link.addEventListener('click', function() {
                 wrapper.classList.remove('open');
             });
         });
+
+        // 口コミセクションへのスムーズスクロール
+        var goToReviewBtn = document.getElementById('goToReviewSection');
+        if (goToReviewBtn) {
+            goToReviewBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                wrapper.classList.remove('open');
+                var reviewSection = document.getElementById('review');
+                if (reviewSection) {
+                    reviewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
     }
 
     /**
