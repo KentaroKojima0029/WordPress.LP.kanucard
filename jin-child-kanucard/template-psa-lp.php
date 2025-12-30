@@ -461,6 +461,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-arrow-right"></i> アクセスボタン
                         </button>
                         <div class="access-button-dropdown" id="accessButtonDropdown">
+                            <p class="access-button-dropdown-label">ご希望の方法を選択してください</p>
                             <button id="openEstimateModalHero" class="btn btn-gold btn-large">
                                 <i class="fas fa-calculator"></i> 簡易見積もり
                             </button>

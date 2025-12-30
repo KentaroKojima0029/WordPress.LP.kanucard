@@ -3996,10 +3996,16 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    transition: all 0.3s ease;
 }
 
 .access-button i {
     transition: transform 0.3s ease;
+}
+
+.access-button-wrapper.open .access-button {
+    background: var(--gold-dark);
+    transform: scale(0.98);
 }
 
 .access-button-wrapper.open .access-button i {
@@ -4008,50 +4014,94 @@ h1, h2, h3, h4, h5, h6 {
 
 .access-button-dropdown {
     position: absolute;
-    top: calc(100% + 1rem);
+    top: calc(100% + 1.5rem);
     left: 50%;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-20px) scale(0.9);
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 100;
-    min-width: 280px;
+    min-width: 320px;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* 矢印ポインタ */
+.access-button-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 14px solid rgba(255, 255, 255, 0.98);
+    filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, 0.1));
 }
 
 .access-button-wrapper.open .access-button-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .access-button-dropdown .btn {
     width: 100%;
     white-space: nowrap;
-    box-shadow: var(--shadow-lg);
+    padding: 1.25rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.access-button-dropdown .btn-gold {
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.access-button-dropdown .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
 }
 
 .access-button-dropdown .btn-white {
-    background: #fff;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     color: var(--primary);
     border: 2px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.15);
 }
 
 .access-button-dropdown .btn-white:hover {
     background: var(--primary);
     color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+}
+
+/* ドロップダウンのラベル */
+.access-button-dropdown-label {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .access-button-dropdown {
-        min-width: 260px;
+        min-width: 290px;
+        padding: 1.25rem;
     }
-    
+
     .access-button-dropdown .btn {
-        padding: 1rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 1.1rem 1.5rem;
+        font-size: 1rem;
     }
 }
