@@ -2184,14 +2184,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .step-number-badge {
     position: absolute;
-    top: -12px;
-    right: -12px;
+    top: 1rem;
+    right: 1rem;
     display: inline-block;
     background: var(--gradient-primary);
     color: #fff;
-    padding: 8px 16px;
+    padding: 6px 14px;
     border-radius: 30px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 1px;
     box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
@@ -3133,10 +3133,10 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .step-number-badge {
-        top: -10px;
-        right: -5px;
-        font-size: 0.65rem;
-        padding: 5px 10px;
+        top: 0.75rem;
+        right: 0.75rem;
+        font-size: 0.6rem;
+        padding: 4px 10px;
     }
 
     .guarantee-step h4 {
