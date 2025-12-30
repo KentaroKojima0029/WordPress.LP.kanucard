@@ -2199,8 +2199,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .step-number-badge.success {
-    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
 }
 
 .guarantee-step h4 {
