@@ -821,11 +821,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 <div class="plans-grid">
                     <div class="plan-card" data-aos="fade-up">
                         <div class="plan-header">
-                            <h3>ノーマルプラン</h3>
-                            <div class="plan-price">
-                                <span class="price-main">1<small>%</small></span>
-                                <span class="price-sub">代行手数料のみ</span>
-                            </div>
+                            <h3 class="plan-title-highlight">ノーマルプラン</h3>
+                            <p class="plan-description">代行手数料のみ</p>
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
@@ -846,11 +843,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <div class="plan-card has-badge" data-aos="fade-up" data-delay="100">
                         <div class="plan-badge secondary">初めての方にオススメ</div>
                         <div class="plan-header">
-                            <h3>70%保証プラン</h3>
-                            <div class="plan-price">
-                                <span class="price-main">2<small>%</small></span>
-                                <span class="price-sub">リスクゼロの安心価格</span>
-                            </div>
+                            <h3 class="plan-title-highlight">70%保証プラン</h3>
+                            <p class="plan-description">リスクゼロの安心価格</p>
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
