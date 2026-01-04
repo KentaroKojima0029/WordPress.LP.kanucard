@@ -971,7 +971,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                         </div>
                                         <div class="explain-arrow"><i class="fas fa-arrow-down"></i></div>
                                         <div class="explain-item highlight center">
-                                            <span>PSA9以下の<strong>4枚分</strong>の代行料を返金！</span>
+                                            <span><strong>4枚分</strong>の代行料を返金！</span>
                                         </div>
                                     </div>
                                 </div>
