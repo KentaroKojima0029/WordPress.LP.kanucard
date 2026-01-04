@@ -1653,10 +1653,17 @@ h1, h2, h3, h4, h5, h6 {
 .final-cta-section {
     padding: var(--section-padding) 0;
     background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    color: white;
+    color: #ffffff !important;
     text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+.final-cta-section h2,
+.final-cta-section p,
+.final-cta-section span,
+.final-cta-section strong {
+    color: #ffffff !important;
 }
 
 .final-cta-section::before {
