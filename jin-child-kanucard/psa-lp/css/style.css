@@ -1652,7 +1652,7 @@ h1, h2, h3, h4, h5, h6 {
 ======================================== */
 .final-cta-section {
     padding: var(--section-padding) 0;
-    background: var(--gradient-premium);
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
     color: white;
     text-align: center;
     position: relative;
@@ -1667,8 +1667,8 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     bottom: 0;
     background:
-        radial-gradient(circle at 30% 70%, rgba(245, 158, 11, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
 }
 
 .cta-content {
