@@ -4075,7 +4075,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .refund-visual-bar-wrapper {
-        height: 180px;
+        height: 220px;
         width: 100%;
         max-width: 100%;
         padding: 0 5px;
@@ -4091,8 +4091,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .marker-label {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+        font-size: 0.75rem;
+        padding: 5px 10px;
     }
 
     .bar-scale {
