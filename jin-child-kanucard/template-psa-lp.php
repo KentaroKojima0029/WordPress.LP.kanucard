@@ -939,30 +939,33 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <div class="step-number-badge success">STEP 3</div>
                             <h4>差額分を返金！</h4>
                             <div class="step-illustration">
-                                <div class="refund-calculation-new">
-                                    <div class="guarantee-line-box">
-                                        <span class="guarantee-label">保証ライン</span>
-                                        <span class="guarantee-value">70%</span>
-                                    </div>
-                                    <div class="refund-example">
-                                        <div class="refund-example-label">返金例</div>
-                                        <div class="refund-bar-container">
-                                            <div class="refund-bar">
-                                                <div class="refund-bar-guarantee" style="width: 70%;">
-                                                    <span class="bar-value">70%</span>
-                                                </div>
-                                                <div class="refund-bar-actual" style="width: 30%;">
-                                                </div>
+                                <div class="refund-visual">
+                                    <div class="refund-visual-title">返金の仕組み</div>
+                                    <div class="refund-visual-bar-wrapper">
+                                        <div class="refund-visual-bar">
+                                            <div class="bar-fill bar-actual" style="height: 60%;">
+                                                <span class="bar-text">取得率<br><strong>60%</strong></span>
                                             </div>
-                                            <div class="refund-bar-labels">
-                                                <span class="label-actual">取得率 <strong>60%</strong></span>
-                                                <span class="label-refund">返金 <strong>40%分</strong></span>
+                                            <div class="bar-fill bar-gap" style="height: 10%;">
+                                                <span class="bar-gap-text">差額10%</span>
                                             </div>
                                         </div>
+                                        <div class="guarantee-line-marker">
+                                            <span class="marker-line"></span>
+                                            <span class="marker-label">保証ライン 70%</span>
+                                        </div>
+                                    </div>
+                                    <div class="refund-visual-result">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>70%を<strong>下回った分</strong>を返金</span>
+                                    </div>
+                                    <div class="refund-visual-amount">
+                                        <span class="amount-label">返金額</span>
+                                        <span class="amount-value">代行料の <strong>40%</strong></span>
                                     </div>
                                 </div>
                             </div>
-                            <p><strong>代行料の40%を返金！</strong><br>リスクを最小限に抑えられます</p>
+                            <p>リスクを最小限に抑えられます</p>
                         </div>
                     </div>
 
