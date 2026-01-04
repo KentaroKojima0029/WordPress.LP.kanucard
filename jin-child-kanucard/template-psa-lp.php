@@ -996,13 +996,33 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </div>
 
                 <div class="plans-note">
-                    <div class="note-box">
+                    <div class="note-box pricing-flow-box">
                         <h4><i class="fas fa-info-circle"></i> 料金の仕組み（シンプル）</h4>
-                        <p>
-                            <strong>1回目:</strong> 代行手数料（カード到着時に請求）<br>
-                            <strong>2回目:</strong> PSA鑑定料・返送料（提出前に請求）<br>
-                            <small>※ PSA鑑定料はPSA社の公式料金です</small>
-                        </p>
+                        <div class="pricing-flow">
+                            <div class="pricing-step">
+                                <div class="pricing-step-icon">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                <div class="pricing-step-number">1回目</div>
+                                <div class="pricing-step-title">代行手数料</div>
+                                <div class="pricing-step-timing">カード到着時に請求</div>
+                            </div>
+                            <div class="pricing-flow-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="pricing-step">
+                                <div class="pricing-step-icon">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                </div>
+                                <div class="pricing-step-number">2回目</div>
+                                <div class="pricing-step-title">PSA鑑定料・返送料</div>
+                                <div class="pricing-step-timing">提出前に請求</div>
+                            </div>
+                        </div>
+                        <div class="pricing-note">
+                            <i class="fas fa-check-circle"></i>
+                            <span>PSA鑑定料はPSA社の公式料金です</span>
+                        </div>
                     </div>
                 </div>
             </div>
