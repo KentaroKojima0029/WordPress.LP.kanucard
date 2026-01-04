@@ -1219,46 +1219,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </form>
             </div>
         </section>
-
-        <!-- Final CTA Section -->
-        <section class="final-cta-section" id="cta">
-            <div class="container">
-                <div class="cta-content" data-aos="fade-up">
-                    <div class="cta-urgency">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>初めての方でも安心サポート</span>
-                    </div>
-                    <h2>
-                        まずは<span style="color: var(--secondary);">無料相談</span>から<br class="sp-only">
-                        始めてみませんか？
-                    </h2>
-                    <p class="cta-subtitle">
-                        <strong>「何から始めればいいの？」そんな疑問も大歓迎。</strong><br>
-                        専任スタッフが丁寧にご説明します。強引な営業は一切ありません。
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="https://daiko.kanucard.com" class="btn btn-gold btn-xlarge pulse">
-                            <i class="fas fa-rocket"></i>
-                            無料で見積もりを取得する
-                        </a>
-                        <a href="https://daiko.kanucard.com" class="btn btn-secondary btn-large">
-                            <i class="fas fa-comments"></i>
-                            まずはメッセージで質問する
-                        </a>
-                    </div>
-                    <div class="cta-badges">
-                        <span class="cta-badge"><i class="fas fa-comment-dots"></i> 相談完全無料</span>
-                        <span class="cta-badge"><i class="fas fa-microscope"></i> プロ検品無料</span>
-                        <span class="cta-badge"><i class="fas fa-hand-holding-usd"></i> 70%保証で返金</span>
-                        <span class="cta-badge"><i class="fas fa-user-shield"></i> 強引な営業なし</span>
-                    </div>
-                    <p class="cta-guarantee">
-                        <i class="fas fa-check-circle"></i>
-                        <strong>24時間以内</strong>にご連絡いたします
-                    </p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer -->
