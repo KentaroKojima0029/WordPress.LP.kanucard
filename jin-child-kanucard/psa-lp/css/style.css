@@ -2797,33 +2797,86 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
 }
 
-.bar-fill.bar-actual {
-    background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+.bar-fill.bar-psa10 {
+    background: linear-gradient(180deg, #10b981, #059669);
+    animation: barPulse 3s ease-in-out infinite;
 }
 
-.bar-fill.bar-gap {
+.bar-fill.bar-refund {
     background: linear-gradient(180deg, #f59e0b, #d97706);
-    position: relative;
+    animation: refundPulse 2s ease-in-out infinite;
+}
+
+.animate-bar {
+    animation: growBar 1.5s ease-out forwards, barPulse 3s ease-in-out 1.5s infinite;
+}
+
+.animate-bar-delay {
+    animation: growBarDelay 1.5s ease-out forwards, refundPulse 2s ease-in-out 1.5s infinite;
+}
+
+@keyframes growBar {
+    0% { transform: scaleY(0); transform-origin: bottom; }
+    100% { transform: scaleY(1); transform-origin: bottom; }
+}
+
+@keyframes growBarDelay {
+    0%, 40% { transform: scaleY(0); transform-origin: bottom; }
+    100% { transform: scaleY(1); transform-origin: bottom; }
+}
+
+@keyframes barPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+}
+
+@keyframes refundPulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: inset 0 0 0 rgba(255,255,255,0);
+    }
+    50% {
+        opacity: 0.9;
+        box-shadow: inset 0 0 20px rgba(255,255,255,0.3);
+    }
 }
 
 .bar-text {
     color: #fff;
-    font-size: 0.7rem;
-    line-height: 1.3;
+    font-size: 0.65rem;
+    line-height: 1.2;
+}
+
+.bar-text i {
+    font-size: 0.8rem;
+    margin-bottom: 2px;
 }
 
 .bar-text strong {
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: block;
 }
 
-.bar-gap-text {
-    color: #fff;
+.bar-scale {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-size: 0.6rem;
-    font-weight: 600;
-    white-space: nowrap;
+    color: var(--text-muted);
+    padding: 2px 0;
+}
+
+.scale-70 {
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
 }
 
 .guarantee-line-marker {
@@ -2940,6 +2993,86 @@ h1, h2, h3, h4, h5, h6 {
 .refund-visual-amount .amount-value strong {
     font-size: 1.4rem;
     font-weight: 900;
+}
+
+/* Refund Visual Explain */
+.refund-visual-explain {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.explain-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding: 6px 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.explain-item.highlight {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 1px solid #f59e0b;
+    animation: highlightPulse 2s ease-in-out infinite;
+}
+
+@keyframes highlightPulse {
+    0%, 100% { box-shadow: 0 2px 6px rgba(245, 158, 11, 0.2); }
+    50% { box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); }
+}
+
+.explain-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.explain-icon.success {
+    background: #10b981;
+    color: #fff;
+}
+
+.explain-icon.warning {
+    background: #f59e0b;
+    color: #fff;
+}
+
+.explain-icon.refund {
+    background: #dc2626;
+    color: #fff;
+    animation: iconBounce 1s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.explain-item strong {
+    color: var(--text);
+}
+
+.explain-arrow {
+    text-align: center;
+    color: #f59e0b;
+    font-size: 1rem;
+    animation: arrowBounce 1s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
 }
 
 .guarantee-step p {
@@ -3959,6 +4092,34 @@ h1, h2, h3, h4, h5, h6 {
 
     .refund-visual-amount .amount-value strong {
         font-size: 1.6rem;
+    }
+
+    /* Refund Visual Explain Mobile */
+    .refund-visual-explain {
+        gap: 10px;
+    }
+
+    .explain-item {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+
+    .explain-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .bar-text {
+        font-size: 0.7rem;
+    }
+
+    .bar-text i {
+        font-size: 1rem;
+    }
+
+    .bar-text strong {
+        font-size: 1rem;
     }
 
     .note-box {

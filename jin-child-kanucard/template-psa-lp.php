@@ -940,28 +940,40 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <h4>差額分を返金！</h4>
                             <div class="step-illustration">
                                 <div class="refund-visual">
-                                    <div class="refund-visual-title">返金の仕組み</div>
+                                    <div class="refund-visual-title">返金の仕組み（例：10枚依頼）</div>
                                     <div class="refund-visual-bar-wrapper">
                                         <div class="refund-visual-bar">
-                                            <div class="bar-fill bar-actual" style="height: 60%;">
-                                                <span class="bar-text">取得率<br><strong>60%</strong></span>
+                                            <div class="bar-fill bar-psa10 animate-bar" style="height: 60%;">
+                                                <span class="bar-text"><i class="fas fa-gem"></i><br>PSA10<br><strong>6枚</strong></span>
                                             </div>
-                                            <div class="bar-fill bar-gap" style="height: 10%;">
-                                                <span class="bar-gap-text">差額10%</span>
+                                            <div class="bar-fill bar-refund animate-bar-delay" style="height: 40%;">
+                                                <span class="bar-text"><i class="fas fa-undo"></i><br>9以下<br><strong>4枚</strong></span>
                                             </div>
+                                        </div>
+                                        <div class="bar-scale">
+                                            <span class="scale-100">100%</span>
+                                            <span class="scale-70">70%</span>
+                                            <span class="scale-0">0%</span>
                                         </div>
                                         <div class="guarantee-line-marker">
                                             <span class="marker-line"></span>
                                             <span class="marker-label">保証ライン 70%</span>
                                         </div>
                                     </div>
-                                    <div class="refund-visual-result">
-                                        <i class="fas fa-arrow-down"></i>
-                                        <span>70%を<strong>下回った分</strong>を返金</span>
-                                    </div>
-                                    <div class="refund-visual-amount">
-                                        <span class="amount-label">返金額</span>
-                                        <span class="amount-value">代行料の <strong>40%</strong></span>
+                                    <div class="refund-visual-explain">
+                                        <div class="explain-item">
+                                            <span class="explain-icon success"><i class="fas fa-check"></i></span>
+                                            <span>PSA10取得率 <strong>60%</strong>（6枚）</span>
+                                        </div>
+                                        <div class="explain-item">
+                                            <span class="explain-icon warning"><i class="fas fa-exclamation"></i></span>
+                                            <span>保証ライン70%を <strong>下回った</strong></span>
+                                        </div>
+                                        <div class="explain-arrow"><i class="fas fa-arrow-down"></i></div>
+                                        <div class="explain-item highlight">
+                                            <span class="explain-icon refund"><i class="fas fa-yen-sign"></i></span>
+                                            <span>9以下の<strong>4枚分</strong>の代行料を返金！</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
