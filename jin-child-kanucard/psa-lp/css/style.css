@@ -2685,6 +2685,78 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.3rem;
 }
 
+/* Refund Example Bar */
+.refund-example {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.refund-example-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.refund-bar-container {
+    width: 100%;
+}
+
+.refund-bar {
+    display: flex;
+    height: 36px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.refund-bar-guarantee {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.refund-bar-guarantee .bar-value {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.refund-bar-actual {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.refund-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 0 4px;
+}
+
+.refund-bar-labels span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.refund-bar-labels strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.label-refund {
+    color: #d97706 !important;
+}
+
+.label-refund strong {
+    color: #d97706 !important;
+}
+
 .guarantee-step p {
     font-size: 1rem;
     color: var(--text-secondary);
@@ -3651,6 +3723,31 @@ h1, h2, h3, h4, h5, h6 {
 
     .calc-item-new.result strong {
         font-size: 1.5rem;
+    }
+
+    /* Refund Example Bar Mobile */
+    .refund-example {
+        margin-top: 12px;
+    }
+
+    .refund-example-label {
+        font-size: 0.9rem;
+    }
+
+    .refund-bar {
+        height: 42px;
+    }
+
+    .refund-bar-guarantee .bar-value {
+        font-size: 1rem;
+    }
+
+    .refund-bar-labels {
+        margin-top: 10px;
+    }
+
+    .refund-bar-labels span {
+        font-size: 0.85rem;
     }
 
     .note-box {
