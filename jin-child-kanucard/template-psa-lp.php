@@ -938,6 +938,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             </div>
                             <div class="step-number-badge success">STEP 3</div>
                             <h4>差額分を返金！</h4>
+                            <p class="step-description">PSA10取得率が70％を下回った場合、該当のカードに対する代行料を返金します。</p>
                             <div class="step-illustration">
                                 <div class="refund-visual">
                                     <div class="refund-visual-title">返金の仕組み（例：10枚依頼）</div>
