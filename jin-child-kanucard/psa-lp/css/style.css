@@ -1666,6 +1666,16 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
 }
 
+.final-cta-section .cta-urgency {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important;
+    border: none;
+}
+
+.final-cta-section .cta-urgency i {
+    color: #ffffff !important;
+}
+
 .final-cta-section::before {
     content: '';
     position: absolute;
