@@ -3066,12 +3066,6 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     color: #f59e0b;
     font-size: 1rem;
-    animation: arrowBounce 1s ease-in-out infinite;
-}
-
-@keyframes arrowBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(3px); }
 }
 
 .guarantee-step p {
