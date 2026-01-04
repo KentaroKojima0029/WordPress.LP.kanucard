@@ -2616,11 +2616,11 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    padding: 12px 24px;
+    padding: 14px 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
     width: 100%;
-    max-width: 160px;
+    max-width: 200px;
 }
 
 .guarantee-label {
@@ -2647,12 +2647,12 @@ h1, h2, h3, h4, h5, h6 {
 .calc-item-new {
     text-align: center;
     background: #fff;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--border);
     width: 100%;
-    max-width: 160px;
+    max-width: 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3616,6 +3616,41 @@ h1, h2, h3, h4, h5, h6 {
 
     .guarantee-notes .note-colon {
         display: none;
+    }
+
+    /* Step3 補償ライン - モバイル横幅活用 */
+    .refund-calculation-new {
+        gap: 10px;
+    }
+
+    .guarantee-line-box {
+        max-width: 100%;
+        padding: 16px 24px;
+    }
+
+    .guarantee-label {
+        font-size: 0.85rem;
+    }
+
+    .guarantee-value {
+        font-size: 2.2rem;
+    }
+
+    .calc-item-new {
+        max-width: 100%;
+        padding: 14px 20px;
+    }
+
+    .calc-item-new span {
+        font-size: 0.9rem;
+    }
+
+    .calc-item-new strong {
+        font-size: 1.3rem;
+    }
+
+    .calc-item-new.result strong {
+        font-size: 1.5rem;
     }
 
     .note-box {
