@@ -1225,16 +1225,16 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             <div class="container">
                 <div class="cta-content" data-aos="fade-up">
                     <div class="cta-urgency">
-                        <i class="fas fa-clock"></i>
-                        <span>カードの価値は時間とともに変動します</span>
+                        <i class="fas fa-shield-alt"></i>
+                        <span>初めての方でも安心サポート</span>
                     </div>
                     <h2>
-                        今すぐ、あなたのカードの<br class="sp-only">
-                        <span style="color: var(--secondary);">真の価値</span>を解き放つ
+                        まずは<span style="color: var(--secondary);">無料相談</span>から<br class="sp-only">
+                        始めてみませんか？
                     </h2>
                     <p class="cta-subtitle">
-                        <strong>PSA10を取得した瞬間、カードの価値は劇的に上昇。</strong><br>
-                        7,000枚以上の実績を持つプロが、あなたの大切なカードを最高グレードへ導きます。
+                        <strong>「何から始めればいいの？」そんな疑問も大歓迎。</strong><br>
+                        専任スタッフが丁寧にご説明します。強引な営業は一切ありません。
                     </p>
                     <div class="cta-buttons">
                         <a href="https://daiko.kanucard.com" class="btn btn-gold btn-xlarge pulse">
