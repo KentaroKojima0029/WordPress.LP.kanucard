@@ -4053,29 +4053,45 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.7rem;
     }
 
+    .refund-visual-bar-wrapper {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 10px;
+    }
+
+    .refund-visual-bar {
+        height: 130px;
+        margin-left: 0;
+    }
+
     .guarantee-line-marker {
+        position: relative;
         left: auto;
-        right: 0;
-        flex-direction: row-reverse;
+        right: auto;
+        bottom: auto;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
     }
 
     .marker-line {
-        order: 2;
+        display: none;
     }
 
     .marker-label {
-        order: 1;
-        margin-left: 0;
-        margin-right: 8px;
-        font-size: 0.75rem;
-        padding: 5px 10px;
+        margin: 0;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        border-radius: 20px;
     }
 
     .marker-line::after {
-        right: auto;
-        left: -6px;
-        border-left: none;
-        border-right: 8px solid #dc2626;
+        display: none;
+    }
+
+    .bar-scale {
+        display: none;
     }
 
     .refund-visual-result {
