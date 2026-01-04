@@ -1,20 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63 88" width="63" height="88">
-  <!-- Card base -->
-  <rect width="63" height="88" rx="3" fill="#1a5fb4"/>
-  <!-- Inner border -->
-  <rect x="3" y="3" width="57" height="82" rx="2" fill="none" stroke="#ffd700" stroke-width="1.5"/>
-  <!-- Center circle -->
-  <circle cx="31.5" cy="44" r="20" fill="#c01c28"/>
-  <circle cx="31.5" cy="44" r="16" fill="#fff"/>
-  <circle cx="31.5" cy="44" r="12" fill="#1a5fb4"/>
-  <!-- Pokeball line -->
-  <line x1="11.5" y1="44" x2="51.5" y2="44" stroke="#1a1a1a" stroke-width="2"/>
-  <!-- Center button -->
-  <circle cx="31.5" cy="44" r="5" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-  <circle cx="31.5" cy="44" r="2" fill="#1a1a1a"/>
-  <!-- Corner decorations -->
-  <circle cx="10" cy="10" r="4" fill="#ffd700" opacity="0.8"/>
-  <circle cx="53" cy="10" r="4" fill="#ffd700" opacity="0.8"/>
-  <circle cx="10" cy="78" r="4" fill="#ffd700" opacity="0.8"/>
-  <circle cx="53" cy="78" r="4" fill="#ffd700" opacity="0.8"/>
+  <defs>
+    <!-- 渦巻き模様のパターン -->
+    <pattern id="swirl" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="8" fill="none" stroke="#1e3a8a" stroke-width="1" opacity="0.4"/>
+      <circle cx="10" cy="10" r="4" fill="none" stroke="#1e3a8a" stroke-width="0.8" opacity="0.3"/>
+    </pattern>
+    <!-- 放射状グラデーション -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </radialGradient>
+  </defs>
+
+  <!-- カード背景 -->
+  <rect width="63" height="88" rx="4" fill="#1e40af"/>
+
+  <!-- 白い枠線 -->
+  <rect x="2" y="2" width="59" height="84" rx="3" fill="none" stroke="#fff" stroke-width="1.5"/>
+
+  <!-- 内側の青い背景 + 渦巻き模様 -->
+  <rect x="4" y="4" width="55" height="80" rx="2" fill="url(#bgGrad)"/>
+  <rect x="4" y="4" width="55" height="80" rx="2" fill="url(#swirl)"/>
+
+  <!-- 渦巻きライン -->
+  <ellipse cx="31.5" cy="44" rx="24" ry="32" fill="none" stroke="#1e3a8a" stroke-width="3" opacity="0.3"/>
+  <ellipse cx="31.5" cy="44" rx="20" ry="26" fill="none" stroke="#1e3a8a" stroke-width="2.5" opacity="0.25"/>
+  <ellipse cx="31.5" cy="44" rx="16" ry="20" fill="none" stroke="#1e3a8a" stroke-width="2" opacity="0.2"/>
+
+  <!-- モンスターボール外円 -->
+  <circle cx="31.5" cy="44" r="18" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+
+  <!-- 上半分（赤） -->
+  <path d="M13.5 44 A18 18 0 0 1 49.5 44 Z" fill="#dc2626"/>
+
+  <!-- 下半分（白） -->
+  <path d="M13.5 44 A18 18 0 0 0 49.5 44 Z" fill="#fff"/>
+
+  <!-- 中央の黒いライン -->
+  <rect x="13.5" y="42" width="36" height="4" fill="#1a1a1a"/>
+
+  <!-- 中央のボタン -->
+  <circle cx="31.5" cy="44" r="7" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="31.5" cy="44" r="4.5" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <circle cx="31.5" cy="44" r="2.5" fill="#1a1a1a"/>
+
+  <!-- ハイライト -->
+  <circle cx="26" cy="38" r="3" fill="#fff" opacity="0.4"/>
 </svg>
