@@ -4069,11 +4069,20 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.7rem;
     }
 
+    .refund-visual {
+        width: 100%;
+        padding: 0;
+    }
+
     .refund-visual-bar-wrapper {
         height: 180px;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 5px;
     }
 
     .refund-visual-bar {
+        width: 100%;
         max-width: 100%;
     }
 
@@ -4082,12 +4091,24 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .marker-label {
-        font-size: 0.85rem;
-        padding: 8px 16px;
+        font-size: 0.8rem;
+        padding: 6px 12px;
     }
 
     .bar-scale {
         display: none;
+    }
+
+    .bar-text {
+        font-size: 0.85rem;
+    }
+
+    .bar-text strong {
+        font-size: 1.3rem;
+    }
+
+    .bar-text i {
+        font-size: 1.2rem;
     }
 
     .refund-visual-result {
