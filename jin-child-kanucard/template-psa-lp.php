@@ -982,7 +982,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
 
                     <div class="guarantee-notes">
-                        <h4><i class="fas fa-exclamation-triangle"></i> 70％保証プランご利用の確認事項</h4>
+                        <h4><i class="fas fa-exclamation-triangle"></i> 70％保証プランの確認事項</h4>
                         <ul>
                             <li>
                                 <i class="fas fa-check-circle"></i>
