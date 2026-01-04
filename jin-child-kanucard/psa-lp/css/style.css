@@ -1648,37 +1648,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================
-   Final CTA Section - Maximum Impact
+   Final CTA Section - Simple
 ======================================== */
-.final-cta-section {
+.final-cta-simple {
     padding: var(--section-padding) 0;
     background: #ffffff;
-    color: var(--text-primary);
     text-align: center;
-    position: relative;
-    overflow: hidden;
 }
 
-.final-cta-section h2,
-.final-cta-section p,
-.final-cta-section span,
-.final-cta-section strong {
+.final-cta-simple h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
     color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
 }
 
-.final-cta-section .cta-urgency {
-    background: transparent;
-    color: var(--text-primary);
-    border: none;
+.final-cta-simple p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.8;
 }
 
-.final-cta-section .cta-urgency i {
-    color: var(--primary);
-}
-
-.cta-content {
-    position: relative;
-    z-index: 1;
+.cta-buttons-simple {
+    display: flex;
+    justify-content: center;
 }
 
 .cta-content h2 {
