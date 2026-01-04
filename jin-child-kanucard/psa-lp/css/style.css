@@ -1667,13 +1667,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .final-cta-section .cta-urgency {
-    background: var(--primary);
-    color: #ffffff;
+    background: transparent;
+    color: var(--text-primary);
     border: none;
 }
 
 .final-cta-section .cta-urgency i {
-    color: #ffffff;
+    color: var(--primary);
 }
 
 .cta-content {
