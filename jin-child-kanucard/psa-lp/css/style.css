@@ -4053,9 +4053,29 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 0.7rem;
     }
 
+    .guarantee-line-marker {
+        left: auto;
+        right: 0;
+        flex-direction: row-reverse;
+    }
+
+    .marker-line {
+        order: 2;
+    }
+
     .marker-label {
-        font-size: 0.8rem;
-        padding: 4px 10px;
+        order: 1;
+        margin-left: 0;
+        margin-right: 8px;
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+
+    .marker-line::after {
+        right: auto;
+        left: -6px;
+        border-left: none;
+        border-right: 8px solid #dc2626;
     }
 
     .refund-visual-result {
