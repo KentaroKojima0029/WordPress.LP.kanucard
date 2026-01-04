@@ -2601,6 +2601,88 @@ h1, h2, h3, h4, h5, h6 {
     50% { transform: scale(1.15); }
 }
 
+/* New Refund Calculation Design */
+.refund-calculation-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.guarantee-line-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    width: 100%;
+    max-width: 160px;
+}
+
+.guarantee-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.guarantee-value {
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 900;
+}
+
+.calc-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.calc-item-new {
+    text-align: center;
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border);
+    flex: 1;
+    max-width: 100px;
+}
+
+.calc-item-new span {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.calc-item-new strong {
+    font-size: 1.2rem;
+    color: var(--text);
+    font-weight: 800;
+}
+
+.calc-item-new.result {
+    background: var(--gradient-gold);
+    border: none;
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+
+.calc-item-new.result span {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.calc-item-new.result strong {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
 .guarantee-step p {
     font-size: 1rem;
     color: var(--text-secondary);

@@ -939,20 +939,20 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <div class="step-number-badge success">STEP 3</div>
                             <h4>差額分を返金！</h4>
                             <div class="step-illustration">
-                                <div class="refund-calculation">
-                                    <div class="calc-item">
-                                        <span>保証ライン</span>
-                                        <strong>70%</strong>
+                                <div class="refund-calculation-new">
+                                    <div class="guarantee-line-box">
+                                        <span class="guarantee-label">保証ライン</span>
+                                        <span class="guarantee-value">70%</span>
                                     </div>
-                                    <div class="calc-minus">−</div>
-                                    <div class="calc-item">
-                                        <span>実際の取得率</span>
-                                        <strong>60%</strong>
-                                    </div>
-                                    <div class="calc-equals">=</div>
-                                    <div class="calc-result">
-                                        <span>返金率</span>
-                                        <strong class="refund-amount">40%</strong>
+                                    <div class="calc-row">
+                                        <div class="calc-item-new">
+                                            <span>実際の取得率</span>
+                                            <strong>60%</strong>
+                                        </div>
+                                        <div class="calc-item-new result">
+                                            <span>返金率</span>
+                                            <strong class="refund-amount">40%</strong>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
