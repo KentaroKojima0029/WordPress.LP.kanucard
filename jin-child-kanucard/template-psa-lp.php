@@ -886,9 +886,9 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <h4>無料検品後、10枚以上で依頼</h4>
                             <div class="step-illustration">
                                 <div class="cards-stack">
-                                    <div class="card-item"><i class="fas fa-id-card"></i></div>
-                                    <div class="card-item"><i class="fas fa-id-card"></i></div>
-                                    <div class="card-item"><i class="fas fa-id-card"></i></div>
+                                    <div class="card-item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/card-back.svg" alt="カード"></div>
+                                    <div class="card-item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/card-back.svg" alt="カード"></div>
+                                    <div class="card-item"><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/card-back.svg" alt="カード"></div>
                                     <div class="card-count">×10枚</div>
                                 </div>
                             </div>
