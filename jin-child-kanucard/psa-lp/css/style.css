@@ -2775,21 +2775,23 @@ h1, h2, h3, h4, h5, h6 {
 .refund-visual-bar-wrapper {
     position: relative;
     display: flex;
-    align-items: flex-end;
-    height: 120px;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
     width: 100%;
-    max-width: 200px;
+    max-width: 100%;
 }
 
 .refund-visual-bar {
-    width: 60px;
+    width: 100%;
+    max-width: 280px;
     height: 100%;
     background: #e5e7eb;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column-reverse;
-    margin-left: 20px;
+    position: relative;
 }
 
 .bar-fill {
@@ -2881,53 +2883,67 @@ h1, h2, h3, h4, h5, h6 {
 
 .guarantee-line-marker {
     position: absolute;
-    left: 85px;
+    left: 0;
     right: 0;
-    bottom: 70%;
+    bottom: 60%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    z-index: 10;
 }
 
 .marker-line {
-    width: 20px;
-    height: 2px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
     background: #dc2626;
-    position: relative;
+    box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
 }
 
+.marker-line::before,
 .marker-line::after {
     content: '';
     position: absolute;
-    right: -6px;
-    top: -4px;
+    top: -5px;
     width: 0;
     height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 8px solid #dc2626;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+.marker-line::before {
+    left: 0;
+    border-right: 10px solid #dc2626;
+}
+
+.marker-line::after {
+    right: 0;
+    border-left: 10px solid #dc2626;
 }
 
 .marker-label {
-    background: #dc2626;
+    background: rgba(220, 38, 38, 0.95);
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 4px;
+    padding: 6px 14px;
+    border-radius: 20px;
     white-space: nowrap;
-    margin-left: 8px;
+    position: relative;
+    z-index: 11;
     animation: labelPulse 2s ease-in-out infinite;
-    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.5);
 }
 
 @keyframes labelPulse {
     0%, 100% {
         transform: scale(1);
-        box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+        box-shadow: 0 2px 10px rgba(220, 38, 38, 0.5);
     }
     50% {
         transform: scale(1.05);
-        box-shadow: 0 4px 15px rgba(220, 38, 38, 0.6);
+        box-shadow: 0 4px 20px rgba(220, 38, 38, 0.7);
     }
 }
 
@@ -4054,66 +4070,20 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .refund-visual-bar-wrapper {
-        height: 150px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: 0;
-        padding: 0 10px;
+        height: 180px;
     }
 
     .refund-visual-bar {
-        height: 100%;
-        width: 80px;
-        margin-left: 0;
-        flex-shrink: 0;
+        max-width: 100%;
     }
 
     .guarantee-line-marker {
-        position: absolute;
-        left: 95px;
-        right: 10px;
-        bottom: 70%;
-        top: auto;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 0;
-        margin-left: 0;
-    }
-
-    .marker-line {
-        display: block;
-        width: 20px;
-        height: 2px;
-        background: #dc2626;
-        position: relative;
-        flex-shrink: 0;
-    }
-
-    .marker-line::before {
-        content: '';
-        position: absolute;
-        left: -8px;
-        top: -4px;
-        width: 0;
-        height: 0;
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid transparent;
-        border-right: 8px solid #dc2626;
-    }
-
-    .marker-line::after {
-        display: none;
+        bottom: 60%;
     }
 
     .marker-label {
-        margin-left: 8px;
-        margin-top: 0;
-        font-size: 0.65rem;
-        padding: 4px 8px;
-        border-radius: 4px;
-        white-space: nowrap;
+        font-size: 0.85rem;
+        padding: 8px 16px;
     }
 
     .bar-scale {
