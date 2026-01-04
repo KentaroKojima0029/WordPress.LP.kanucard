@@ -924,7 +924,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     </div>
                                 </div>
                             </div>
-                            <p>PSA10が<strong>70%未満</strong>の場合<br>返金対象になります</p>
+                            <p>上記の場合、4枚の代行料が<br>返金対象になります</p>
                         </div>
 
                         <div class="guarantee-arrow">
