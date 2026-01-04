@@ -1652,8 +1652,8 @@ h1, h2, h3, h4, h5, h6 {
 ======================================== */
 .final-cta-section {
     padding: var(--section-padding) 0;
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    color: #ffffff !important;
+    background: #ffffff;
+    color: var(--text-primary);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1663,29 +1663,17 @@ h1, h2, h3, h4, h5, h6 {
 .final-cta-section p,
 .final-cta-section span,
 .final-cta-section strong {
-    color: #ffffff !important;
+    color: var(--text-primary);
 }
 
 .final-cta-section .cta-urgency {
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff !important;
+    background: var(--primary);
+    color: #ffffff;
     border: none;
 }
 
 .final-cta-section .cta-urgency i {
-    color: #ffffff !important;
-}
-
-.final-cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    color: #ffffff;
 }
 
 .cta-content {
