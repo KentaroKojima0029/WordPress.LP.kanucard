@@ -976,7 +976,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     </div>
                                 </div>
                             </div>
-                            <p>リスクを最小限に抑えられます</p>
+                            <p>※上記はご利用イメージです</p>
                         </div>
                     </div>
 
