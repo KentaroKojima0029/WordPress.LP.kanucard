@@ -635,20 +635,20 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </h2>
                 <div class="results-stats">
                     <div class="result-item" data-aos="zoom-in">
-                        <div class="result-number" data-count="7000">0</div>
-                        <div class="result-label">PSA10取得数<br><small>枚以上</small></div>
+                        <div class="result-number"><span data-count="7000">0</span><small>枚以上</small></div>
+                        <div class="result-label">PSA10取得数</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
-                        <div class="result-number" data-count="75">0</div>
-                        <div class="result-label">平均PSA10取得率<br><small>%</small></div>
+                        <div class="result-number">90％<small>以上</small></div>
+                        <div class="result-label">平均PSA10取得率</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="200">
-                        <div class="result-number" data-count="98">0</div>
-                        <div class="result-label">顧客満足度<br><small>%</small></div>
+                        <div class="result-number"><span data-count="98">0</span><small>%</small></div>
+                        <div class="result-label">顧客満足度</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="300">
-                        <div class="result-number" data-count="0">0</div>
-                        <div class="result-label">事故・紛失<br><small>件</small></div>
+                        <div class="result-number"><span data-count="0">0</span><small>件</small></div>
+                        <div class="result-label">事故・紛失</div>
                     </div>
                 </div>
 

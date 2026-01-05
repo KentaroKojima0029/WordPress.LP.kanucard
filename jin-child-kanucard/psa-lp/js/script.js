@@ -169,7 +169,7 @@
      * カウンターアニメーション
      */
     function initCounterAnimation() {
-        const counters = document.querySelectorAll('.result-number[data-count]');
+        const counters = document.querySelectorAll('.result-number span[data-count]');
         let animated = false;
 
         const observerOptions = {
