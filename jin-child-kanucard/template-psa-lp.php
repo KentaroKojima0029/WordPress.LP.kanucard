@@ -737,7 +737,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>H.T. 様 <small>（バリュープラン）</small></h4>
+                                    <h4>H.T. 様 <small>（バリューバルク）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -748,10 +748,10 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                無料検品の結果はボタンで簡単に選択でき、操作も迷わずスムーズでした。バリュープランの送料は1枚約300円で、かなり安くアメリカPSAを利用できました。
+                                無料検品の結果はボタンで簡単に選択でき、操作も迷わずスムーズでした。バリューバルクの送料は1枚約300円で、かなり安くアメリカPSAを利用できました。
                             </p>
                             <div class="testimonial-result">
-                                <span><i class="fas fa-arrow-right"></i> コスパ抜群のバリュープラン</span>
+                                <span><i class="fas fa-arrow-right"></i> コスパ抜群のバリューバルク</span>
                             </div>
                         </div>
                     </div>
