@@ -477,7 +477,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-trophy"></i>
                         </div>
                         <div class="stat-content">
-                            <span class="stat-number">7,000<span class="stat-plus">+</span></span>
+                            <span class="stat-number">7,000<span class="stat-unit">枚超</span></span>
                             <span class="stat-label">PSA10取得</span>
                         </div>
                     </div>
