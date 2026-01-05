@@ -703,7 +703,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 70%保証プランで10枚依頼。結果は8枚PSA10、カードの価値が合計で約50万円上がった。代行料を払う価値のある投資でした。
                             </p>
                             <div class="testimonial-result">
-                                <span><i class="fas fa-arrow-right"></i> PSA10取得: 8/10枚 (80%)</span>
+                                <span><i class="fas fa-arrow-right"></i> PSA10取得: 9/10枚 (90%)</span>
                             </div>
                         </div>
                         <div class="testimonial-card" data-aos="fade-up" data-delay="200">
