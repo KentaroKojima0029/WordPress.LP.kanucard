@@ -986,11 +986,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                         </div>
                                     </div>
                                     <div class="refund-visual-explain">
-                                        <div class="explain-item">
+                                        <div class="explain-item center">
                                             <span class="explain-icon success"><i class="fas fa-check"></i></span>
                                             <span>PSA10取得率 <strong>60%</strong>（6枚）</span>
                                         </div>
-                                        <div class="explain-item">
+                                        <div class="explain-item center">
                                             <span class="explain-icon warning"><i class="fas fa-exclamation"></i></span>
                                             <span>保証ライン70%を <strong>下回った</strong></span>
                                         </div>
