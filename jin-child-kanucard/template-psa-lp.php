@@ -497,8 +497,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <div class="stat-content">
-                            <span class="stat-number stat-text">一部返金</span>
-                            <span class="stat-label">保証付き</span>
+                            <span class="stat-number stat-text">条件付き</span>
+                            <span class="stat-label">返金保証</span>
                         </div>
                     </div>
                 </div>
