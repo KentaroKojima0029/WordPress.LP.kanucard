@@ -1042,7 +1042,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 
                 <div class="plans-note">
                     <div class="note-box pricing-flow-box">
-                        <h4><i class="fas fa-info-circle"></i> 料金の仕組み（シンプル）</h4>
+                        <h4 style="text-align: center;"><i class="fas fa-info-circle"></i> 2回払いのシンプルなお支払い設計</h4>
                         <div class="pricing-flow">
                             <div class="pricing-step">
                                 <div class="pricing-step-icon">
