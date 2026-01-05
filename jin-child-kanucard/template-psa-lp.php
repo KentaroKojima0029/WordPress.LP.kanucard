@@ -487,7 +487,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <div class="stat-content">
-                            <span class="stat-number">75<span class="stat-unit">%</span></span>
+                            <span class="stat-number">90<span class="stat-unit">%超</span></span>
                             <span class="stat-label">平均PSA10率</span>
                         </div>
                     </div>
