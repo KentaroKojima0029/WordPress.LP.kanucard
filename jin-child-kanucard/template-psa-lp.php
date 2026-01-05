@@ -730,6 +730,30 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
                             </div>
                         </div>
+                        <div class="testimonial-card" data-aos="fade-up" data-delay="300">
+                            <div class="testimonial-quote">"</div>
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>H.T. 様 <small>（バリュープラン）</small></h4>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">
+                                無料検品の結果はボタンで簡単に選択でき、操作も迷わずスムーズでした。バリュープランの送料は1枚約300円で、かなり安くアメリカPSAを利用できました。
+                            </p>
+                            <div class="testimonial-result">
+                                <span><i class="fas fa-arrow-right"></i> コスパ抜群のバリュープラン</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
