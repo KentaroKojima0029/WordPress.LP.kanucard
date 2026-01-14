@@ -16,17 +16,18 @@ Text Domain: jin-child-kanucard
 /* ========================================
    Brand Logo - Gradient Style (サイト全体)
 ======================================== */
-/* JINテーマのロゴ要素 */
-#header .cps-logo a,
-#header .sitename a,
-.header-box .cps-logo a,
-.header-box .sitename a,
-.cps-header-inner .sitename a,
-.header-inner .sitename a,
-.cps-sp-header .sitename a,
-p.sitename a,
-.sitename a {
+/* THE THOR テーマのロゴ要素 */
+#site-info a,
+#site-info .tn-logo-size a,
+.tn-logo-size a {
+    font-size: 0 !important;
     text-decoration: none !important;
+}
+
+#site-info a::after,
+#site-info .tn-logo-size a::after,
+.tn-logo-size a::after {
+    content: '✨ kanucard';
     font-size: 1.5rem !important;
     font-weight: 800 !important;
     letter-spacing: 0.5px !important;
@@ -35,43 +36,13 @@ p.sitename a,
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    transition: all 0.5s ease !important;
-    cursor: pointer;
     filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
     animation: siteGradientFlow 5s ease infinite, siteGlowPulse 3s ease-in-out infinite;
 }
 
-/* ロゴ画像を非表示 */
-#header .cps-logo img,
-.header-box .cps-logo img,
-.sitename img {
-    display: none !important;
-}
-
-/* ロゴテキストを置換 */
-#header .cps-logo a,
-#header .sitename a,
-.header-box .sitename a,
-p.sitename a,
-.sitename a {
-    font-size: 0 !important;
-}
-
-#header .cps-logo a::after,
-#header .sitename a::after,
-.header-box .sitename a::after,
-p.sitename a::after,
-.sitename a::after {
-    content: '✨ kanucard';
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444, #fbbf24, #8b5cf6);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: siteGradientFlow 5s ease infinite;
+#site-info a:hover::after,
+.tn-logo-size a:hover::after {
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.7));
 }
 
 @keyframes siteGradientFlow {
