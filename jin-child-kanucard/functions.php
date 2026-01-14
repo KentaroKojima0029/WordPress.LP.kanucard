@@ -9,22 +9,41 @@
 define( 'JIN_CHILD_KANUCARD_VERSION', '1.0.0' );
 
 /**
- * ロゴをグラデーションスタイルに変更
+ * ロゴをグラデーションスタイルに変更（PSA LPと同じ）
  */
 function kanucard_brand_logo_styles() {
     ?>
     <style>
-    /* Brand Logo - Gradient Style */
+    /* Brand Logo - Gradient Style (PSA LP同様) */
+    #site-info,
+    #site-info .tn-logo-size {
+        display: flex !important;
+        align-items: center !important;
+    }
     #site-info a,
     #site-info .tn-logo-size a,
     .tn-logo-size a {
         font-size: 0 !important;
         text-decoration: none !important;
+        position: relative !important;
+        display: inline-block !important;
+        padding-left: 30px !important;
+    }
+    #site-info a::before,
+    #site-info .tn-logo-size a::before,
+    .tn-logo-size a::before {
+        content: '✨' !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 1.2rem !important;
+        animation: brandSparkle 2s ease-in-out infinite !important;
     }
     #site-info a::after,
     #site-info .tn-logo-size a::after,
     .tn-logo-size a::after {
-        content: '✨ kanucard' !important;
+        content: 'kanucard' !important;
         font-size: 1.5rem !important;
         font-weight: 800 !important;
         letter-spacing: 0.5px !important;
@@ -33,12 +52,38 @@ function kanucard_brand_logo_styles() {
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         background-clip: text !important;
-        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
-        animation: siteGradientFlow 5s ease infinite;
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4)) !important;
+        animation: brandGradientFlow 5s ease infinite, brandGlowPulse 3s ease-in-out infinite !important;
     }
-    @keyframes siteGradientFlow {
+    #site-info a:hover::after,
+    .tn-logo-size a:hover::after {
+        filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.7)) !important;
+    }
+    @keyframes brandGradientFlow {
         0%, 100% { background-position: 0% center; }
         50% { background-position: 100% center; }
+    }
+    @keyframes brandGlowPulse {
+        0%, 100% { filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4)); }
+        50% { filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6)); }
+    }
+    @keyframes brandSparkle {
+        0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+        50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+    }
+    @media (max-width: 768px) {
+        #site-info a::after,
+        .tn-logo-size a::after {
+            font-size: 1.2rem !important;
+        }
+        #site-info a::before,
+        .tn-logo-size a::before {
+            font-size: 1rem !important;
+        }
+        #site-info a,
+        .tn-logo-size a {
+            padding-left: 22px !important;
+        }
     }
     </style>
     <?php
