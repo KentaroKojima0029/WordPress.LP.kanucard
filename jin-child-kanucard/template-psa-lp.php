@@ -1262,7 +1262,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 <p>「何から始めればいいの？」そんな疑問も大歓迎。<br>専任スタッフが丁寧にご説明します。</p>
                 <div class="cta-buttons-simple">
                     <a href="https://daiko.kanucard.com" class="btn btn-gold btn-xlarge">
-                        無料で見積もりを取得する
+                        簡易見積もり
                     </a>
                 </div>
             </div>
