@@ -5406,3 +5406,78 @@ h1, h2, h3, h4, h5, h6 {
         padding: 10px 14px;
     }
 }
+
+/* ========================================
+   Brand Logo - Gradient Style
+======================================== */
+.brand-logo {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444, #fbbf24, #8b5cf6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+    animation: brandGradientFlow 5s ease infinite, brandGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes brandGradientFlow {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+}
+
+@keyframes brandGlowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6));
+    }
+}
+
+.brand-logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.7));
+}
+
+.brand-logo::before {
+    content: '✨';
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    animation: brandSparkle 2s ease-in-out infinite;
+}
+
+@keyframes brandSparkle {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .brand-logo {
+        font-size: 1.2rem;
+    }
+
+    .brand-logo::before {
+        left: -20px;
+        font-size: 1rem;
+    }
+}

@@ -353,17 +353,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <!-- Header -->
     <header class="site-header" id="header">
         <div class="container header-inner">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
-                <?php if ( has_custom_logo() ) : ?>
-                    <?php
-                    $custom_logo_id = get_theme_mod( 'custom_logo' );
-                    $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-                    ?>
-                    <img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php bloginfo( 'name' ); ?>" width="150" height="40">
-                <?php else : ?>
-                    <span class="site-logo-text">カヌカード</span>
-                <?php endif; ?>
-            </a>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo brand-logo">kanucard</a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#features">特徴</a></li>
