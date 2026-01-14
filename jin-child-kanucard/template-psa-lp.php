@@ -623,7 +623,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-medal"></i>
                         </div>
                         <h3>7,000枚以上の実績</h3>
-                        <p>数字が証明する信頼性。<br>平均PSA10取得率75%、顧客満足度98%の圧倒的な実績</p>
+                        <p>数字が証明する信頼性。<br>平均PSA10取得率90%超、顧客満足度98%の圧倒的な実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                 </div>
