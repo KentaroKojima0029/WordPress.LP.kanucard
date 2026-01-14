@@ -5353,7 +5353,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .fixed-cta-primary {
     background: var(--gradient-primary);
-    color: white;
+    color: #ffffff !important;
 }
 
 .fixed-cta-primary:hover {
