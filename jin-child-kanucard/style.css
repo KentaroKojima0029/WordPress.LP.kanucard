@@ -12,3 +12,75 @@ Text Domain: jin-child-kanucard
 
 /* 子テーマ用の追加スタイル */
 /* LP専用スタイルはassets/css/lp.cssに記載 */
+
+/* ========================================
+   Brand Logo - Gradient Style (サイト全体)
+======================================== */
+.header-logo a,
+.site-title a,
+.sitename a,
+.cps-sp-menu-bar a[href="/"],
+.header-logo,
+.sitename {
+    text-decoration: none !important;
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444, #fbbf24, #8b5cf6) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    transition: all 0.5s ease !important;
+    cursor: pointer;
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+    animation: siteGradientFlow 5s ease infinite, siteGlowPulse 3s ease-in-out infinite;
+}
+
+.header-logo img,
+.sitename img {
+    display: none !important;
+}
+
+.header-logo a::before,
+.sitename a::before {
+    content: '✨ kanucard';
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444, #fbbf24, #8b5cf6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    animation: siteGradientFlow 5s ease infinite;
+}
+
+@keyframes siteGradientFlow {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+}
+
+@keyframes siteGlowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6));
+    }
+}
+
+.header-logo a:hover,
+.sitename a:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.7));
+}
+
+@media (max-width: 768px) {
+    .header-logo a,
+    .sitename a {
+        font-size: 1.2rem !important;
+    }
+}
