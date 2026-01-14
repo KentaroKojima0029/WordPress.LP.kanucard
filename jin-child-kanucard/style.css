@@ -16,12 +16,16 @@ Text Domain: jin-child-kanucard
 /* ========================================
    Brand Logo - Gradient Style (サイト全体)
 ======================================== */
-.header-logo a,
-.site-title a,
-.sitename a,
-.cps-sp-menu-bar a[href="/"],
-.header-logo,
-.sitename {
+/* JINテーマのロゴ要素 */
+#header .cps-logo a,
+#header .sitename a,
+.header-box .cps-logo a,
+.header-box .sitename a,
+.cps-header-inner .sitename a,
+.header-inner .sitename a,
+.cps-sp-header .sitename a,
+p.sitename a,
+.sitename a {
     text-decoration: none !important;
     font-size: 1.5rem !important;
     font-weight: 800 !important;
@@ -37,20 +41,36 @@ Text Domain: jin-child-kanucard
     animation: siteGradientFlow 5s ease infinite, siteGlowPulse 3s ease-in-out infinite;
 }
 
-.header-logo img,
+/* ロゴ画像を非表示 */
+#header .cps-logo img,
+.header-box .cps-logo img,
 .sitename img {
     display: none !important;
 }
 
-.header-logo a::before,
-.sitename a::before {
+/* ロゴテキストを置換 */
+#header .cps-logo a,
+#header .sitename a,
+.header-box .sitename a,
+p.sitename a,
+.sitename a {
+    font-size: 0 !important;
+}
+
+#header .cps-logo a::after,
+#header .sitename a::after,
+.header-box .sitename a::after,
+p.sitename a::after,
+.sitename a::after {
     content: '✨ kanucard';
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
     background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444, #fbbf24, #8b5cf6);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 800;
     animation: siteGradientFlow 5s ease infinite;
 }
 
@@ -72,15 +92,15 @@ Text Domain: jin-child-kanucard
     }
 }
 
-.header-logo a:hover,
+#header .sitename a:hover,
 .sitename a:hover {
     transform: scale(1.05);
     filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.7));
 }
 
 @media (max-width: 768px) {
-    .header-logo a,
-    .sitename a {
-        font-size: 1.2rem !important;
+    #header .sitename a::after,
+    .sitename a::after {
+        font-size: 1.2rem;
     }
 }
