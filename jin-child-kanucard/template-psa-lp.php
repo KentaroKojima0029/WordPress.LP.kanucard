@@ -1276,7 +1276,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 <div class="footer-company">
                     <h4>株式会社カヌカード</h4>
                     <p>古物商許可番号: 第62212R057829号</p>
-                    <p><i class="fas fa-envelope"></i> info@kanucard.com</p>
+                    <p><i class="fas fa-envelope"></i> contact@kanucard.com</p>
                 </div>
                 <div class="footer-links">
                     <h4>サービス</h4>
