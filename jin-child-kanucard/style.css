@@ -27,7 +27,7 @@ Text Domain: jin-child-kanucard
 #site-info a::after,
 #site-info .tn-logo-size a::after,
 .tn-logo-size a::after {
-    content: '✨ kanucard';
+    content: 'kanucard';
     font-size: 1.5rem !important;
     font-weight: 800 !important;
     letter-spacing: 0.5px !important;

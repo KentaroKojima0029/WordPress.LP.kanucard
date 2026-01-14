@@ -5450,34 +5450,8 @@ h1, h2, h3, h4, h5, h6 {
     filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.7));
 }
 
-.brand-logo::before {
-    content: '✨';
-    position: absolute;
-    left: -25px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    animation: brandSparkle 2s ease-in-out infinite;
-}
-
-@keyframes brandSparkle {
-    0%, 100% {
-        opacity: 0.5;
-        transform: translateY(-50%) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-50%) scale(1.2);
-    }
-}
-
 @media (max-width: 768px) {
     .brand-logo {
         font-size: 1.2rem;
-    }
-
-    .brand-logo::before {
-        left: -20px;
-        font-size: 1rem;
     }
 }

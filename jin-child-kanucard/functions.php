@@ -27,18 +27,6 @@ function kanucard_brand_logo_styles() {
         text-decoration: none !important;
         position: relative !important;
         display: inline-block !important;
-        padding-left: 30px !important;
-    }
-    #site-info a::before,
-    #site-info .tn-logo-size a::before,
-    .tn-logo-size a::before {
-        content: '✨' !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        font-size: 1.2rem !important;
-        animation: brandSparkle 2s ease-in-out infinite !important;
     }
     #site-info a::after,
     #site-info .tn-logo-size a::after,
@@ -67,22 +55,10 @@ function kanucard_brand_logo_styles() {
         0%, 100% { filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4)); }
         50% { filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6)); }
     }
-    @keyframes brandSparkle {
-        0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
-        50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
-    }
     @media (max-width: 768px) {
         #site-info a::after,
         .tn-logo-size a::after {
             font-size: 1.2rem !important;
-        }
-        #site-info a::before,
-        .tn-logo-size a::before {
-            font-size: 1rem !important;
-        }
-        #site-info a,
-        .tn-logo-size a {
-            padding-left: 22px !important;
         }
     }
     </style>
