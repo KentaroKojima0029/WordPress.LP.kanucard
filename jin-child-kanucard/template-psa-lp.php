@@ -1459,6 +1459,18 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         </div>
     </div>
 
+    <!-- Fixed CTA Buttons -->
+    <div class="fixed-cta-container">
+        <a href="https://daiko.kanucard.com" class="fixed-cta-btn fixed-cta-primary">
+            <i class="fas fa-paper-plane"></i>
+            <span>代行フォームへ進む</span>
+        </a>
+        <a href="#flow" class="fixed-cta-btn fixed-cta-outline">
+            <i class="fas fa-list-ol"></i>
+            <span>依頼手順を確認する</span>
+        </a>
+    </div>
+
     <!-- PSA LP Scripts -->
     <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js?v=<?php echo time(); ?>"></script>
 
