@@ -836,6 +836,10 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <i class="fas fa-paper-plane"></i>
                         代行フォームへ進む
                     </a>
+                    <a href="#flow" class="btn btn-outline btn-large" style="margin-top: 1rem;">
+                        <i class="fas fa-list-ol"></i>
+                        依頼手順を確認する
+                    </a>
                 </div>
             </div>
         </section>
