@@ -9,6 +9,43 @@
 define( 'JIN_CHILD_KANUCARD_VERSION', '1.0.0' );
 
 /**
+ * ロゴをグラデーションスタイルに変更
+ */
+function kanucard_brand_logo_styles() {
+    ?>
+    <style>
+    /* Brand Logo - Gradient Style */
+    #site-info a,
+    #site-info .tn-logo-size a,
+    .tn-logo-size a {
+        font-size: 0 !important;
+        text-decoration: none !important;
+    }
+    #site-info a::after,
+    #site-info .tn-logo-size a::after,
+    .tn-logo-size a::after {
+        content: '✨ kanucard' !important;
+        font-size: 1.5rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        background: linear-gradient(135deg, #8b5cf6, #ec4899, #ef4444, #fbbf24, #8b5cf6) !important;
+        background-size: 200% auto !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+        animation: siteGradientFlow 5s ease infinite;
+    }
+    @keyframes siteGradientFlow {
+        0%, 100% { background-position: 0% center; }
+        50% { background-position: 100% center; }
+    }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'kanucard_brand_logo_styles', 999 );
+
+/**
  * 親テーマと子テーマのスタイルを読み込み
  */
 function jin_child_kanucard_enqueue_styles() {
