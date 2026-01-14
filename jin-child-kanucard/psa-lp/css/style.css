@@ -1258,11 +1258,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .flow-steps {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
     align-items: stretch;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
 .flow-step {
@@ -1272,8 +1271,6 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     box-shadow: var(--shadow-lg);
     position: relative;
-    flex: 1 1 0;
-    min-width: 280px;
     transition: var(--transition-smooth);
     border: 2px solid transparent;
 }
