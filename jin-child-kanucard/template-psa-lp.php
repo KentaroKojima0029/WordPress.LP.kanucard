@@ -892,7 +892,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <div class="plan-recommend">
                             <i class="fas fa-gem"></i>
-                            <span>失敗リスクを限りなく低くしたい方に</span>
+                            <span>失敗リスクを低くしたい方に</span>
                         </div>
                     </div>
                 </div>
