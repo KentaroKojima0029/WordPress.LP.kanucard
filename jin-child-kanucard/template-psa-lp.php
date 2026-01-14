@@ -452,6 +452,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 <h1 class="hero-title fade-in">
                     <span class="hero-title-line">あなたのカードの価値を、</span><br class="sp-only">
                     <span class="hero-title-line"><span class="highlight">さらに高く。</span></span><br>
+                    <span class="hero-subtitle-line" style="font-size: 0.5em; font-weight: 400;">未鑑定カードを売却する前に、一度検討してください。</span><br>
                     <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する</span><br><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
                 <div class="hero-features fade-in delay-1">
