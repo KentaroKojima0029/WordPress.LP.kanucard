@@ -1697,6 +1697,11 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
+.cta-trust-badges {
+    margin-top: 3rem;
+    justify-content: center;
+}
+
 .cta-content h2 {
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 1rem;

@@ -1257,6 +1257,20 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         簡易見積もり
                     </a>
                 </div>
+                <div class="trust-badges cta-trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-building"></i>
+                        <span>株式会社カヌカード<br>法人運営</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-certificate"></i>
+                        <span>古物商許可<br>第62212R057829号</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>賠償責任保険<br>加入済み</span>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
