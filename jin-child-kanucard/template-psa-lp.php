@@ -663,7 +663,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>T.K. 様 <small>（初回利用）</small></h4>
+                                    <h4>T.K 様 <small>（初回利用）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -687,7 +687,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>M.S. 様 <small>（リピーター）</small></h4>
+                                    <h4>M.S 様 <small>（リピーター）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -711,7 +711,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>Y.N. 様 <small>（高額カード）</small></h4>
+                                    <h4>Y.N 様 <small>（高額カード）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -735,7 +735,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>H.T. 様 <small>（バリューバルク）</small></h4>
+                                    <h4>H.T 様 <small>（バリューバルク）</small></h4>
                                     <div class="stars">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
