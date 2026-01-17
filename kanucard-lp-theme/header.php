@@ -36,6 +36,9 @@
                     'fallback_cb'    => false,
                 ) );
                 ?>
+                <div class="mobile-cta">
+                    <a href="#contact">無料見積もり</a>
+                </div>
             </nav>
 
             <div class="header-cta">

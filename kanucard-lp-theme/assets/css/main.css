@@ -692,7 +692,63 @@ body {
         align-items: center;
     }
 
-    .main-navigation,
+    .main-navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow-md);
+        padding: 1rem 0;
+    }
+
+    .main-navigation.mobile-open {
+        display: block;
+    }
+
+    .main-navigation ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0 20px;
+    }
+
+    .main-navigation li {
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .main-navigation li:last-child {
+        border-bottom: none;
+    }
+
+    .main-navigation a {
+        display: block;
+        padding: 1rem 0;
+    }
+
+    .main-navigation a::after {
+        display: none;
+    }
+
+    /* モバイルメニュー内のCTAボタン */
+    .main-navigation .mobile-cta {
+        display: block;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .main-navigation .mobile-cta a {
+        display: inline-block;
+        background: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        text-align: center;
+        font-weight: 600;
+    }
+
     .header-cta {
         display: none;
     }
