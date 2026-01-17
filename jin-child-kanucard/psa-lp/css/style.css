@@ -1151,6 +1151,13 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 4rem;
 }
 
+.testimonials-thanks {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+}
+
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
