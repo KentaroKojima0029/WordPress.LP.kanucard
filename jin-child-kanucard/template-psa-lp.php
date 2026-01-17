@@ -722,7 +722,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 </div>
                             </div>
                             <p class="testimonial-text">
-                                100万円超のカードを依頼。アプリ内メッセージで毎回進捗報告があり安心感が違った。
+                                100万円超のカードを依頼。アプリ内で進捗確認ができて安心感が違った。
                             </p>
                             <div class="testimonial-result">
                                 <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
