@@ -361,6 +361,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <li><a href="#plans">料金</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
+                <a href="https://daiko.kanucard.com" class="mobile-cta-link">無料見積もり</a>
             </nav>
             <a href="https://daiko.kanucard.com" class="header-cta">無料見積もり</a>
             <button class="mobile-toggle" aria-label="メニュー">
