@@ -1112,6 +1112,24 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <p>初めての方や高額カードをお持ちの方には「70%保証プラン」をおすすめします。代行アプリ内のメッセージでご相談いただければ、最適なプランをご提案いたします。</p>
                         </div>
                     </div>
+                    <div class="faq-item" data-aos="fade-up">
+                        <button class="faq-question">
+                            <span>発送方法に指定はありますか？</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>弊社へのカード発送方法に特に指定はございません。お好きな配送業者をご利用いただけます。ただし、必着期限ギリギリの場合は、配送状況が確認しやすいヤマト運輸のご利用をおすすめします。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up">
+                        <button class="faq-question">
+                            <span>カードセイバーは必要ですか？</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>カードセイバーをお持ちでなくても大丈夫です。PSA提出に必要な資材は弊社でご用意しております。無料検品をご希望の場合は、カードにスリーブを装着し、厚紙やデッキケースなどで保護して輸送事故に配慮した梱包でお送りください。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
