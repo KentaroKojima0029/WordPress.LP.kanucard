@@ -1050,7 +1050,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 </div>
                                 <div class="pricing-step-number">2回目</div>
                                 <div class="pricing-step-title">PSA鑑定料・返送料</div>
-                                <div class="pricing-step-timing">提出前に請求</div>
+                                <div class="pricing-step-timing">料金確定後に請求</div>
                             </div>
                         </div>
                         <div class="pricing-note">
