@@ -1049,7 +1049,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                     <i class="fas fa-file-invoice-dollar"></i>
                                 </div>
                                 <div class="pricing-step-number">2回目</div>
-                                <div class="pricing-step-title">PSA鑑定料・返送料</div>
+                                <div class="pricing-step-title">PSA鑑定料・返送料など</div>
                                 <div class="pricing-step-timing">料金確定後に請求</div>
                             </div>
                         </div>
