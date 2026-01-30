@@ -4300,6 +4300,7 @@ h1, h2, h3, h4, h5, h6 {
     .pricing-step-number {
         font-size: 0.75rem;
         padding: 0.15rem 0.5rem;
+        white-space: nowrap;
     }
 
     .pricing-step-title {
