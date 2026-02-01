@@ -763,48 +763,160 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         <section class="flow-section" id="flow">
             <div class="container">
                 <h2 class="section-title">
-                    たった3ステップ、5分で完了
+                    KANUCARD PSA代行サービス
                     <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px;">
-                        あとはプロにお任せください
+                        ご利用の流れ（全6ステップ）
                     </small>
                 </h2>
-                <div class="flow-steps">
-                    <div class="flow-step" data-aos="fade-right">
-                        <div class="step-number">1</div>
-                        <div class="step-icon">
-                            <i class="fas fa-laptop"></i>
+
+                <div class="flow-steps-vertical">
+                    <!-- STEP 01 -->
+                    <div class="flow-step-card" data-aos="fade-up">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 01</span>
+                            <h3>応募フォームからカード情報を入力</h3>
                         </div>
-                        <div class="step-content">
-                            <h3>フォーム入力・発送</h3>
-                            <p>簡単フォームに入力後、カードを弊社へ発送。<strong>梱包方法も動画で解説</strong></p>
-                            <span class="step-time"><i class="fas fa-clock"></i> たった5分</span>
+                        <div class="step-body">
+                            <div class="step-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2025/08/1.png" alt="STEP01 フォーム入力">
+                            </div>
+                            <div class="step-content">
+                                <p>代行したいカード情報を入力します。個人情報・PSA社の鑑定プラン・カヌカードの代行プランなど、項目を選んでください。</p>
+                                <p>内容送信後に確認メールが届きます。記載の住所にカードをお送りください！</p>
+                                <div class="step-points">
+                                    <h4><i class="fas fa-lightbulb"></i> POINT</h4>
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> カードの入力は日本語でOK！英語変換して提出するのでお任せください！</li>
+                                        <li><i class="fas fa-check"></i> 代行に関するご質問があれば、フォーム内の"メッセージ"にご入力ください。（例：無料検品は不要、連番指定など）</li>
+                                        <li><i class="fas fa-check"></i> メールに記載のアカウント登録をお願いします！</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    <div class="flow-step" data-aos="fade-up">
-                        <div class="step-number">2</div>
-                        <div class="step-icon">
-                            <i class="fas fa-microscope"></i>
+
+                    <!-- STEP 02 -->
+                    <div class="flow-step-card" data-aos="fade-up">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 02</span>
+                            <h3>無料検品（カードチェック）</h3>
                         </div>
-                        <div class="step-content">
-                            <h3>プロ検品・米国直送</h3>
-                            <p><strong>PSA10が狙えるカードのみ厳選</strong>、米国PSA本社へ直接提出</p>
-                            <span class="step-time"><i class="fas fa-clock"></i> 1-3日で提出</span>
+                        <div class="step-body">
+                            <div class="step-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2025/08/2.png" alt="STEP02 無料検品">
+                            </div>
+                            <div class="step-content">
+                                <p><strong>届いたカードは全てチェック！</strong></p>
+                                <ul class="step-list">
+                                    <li><i class="fas fa-check-circle"></i> 検品不要な方はそのまま提出します（70%プランは検品必須）</li>
+                                    <li><i class="fas fa-check-circle"></i> PSA10が見込めるカード／見込めないカードを無料で検品します</li>
+                                    <li><i class="fas fa-check-circle"></i> 日本の代行が難しくてもアメリカでPSA10の可能性がある場合はご提案します！</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    <div class="flow-step" data-aos="fade-left">
-                        <div class="step-number">3</div>
-                        <div class="step-icon">
-                            <i class="fas fa-gift"></i>
+
+                    <!-- STEP 03 -->
+                    <div class="flow-step-card" data-aos="fade-up">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 03</span>
+                            <h3>代行料のお支払い</h3>
                         </div>
-                        <div class="step-content">
-                            <h3>PSA10を受け取る</h3>
-                            <p><strong>完璧な梱包で安全にお届け</strong>、アプリ内メッセージで進捗もお知らせ</p>
-                            <span class="step-time"><i class="fas fa-clock"></i> 60-180日（プラン選択可）</span>
+                        <div class="step-body">
+                            <div class="step-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2025/08/3.png" alt="STEP03 代行料のお支払い">
+                            </div>
+                            <div class="step-content">
+                                <p>代行するカードが確定した時点で1回目のお支払いメールをお送りします。</p>
+                                <p><small>※クレジット決済・コンビニ支払い・後払い等お選びいただけます</small></p>
+                                <div class="step-points">
+                                    <h4><i class="fas fa-lightbulb"></i> POINT</h4>
+                                    <p>カヌカードの代行ではお支払いは<strong>2分割制</strong>となっております。</p>
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> <strong>1回目：</strong>代行料のみのお支払い</li>
+                                        <li><i class="fas fa-check"></i> <strong>2回目：</strong>鑑定料などのお支払い</li>
+                                    </ul>
+                                    <div class="step-note">
+                                        <p><strong>【2分割制の理由】</strong><br>ご依頼から鑑定品のご返却まで長期に渡り、お客様の資産をお預かりすることになります。お互いの認識違いを防ぐ目的で2分割制を採用しております。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 04 -->
+                    <div class="flow-step-card" data-aos="fade-up">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 04</span>
+                            <h3>PSA社へ発送</h3>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2025/08/4.png" alt="STEP04 PSA社へ発送">
+                            </div>
+                            <div class="step-content">
+                                <div class="shipping-options">
+                                    <div class="shipping-option">
+                                        <h4><span class="flag">🇯🇵</span> 日本支社の場合</h4>
+                                        <p>鑑定会社のルールに沿って申込・発送いたします。発送後、1〜2日程で日本支社へ到着します。</p>
+                                    </div>
+                                    <div class="shipping-option">
+                                        <h4><span class="flag">🇺🇸</span> アメリカ支社の場合</h4>
+                                        <p>海外発送は少し特殊で、申告手続きが必要です。その為、アメリカ支社到着までに1〜3週間程度となります。</p>
+                                        <p><strong>輸出申告、通関業務は弊社が行います。お客様の作業負担はありません。</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 05 -->
+                    <div class="flow-step-card" data-aos="fade-up">
+                        <div class="step-header">
+                            <span class="step-badge">STEP 05</span>
+                            <h3>鑑定終了</h3>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2025/08/5.png" alt="STEP05 鑑定終了">
+                            </div>
+                            <div class="step-content">
+                                <p>鑑定結果と共に2回目のお支払いについてご連絡します。</p>
+                                <p><small>※フォーム入力時に買取額の提示を希望されたお客様にはここでご連絡しています。</small></p>
+                                <div class="step-points">
+                                    <h4><i class="fas fa-lightbulb"></i> POINT</h4>
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> 2回目の決済方法は銀行振込のみとなります</li>
+                                        <li><i class="fas fa-check"></i> 振込手数料はお客様ご負担となります</li>
+                                        <li><i class="fas fa-check"></i> お支払い方法をクレジット決済などに変更されたいお客様は別途ご相談ください<br><small>※2回目のお支払額に対し、4%の追加手数料が発生いたします</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 06 -->
+                    <div class="flow-step-card step-complete" data-aos="fade-up">
+                        <div class="step-header">
+                            <span class="step-badge complete">STEP 06</span>
+                            <h3>お取引完了！</h3>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-icon-large">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="step-content">
+                                <p>お支払いが完了したお客様から順次発送します。</p>
+                                <p><small>※弊社に鑑定品が到着後、平日3日以内に発送いたします。</small></p>
+                                <div class="step-thanks">
+                                    <i class="fas fa-heart"></i>
+                                    <span>ご利用ありがとうございました！</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="flow-cta" data-aos="fade-up" data-delay="300">
                     <p style="font-size: 1.2em; font-weight: 600; margin-bottom: 20px;">
                         <i class="fas fa-hand-point-right" style="color: var(--secondary);"></i>
@@ -813,10 +925,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <a href="https://daiko.kanucard.com" class="btn btn-primary btn-large">
                         <i class="fas fa-paper-plane"></i>
                         代行フォームへ進む
-                    </a>
-                    <a href="#flow" class="btn btn-outline btn-large" style="margin-top: 1rem;">
-                        <i class="fas fa-list-ol"></i>
-                        依頼手順を確認する
                     </a>
                 </div>
             </div>
