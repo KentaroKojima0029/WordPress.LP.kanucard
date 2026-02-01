@@ -35,6 +35,10 @@ $theme_url = get_stylesheet_directory_uri();
             -webkit-overflow-scrolling: touch;
         }
 
+        .flow-page * {
+            touch-action: pan-y;
+        }
+
         .flow-page {
             min-height: 100vh;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -211,6 +215,7 @@ $theme_url = get_stylesheet_directory_uri();
             border-radius: 12px;
             padding: 1.5rem;
             margin: 1.5rem 0;
+            touch-action: pan-y;
         }
 
         .registration-notice {
@@ -220,6 +225,7 @@ $theme_url = get_stylesheet_directory_uri();
             font-size: 1.05rem;
             color: #0369a1;
             margin-bottom: 1rem;
+            touch-action: pan-y;
         }
 
         .registration-notice i {
@@ -237,12 +243,15 @@ $theme_url = get_stylesheet_directory_uri();
 
         .registration-image {
             text-align: center;
+            touch-action: pan-y;
         }
 
         .registration-image img {
             max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            touch-action: pan-y;
+            pointer-events: none;
         }
 
         .registration-purpose {
