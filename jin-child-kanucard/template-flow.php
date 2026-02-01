@@ -239,6 +239,13 @@ $theme_url = get_stylesheet_directory_uri();
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
+        .registration-purpose {
+            font-size: 0.95rem;
+            color: #dc2626;
+            margin: 0.5rem 0 1rem;
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
@@ -296,6 +303,7 @@ $theme_url = get_stylesheet_directory_uri();
                                 <i class="fas fa-hand-point-right"></i>
                                 <span><strong>初めてご利用の方</strong>は、下記画像内の<span class="highlight-btn">「アカウントを作成する」</span>ボタンから新規登録してください。</span>
                             </div>
+                            <p class="registration-purpose">※決済システム連携の目的で登録が必要です。</p>
                             <div class="registration-image">
                                 <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1740-1.jpg" alt="新規登録画面">
                             </div>
@@ -307,17 +315,20 @@ $theme_url = get_stylesheet_directory_uri();
                 <div class="flow-detail-step" data-aos="fade-up" data-aos-delay="100">
                     <div class="flow-detail-number">2</div>
                     <div class="flow-detail-content">
-                        <h3><i class="fas fa-edit"></i> 依頼フォームに入力</h3>
+                        <h3><i class="fas fa-cog"></i> 代行サイトの初期設定</h3>
                         <p>
-                            ログイン後、依頼フォームにカード情報を入力してください。<br>
-                            カード名、枚数、希望プラン（ノーマル or 70%保証）を選択します。
+                            新代行サイトを利用するための設定が必要です。
                         </p>
-                        <div class="flow-detail-tips">
-                            <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> カードの写真をアップロードすると検品がスムーズ</li>
-                                <li><i class="fas fa-check"></i> 不明点はチャットでいつでも質問OK</li>
-                            </ul>
+
+                        <!-- 初期設定の案内 -->
+                        <div class="registration-guide">
+                            <div class="registration-notice">
+                                <i class="fas fa-hand-point-right"></i>
+                                <span>下記画像内の<span class="highlight-btn">「新規登録はこちら」</span>から登録してください。</span>
+                            </div>
+                            <div class="registration-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1742.jpeg" alt="代行サイト初期設定画面">
+                            </div>
                         </div>
                     </div>
                 </div>
