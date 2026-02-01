@@ -775,7 +775,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <div class="step-body">
                             <div class="step-image">
-                                <img src="https://kanucard.com/wp-content/uploads/2025/08/1.png" alt="STEP01 フォーム入力">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/step01.png" alt="STEP01 フォーム入力">
                             </div>
                             <div class="step-content">
                                 <p>代行したいカード情報を入力します。個人情報・PSA社の鑑定プラン・カヌカードの代行プランなど、項目を選んでください。</p>
@@ -800,7 +800,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <div class="step-body">
                             <div class="step-image">
-                                <img src="https://kanucard.com/wp-content/uploads/2025/08/2.png" alt="STEP02 無料検品">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/step02.png" alt="STEP02 無料検品">
                             </div>
                             <div class="step-content">
                                 <p><strong>届いたカードは全てチェック！</strong></p>
@@ -821,7 +821,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <div class="step-body">
                             <div class="step-image">
-                                <img src="https://kanucard.com/wp-content/uploads/2025/08/3.png" alt="STEP03 代行料のお支払い">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/step03.png" alt="STEP03 代行料のお支払い">
                             </div>
                             <div class="step-content">
                                 <p>代行するカードが確定した時点で1回目のお支払いメールをお送りします。</p>
@@ -849,7 +849,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <div class="step-body">
                             <div class="step-image">
-                                <img src="https://kanucard.com/wp-content/uploads/2025/08/4.png" alt="STEP04 PSA社へ発送">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/step04.png" alt="STEP04 PSA社へ発送">
                             </div>
                             <div class="step-content">
                                 <div class="shipping-options">
@@ -875,7 +875,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <div class="step-body">
                             <div class="step-image">
-                                <img src="https://kanucard.com/wp-content/uploads/2025/08/5.png" alt="STEP05 鑑定終了">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/step05.png" alt="STEP05 鑑定終了">
                             </div>
                             <div class="step-content">
                                 <p>鑑定結果と共に2回目のお支払いについてご連絡します。</p>
@@ -899,8 +899,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <h3>お取引完了！</h3>
                         </div>
                         <div class="step-body">
-                            <div class="step-icon-large">
-                                <i class="fas fa-gift"></i>
+                            <div class="step-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/step06.png" alt="STEP06 お取引完了">
                             </div>
                             <div class="step-content">
                                 <p>お支払いが完了したお客様から順次発送します。</p>
