@@ -19,14 +19,20 @@ $theme_url = get_stylesheet_directory_uri();
     <title>依頼手順 - <?php bloginfo('name'); ?></title>
     <?php wp_head(); ?>
 
-    <!-- PSA LP用CSS -->
-    <link rel="stylesheet" href="<?php echo $theme_url; ?>/psa-lp/css/style.css">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- AOS Animation -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <!-- 基本変数（PSA LP CSSから必要な部分のみ） -->
+    <style>
+        :root {
+            --primary: #3b4675;
+            --primary-dark: #2d3659;
+            --secondary: #c4a000;
+            --text: #333;
+            --text-secondary: #666;
+            --bg-white: #fff;
+        }
+    </style>
 
     <style>
         html, body.flow-page {
@@ -261,6 +267,36 @@ $theme_url = get_stylesheet_directory_uri();
             font-weight: 500;
         }
 
+        /* ボタンスタイル */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 70, 117, 0.3);
+        }
+
+        .btn-large {
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
@@ -303,7 +339,7 @@ $theme_url = get_stylesheet_directory_uri();
             <div class="flow-detail-steps">
 
                 <!-- Step 1 -->
-                <div class="flow-detail-step" data-aos="fade-up">
+                <div class="flow-detail-step">
                     <div class="flow-detail-number">1</div>
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-user-plus"></i> 会員登録・ログイン</h3>
@@ -327,7 +363,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- Step 2 -->
-                <div class="flow-detail-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="flow-detail-step">
                     <div class="flow-detail-number">2</div>
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-cog"></i> 代行サイトの初期設定</h3>
@@ -349,7 +385,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- Step 3 -->
-                <div class="flow-detail-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="flow-detail-step">
                     <div class="flow-detail-number">3</div>
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-box"></i> カードを発送</h3>
@@ -368,7 +404,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- Step 4 -->
-                <div class="flow-detail-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="flow-detail-step">
                     <div class="flow-detail-number">4</div>
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-microscope"></i> 無料検品・結果確認</h3>
@@ -387,7 +423,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- Step 5 -->
-                <div class="flow-detail-step" data-aos="fade-up" data-aos-delay="400">
+                <div class="flow-detail-step">
                     <div class="flow-detail-number">5</div>
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-plane"></i> 米国PSAへ提出</h3>
@@ -406,7 +442,7 @@ $theme_url = get_stylesheet_directory_uri();
                 </div>
 
                 <!-- Step 6 -->
-                <div class="flow-detail-step" data-aos="fade-up" data-aos-delay="500">
+                <div class="flow-detail-step">
                     <div class="flow-detail-number">6</div>
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-gift"></i> 鑑定済みカードをお届け</h3>
@@ -427,7 +463,7 @@ $theme_url = get_stylesheet_directory_uri();
             </div>
 
             <!-- CTA -->
-            <div class="flow-page-cta" data-aos="fade-up">
+            <div class="flow-page-cta">
                 <p><i class="fas fa-hand-point-right" style="color: var(--secondary);"></i> さっそく始めてみましょう！</p>
                 <a href="https://daiko.kanucard.com/login" class="btn btn-primary btn-large" target="_blank">
                     <i class="fas fa-paper-plane"></i> 今すぐ依頼する
@@ -448,14 +484,5 @@ $theme_url = get_stylesheet_directory_uri();
     </footer>
 
     <?php wp_footer(); ?>
-
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    </script>
 </body>
 </html>
