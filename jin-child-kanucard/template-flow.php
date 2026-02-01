@@ -342,6 +342,57 @@ $theme_url = get_stylesheet_directory_uri();
             margin-right: 0.5rem;
         }
 
+        /* 代行サイトでできること */
+        .feature-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .feature-list li {
+            font-size: 1.05rem;
+            color: var(--text);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-number {
+            color: var(--secondary);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .feature-image {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .feature-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
@@ -442,6 +493,21 @@ $theme_url = get_stylesheet_directory_uri();
                         <li><i class="fas fa-check"></i> 各サイトのパスワードは同じでも構いません。</li>
                         <li><i class="fas fa-check"></i> 名前・住所等のお客様情報は1つ目のサイトで変更してください。</li>
                     </ul>
+                </div>
+
+                <!-- 代行サイトでできること -->
+                <div class="feature-section">
+                    <h3 class="feature-title">代行サイトでできること</h3>
+                    <ul class="feature-list">
+                        <li><span class="feature-number">①</span>ホームへ戻る</li>
+                        <li><span class="feature-number">②</span>メニューボタン　各ページに移動できます。</li>
+                        <li><span class="feature-number">③</span>発送スケジュール　次回発送日が確認できます。</li>
+                        <li><span class="feature-number">④</span>目的ボタン　任意のページに移動できます。</li>
+                        <li><span class="feature-number">⑤</span>利用状況確認　お取引が完了したPSA10取得率を確認できます。</li>
+                    </ul>
+                    <div class="feature-image">
+                        <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1744-scaled.jpeg" alt="代行サイトでできること">
+                    </div>
                 </div>
 
             </div>
