@@ -300,14 +300,6 @@ $theme_url = get_stylesheet_directory_uri();
                                 <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1740-1.jpg" alt="新規登録画面">
                             </div>
                         </div>
-
-                        <div class="flow-detail-tips">
-                            <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 登録は無料、1分で完了</li>
-                                <li><i class="fas fa-check"></i> LINEログインも対応</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
