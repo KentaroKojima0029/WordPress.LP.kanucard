@@ -457,7 +457,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                     <div class="hero-feature-item">
                         <i class="fas fa-comments"></i>
-                        <span>24時間メッセージサポート</span>
+                        <span>メッセージサポート</span>
                     </div>
                 </div>
                 <p class="hero-subtitle fade-in delay-1">
@@ -609,7 +609,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="solution-icon">
                             <i class="fas fa-comments"></i>
                         </div>
-                        <h3>24時間メッセージサポート</h3>
+                        <h3>メッセージサポート</h3>
                         <p>疑問があればすぐに解決。<br>代行アプリ内のメッセージ機能で安心の完全サポート体制</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
@@ -945,7 +945,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
-                            <li><i class="fas fa-check"></i> <strong>24時間メッセージ</strong>サポート</li>
+                            <li><i class="fas fa-check"></i> <strong>メッセージサポート</strong></li>
                             <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
                             <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
                             <li class="disabled"><i class="fas fa-times"></i> 返金保証なし</li>
@@ -966,7 +966,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         </div>
                         <ul class="plan-features">
                             <li><i class="fas fa-check"></i> <strong>無料検品</strong>でPSA10狙いのみ提出</li>
-                            <li><i class="fas fa-check"></i> <strong>24時間メッセージ</strong>サポート</li>
+                            <li><i class="fas fa-check"></i> <strong>メッセージサポート</strong></li>
                             <li><i class="fas fa-check"></i> <strong>米国本社</strong>へ直接提出</li>
                             <li><i class="fas fa-check"></i> <strong>進捗報告</strong>随時お知らせ</li>
                             <li class="highlight"><i class="fas fa-shield-alt"></i> <strong>70%未満で一部返金</strong></li>
