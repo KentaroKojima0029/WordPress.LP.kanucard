@@ -607,7 +607,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-comments"></i>
                         </div>
                         <h3>24時間メッセージサポート</h3>
-                        <p>疑問があればすぐに解決。<br>代行アプリ内のメッセージ機能で安心の完全サポート体制、解説動画も無料提供</p>
+                        <p>疑問があればすぐに解決。<br>代行アプリ内のメッセージ機能で安心の完全サポート体制</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="400">
