@@ -1570,7 +1570,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <button type="submit" name="submit_contact" class="btn btn-primary btn-large contact-submit">
                         <i class="fas fa-paper-plane"></i> 送信する
                     </button>
-                    <p class="contact-note">※ 24時間以内にご返信いたします</p>
+                    <p class="contact-note">※ 確認次第、ご返信します。</p>
                 </form>
             <?php endif; ?>
         </div>
