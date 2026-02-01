@@ -300,6 +300,11 @@ $theme_url = get_stylesheet_directory_uri();
         .step-link {
             margin-top: 1.5rem;
             width: 100%;
+            color: #fff !important;
+        }
+
+        .step-link:hover {
+            color: #fff !important;
         }
 
         @media (max-width: 768px) {
