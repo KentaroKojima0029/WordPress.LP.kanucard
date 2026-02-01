@@ -439,8 +439,8 @@ $theme_url = get_stylesheet_directory_uri();
                 <div class="flow-detail-tips-global">
                     <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
                     <ul>
-                        <li><i class="fas fa-check"></i> 各サイトのパスワードは同じでも大丈夫です。</li>
-                        <li><i class="fas fa-check"></i> 名前・住所は1つ目のサイトで変更してください。</li>
+                        <li><i class="fas fa-check"></i> 各サイトのパスワードは同じでも構いません。</li>
+                        <li><i class="fas fa-check"></i> 名前・住所等のお客様情報は1つ目のサイトで変更してください。</li>
                     </ul>
                 </div>
 
