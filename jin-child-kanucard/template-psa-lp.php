@@ -763,10 +763,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         <section class="flow-section" id="flow">
             <div class="container">
                 <h2 class="section-title">
-                    KANUCARD PSA代行サービス
-                    <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px;">
-                        ご利用の流れ（全6ステップ）
-                    </small>
+                    代行サービスご利用の流れ<br>（全6ステップ）
                 </h2>
 
                 <div class="flow-steps-vertical">
