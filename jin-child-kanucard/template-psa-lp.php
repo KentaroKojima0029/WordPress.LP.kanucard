@@ -906,7 +906,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p>お支払いが完了したお客様から順次発送します。</p>
                                 <p><small>※弊社に鑑定品が到着後、平日3日以内に発送いたします。</small></p>
                                 <div class="step-thanks">
-                                    <i class="fas fa-heart"></i>
                                     <span>ご利用ありがとうございました！</span>
                                 </div>
                             </div>
