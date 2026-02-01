@@ -369,7 +369,7 @@ $theme_url = get_stylesheet_directory_uri();
                                 <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1740-1.jpg" alt="新規登録画面">
                             </div>
                             <a href="https://shop.kanucard.com/account/login" class="btn btn-primary btn-large step-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> 決済システムへアクセス
+                                1つ目の登録へ進む
                             </a>
                         </div>
                     </div>
@@ -394,7 +394,7 @@ $theme_url = get_stylesheet_directory_uri();
                                 <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1742.jpeg" alt="代行サイト初期設定画面">
                             </div>
                             <a href="https://daiko.kanucard.com/login" class="btn btn-primary btn-large step-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> 代行サイトへアクセス
+                                代行サイトへ進む
                             </a>
                         </div>
                     </div>
