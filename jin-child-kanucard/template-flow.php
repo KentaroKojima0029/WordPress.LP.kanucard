@@ -297,6 +297,11 @@ $theme_url = get_stylesheet_directory_uri();
             padding: 1rem 2.5rem;
         }
 
+        .step-link {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
@@ -344,7 +349,7 @@ $theme_url = get_stylesheet_directory_uri();
                     <div class="flow-detail-content">
                         <h3><i class="fas fa-user-plus"></i> 会員登録・ログイン</h3>
                         <p>
-                            まずは<a href="https://daiko.kanucard.com/login" target="_blank">代行システム</a>にアクセスし、会員登録を行ってください。<br>
+                            まずは決済システムにアクセスし、会員登録を行ってください。<br>
                             メールアドレスとパスワードを設定するだけで、すぐにご利用いただけます。
                         </p>
 
@@ -358,6 +363,9 @@ $theme_url = get_stylesheet_directory_uri();
                             <div class="registration-image">
                                 <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1740-1.jpg" alt="新規登録画面">
                             </div>
+                            <a href="https://shop.kanucard.com/account/login" class="btn btn-primary btn-large step-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> 決済システムへアクセス
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -380,6 +388,9 @@ $theme_url = get_stylesheet_directory_uri();
                             <div class="registration-image">
                                 <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1742.jpeg" alt="代行サイト初期設定画面">
                             </div>
+                            <a href="https://daiko.kanucard.com/login" class="btn btn-primary btn-large step-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> 代行サイトへアクセス
+                            </a>
                         </div>
                     </div>
                 </div>
