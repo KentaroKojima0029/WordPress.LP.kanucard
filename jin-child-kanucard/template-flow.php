@@ -16,7 +16,7 @@ $theme_url = get_stylesheet_directory_uri();
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>依頼手順 - <?php bloginfo('name'); ?></title>
+    <title>ご登録手順 - <?php bloginfo('name'); ?></title>
     <?php wp_head(); ?>
 
     <!-- Font Awesome -->
@@ -338,7 +338,7 @@ $theme_url = get_stylesheet_directory_uri();
     <!-- Header -->
     <header class="flow-page-header">
         <div class="container">
-            <h1><i class="fas fa-list-ol"></i> ご依頼の流れ</h1>
+            <h1>ご登録手順</h1>
             <p>PSA代行サービスのご利用手順をご案内します</p>
         </div>
     </header>
