@@ -388,6 +388,10 @@
         if (openBtnHero) {
             openBtnHero.addEventListener('click', openModal);
         }
+        // クラスベースの見積もりボタン対応
+        document.querySelectorAll('.open-estimate-modal').forEach(function(btn) {
+            btn.addEventListener('click', openModal);
+        });
 
         // モーダルを閉じる
         function closeModal() {
@@ -472,47 +476,58 @@
     initEstimateModal();
 
     /**
-     * アクセスボタン（ドロップダウン）
+     * アクセスボタン（ドロップダウン）- 複数対応
      */
     function initAccessButton() {
-        var accessButton = document.getElementById('accessButton');
-        var wrapper = document.querySelector('.access-button-wrapper');
+        var wrappers = document.querySelectorAll('.access-button-wrapper');
 
-        if (!accessButton || !wrapper) return;
+        if (!wrappers.length) return;
 
-        // ボタンクリックでドロップダウン表示/非表示
-        accessButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            wrapper.classList.toggle('open');
+        wrappers.forEach(function(wrapper) {
+            var accessButton = wrapper.querySelector('.access-button');
+
+            if (!accessButton) return;
+
+            // ボタンクリックでドロップダウン表示/非表示
+            accessButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                // 他のドロップダウンを閉じる
+                wrappers.forEach(function(w) {
+                    if (w !== wrapper) w.classList.remove('open');
+                });
+                wrapper.classList.toggle('open');
+            });
+
+            // ドロップダウン内のリンククリック時も閉じる
+            var dropdownLinks = wrapper.querySelectorAll('.access-button-dropdown a');
+            dropdownLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    wrapper.classList.remove('open');
+                });
+            });
+
+            // 口コミセクションへのスムーズスクロール
+            var goToReviewBtn = wrapper.querySelector('.go-to-review-section');
+            if (goToReviewBtn) {
+                goToReviewBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    wrapper.classList.remove('open');
+                    var reviewSection = document.getElementById('review');
+                    if (reviewSection) {
+                        reviewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
         });
 
         // ドロップダウン外クリックで閉じる
         document.addEventListener('click', function(e) {
-            if (!wrapper.contains(e.target)) {
-                wrapper.classList.remove('open');
-            }
-        });
-
-        // ドロップダウン内のリンククリック時も閉じる
-        var dropdownLinks = wrapper.querySelectorAll('.access-button-dropdown a');
-        dropdownLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                wrapper.classList.remove('open');
-            });
-        });
-
-        // 口コミセクションへのスムーズスクロール
-        var goToReviewBtn = document.getElementById('goToReviewSection');
-        if (goToReviewBtn) {
-            goToReviewBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                wrapper.classList.remove('open');
-                var reviewSection = document.getElementById('review');
-                if (reviewSection) {
-                    reviewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            wrappers.forEach(function(wrapper) {
+                if (!wrapper.contains(e.target)) {
+                    wrapper.classList.remove('open');
                 }
             });
-        }
+        });
     }
 
     /**
@@ -523,19 +538,28 @@
         var openBtn = document.getElementById('openContactModal');
         var closeBtn = document.getElementById('closeContactModal');
         var overlay = modal ? modal.querySelector('.contact-modal-overlay') : null;
-        var wrapper = document.querySelector('.access-button-wrapper');
+        var wrappers = document.querySelectorAll('.access-button-wrapper');
 
-        if (!modal || !openBtn) return;
+        if (!modal) return;
 
-        // 開くボタン
-        openBtn.addEventListener('click', function(e) {
+        function openContactModalFunc(e) {
             e.preventDefault();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            // ドロップダウンを閉じる
-            if (wrapper) {
-                wrapper.classList.remove('open');
-            }
+            // 全てのドロップダウンを閉じる
+            wrappers.forEach(function(w) {
+                w.classList.remove('open');
+            });
+        }
+
+        // 開くボタン（ID）
+        if (openBtn) {
+            openBtn.addEventListener('click', openContactModalFunc);
+        }
+
+        // 開くボタン（クラス）
+        document.querySelectorAll('.open-contact-modal').forEach(function(btn) {
+            btn.addEventListener('click', openContactModalFunc);
         });
 
         // 閉じるボタン

@@ -516,7 +516,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <button id="openContactModal" class="btn btn-white btn-large">
                                 <i class="fas fa-comments"></i> メッセージで気軽に相談
                             </button>
-                            <a href="#review" class="btn btn-white btn-large" id="goToReviewSection">
+                            <a href="#review" class="btn btn-white btn-large go-to-review-section">
                                 <i class="fas fa-pen"></i> 口コミを送信
                             </a>
                         </div>
@@ -928,6 +928,36 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </div>
             </div>
         </section>
+
+        <!-- Access Button Before Plans -->
+        <div class="access-button-section" style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+            <div class="access-button-wrapper">
+                <button class="btn btn-gold btn-xlarge pulse access-button">
+                    <i class="fas fa-arrow-right"></i> アクセスボタン
+                </button>
+                <div class="access-button-dropdown">
+                    <p class="access-button-dropdown-label">ご希望の方法を選択してください</p>
+                    <a href="https://daiko.kanucard.com/login" class="btn btn-gold btn-large" target="_blank">
+                        <i class="fas fa-paper-plane"></i> 今すぐ依頼
+                    </a>
+                    <a href="#flow" class="btn btn-white btn-large">
+                        <i class="fas fa-list-ol"></i> 依頼手順を確認する
+                    </a>
+                    <button class="btn btn-gold btn-large open-estimate-modal">
+                        <i class="fas fa-calculator"></i> 簡易見積もり
+                    </button>
+                    <a href="https://kanucard.com/?page_id=1004&preview=true" class="btn btn-white btn-large" target="_blank">
+                        <i class="fas fa-clipboard-list"></i> 登録方法の確認
+                    </a>
+                    <button class="btn btn-white btn-large open-contact-modal">
+                        <i class="fas fa-comments"></i> メッセージで気軽に相談
+                    </button>
+                    <a href="#review" class="btn btn-white btn-large go-to-review-section">
+                        <i class="fas fa-pen"></i> 口コミを送信
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <!-- Plans Section -->
         <section class="plans-section" id="plans">
