@@ -198,9 +198,55 @@ $theme_url = get_stylesheet_directory_uri();
             color: #fff;
         }
 
+        /* 新規登録案内スタイル */
+        .registration-guide {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .registration-notice {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+            color: #0369a1;
+            margin-bottom: 1rem;
+        }
+
+        .registration-notice i {
+            font-size: 1.3rem;
+            color: #0ea5e9;
+        }
+
+        .highlight-btn {
+            background: #f59e0b;
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .registration-image {
+            text-align: center;
+        }
+
+        .registration-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
+            }
+
+            .registration-notice {
+                flex-direction: column;
+                text-align: center;
             }
 
             .flow-detail-step {
@@ -243,6 +289,18 @@ $theme_url = get_stylesheet_directory_uri();
                             まずは<a href="https://daiko.kanucard.com/login" target="_blank">代行システム</a>にアクセスし、会員登録を行ってください。<br>
                             メールアドレスとパスワードを設定するだけで、すぐにご利用いただけます。
                         </p>
+
+                        <!-- 新規登録の案内 -->
+                        <div class="registration-guide">
+                            <div class="registration-notice">
+                                <i class="fas fa-hand-point-right"></i>
+                                <span><strong>初めてご利用の方</strong>は、下記画像内の<span class="highlight-btn">「アカウントを作成する」</span>ボタンから新規登録してください。</span>
+                            </div>
+                            <div class="registration-image">
+                                <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1740-1.jpg" alt="新規登録画面">
+                            </div>
+                        </div>
+
                         <div class="flow-detail-tips">
                             <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
                             <ul>
