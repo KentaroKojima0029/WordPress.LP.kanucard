@@ -307,6 +307,41 @@ $theme_url = get_stylesheet_directory_uri();
             color: #fff !important;
         }
 
+        .flow-detail-tips-global {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .flow-detail-tips-global h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .flow-detail-tips-global h4 i {
+            margin-right: 0.5rem;
+        }
+
+        .flow-detail-tips-global ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .flow-detail-tips-global ul li {
+            font-size: 1.05rem;
+            color: #78350f;
+            padding: 0.5rem 0;
+        }
+
+        .flow-detail-tips-global ul li i {
+            color: #d97706;
+            margin-right: 0.5rem;
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
@@ -400,94 +435,15 @@ $theme_url = get_stylesheet_directory_uri();
                     </div>
                 </div>
 
-                <!-- Step 3 -->
-                <div class="flow-detail-step">
-                    <div class="flow-detail-number">3</div>
-                    <div class="flow-detail-content">
-                        <h3><i class="fas fa-box"></i> カードを発送</h3>
-                        <p>
-                            フォーム入力完了後、表示される住所宛にカードを発送してください。<br>
-                            梱包方法は動画で詳しく解説していますので、初めての方も安心です。
-                        </p>
-                        <div class="flow-detail-tips">
-                            <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 追跡番号付きの発送を推奨</li>
-                                <li><i class="fas fa-check"></i> カードはスリーブ＋ローダーで保護</li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- ポイント -->
+                <div class="flow-detail-tips-global">
+                    <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 各サイトのパスワードは同じでも大丈夫です。</li>
+                        <li><i class="fas fa-check"></i> 名前・住所は1つ目のサイトで変更してください。</li>
+                    </ul>
                 </div>
 
-                <!-- Step 4 -->
-                <div class="flow-detail-step">
-                    <div class="flow-detail-number">4</div>
-                    <div class="flow-detail-content">
-                        <h3><i class="fas fa-microscope"></i> 無料検品・結果確認</h3>
-                        <p>
-                            カード到着後、プロが無料で検品を行います。<br>
-                            検品結果はシステム上でご確認いただき、PSA提出するカードをボタンで簡単に選択できます。
-                        </p>
-                        <div class="flow-detail-tips">
-                            <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> PSA10が狙えないカードは提出前にお知らせ</li>
-                                <li><i class="fas fa-check"></i> 検品結果に納得いかない場合は返送も可能</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="flow-detail-step">
-                    <div class="flow-detail-number">5</div>
-                    <div class="flow-detail-content">
-                        <h3><i class="fas fa-plane"></i> 米国PSAへ提出</h3>
-                        <p>
-                            選択いただいたカードを米国PSA本社へ直接提出します。<br>
-                            進捗状況はシステム内メッセージで随時お知らせします。
-                        </p>
-                        <div class="flow-detail-tips">
-                            <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 提出前にPSA鑑定料・返送料のお支払い</li>
-                                <li><i class="fas fa-check"></i> 処理期間は選択プランにより60〜180日</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 6 -->
-                <div class="flow-detail-step">
-                    <div class="flow-detail-number">6</div>
-                    <div class="flow-detail-content">
-                        <h3><i class="fas fa-gift"></i> 鑑定済みカードをお届け</h3>
-                        <p>
-                            PSA鑑定が完了したカードを、完璧な梱包で安全にお届けします。<br>
-                            70%保証プランで条件を満たした場合は、代行料の一部を返金いたします。
-                        </p>
-                        <div class="flow-detail-tips">
-                            <h4><i class="fas fa-lightbulb"></i> ポイント</h4>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 配送中の事故にも保険で対応</li>
-                                <li><i class="fas fa-check"></i> お届け後もアフターサポート万全</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- CTA -->
-            <div class="flow-page-cta">
-                <p><i class="fas fa-hand-point-right" style="color: var(--secondary);"></i> さっそく始めてみましょう！</p>
-                <a href="https://daiko.kanucard.com/login" class="btn btn-primary btn-large" target="_blank">
-                    <i class="fas fa-paper-plane"></i> 今すぐ依頼する
-                </a>
-                <br>
-                <a href="<?php echo home_url('/psa-lp/'); ?>" class="back-to-lp">
-                    <i class="fas fa-arrow-left"></i> PSA代行LPに戻る
-                </a>
             </div>
         </div>
     </main>
