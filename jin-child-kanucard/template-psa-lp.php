@@ -504,9 +504,9 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <a href="https://daiko.kanucard.com/login" class="btn btn-gold btn-large" id="orderNowButton" target="_blank">
                                 <i class="fas fa-paper-plane"></i> 今すぐ依頼
                             </a>
-                            <button class="btn btn-white btn-large" id="checkFlowButton">
+                            <a href="#flow" class="btn btn-white btn-large" id="checkFlowButton">
                                 <i class="fas fa-list-ol"></i> 依頼手順を確認する
-                            </button>
+                            </a>
                             <button id="openEstimateModalHero" class="btn btn-gold btn-large">
                                 <i class="fas fa-calculator"></i> 簡易見積もり
                             </button>
