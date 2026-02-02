@@ -1,0 +1,544 @@
+/**
+ * 業務委託募集ページ用スタイル
+ * @package JIN_Child_Kanucard
+ */
+
+/* CSS Variables */
+:root {
+    --recruitment-primary: #1E3A8A;
+    --recruitment-secondary: #3B82F6;
+    --recruitment-accent: #F59E0B;
+    --recruitment-text: #1F2937;
+    --recruitment-text-light: #6B7280;
+    --recruitment-bg: #F8FAFC;
+    --recruitment-white: #FFFFFF;
+    --recruitment-success: #10B981;
+    --recruitment-error: #EF4444;
+}
+
+/* Reset & Base */
+.recruitment-page {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--recruitment-text);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+.recruitment-page * {
+    box-sizing: border-box;
+}
+
+.recruitment-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sp-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sp-only {
+        display: inline;
+    }
+}
+
+/* Hero Section */
+.recruitment-hero {
+    background: linear-gradient(135deg, var(--recruitment-primary) 0%, #2563EB 100%);
+    padding: 100px 0 80px;
+    text-align: center;
+    color: var(--recruitment-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.recruitment-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    opacity: 0.5;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(4px);
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    opacity: 0.95;
+}
+
+.hero-description {
+    font-size: 16px;
+    line-height: 2;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+
+.hero-cta {
+    display: inline-block;
+    background: var(--recruitment-accent);
+    color: var(--recruitment-white);
+    padding: 16px 48px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.hero-cta:hover {
+    background: #D97706;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    color: var(--recruitment-white);
+}
+
+@media (max-width: 768px) {
+    .recruitment-hero {
+        padding: 80px 0 60px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+}
+
+/* Section Common */
+.recruitment-section {
+    padding: 80px 0;
+}
+
+.recruitment-section:nth-child(even) {
+    background: var(--recruitment-bg);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 48px;
+    color: var(--recruitment-primary);
+}
+
+.section-title .title-en {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--recruitment-accent);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .recruitment-section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 32px;
+    }
+}
+
+/* Job Description */
+.job-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.job-card {
+    background: var(--recruitment-white);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.job-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--recruitment-primary), var(--recruitment-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.job-icon i {
+    font-size: 28px;
+    color: var(--recruitment-white);
+}
+
+.job-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--recruitment-primary);
+}
+
+.job-card p {
+    font-size: 14px;
+    color: var(--recruitment-text-light);
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .job-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .job-card {
+        padding: 24px 20px;
+    }
+}
+
+/* Requirements Section */
+.requirements-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.requirements-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.requirements-list li:last-child {
+    border-bottom: none;
+}
+
+.requirements-list i {
+    color: var(--recruitment-success);
+    font-size: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.requirements-list span {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.benefits-box {
+    background: linear-gradient(135deg, var(--recruitment-primary), var(--recruitment-secondary));
+    border-radius: 16px;
+    padding: 32px;
+    color: var(--recruitment-white);
+}
+
+.benefits-box h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.benefits-box h3 i {
+    color: var(--recruitment-accent);
+}
+
+.benefits-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefits-box li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.benefits-box li:last-child {
+    margin-bottom: 0;
+}
+
+.benefits-box li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--recruitment-accent);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .requirements-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .benefits-box {
+        padding: 24px;
+    }
+}
+
+/* Application Form Section */
+.application-section {
+    background: var(--recruitment-white) !important;
+}
+
+.recruitment-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--recruitment-bg);
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--recruitment-text);
+}
+
+.form-group .required {
+    background: var(--recruitment-error);
+    color: var(--recruitment-white);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: var(--recruitment-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--recruitment-secondary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9CA3AF;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-submit {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--recruitment-primary), var(--recruitment-secondary));
+    color: var(--recruitment-white);
+    border: none;
+    padding: 16px 48px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .recruitment-form {
+        padding: 24px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Form Success */
+.form-success {
+    text-align: center;
+    padding: 60px 40px;
+    background: var(--recruitment-bg);
+    border-radius: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--recruitment-success), #059669);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.success-icon i {
+    font-size: 40px;
+    color: var(--recruitment-white);
+}
+
+.form-success h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--recruitment-primary);
+    margin-bottom: 16px;
+}
+
+.form-success p {
+    font-size: 15px;
+    color: var(--recruitment-text-light);
+    margin-bottom: 32px;
+}
+
+.btn-back {
+    display: inline-block;
+    background: var(--recruitment-primary);
+    color: var(--recruitment-white);
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #1E40AF;
+    color: var(--recruitment-white);
+}
+
+/* Form Error */
+.form-error {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: var(--recruitment-error);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-error i {
+    font-size: 20px;
+}
+
+/* AOS Animations Override */
+[data-aos] {
+    pointer-events: auto !important;
+}
+
+/* JIN Theme Override */
+.recruitment-page .cps-post-main {
+    padding: 0 !important;
+}
+
+.recruitment-page .cps-post-main a {
+    text-decoration: none;
+}
+
+.recruitment-page h1,
+.recruitment-page h2,
+.recruitment-page h3 {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.recruitment-page ul {
+    padding-left: 0;
+}
+
+.recruitment-page ul li::before {
+    display: none;
+}
