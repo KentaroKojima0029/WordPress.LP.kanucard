@@ -44,6 +44,21 @@
     }
 }
 
+/* Eyecatch Image */
+.recruitment-eyecatch {
+    width: 100%;
+    text-align: center;
+    background: var(--recruitment-white);
+}
+
+.recruitment-eyecatch img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 /* Hero Section */
 .recruitment-hero {
     background: linear-gradient(135deg, var(--recruitment-primary) 0%, #2563EB 100%);

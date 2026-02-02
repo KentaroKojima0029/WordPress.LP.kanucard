@@ -65,6 +65,11 @@ get_header();
 ?>
 
 <div class="recruitment-page">
+    <!-- Eyecatch Image -->
+    <div class="recruitment-eyecatch">
+        <img src="https://kanucard.com/wp-content/uploads/2026/02/business-partner-eyecatch-v2.png" alt="業務委託パートナー募集">
+    </div>
+
     <!-- Hero Section -->
     <section class="recruitment-hero">
         <div class="recruitment-container">
