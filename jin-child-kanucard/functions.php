@@ -9,6 +9,43 @@
 define( 'JIN_CHILD_KANUCARD_VERSION', '1.0.0' );
 
 /**
+ * 業務委託募集ページを自動作成
+ */
+function kanucard_create_recruitment_page() {
+    // 既に作成済みかチェック
+    if ( get_option( 'kanucard_recruitment_page_created' ) ) {
+        return;
+    }
+
+    // 同名のページが存在するかチェック
+    $existing_page = get_page_by_path( 'recruitment' );
+    if ( $existing_page ) {
+        update_option( 'kanucard_recruitment_page_created', true );
+        return;
+    }
+
+    // 固定ページを作成
+    $page_data = array(
+        'post_title'     => '業務委託パートナー募集',
+        'post_name'      => 'recruitment',
+        'post_content'   => '',
+        'post_status'    => 'publish',
+        'post_type'      => 'page',
+        'post_author'    => 1,
+        'page_template'  => 'template-recruitment.php',
+    );
+
+    $page_id = wp_insert_post( $page_data );
+
+    if ( $page_id && ! is_wp_error( $page_id ) ) {
+        update_option( 'kanucard_recruitment_page_created', true );
+        update_option( 'kanucard_recruitment_page_id', $page_id );
+    }
+}
+add_action( 'after_switch_theme', 'kanucard_create_recruitment_page' );
+add_action( 'init', 'kanucard_create_recruitment_page' );
+
+/**
  * ロゴをグラデーションスタイルに変更（PSA LPと同じ）
  */
 function kanucard_brand_logo_styles() {
