@@ -855,10 +855,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -866,11 +866,12 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.8;
     cursor: pointer;
     transition: var(--transition-fast);
+    margin-top: 2rem;
 }
 
 .scroll-indicator:hover {
     opacity: 1;
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateY(-5px);
 }
 
 .scroll-indicator span {
