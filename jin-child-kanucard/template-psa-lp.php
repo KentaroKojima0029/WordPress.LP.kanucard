@@ -1219,7 +1219,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>1回目は代行手数料（カード到着時）、2回目はPSA鑑定料と返送料（PSA提出前）の2回に分けてお支払いいただきます。</p>
+                            <p>1回目は代行手数料（カード到着時）、2回目はPSA鑑定料と返送料などが確定した後の計2回に分けてお支払いいただきます。</p>
                         </div>
                     </div>
                     <div class="faq-item" data-aos="fade-up">
