@@ -586,7 +586,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="solution-icon">
                             <i class="fas fa-search-dollar"></i>
                         </div>
-                        <h3>業界唯一の無料検品</h3>
+                        <h3>無料検品</h3>
                         <p>PSA10が見込めないカードは提出しない。<br>無駄な鑑定料を払わせない<br>本当の意味でのプロのサービス</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
