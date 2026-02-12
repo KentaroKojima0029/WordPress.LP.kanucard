@@ -409,6 +409,18 @@ get_header();
         line-height: 1.9;
     }
 
+    .rc-step-image {
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    .rc-step-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
     .rc-step-warning {
         background: var(--rc-warning-bg);
         border: 1px solid var(--rc-warning-border);
@@ -840,6 +852,9 @@ get_header();
                             新代行サイトよりお申込みください。<br>
                             お申込みフォームの「メッセージ欄」に、<strong>紹介者の漢字フルネーム</strong>をご記入ください。
                         </p>
+                        <div class="rc-step-image">
+                            <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1779.png" alt="申込みフォームのメッセージ欄に紹介者名を記入">
+                        </div>
                         <div class="rc-step-warning">
                             <i class="fas fa-exclamation-triangle"></i>
                             <strong>注意：</strong>ニックネームや略称は不可です。必ず漢字のフルネームをご記入ください。<br>
