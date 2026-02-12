@@ -29,6 +29,19 @@ get_header();
     </style>
 
     <style>
+        /* JINスムーズスクロール無効化 */
+        #scroll-content,
+        #scroll-content.animate {
+            transform: none !important;
+            -webkit-transform: none !important;
+            will-change: auto !important;
+            transition: none !important;
+            animation: none !important;
+            overflow: visible !important;
+            position: static !important;
+            height: auto !important;
+        }
+
         /* JINヘッダーを固定表示 */
         #header-box {
             position: fixed !important;
@@ -36,6 +49,13 @@ get_header();
             left: 0;
             right: 0;
             z-index: 9999;
+        }
+
+        /* ハンバーガーメニューもヘッダーと同じ位置に固定 */
+        .sp-menu-open,
+        #navtoggle + .sp-menu-open {
+            position: fixed !important;
+            z-index: 99999;
         }
 
         /* 管理バー表示時はその分ずらす */
@@ -620,21 +640,9 @@ get_header();
 
 </div><!-- .flow-page -->
 
-<!-- JINスムーズスクロール無効化 -->
-<style>
-#scroll-content,
-#scroll-content.animate {
-    transform: none !important;
-    -webkit-transform: none !important;
-    will-change: auto !important;
-    transition: none !important;
-    animation: none !important;
-    overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch !important;
-}
-</style>
-
 <script>
+// JINスムーズスクロール無効化
+// wheelイベントのキャプチャでJINのリスナーを迂回
 window.addEventListener('wheel', function(e) {
     e.stopImmediatePropagation();
 }, true);
@@ -644,8 +652,14 @@ window.addEventListener('load', function() {
     if (sc) {
         sc.classList.remove('animate');
         sc.style.setProperty('transform', 'none', 'important');
-        sc.style.setProperty('overflow-y', 'scroll', 'important');
+        // overflow-y:scrollだとfixed要素の基準が変わるため、visibleに変更
+        sc.style.setProperty('overflow', 'visible', 'important');
+        sc.style.setProperty('position', 'static', 'important');
+        sc.style.setProperty('height', 'auto', 'important');
     }
+    // html/bodyでネイティブスクロール
+    document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+    document.body.style.setProperty('overflow-y', 'auto', 'important');
 });
 </script>
 
