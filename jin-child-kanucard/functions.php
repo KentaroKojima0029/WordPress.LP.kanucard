@@ -596,6 +596,9 @@ function jin_child_kanucard_recruitment_body_class( $classes ) {
     if ( is_page_template( 'template-recruitment.php' ) ) {
         $classes[] = 'kanucard-recruitment-page';
     }
+    if ( is_page_template( 'template-flow.php' ) ) {
+        $classes[] = 'flow-page';
+    }
     return $classes;
 }
 add_filter( 'body_class', 'jin_child_kanucard_recruitment_body_class' );

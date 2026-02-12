@@ -10,21 +10,15 @@
 
 // アセットのベースURL
 $theme_url = get_stylesheet_directory_uri();
+
+get_header();
 ?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ご登録手順 - <?php bloginfo('name'); ?></title>
-    <?php wp_head(); ?>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- 基本変数（PSA LP CSSから必要な部分のみ） -->
-    <style>
-        :root {
+<style>
+    :root {
             --primary: #3b4675;
             --primary-dark: #2d3659;
             --secondary: #c4a000;
@@ -490,8 +484,8 @@ $theme_url = get_stylesheet_directory_uri();
             }
         }
     </style>
-</head>
-<body class="flow-page">
+
+<div class="flow-page">
 
     <!-- Header -->
     <header class="flow-page-header">
@@ -603,6 +597,35 @@ $theme_url = get_stylesheet_directory_uri();
         </div>
     </footer>
 
-    <?php wp_footer(); ?>
-</body>
-</html>
+</div><!-- .flow-page -->
+
+<!-- JINスムーズスクロール無効化 -->
+<style>
+#scroll-content,
+#scroll-content.animate {
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: auto !important;
+    transition: none !important;
+    animation: none !important;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+</style>
+
+<script>
+window.addEventListener('wheel', function(e) {
+    e.stopImmediatePropagation();
+}, true);
+
+window.addEventListener('load', function() {
+    var sc = document.getElementById('scroll-content');
+    if (sc) {
+        sc.classList.remove('animate');
+        sc.style.setProperty('transform', 'none', 'important');
+        sc.style.setProperty('overflow-y', 'scroll', 'important');
+    }
+});
+</script>
+
+<?php get_footer(); ?>
