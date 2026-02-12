@@ -53,9 +53,28 @@ get_header();
 
         /* ハンバーガーメニューもヘッダーと同じ位置に固定 */
         .sp-menu-open,
-        #navtoggle + .sp-menu-open {
+        #navtoggle,
+        #navtoggle + .sp-menu-open,
+        label.sp-menu-open {
             position: fixed !important;
-            z-index: 99999;
+            z-index: 99999 !important;
+            top: 0 !important;
+        }
+
+        .admin-bar .sp-menu-open,
+        .admin-bar #navtoggle,
+        .admin-bar #navtoggle + .sp-menu-open,
+        .admin-bar label.sp-menu-open {
+            top: 32px !important;
+        }
+
+        @media (max-width: 782px) {
+            .admin-bar .sp-menu-open,
+            .admin-bar #navtoggle,
+            .admin-bar #navtoggle + .sp-menu-open,
+            .admin-bar label.sp-menu-open {
+                top: 46px !important;
+            }
         }
 
         /* 管理バー表示時はその分ずらす */
