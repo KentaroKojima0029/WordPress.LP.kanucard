@@ -233,9 +233,78 @@ get_header();
     </section>
 </div>
 
+<style>
+/* インラインCSS: スクロール強制有効化 */
+html, body,
+#wrapper, #content-w, #content, #main,
+#main-contents, #main-image,
+.cps-post-main, .cps-post-box, .cps-post-content,
+.main-wrap, .content, article, .entry-content,
+.post-content, .the-content {
+    overflow: visible !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    position: static !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+}
+html, body {
+    overflow-x: hidden !important;
+}
+</style>
+
 <script>
-// モバイルスクロール修正: html要素にもクラスを付与
-document.documentElement.classList.add('kanucard-recruitment-page');
+// デバッグ: スクロールをブロックしている要素を特定
+(function() {
+    console.log('=== スクロールデバッグ開始 ===');
+
+    // html/bodyの状態確認
+    var html = document.documentElement;
+    var body = document.body;
+    console.log('html classes:', html.className);
+    console.log('body classes:', body.className);
+    console.log('html style:', window.getComputedStyle(html).overflow, window.getComputedStyle(html).height);
+    console.log('body style:', window.getComputedStyle(body).overflow, window.getComputedStyle(body).height);
+
+    // .recruitment-pageから上に辿って全親要素のoverflowを確認
+    var el = document.querySelector('.recruitment-page');
+    if (el) {
+        console.log('--- .recruitment-page から親要素を辿る ---');
+        var parent = el;
+        while (parent && parent !== document) {
+            var style = window.getComputedStyle(parent);
+            var info = {
+                tag: parent.tagName,
+                id: parent.id,
+                class: parent.className ? parent.className.substring(0, 80) : '',
+                overflow: style.overflow,
+                overflowX: style.overflowX,
+                overflowY: style.overflowY,
+                height: style.height,
+                maxHeight: style.maxHeight,
+                position: style.position
+            };
+            // overflow: hidden がある要素をハイライト
+            if (style.overflow === 'hidden' || style.overflowY === 'hidden' || style.overflowX === 'hidden') {
+                console.warn('⚠️ overflow制限発見:', info);
+                // 強制解除
+                parent.style.overflow = 'visible';
+                parent.style.overflowY = 'auto';
+                parent.style.height = 'auto';
+                parent.style.maxHeight = 'none';
+                console.log('  → 強制解除しました');
+            } else {
+                console.log('OK:', info);
+            }
+            parent = parent.parentElement;
+        }
+    } else {
+        console.error('.recruitment-page が見つかりません');
+    }
+
+    console.log('=== スクロールデバッグ完了 ===');
+})();
 </script>
 
 <?php get_footer(); ?>
