@@ -906,10 +906,9 @@ get_header();
                 <div class="rc-step">
                     <div class="rc-step-number">2</div>
                     <div class="rc-step-content">
-                        <h3><i class="fas fa-ticket-alt"></i> 割引コードをお届け</h3>
+                        <h3><i class="fas fa-ticket-alt"></i> 紹介した方、された方に割引コードをお届け</h3>
                         <p>
                             キャンペーン終了後、約1ヶ月以内を目処に<br>
-                            紹介した方、された方に<br>
                             ご登録のメールアドレスへ<strong>30%OFF割引コード</strong>をお送りします。<br>
                             次回のお申込み時にご利用いただけます。
                         </p>
