@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: 友達紹介キャンペーン
- * Template Post Type: page
+ * Template Post Type: page, post
  *
  * 友達紹介キャンペーンページテンプレート
  *
