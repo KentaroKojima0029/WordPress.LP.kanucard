@@ -356,6 +356,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo brand-logo">kanucard</a>
             <nav class="main-nav">
                 <ul>
+                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">ホーム</a></li>
                     <li><a href="#features">PSA代行の特徴</a></li>
                     <li><a href="#flow">ご利用の流れ</a></li>
                     <li><a href="#plans">料金一覧</a></li>
