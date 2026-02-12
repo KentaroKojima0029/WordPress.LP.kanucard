@@ -604,6 +604,17 @@ function jin_child_kanucard_recruitment_body_class( $classes ) {
 add_filter( 'body_class', 'jin_child_kanucard_recruitment_body_class' );
 
 /**
+ * 全メニューの先頭に「ホーム」リンクを追加
+ */
+function kanucard_add_home_to_menu( $items, $args ) {
+    $home_url = home_url( '/' );
+    $home_item = '<li class="menu-item menu-item-home"><a href="' . esc_url( $home_url ) . '">ホーム</a></li>';
+    $items = $home_item . $items;
+    return $items;
+}
+add_filter( 'wp_nav_menu_items', 'kanucard_add_home_to_menu', 10, 2 );
+
+/**
  * 業務委託応募管理メニュー
  */
 function recruitment_applications_admin_menu() {
