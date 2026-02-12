@@ -16,14 +16,15 @@ get_header();
 
 <style>
     :root {
-        --rc-primary: #1E3A8A;
-        --rc-primary-dark: #1e3070;
-        --rc-secondary: #3B82F6;
-        --rc-accent: #F59E0B;
-        --rc-accent-dark: #D97706;
-        --rc-text: #1F2937;
-        --rc-text-light: #6B7280;
-        --rc-bg: #F8FAFC;
+        --rc-primary: #1A1A1A;
+        --rc-primary-dark: #0D0D0D;
+        --rc-secondary: #2A2A2A;
+        --rc-accent: #C9A84C;
+        --rc-accent-dark: #A88A3A;
+        --rc-gold-light: #E8D48B;
+        --rc-text: #1A1A1A;
+        --rc-text-light: #555555;
+        --rc-bg: #F5F3EE;
         --rc-white: #FFFFFF;
         --rc-success: #10B981;
         --rc-error: #EF4444;
@@ -145,7 +146,7 @@ get_header();
     /*  Hero                */
     /* ==================== */
     .rc-hero {
-        background: linear-gradient(135deg, var(--rc-primary) 0%, #2563EB 50%, var(--rc-secondary) 100%);
+        background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 40%, #2A2A2A 100%);
         padding: 80px 0 70px;
         text-align: center;
         color: var(--rc-white);
@@ -160,8 +161,8 @@ get_header();
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 60%, rgba(245,158,11,0.1) 0%, transparent 40%);
+        background: radial-gradient(circle at 30% 40%, rgba(201,168,76,0.12) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 60%, rgba(201,168,76,0.08) 0%, transparent 40%);
         pointer-events: none;
     }
 
@@ -198,8 +199,8 @@ get_header();
     }
 
     .rc-hero-discount .rc-highlight {
-        background: var(--rc-accent);
-        color: var(--rc-white);
+        background: linear-gradient(135deg, var(--rc-accent), var(--rc-gold-light));
+        color: var(--rc-primary-dark);
         padding: 2px 12px;
         border-radius: 6px;
         font-size: 26px;
@@ -233,28 +234,30 @@ get_header();
     }
 
     .rc-btn-accent {
-        background: var(--rc-accent);
-        color: var(--rc-white);
-        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        background: linear-gradient(135deg, var(--rc-accent), var(--rc-gold-light));
+        color: var(--rc-primary-dark);
+        box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+        font-weight: 800;
     }
 
     .rc-btn-accent:hover {
-        background: var(--rc-accent-dark);
+        background: linear-gradient(135deg, var(--rc-accent-dark), var(--rc-accent));
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
-        color: var(--rc-white);
+        box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5);
+        color: var(--rc-primary-dark);
     }
 
     .rc-btn-primary {
-        background: linear-gradient(135deg, var(--rc-primary), var(--rc-secondary));
-        color: var(--rc-white);
-        box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+        background: var(--rc-primary);
+        color: var(--rc-accent);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(201, 168, 76, 0.3);
     }
 
     .rc-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
-        color: var(--rc-white);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        color: var(--rc-accent);
     }
 
     /* ==================== */
@@ -314,7 +317,7 @@ get_header();
     .rc-overview-card-icon {
         width: 56px;
         height: 56px;
-        background: linear-gradient(135deg, var(--rc-primary), var(--rc-secondary));
+        background: linear-gradient(135deg, var(--rc-primary), var(--rc-primary-dark));
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -324,7 +327,7 @@ get_header();
 
     .rc-overview-card-icon i {
         font-size: 22px;
-        color: var(--rc-white);
+        color: var(--rc-accent);
     }
 
     .rc-overview-card h3 {
@@ -377,15 +380,15 @@ get_header();
         width: 64px;
         height: 64px;
         min-width: 64px;
-        background: linear-gradient(135deg, var(--rc-primary), var(--rc-secondary));
+        background: linear-gradient(135deg, var(--rc-primary), var(--rc-primary-dark));
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 24px;
         font-weight: 800;
-        color: var(--rc-white);
-        box-shadow: 0 6px 20px rgba(30, 58, 138, 0.25);
+        color: var(--rc-accent);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
 
     .rc-step-content h3 {
@@ -557,7 +560,7 @@ get_header();
     /*  CTA Bottom          */
     /* ==================== */
     .rc-cta-bottom {
-        background: linear-gradient(135deg, var(--rc-primary) 0%, #2563EB 100%);
+        background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
         padding: 60px 0;
         text-align: center;
         color: var(--rc-white);
@@ -668,6 +671,23 @@ get_header();
         }
     }
 
+    /* ==================== */
+    /*  Eyecatch            */
+    /* ==================== */
+    .rc-eyecatch {
+        width: 100%;
+        overflow: hidden;
+        background: var(--rc-primary-dark);
+        line-height: 0;
+    }
+
+    .rc-eyecatch img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
     /* JIN theme overrides */
     .rc-page .cps-post-main {
         padding: 0 !important;
@@ -675,6 +695,15 @@ get_header();
 </style>
 
 <div class="rc-page">
+
+    <!-- ==================== -->
+    <!-- Eyecatch             -->
+    <!-- ==================== -->
+    <?php if ( has_post_thumbnail() ) : ?>
+    <div class="rc-eyecatch">
+        <?php the_post_thumbnail( 'full', array( 'alt' => get_the_title() ) ); ?>
+    </div>
+    <?php endif; ?>
 
     <!-- ==================== -->
     <!-- Hero                 -->
