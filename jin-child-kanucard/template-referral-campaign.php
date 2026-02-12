@@ -880,7 +880,7 @@ get_header();
                 <div class="rc-step-point">
                     <div class="rc-step-point-icon"><i class="fas fa-lightbulb"></i></div>
                     <div class="rc-step-point-content">
-                        <h3>ポイント：口コミを投稿しよう！</h3>
+                        <h3>ご協力ください</h3>
                         <p>
                             サービスご利用後、ぜひ口コミの投稿にご協力ください。<br>
                             下記リンクの「アクセスボタン」→「口コミを送信」から投稿できます。
