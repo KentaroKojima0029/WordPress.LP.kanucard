@@ -409,6 +409,25 @@ get_header();
         line-height: 1.9;
     }
 
+    /* ==================== */
+    /*  Early Discount       */
+    /* ==================== */
+    .rc-early-discount {
+        background: var(--rc-white);
+        border-radius: 20px;
+        padding: 36px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        text-align: center;
+    }
+
+    .rc-early-discount-text p {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--rc-text);
+        line-height: 1.9;
+        margin-bottom: 24px;
+    }
+
     .rc-step-image {
         margin-top: 16px;
         text-align: center;
@@ -833,9 +852,29 @@ get_header();
     </section>
 
     <!-- ==================== -->
-    <!-- Steps                -->
+    <!-- Early Discount       -->
     <!-- ==================== -->
     <section class="rc-section rc-section-alt">
+        <div class="rc-container">
+            <h2 class="rc-section-title">
+                <span class="rc-title-en">Chance</span>
+                「早期割引中」が表示中はチャンス！
+            </h2>
+            <div class="rc-early-discount">
+                <div class="rc-early-discount-text">
+                    <p>早期割引中の表示がある場合、そこから30％割（本クーポンコード）が使用可能です。</p>
+                </div>
+                <div class="rc-step-image">
+                    <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1781-e1770929228787.png" alt="早期割引中の表示">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- Steps                -->
+    <!-- ==================== -->
+    <section class="rc-section">
         <div class="rc-container">
             <h2 class="rc-section-title">
                 <span class="rc-title-en">How to Use</span>
