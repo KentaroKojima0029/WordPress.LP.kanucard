@@ -233,4 +233,9 @@ get_header();
     </section>
 </div>
 
+<script>
+// モバイルスクロール修正: html要素にもクラスを付与
+document.documentElement.classList.add('kanucard-recruitment-page');
+</script>
+
 <?php get_footer(); ?>

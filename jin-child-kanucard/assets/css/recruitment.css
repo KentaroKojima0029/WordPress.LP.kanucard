@@ -16,6 +16,19 @@
     --recruitment-error: #EF4444;
 }
 
+/* モバイルスクロール修正: html/bodyのoverflow制限を解除 */
+html.kanucard-recruitment-page,
+body.kanucard-recruitment-page {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: auto !important;
+}
+
+body.kanucard-recruitment-page *:not(.recruitment-hero):not(.recruitment-eyecatch) {
+    touch-action: pan-y;
+}
+
 /* Reset & Base */
 .recruitment-page {
     font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -66,11 +79,6 @@
     object-position: center;
 }
 
-/* スクロールバー対策（html要素にoverflow設定するとモバイルで縦スクロールが効かなくなるため、bodyのみに適用） */
-body.kanucard-recruitment-page {
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-}
 
 /* Hero Section */
 .recruitment-hero {
