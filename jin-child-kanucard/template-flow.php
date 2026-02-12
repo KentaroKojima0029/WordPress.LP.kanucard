@@ -42,6 +42,11 @@ get_header();
             height: auto !important;
         }
 
+        /* ピックアップコンテンツをこのページでは非表示 */
+        .pickup-contents-box-post-type {
+            display: none !important;
+        }
+
         /* JINヘッダーを固定表示 */
         #header-box {
             position: fixed !important;

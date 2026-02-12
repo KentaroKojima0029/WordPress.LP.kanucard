@@ -289,6 +289,11 @@ label.sp-menu-open {
     }
 }
 
+/* ピックアップコンテンツをこのページでは非表示 */
+.pickup-contents-box-post-type {
+    display: none !important;
+}
+
 .recruitment-page {
     padding-top: 70px; /* JS で実際のヘッダー高さに上書き */
 }
