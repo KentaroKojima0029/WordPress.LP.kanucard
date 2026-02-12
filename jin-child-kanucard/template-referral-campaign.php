@@ -327,7 +327,7 @@ get_header();
 
     .rc-overview-card-icon i {
         font-size: 22px;
-        color: var(--rc-accent);
+        color: var(--rc-white);
     }
 
     .rc-overview-card h3 {
