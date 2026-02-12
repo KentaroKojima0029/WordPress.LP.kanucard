@@ -244,6 +244,29 @@ get_header();
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
 }
+
+/* JINヘッダーを固定表示 */
+#header-box {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+.admin-bar #header-box {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    .admin-bar #header-box {
+        top: 46px;
+    }
+}
+
+.recruitment-page {
+    padding-top: 70px;
+}
 </style>
 
 <script>
