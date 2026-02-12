@@ -624,10 +624,10 @@ get_header();
     <!-- 画面下部固定ボタンバー -->
     <div class="fixed-bottom-bar">
         <a href="https://shop.kanucard.com/account/login" class="btn-fixed btn-register" target="_blank">
-            <i class="fas fa-user-plus"></i> 登録へ進む
+            1つ目の登録へ
         </a>
         <a href="https://daiko.kanucard.com/login" class="btn-fixed btn-daiko" target="_blank">
-            <i class="fas fa-arrow-right"></i> 代行サイトへ進む
+            代行サイトへ
         </a>
     </div>
 
