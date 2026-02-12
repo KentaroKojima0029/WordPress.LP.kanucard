@@ -425,6 +425,62 @@ get_header();
         margin-right: 6px;
     }
 
+    /* Point box */
+    .rc-step-point {
+        background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+        border: 2px solid var(--rc-accent);
+        border-radius: 20px;
+        padding: 28px 32px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        margin-top: 12px;
+    }
+
+    .rc-step-point-icon {
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        background: var(--rc-accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: var(--rc-white);
+    }
+
+    .rc-step-point-content h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #92400e;
+        margin-bottom: 10px;
+    }
+
+    .rc-step-point-content p {
+        font-size: 15px;
+        color: #78350f;
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+
+    .rc-btn-sm {
+        padding: 10px 28px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .rc-step-point {
+            flex-direction: column;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .rc-step-point-icon {
+            margin: 0 auto;
+        }
+    }
+
     /* ==================== */
     /*  Notes               */
     /* ==================== */
@@ -796,25 +852,28 @@ get_header();
                 <div class="rc-step">
                     <div class="rc-step-number">2</div>
                     <div class="rc-step-content">
-                        <h3><i class="fas fa-star"></i> サービスの感想・口コミを投稿</h3>
-                        <p>
-                            鑑定品のご返却後、弊社よりメールで口コミ投稿方法をご案内いたします。<br>
-                            ご案内に沿って、サービスの感想・口コミをご投稿ください。<br>
-                            口コミの投稿をもって、本キャンペーンの条件達成とさせていただきます。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="rc-step">
-                    <div class="rc-step-number">3</div>
-                    <div class="rc-step-content">
                         <h3><i class="fas fa-ticket-alt"></i> 割引コードをお届け</h3>
                         <p>
                             キャンペーン終了後、約1ヶ月以内を目処に<br>
                             ご登録のメールアドレスへ<strong>30%OFF割引コード</strong>をお送りします。<br>
                             次回のお申込み時にご利用いただけます。
                         </p>
+                    </div>
+                </div>
+
+                <!-- ポイント -->
+                <div class="rc-step-point">
+                    <div class="rc-step-point-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="rc-step-point-content">
+                        <h3>ポイント：口コミを投稿しよう！</h3>
+                        <p>
+                            サービスご利用後、ぜひ口コミの投稿にご協力ください。<br>
+                            下記リンクの「アクセスボタン」→「口コミを送信」から投稿できます。
+                        </p>
+                        <a href="https://kanucard.com/psa-lp/" class="rc-btn rc-btn-accent rc-btn-sm" target="_blank">
+                            口コミを投稿する <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <!-- 後日画像を追加予定 -->
                     </div>
                 </div>
 
@@ -839,7 +898,7 @@ get_header();
                     <li>割引コードの使用期限はコード送付時にメールでご案内します。期限を過ぎたコードはご利用いただけません。</li>
                     <li>他のキャンペーン・クーポンとの併用はできません。</li>
                     <li>メッセージ欄に紹介者の漢字フルネームの記載がない場合、キャンペーン適用外となりますのでご注意ください。</li>
-                    <li>口コミの投稿をもって本キャンペーンの条件達成となります。</li>
+                    <li>口コミの投稿にもぜひご協力ください（任意）。</li>
                     <li>キャンペーン内容は予告なく変更・終了する場合があります。</li>
                 </ul>
             </div>
@@ -879,7 +938,7 @@ get_header();
 
                 <details class="rc-faq-item">
                     <summary>口コミはどこに投稿すればいいですか？</summary>
-                    <div class="rc-faq-answer">鑑定品ご返却後に、弊社より投稿先・投稿方法をメールでご案内いたします。</div>
+                    <div class="rc-faq-answer"><a href="https://kanucard.com/psa-lp/" target="_blank" style="color: var(--rc-accent); text-decoration: underline;">PSA代行ページ</a>の「アクセスボタン」→「口コミを送信」から投稿できます。</div>
                 </details>
 
                 <details class="rc-faq-item">
