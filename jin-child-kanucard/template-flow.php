@@ -29,6 +29,26 @@ get_header();
     </style>
 
     <style>
+        /* JINヘッダーを固定表示 */
+        #header-box {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+        }
+
+        /* 管理バー表示時はその分ずらす */
+        .admin-bar #header-box {
+            top: 32px;
+        }
+
+        @media (max-width: 782px) {
+            .admin-bar #header-box {
+                top: 46px;
+            }
+        }
+
         html, body.flow-page {
             overflow-y: auto !important;
             overflow-x: hidden;
@@ -41,6 +61,7 @@ get_header();
 
         .flow-page {
             min-height: 100vh;
+            padding-top: 70px;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
