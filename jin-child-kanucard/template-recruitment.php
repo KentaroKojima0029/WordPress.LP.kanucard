@@ -234,6 +234,7 @@ get_header();
 </div>
 
 <style>
+/* JINスムーズスクロール無効化 */
 #scroll-content,
 #scroll-content.animate {
     transform: none !important;
@@ -241,8 +242,9 @@ get_header();
     will-change: auto !important;
     transition: none !important;
     animation: none !important;
-    overflow-y: scroll !important;
-    -webkit-overflow-scrolling: touch !important;
+    overflow: visible !important;
+    position: static !important;
+    height: auto !important;
 }
 
 /* JINヘッダーを固定表示 */
@@ -254,13 +256,36 @@ get_header();
     z-index: 9999;
 }
 
+/* ハンバーガーメニューもヘッダーに固定 */
+.sp-menu-open,
+#navtoggle,
+#navtoggle + .sp-menu-open,
+label.sp-menu-open {
+    position: fixed !important;
+    z-index: 99999 !important;
+    top: 0 !important;
+}
+
 .admin-bar #header-box {
     top: 32px;
+}
+
+.admin-bar .sp-menu-open,
+.admin-bar #navtoggle,
+.admin-bar #navtoggle + .sp-menu-open,
+.admin-bar label.sp-menu-open {
+    top: 32px !important;
 }
 
 @media (max-width: 782px) {
     .admin-bar #header-box {
         top: 46px;
+    }
+    .admin-bar .sp-menu-open,
+    .admin-bar #navtoggle,
+    .admin-bar #navtoggle + .sp-menu-open,
+    .admin-bar label.sp-menu-open {
+        top: 46px !important;
     }
 }
 
@@ -282,9 +307,12 @@ window.addEventListener('load', function() {
     if (sc) {
         sc.classList.remove('animate');
         sc.style.setProperty('transform', 'none', 'important');
-        sc.style.setProperty('overflow-y', 'scroll', 'important');
-        console.log('[Recruitment] スクロール修正完了');
+        sc.style.setProperty('overflow', 'visible', 'important');
+        sc.style.setProperty('position', 'static', 'important');
+        sc.style.setProperty('height', 'auto', 'important');
     }
+    document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+    document.body.style.setProperty('overflow-y', 'auto', 'important');
 });
 </script>
 
