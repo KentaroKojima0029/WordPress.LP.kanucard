@@ -8,6 +8,11 @@
  * @package JIN_Child_Kanucard
  */
 
+// キャンペーン期限（日本時間 2026年3月31日 23:59:59）
+$campaign_end = new DateTime('2026-04-01 00:00:00', new DateTimeZone('Asia/Tokyo'));
+$now = new DateTime('now', new DateTimeZone('Asia/Tokyo'));
+$campaign_expired = ($now >= $campaign_end);
+
 get_header();
 ?>
 
@@ -775,6 +780,43 @@ get_header();
         object-fit: cover;
     }
 
+    /* ==================== */
+    /*  Expired             */
+    /* ==================== */
+    .rc-expired {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 100%);
+        color: var(--rc-white);
+    }
+
+    .rc-expired-icon {
+        font-size: 64px;
+        color: var(--rc-accent);
+        margin-bottom: 24px;
+    }
+
+    .rc-expired h1 {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 16px;
+    }
+
+    .rc-expired p {
+        font-size: 16px;
+        color: rgba(255,255,255,0.7);
+        margin-bottom: 32px;
+        line-height: 1.8;
+    }
+
+    .rc-expired .rc-btn {
+        font-size: 15px;
+    }
+
     /* JIN theme overrides */
     .rc-page .cps-post-main {
         padding: 0 !important;
@@ -782,6 +824,25 @@ get_header();
 </style>
 
 <div class="rc-page">
+
+<?php if ( $campaign_expired ) : ?>
+    <!-- ==================== -->
+    <!-- Campaign Expired     -->
+    <!-- ==================== -->
+    <div class="rc-expired">
+        <div>
+            <div class="rc-expired-icon"><i class="fas fa-clock"></i></div>
+            <h1>キャンペーンは終了しました</h1>
+            <p>
+                友達紹介キャンペーンは2026年3月31日をもって終了いたしました。<br>
+                たくさんのご参加ありがとうございました。
+            </p>
+            <a href="<?php echo home_url(); ?>" class="rc-btn rc-btn-accent">
+                トップページへ戻る <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+<?php else : ?>
 
     <!-- ==================== -->
     <!-- Eyecatch             -->
@@ -1023,6 +1084,8 @@ get_header();
             </a>
         </div>
     </section>
+
+<?php endif; ?>
 
     <!-- Footer -->
     <footer class="rc-footer">
