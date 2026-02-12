@@ -66,13 +66,10 @@
     object-position: center;
 }
 
-/* スクロールバー対策 */
+/* スクロールバー対策（html要素にoverflow設定するとモバイルで縦スクロールが効かなくなるため、bodyのみに適用） */
 body.kanucard-recruitment-page {
     overflow-x: hidden;
-}
-
-html:has(.recruitment-page) {
-    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Hero Section */
