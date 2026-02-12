@@ -16,17 +16,37 @@
     --recruitment-error: #EF4444;
 }
 
-/* モバイルスクロール修正: html/bodyのoverflow制限を解除 */
+/* モバイルスクロール修正: html/body及びJINテーマのラッパー要素のoverflow制限を解除 */
 html.kanucard-recruitment-page,
 body.kanucard-recruitment-page {
     overflow-y: auto !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch !important;
     height: auto !important;
+    max-height: none !important;
+    position: static !important;
 }
 
-body.kanucard-recruitment-page *:not(.recruitment-hero):not(.recruitment-eyecatch) {
-    touch-action: pan-y;
+body.kanucard-recruitment-page #content,
+body.kanucard-recruitment-page #main,
+body.kanucard-recruitment-page #main-image,
+body.kanucard-recruitment-page .cps-post-main,
+body.kanucard-recruitment-page .cps-post-box,
+body.kanucard-recruitment-page .cps-post-content,
+body.kanucard-recruitment-page .main-wrap,
+body.kanucard-recruitment-page article,
+body.kanucard-recruitment-page .entry-content,
+body.kanucard-recruitment-page .post-content,
+body.kanucard-recruitment-page .recruitment-page {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    position: static !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+body.kanucard-recruitment-page * {
+    touch-action: pan-y !important;
 }
 
 /* Reset & Base */
