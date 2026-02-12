@@ -19,7 +19,7 @@ if ( isset( $_POST['submit_recruitment'] ) && isset( $_POST['recruitment_nonce']
         $phone = sanitize_text_field( $_POST['applicant_phone'] );
         $message = sanitize_textarea_field( $_POST['applicant_message'] );
 
-        if ( empty( $name ) || empty( $email ) || empty( $message ) ) {
+        if ( empty( $name ) || empty( $email ) || empty( $phone ) || empty( $message ) ) {
             $form_error = '必須項目を入力してください。';
         } else {
             // データベースに保存
@@ -205,19 +205,19 @@ get_header();
 
                     <div class="form-group">
                         <label for="applicant_phone">
-                            電話番号
+                            電話番号 <span class="required">必須</span>
                         </label>
                         <input type="tel" id="applicant_phone" name="applicant_phone"
-                               placeholder="090-1234-5678"
+                               placeholder="090-1234-5678" required
                                value="<?php echo isset( $_POST['applicant_phone'] ) ? esc_attr( $_POST['applicant_phone'] ) : ''; ?>">
                     </div>
 
                     <div class="form-group">
                         <label for="applicant_message">
-                            志望動機・自己PR <span class="required">必須</span>
+                            お問い合わせ内容 <span class="required">必須</span>
                         </label>
                         <textarea id="applicant_message" name="applicant_message" rows="6"
-                                  placeholder="ご経験やスキル、稼働可能な時間帯などをご記入ください。"
+                                  placeholder="ご質問やご連絡事項がございましたらご記入ください。"
                                   required><?php echo isset( $_POST['applicant_message'] ) ? esc_textarea( $_POST['applicant_message'] ) : ''; ?></textarea>
                     </div>
 
