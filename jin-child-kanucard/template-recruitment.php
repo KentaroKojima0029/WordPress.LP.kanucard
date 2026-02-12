@@ -290,7 +290,7 @@ label.sp-menu-open {
 }
 
 .recruitment-page {
-    padding-top: 70px;
+    padding-top: 70px; /* JS で実際のヘッダー高さに上書き */
 }
 </style>
 
@@ -313,6 +313,18 @@ window.addEventListener('load', function() {
     }
     document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
     document.body.style.setProperty('overflow-y', 'auto', 'important');
+
+    // 固定ヘッダーの実際の高さに合わせて padding-top を動的に設定
+    function adjustPaddingForHeader() {
+        var header = document.getElementById('header-box');
+        var page = document.querySelector('.recruitment-page');
+        if (header && page) {
+            var headerHeight = header.offsetHeight;
+            page.style.paddingTop = headerHeight + 'px';
+        }
+    }
+    adjustPaddingForHeader();
+    window.addEventListener('resize', adjustPaddingForHeader);
 });
 </script>
 
