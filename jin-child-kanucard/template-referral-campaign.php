@@ -853,7 +853,7 @@ get_header();
                             お申込みフォームの「メッセージ欄」に、<strong>紹介者の漢字フルネーム</strong>をご記入ください。
                         </p>
                         <div class="rc-step-image">
-                            <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1779.png" alt="申込みフォームのメッセージ欄に紹介者名を記入">
+                            <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1779-e1770928511240.png" alt="申込みフォームのメッセージ欄に紹介者名を記入">
                         </div>
                         <div class="rc-step-warning">
                             <i class="fas fa-exclamation-triangle"></i>
