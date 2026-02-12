@@ -233,60 +233,30 @@ get_header();
     </section>
 </div>
 
+<style>
+#scroll-content,
+#scroll-content.animate {
+    transform: none !important;
+    -webkit-transform: none !important;
+    will-change: auto !important;
+    transition: none !important;
+    animation: none !important;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+</style>
+
 <script>
-// JINテーマのスムーズスクロールを無効化してネイティブスクロールを復元
-(function() {
-    function fixScroll() {
-        var sc = document.getElementById('scroll-content');
-        if (!sc) return;
-
-        // #scroll-contentの現在のcomputedStyleを確認
-        var style = window.getComputedStyle(sc);
-        console.log('[Recruitment] #scroll-content:', {
-            position: style.position,
-            transform: style.transform,
-            overflow: style.overflow,
-            height: style.height,
-            top: style.top,
-            left: style.left,
-            width: style.width
-        });
-
-        // JINはbody/htmlをoverflow:hiddenにして#scroll-contentをfixedで配置し
-        // transformで疑似スクロールする。
-        // → #scroll-contentをfixed+overflow-y:scrollにしてネイティブスクロールを有効化
+// JINスムーズスクロール無効化（シンプル版）
+window.addEventListener('load', function() {
+    var sc = document.getElementById('scroll-content');
+    if (sc) {
         sc.classList.remove('animate');
         sc.style.setProperty('transform', 'none', 'important');
-        sc.style.setProperty('-webkit-transform', 'none', 'important');
-        sc.style.setProperty('will-change', 'auto', 'important');
-        sc.style.setProperty('transition', 'none', 'important');
-        sc.style.setProperty('animation', 'none', 'important');
         sc.style.setProperty('overflow-y', 'scroll', 'important');
-        sc.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
-
-        console.log('[Recruitment] ネイティブスクロール復元完了');
+        console.log('[Recruitment] スクロール修正完了');
     }
-
-    // 複数タイミングで実行
-    fixScroll();
-    document.addEventListener('DOMContentLoaded', fixScroll);
-    window.addEventListener('load', function() {
-        fixScroll();
-        setTimeout(fixScroll, 100);
-        setTimeout(fixScroll, 500);
-        setTimeout(fixScroll, 1000);
-    });
-
-    // #scroll-contentのstyle/class変更を監視
-    var observer = new MutationObserver(function() { fixScroll(); });
-    function startObserver() {
-        var sc = document.getElementById('scroll-content');
-        if (sc) observer.observe(sc, { attributes: true, attributeFilter: ['style', 'class'] });
-    }
-    startObserver();
-    document.addEventListener('DOMContentLoaded', startObserver);
-    window.addEventListener('load', startObserver);
-})();
+});
 </script>
 
 <?php get_footer(); ?>

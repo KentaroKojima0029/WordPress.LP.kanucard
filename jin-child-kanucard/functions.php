@@ -588,23 +588,6 @@ function jin_child_kanucard_recruitment_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'jin_child_kanucard_recruitment_assets' );
 
-/**
- * 業務委託募集ページでJINテーマのスムーズスクロール関連スクリプトを無効化
- */
-function jin_child_kanucard_recruitment_disable_smooth_scroll() {
-    if ( is_page_template( 'template-recruitment.php' ) ) {
-        // JINテーマのスムーズスクロール関連スクリプトを除去
-        wp_dequeue_script( 'jin-smooth-scroll' );
-        wp_deregister_script( 'jin-smooth-scroll' );
-        wp_dequeue_script( 'jin-scroll' );
-        wp_deregister_script( 'jin-scroll' );
-        wp_dequeue_script( 'luxy' );
-        wp_deregister_script( 'luxy' );
-        wp_dequeue_script( 'jin-custom' );
-        wp_deregister_script( 'jin-custom' );
-    }
-}
-add_action( 'wp_enqueue_scripts', 'jin_child_kanucard_recruitment_disable_smooth_scroll', 100 );
 
 /**
  * 業務委託募集ページのbody class追加
