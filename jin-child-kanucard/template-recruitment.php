@@ -65,6 +65,13 @@ get_header();
 ?>
 
 <div class="recruitment-page">
+    <!-- Eyecatch -->
+    <?php if ( has_post_thumbnail() ) : ?>
+    <div class="recruitment-eyecatch">
+        <?php the_post_thumbnail( 'full', array( 'alt' => get_the_title() ) ); ?>
+    </div>
+    <?php endif; ?>
+
     <!-- Hero Section -->
     <section class="recruitment-hero">
         <div class="recruitment-container">
