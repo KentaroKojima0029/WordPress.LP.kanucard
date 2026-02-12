@@ -886,7 +886,7 @@ get_header();
                             下記リンクの「アクセスボタン」→「口コミを送信」から投稿できます。
                         </p>
                         <div class="rc-step-image">
-                            <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1780.png" alt="口コミ投稿の手順">
+                            <img src="https://kanucard.com/wp-content/uploads/2026/02/IMG_1780-e1770928675779.png" alt="口コミ投稿の手順">
                         </div>
                         <a href="https://kanucard.com/psa-lp/" class="rc-btn rc-btn-accent rc-btn-sm" target="_blank">
                             口コミを投稿する <i class="fas fa-arrow-right"></i>
