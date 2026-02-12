@@ -235,46 +235,95 @@ get_header();
 
 <style>
 /* JINスムーズスクロール無効化 + ネイティブスクロール復元 */
-#scroll-content {
+#scroll-content,
+#scroll-content.animate {
     transform: none !important;
+    -webkit-transform: none !important;
     position: static !important;
     overflow: visible !important;
     height: auto !important;
+    will-change: auto !important;
+    transition: none !important;
+    animation: none !important;
 }
 html, body {
     overflow-x: hidden !important;
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
     height: auto !important;
     max-height: none !important;
     -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: auto !important;
 }
 #wrapper {
     overflow: visible !important;
     height: auto !important;
+    position: static !important;
+}
+.recruitment-page {
+    overflow: visible !important;
 }
 </style>
 
 <script>
-// JINテーマのスムーズスクロール機能を無効化してネイティブスクロールを復元
+// JINテーマのスムーズスクロール機能を完全に無効化
 (function() {
-    var scrollContent = document.getElementById('scroll-content');
-    if (scrollContent) {
-        // animateクラスを除去してtransformアニメーションを停止
-        scrollContent.classList.remove('animate');
-        // transformをリセット
-        scrollContent.style.transform = 'none';
-        scrollContent.style.webkitTransform = 'none';
-        scrollContent.style.position = 'static';
-        scrollContent.style.overflow = 'visible';
-        scrollContent.style.height = 'auto';
-        console.log('[Recruitment] #scroll-content のスムーズスクロールを無効化しました');
+    function disableSmoothScroll() {
+        var scrollContent = document.getElementById('scroll-content');
+        if (scrollContent) {
+            scrollContent.classList.remove('animate');
+            scrollContent.style.cssText = 'transform:none!important;-webkit-transform:none!important;position:static!important;overflow:visible!important;height:auto!important;will-change:auto!important;transition:none!important;animation:none!important;';
+        }
+        document.documentElement.style.cssText += 'overflow-y:scroll!important;height:auto!important;';
+        document.body.style.cssText += 'overflow-y:scroll!important;height:auto!important;';
+        var wrapper = document.getElementById('wrapper');
+        if (wrapper) {
+            wrapper.style.cssText += 'overflow:visible!important;height:auto!important;position:static!important;';
+        }
     }
 
-    // JINのスムーズスクロール用イベントリスナーを無効化
-    window.addEventListener('wheel', function(e) { e.stopPropagation(); }, true);
-    window.addEventListener('touchmove', function(e) { e.stopPropagation(); }, true);
+    // 即座に実行
+    disableSmoothScroll();
 
-    console.log('[Recruitment] ネイティブスクロール復元完了');
+    // DOM読み込み完了後にも実行
+    document.addEventListener('DOMContentLoaded', disableSmoothScroll);
+
+    // 全リソース読み込み完了後にも実行（JINのJSが後から初期化する場合に対応）
+    window.addEventListener('load', function() {
+        disableSmoothScroll();
+        // 少し遅延させてJINのJS初期化後にも実行
+        setTimeout(disableSmoothScroll, 100);
+        setTimeout(disableSmoothScroll, 500);
+        setTimeout(disableSmoothScroll, 1000);
+    });
+
+    // MutationObserverで#scroll-contentの変更を監視し、即座に修正
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes') {
+                var target = mutation.target;
+                if (target.id === 'scroll-content' || target.id === 'wrapper') {
+                    disableSmoothScroll();
+                }
+            }
+        });
+    });
+
+    function startObserver() {
+        var scrollContent = document.getElementById('scroll-content');
+        if (scrollContent) {
+            observer.observe(scrollContent, { attributes: true, attributeFilter: ['style', 'class'] });
+        }
+        var wrapper = document.getElementById('wrapper');
+        if (wrapper) {
+            observer.observe(wrapper, { attributes: true, attributeFilter: ['style', 'class'] });
+        }
+    }
+
+    startObserver();
+    document.addEventListener('DOMContentLoaded', startObserver);
+    window.addEventListener('load', startObserver);
+
+    console.log('[Recruitment] スムーズスクロール無効化スクリプト設置完了');
 })();
 </script>
 
