@@ -393,6 +393,68 @@ $theme_url = get_stylesheet_directory_uri();
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
+        /* 画面下部固定ボタンバー */
+        .fixed-bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            padding: 12px 20px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .fixed-bottom-bar .btn-fixed {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            flex: 1;
+            max-width: 280px;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: #fff !important;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+            color: #fff !important;
+        }
+
+        .btn-daiko {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff !important;
+            box-shadow: 0 4px 15px rgba(59, 70, 117, 0.4);
+        }
+
+        .btn-daiko:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 70, 117, 0.5);
+            color: #fff !important;
+        }
+
+        /* 固定バーの高さ分だけ下部に余白 */
+        .flow-page {
+            padding-bottom: 80px;
+        }
+
         @media (max-width: 768px) {
             .flow-page-header h1 {
                 font-size: 1.8rem;
@@ -415,6 +477,16 @@ $theme_url = get_stylesheet_directory_uri();
 
             .flow-detail-content h3 {
                 font-size: 1.3rem;
+            }
+
+            .fixed-bottom-bar {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .fixed-bottom-bar .btn-fixed {
+                padding: 10px 12px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -513,6 +585,16 @@ $theme_url = get_stylesheet_directory_uri();
             </div>
         </div>
     </main>
+
+    <!-- 画面下部固定ボタンバー -->
+    <div class="fixed-bottom-bar">
+        <a href="https://shop.kanucard.com/account/login" class="btn-fixed btn-register" target="_blank">
+            <i class="fas fa-user-plus"></i> 登録へ進む
+        </a>
+        <a href="https://daiko.kanucard.com/login" class="btn-fixed btn-daiko" target="_blank">
+            <i class="fas fa-arrow-right"></i> 代行サイトへ進む
+        </a>
+    </div>
 
     <!-- Footer -->
     <footer class="flow-page-footer">
