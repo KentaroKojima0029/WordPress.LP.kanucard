@@ -42,9 +42,9 @@ get_header();
             height: auto !important;
         }
 
-        /* ピックアップコンテンツをこのページでは非表示 */
-        .pickup-contents-box-post-type {
-            display: none !important;
+        /* 固定ヘッダー分の余白を #scroll-content に設定（ピックアップコンテンツ含め押し下げ） */
+        #scroll-content {
+            padding-top: 70px; /* JS で実際のヘッダー高さに上書き */
         }
 
         /* JINヘッダーを固定表示 */
@@ -105,7 +105,6 @@ get_header();
 
         .flow-page {
             min-height: 100vh;
-            padding-top: 70px; /* JS で実際のヘッダー高さに上書き */
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
@@ -688,10 +687,9 @@ window.addEventListener('load', function() {
     // 固定ヘッダーの実際の高さに合わせて padding-top を動的に設定
     function adjustPaddingForHeader() {
         var header = document.getElementById('header-box');
-        var page = document.querySelector('.flow-page');
-        if (header && page) {
+        if (header && sc) {
             var headerHeight = header.offsetHeight;
-            page.style.paddingTop = headerHeight + 'px';
+            sc.style.paddingTop = headerHeight + 'px';
         }
     }
     adjustPaddingForHeader();

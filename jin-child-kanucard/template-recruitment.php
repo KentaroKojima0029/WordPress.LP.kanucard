@@ -289,12 +289,8 @@ label.sp-menu-open {
     }
 }
 
-/* ピックアップコンテンツをこのページでは非表示 */
-.pickup-contents-box-post-type {
-    display: none !important;
-}
-
-.recruitment-page {
+/* 固定ヘッダー分の余白を #scroll-content に設定（ピックアップコンテンツ含め押し下げ） */
+#scroll-content {
     padding-top: 70px; /* JS で実際のヘッダー高さに上書き */
 }
 </style>
@@ -322,10 +318,9 @@ window.addEventListener('load', function() {
     // 固定ヘッダーの実際の高さに合わせて padding-top を動的に設定
     function adjustPaddingForHeader() {
         var header = document.getElementById('header-box');
-        var page = document.querySelector('.recruitment-page');
-        if (header && page) {
+        if (header && sc) {
             var headerHeight = header.offsetHeight;
-            page.style.paddingTop = headerHeight + 'px';
+            sc.style.paddingTop = headerHeight + 'px';
         }
     }
     adjustPaddingForHeader();
