@@ -247,7 +247,13 @@ get_header();
 </style>
 
 <script>
-// JINスムーズスクロール無効化（シンプル版）
+// JINスムーズスクロール無効化
+// PC: JINのJSがwheelイベントをpreventDefaultしてネイティブスクロールを妨害するため、
+//     キャプチャフェーズでstopImmediatePropagationしてJINのリスナーに到達させない
+window.addEventListener('wheel', function(e) {
+    e.stopImmediatePropagation();
+}, true);
+
 window.addEventListener('load', function() {
     var sc = document.getElementById('scroll-content');
     if (sc) {
