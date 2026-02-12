@@ -233,97 +233,59 @@ get_header();
     </section>
 </div>
 
-<style>
-/* JINスムーズスクロール無効化 + ネイティブスクロール復元 */
-#scroll-content,
-#scroll-content.animate {
-    transform: none !important;
-    -webkit-transform: none !important;
-    position: static !important;
-    overflow: visible !important;
-    height: auto !important;
-    will-change: auto !important;
-    transition: none !important;
-    animation: none !important;
-}
-html, body {
-    overflow-x: hidden !important;
-    overflow-y: scroll !important;
-    height: auto !important;
-    max-height: none !important;
-    -webkit-overflow-scrolling: touch !important;
-    overscroll-behavior: auto !important;
-}
-#wrapper {
-    overflow: visible !important;
-    height: auto !important;
-    position: static !important;
-}
-.recruitment-page {
-    overflow: visible !important;
-}
-</style>
-
 <script>
-// JINテーマのスムーズスクロール機能を完全に無効化
+// JINテーマのスムーズスクロールを無効化してネイティブスクロールを復元
 (function() {
-    function disableSmoothScroll() {
-        var scrollContent = document.getElementById('scroll-content');
-        if (scrollContent) {
-            scrollContent.classList.remove('animate');
-            scrollContent.style.cssText = 'transform:none!important;-webkit-transform:none!important;position:static!important;overflow:visible!important;height:auto!important;will-change:auto!important;transition:none!important;animation:none!important;';
-        }
-        document.documentElement.style.cssText += 'overflow-y:scroll!important;height:auto!important;';
-        document.body.style.cssText += 'overflow-y:scroll!important;height:auto!important;';
-        var wrapper = document.getElementById('wrapper');
-        if (wrapper) {
-            wrapper.style.cssText += 'overflow:visible!important;height:auto!important;position:static!important;';
-        }
-    }
+    function fixScroll() {
+        var sc = document.getElementById('scroll-content');
+        if (!sc) return;
 
-    // 即座に実行
-    disableSmoothScroll();
-
-    // DOM読み込み完了後にも実行
-    document.addEventListener('DOMContentLoaded', disableSmoothScroll);
-
-    // 全リソース読み込み完了後にも実行（JINのJSが後から初期化する場合に対応）
-    window.addEventListener('load', function() {
-        disableSmoothScroll();
-        // 少し遅延させてJINのJS初期化後にも実行
-        setTimeout(disableSmoothScroll, 100);
-        setTimeout(disableSmoothScroll, 500);
-        setTimeout(disableSmoothScroll, 1000);
-    });
-
-    // MutationObserverで#scroll-contentの変更を監視し、即座に修正
-    var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes') {
-                var target = mutation.target;
-                if (target.id === 'scroll-content' || target.id === 'wrapper') {
-                    disableSmoothScroll();
-                }
-            }
+        // #scroll-contentの現在のcomputedStyleを確認
+        var style = window.getComputedStyle(sc);
+        console.log('[Recruitment] #scroll-content:', {
+            position: style.position,
+            transform: style.transform,
+            overflow: style.overflow,
+            height: style.height,
+            top: style.top,
+            left: style.left,
+            width: style.width
         });
-    });
 
-    function startObserver() {
-        var scrollContent = document.getElementById('scroll-content');
-        if (scrollContent) {
-            observer.observe(scrollContent, { attributes: true, attributeFilter: ['style', 'class'] });
-        }
-        var wrapper = document.getElementById('wrapper');
-        if (wrapper) {
-            observer.observe(wrapper, { attributes: true, attributeFilter: ['style', 'class'] });
-        }
+        // JINはbody/htmlをoverflow:hiddenにして#scroll-contentをfixedで配置し
+        // transformで疑似スクロールする。
+        // → #scroll-contentをfixed+overflow-y:scrollにしてネイティブスクロールを有効化
+        sc.classList.remove('animate');
+        sc.style.setProperty('transform', 'none', 'important');
+        sc.style.setProperty('-webkit-transform', 'none', 'important');
+        sc.style.setProperty('will-change', 'auto', 'important');
+        sc.style.setProperty('transition', 'none', 'important');
+        sc.style.setProperty('animation', 'none', 'important');
+        sc.style.setProperty('overflow-y', 'scroll', 'important');
+        sc.style.setProperty('-webkit-overflow-scrolling', 'touch', 'important');
+
+        console.log('[Recruitment] ネイティブスクロール復元完了');
     }
 
+    // 複数タイミングで実行
+    fixScroll();
+    document.addEventListener('DOMContentLoaded', fixScroll);
+    window.addEventListener('load', function() {
+        fixScroll();
+        setTimeout(fixScroll, 100);
+        setTimeout(fixScroll, 500);
+        setTimeout(fixScroll, 1000);
+    });
+
+    // #scroll-contentのstyle/class変更を監視
+    var observer = new MutationObserver(function() { fixScroll(); });
+    function startObserver() {
+        var sc = document.getElementById('scroll-content');
+        if (sc) observer.observe(sc, { attributes: true, attributeFilter: ['style', 'class'] });
+    }
     startObserver();
     document.addEventListener('DOMContentLoaded', startObserver);
     window.addEventListener('load', startObserver);
-
-    console.log('[Recruitment] スムーズスクロール無効化スクリプト設置完了');
 })();
 </script>
 
