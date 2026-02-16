@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: 事業者向けPSA代行 LP
- * Template Post Type: page
+ * Template Post Type: page, post
  *
  * PSA鑑定代行サービス 事業者向けランディングページテンプレート
  *
