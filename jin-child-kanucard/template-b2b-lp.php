@@ -41,22 +41,22 @@
 
 /* --- 設定値 --- */
 .b2b-lp {
-  --c-primary: #1a2744;
-  --c-primary-light: #253a5e;
-  --c-accent: #2563eb;
-  --c-accent-hover: #1d4ed8;
-  --c-accent-light: #dbeafe;
-  --c-gold: #b8860b;
-  --c-gold-light: #fdf6e3;
-  --c-text: #1e293b;
-  --c-text-light: #64748b;
-  --c-bg: #f8fafc;
-  --c-bg-alt: #f1f5f9;
+  --c-primary: #1C4134;
+  --c-primary-light: #143228;
+  --c-accent: #D4AF37;
+  --c-accent-hover: #c49b2a;
+  --c-accent-light: #faf5e4;
+  --c-gold: #D4AF37;
+  --c-gold-light: #faf5e4;
+  --c-text: #0C231C;
+  --c-text-light: #3d5a4f;
+  --c-bg: #f5f8f6;
+  --c-bg-alt: #edf2ef;
   --c-white: #ffffff;
-  --c-border: #e2e8f0;
-  --c-success: #16a34a;
-  --c-warning: #d97706;
-  --c-danger: #dc2626;
+  --c-border: #c8d8d0;
+  --c-success: #1C4134;
+  --c-warning: #D4AF37;
+  --c-danger: #b91c1c;
   --font-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --lh-base: 1.8;
   --lh-heading: 1.4;
@@ -193,7 +193,7 @@
   letter-spacing: .03em;
   color: var(--c-white);
 }
-.b2b-lp .b2b-hero h1 .accent { color: #60a5fa; }
+.b2b-lp .b2b-hero h1 .accent { color: #D4AF37; }
 .b2b-lp .b2b-hero-sub {
   font-size: 1rem;
   opacity: .9;
@@ -228,7 +228,7 @@
   font-size: 1.6rem;
   font-weight: 800;
   display: block;
-  color: #60a5fa;
+  color: #D4AF37;
 }
 .b2b-lp .b2b-hero-stat-label { font-size: .75rem; opacity: .8; }
 .b2b-lp .b2b-hero-stat-note { font-size: .65rem; opacity: .6; display: block; margin-top: 2px; }
@@ -240,13 +240,13 @@
   display: flex; align-items: flex-start; gap: 12px;
   background: var(--c-white); border-radius: var(--radius);
   padding: 16px 20px; box-shadow: var(--shadow);
-  border-left: 4px solid var(--c-danger);
+  border-left: 4px solid var(--c-accent);
 }
 .b2b-lp .b2b-problem-icon {
   flex-shrink: 0; width: 28px; height: 28px;
-  background: #fef2f2; border-radius: 50%;
+  background: var(--c-accent-light); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  color: var(--c-danger); font-size: .85rem; font-weight: 700;
+  color: var(--c-accent); font-size: .85rem; font-weight: 700;
 }
 .b2b-lp .b2b-problem-text { font-size: .95rem; }
 .b2b-lp .b2b-solution-box {
@@ -799,12 +799,12 @@
     var required = form.querySelectorAll('[required]');
     var valid = true;
     required.forEach(function(el) {
-      if (!el.value.trim()) { el.style.borderColor = '#dc2626'; valid = false; }
+      if (!el.value.trim()) { el.style.borderColor = '#b91c1c'; valid = false; }
       else { el.style.borderColor = ''; }
     });
     var email = form.querySelector('[type="email"]');
     if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-      email.style.borderColor = '#dc2626'; valid = false;
+      email.style.borderColor = '#b91c1c'; valid = false;
     }
     if (!valid) return;
     form.style.display = 'none';
