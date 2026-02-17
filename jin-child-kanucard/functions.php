@@ -545,6 +545,43 @@ function psa_lp_contacts_page() {
 }
 
 /**
+ * 口コミ投稿時に「利用者口コミ」カテゴリの下書きを自動作成
+ */
+function kanucard_create_review_draft( $name, $rating, $message ) {
+    // 「利用者口コミ」カテゴリを取得（なければ作成）
+    $cat_name = '利用者口コミ';
+    $cat = get_term_by( 'name', $cat_name, 'category' );
+    if ( ! $cat ) {
+        $result = wp_insert_term( $cat_name, 'category' );
+        $cat_id = is_wp_error( $result ) ? 1 : $result['term_id'];
+    } else {
+        $cat_id = $cat->term_id;
+    }
+
+    // タイトル：（YYYY年M月D日）の口コミ
+    $date_str = current_time( 'Y年n月j日' );
+    $title = '（' . $date_str . '）の口コミ';
+
+    // 本文：口コミ内容を整形
+    $stars = str_repeat( '★', $rating ) . str_repeat( '☆', 5 - $rating );
+    $content  = '<p><strong>投稿者：</strong>' . esc_html( $name ) . '</p>' . "\n";
+    $content .= '<p><strong>評価：</strong>' . $stars . '（' . $rating . '/5）</p>' . "\n";
+    $content .= '<p><strong>内容：</strong></p>' . "\n";
+    $content .= '<blockquote>' . nl2br( esc_html( $message ) ) . '</blockquote>';
+
+    $post_data = array(
+        'post_title'    => $title,
+        'post_content'  => $content,
+        'post_status'   => 'draft',
+        'post_type'     => 'post',
+        'post_author'   => 1,
+        'post_category' => array( $cat_id ),
+    );
+
+    wp_insert_post( $post_data );
+}
+
+/**
  * 業務委託募集ページのアセット読み込み
  */
 function jin_child_kanucard_recruitment_assets() {

@@ -83,6 +83,9 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         $reviews[] = $new_review;
         update_option('psa_lp_reviews', $reviews);
 
+        // 口コミを「利用者口コミ」カテゴリの下書き投稿として作成
+        kanucard_create_review_draft( $review_name, $review_rating, $review_message );
+
         // メール送信を試みる
         $to = 'contact@kanucard.com';
         $subject = 'PSA代行LPに新しい口コミが投稿されました';
