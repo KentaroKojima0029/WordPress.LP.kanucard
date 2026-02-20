@@ -326,16 +326,16 @@
         // PSAプランのデータ
         const psaPlans = {
             japan: [
-                { value: '2980', label: 'バリューバルク' },
-                { value: '3980', label: 'バリュー' },
-                { value: '6980', label: 'バリュー・プラス' },
-                { value: '9980', label: 'レギュラー' }
+                { value: '3980', label: 'バリューバルク' },
+                { value: '4980', label: 'バリュー' },
+                { value: '7980', label: 'バリュー・プラス' },
+                { value: '10980', label: 'レギュラー' }
             ],
             usa: [
-                { value: '3400', label: 'バリューバルク' },
-                { value: '4400', label: 'バリュー' },
-                { value: '7100', label: 'バリュー・プラス' },
-                { value: '24000', label: 'レギュラー' }
+                { value: '4700', label: 'バリューバルク' },
+                { value: '5700', label: 'バリュー' },
+                { value: '8400', label: 'バリュー・プラス' },
+                { value: '25300', label: 'レギュラー' }
             ]
         };
 
