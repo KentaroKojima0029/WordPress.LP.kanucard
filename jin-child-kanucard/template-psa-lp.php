@@ -514,7 +514,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <button id="openEstimateModalHero" class="btn btn-gold btn-large">
                                 <i class="fas fa-calculator"></i> 簡易見積もり
                             </button>
-                            <a href="https://kanucard.com/?page_id=1004&preview=true" class="btn btn-white btn-large" target="_blank">
+                            <a href="https://kanucard.com/guide/" class="btn btn-white btn-large" target="_blank">
                                 <i class="fas fa-clipboard-list"></i> 登録方法の確認
                             </a>
                             <button id="openContactModal" class="btn btn-white btn-large">
@@ -950,7 +950,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <button class="btn btn-gold btn-large open-estimate-modal">
                         <i class="fas fa-calculator"></i> 簡易見積もり
                     </button>
-                    <a href="https://kanucard.com/?page_id=1004&preview=true" class="btn btn-white btn-large" target="_blank">
+                    <a href="https://kanucard.com/guide/" class="btn btn-white btn-large" target="_blank">
                         <i class="fas fa-clipboard-list"></i> 登録方法の確認
                     </a>
                     <button class="btn btn-white btn-large open-contact-modal">
