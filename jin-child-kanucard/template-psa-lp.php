@@ -1463,13 +1463,15 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <div class="estimate-modal" id="estimateModal">
         <div class="estimate-modal-overlay"></div>
         <div class="estimate-modal-content">
-            <button type="button" class="estimate-modal-close" id="closeEstimateModal">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 class="estimate-modal-title">
-                <i class="fas fa-calculator"></i> 簡易見積もり
-            </h3>
-            <p class="estimate-modal-desc">代行料金の目安を計算できます</p>
+            <div class="estimate-modal-header">
+                <button type="button" class="estimate-modal-close" id="closeEstimateModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 class="estimate-modal-title">
+                    <i class="fas fa-calculator"></i> 簡易見積もり
+                </h3>
+                <p class="estimate-modal-desc">代行料金の目安を計算できます</p>
+            </div>
 
             <form class="estimate-form" id="estimateForm">
                 <div class="estimate-form-group">
