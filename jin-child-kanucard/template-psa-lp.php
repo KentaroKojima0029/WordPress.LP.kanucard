@@ -1494,13 +1494,13 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 
                 <div class="estimate-form-group">
                     <label for="cardCount">提出枚数</label>
-                    <input type="number" id="cardCount" min="1" max="1000" placeholder="例: 10" required>
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" id="cardCount" placeholder="例: 10" required>
                 </div>
 
                 <div class="estimate-form-group">
                     <label for="cardValue">カードの合計申告額</label>
                     <div class="input-with-unit">
-                        <input type="number" id="cardValue" min="0" placeholder="例: 100000" required>
+                        <input type="text" inputmode="numeric" id="cardValue" placeholder="例: 100,000" required>
                         <span class="unit">円</span>
                     </div>
                 </div>

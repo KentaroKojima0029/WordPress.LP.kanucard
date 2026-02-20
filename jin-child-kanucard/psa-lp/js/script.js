@@ -430,6 +430,27 @@
             }
         });
 
+        // 数字のみ許可（カンマは自動付与するため入力時は除外）
+        var cardCountInput = document.getElementById('cardCount');
+        var cardValueInput = document.getElementById('cardValue');
+
+        if (cardCountInput) {
+            cardCountInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
+
+        if (cardValueInput) {
+            cardValueInput.addEventListener('input', function() {
+                var raw = this.value.replace(/[^0-9]/g, '');
+                if (raw) {
+                    this.value = Number(raw).toLocaleString('ja-JP');
+                } else {
+                    this.value = '';
+                }
+            });
+        }
+
         // 見積もり計算
         if (form) {
             form.addEventListener('submit', function(e) {
@@ -437,8 +458,8 @@
 
                 const agencyPlan = parseFloat(document.getElementById('agencyPlan').value);
                 const psaPlan = parseFloat(document.getElementById('psaPlan').value);
-                const cardCount = parseInt(document.getElementById('cardCount').value);
-                const cardValue = parseFloat(document.getElementById('cardValue').value);
+                const cardCount = parseInt(document.getElementById('cardCount').value.replace(/,/g, ''));
+                const cardValue = parseFloat(document.getElementById('cardValue').value.replace(/,/g, ''));
 
                 if (!agencyPlan || !psaPlan || !cardCount || !cardValue) {
                     alert('すべての項目を入力してください');
