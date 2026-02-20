@@ -6,6 +6,29 @@
 (function() {
     'use strict';
 
+    // モーダル用スクロールロック
+    var scrollLockCount = 0;
+    var savedScrollY = 0;
+
+    function lockScroll() {
+        if (scrollLockCount === 0) {
+            savedScrollY = window.scrollY;
+            document.body.classList.add('modal-open');
+            document.body.style.top = '-' + savedScrollY + 'px';
+        }
+        scrollLockCount++;
+    }
+
+    function unlockScroll() {
+        scrollLockCount--;
+        if (scrollLockCount <= 0) {
+            scrollLockCount = 0;
+            document.body.classList.remove('modal-open');
+            document.body.style.top = '';
+            window.scrollTo(0, savedScrollY);
+        }
+    }
+
     // DOM Ready
     document.addEventListener('DOMContentLoaded', function() {
         initAOS();
@@ -379,7 +402,7 @@
         // モーダルを開く
         function openModal() {
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            lockScroll();
         }
 
         if (openBtn) {
@@ -396,7 +419,7 @@
         // モーダルを閉じる
         function closeModal() {
             modal.classList.remove('active');
-            document.body.style.overflow = '';
+            unlockScroll();
             // フォームと結果をリセット
             if (form) form.reset();
             if (resultDiv) resultDiv.style.display = 'none';
@@ -566,7 +589,7 @@
         function openContactModalFunc(e) {
             e.preventDefault();
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            lockScroll();
             // 全てのドロップダウンを閉じる
             wrappers.forEach(function(w) {
                 w.classList.remove('open');
@@ -587,7 +610,7 @@
         if (closeBtn) {
             closeBtn.addEventListener('click', function() {
                 modal.classList.remove('active');
-                document.body.style.overflow = '';
+                unlockScroll();
             });
         }
 
@@ -595,7 +618,7 @@
         if (overlay) {
             overlay.addEventListener('click', function() {
                 modal.classList.remove('active');
-                document.body.style.overflow = '';
+                unlockScroll();
             });
         }
 
@@ -603,7 +626,7 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 modal.classList.remove('active');
-                document.body.style.overflow = '';
+                unlockScroll();
             }
         });
 
@@ -612,7 +635,7 @@
         var hasSuccess = modal.querySelector('.contact-success-message');
         if (hasError || hasSuccess) {
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            lockScroll();
         }
     }
 
