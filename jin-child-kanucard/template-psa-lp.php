@@ -62,11 +62,14 @@ if (isset($_POST['submit_contact']) && isset($_POST['psa_contact_nonce']) && wp_
 $psa_review_error = '';
 if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_verify_nonce($_POST['psa_review_nonce'], 'psa_review_form')) {
     $review_name = sanitize_text_field($_POST['review_name']);
+    $review_email = sanitize_email($_POST['review_email']);
     $review_rating = intval($_POST['review_rating']);
     $review_message = sanitize_textarea_field($_POST['review_message']);
 
-    if (empty($review_name) || empty($review_rating) || empty($review_message)) {
+    if (empty($review_name) || empty($review_email) || empty($review_rating) || empty($review_message)) {
         $psa_review_error = 'すべての項目を入力してください。';
+    } elseif (!is_email($review_email)) {
+        $psa_review_error = '正しいメールアドレスを入力してください。';
     } elseif ($review_rating < 1 || $review_rating > 5) {
         $psa_review_error = '評価は1〜5の範囲で選択してください。';
     } else {
@@ -75,6 +78,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         $new_review = array(
             'id' => uniqid(),
             'name' => $review_name,
+            'email' => $review_email,
             'rating' => $review_rating,
             'message' => $review_message,
             'date' => current_time('Y-m-d H:i:s'),

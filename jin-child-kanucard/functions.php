@@ -332,6 +332,7 @@ function psa_lp_reviews_admin_page() {
                         <th style="width: 40px;">状態</th>
                         <th style="width: 120px;">投稿日時</th>
                         <th style="width: 100px;">お名前</th>
+                        <th style="width: 180px;">メールアドレス</th>
                         <th style="width: 80px;">評価</th>
                         <th>メッセージ</th>
                         <th style="width: 150px;">操作</th>
@@ -350,6 +351,7 @@ function psa_lp_reviews_admin_page() {
                             </td>
                             <td><?php echo esc_html( $review['date'] ); ?></td>
                             <td><?php echo esc_html( $review['name'] ); ?></td>
+                            <td><?php echo esc_html( isset( $review['email'] ) ? $review['email'] : '' ); ?></td>
                             <td><?php echo str_repeat( '★', $review['rating'] ) . str_repeat( '☆', 5 - $review['rating'] ); ?></td>
                             <td><?php echo nl2br( esc_html( $review['message'] ) ); ?></td>
                             <td>
