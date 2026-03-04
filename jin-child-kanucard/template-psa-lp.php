@@ -805,6 +805,22 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <div class="testimonial-slider-dots"></div>
                 </div>
 
+                <!-- 口コミ全文モーダル -->
+                <div class="review-detail-overlay" id="reviewDetailOverlay">
+                    <div class="review-detail-modal">
+                        <button class="review-detail-close" id="reviewDetailClose">&times;</button>
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                            <div class="testimonial-info">
+                                <h4 id="reviewDetailName"></h4>
+                                <div class="stars" id="reviewDetailStars"></div>
+                            </div>
+                        </div>
+                        <div class="review-detail-text" id="reviewDetailText"></div>
+                        <div class="review-detail-result" id="reviewDetailResult"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 

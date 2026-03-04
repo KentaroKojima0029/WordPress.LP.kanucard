@@ -390,11 +390,14 @@
     initTestimonialSlider();
 
     /**
-     * 口コミカード タップ展開（モバイル）
+     * 口コミカード タップでモーダル全文表示（モバイル）
      */
-    function initTestimonialCollapse() {
+    function initTestimonialModal() {
         var isMobile = window.matchMedia('(max-width: 768px)');
         var cards = document.querySelectorAll('.testimonial-slide');
+        var overlay = document.getElementById('reviewDetailOverlay');
+        var closeBtn = document.getElementById('reviewDetailClose');
+        if (!overlay || !cards.length) return;
 
         function applyCollapse(mobile) {
             cards.forEach(function(card) {
@@ -411,14 +414,40 @@
             applyCollapse(e.matches);
         });
 
+        function openModal(card) {
+            var name = card.querySelector('.testimonial-info h4');
+            var stars = card.querySelector('.stars');
+            var text = card.querySelector('.testimonial-text');
+            var result = card.querySelector('.testimonial-result');
+
+            document.getElementById('reviewDetailName').innerHTML = name ? name.innerHTML : '';
+            document.getElementById('reviewDetailStars').innerHTML = stars ? stars.innerHTML : '';
+            document.getElementById('reviewDetailText').innerHTML = text ? text.innerHTML : '';
+            document.getElementById('reviewDetailResult').innerHTML = result ? result.innerHTML : '';
+
+            overlay.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            overlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
+
         cards.forEach(function(card) {
-            card.addEventListener('click', function() {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
                 if (!isMobile.matches) return;
-                card.classList.toggle('is-collapsed');
+                openModal(card);
             });
         });
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeModal();
+        });
     }
-    initTestimonialCollapse();
+    initTestimonialModal();
 
     /**
      * 簡易見積もりモーダル
