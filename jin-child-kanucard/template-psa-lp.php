@@ -682,12 +682,9 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <i class="fas fa-quote-left" style="color: var(--secondary); margin-right: 10px;"></i>
                         お客様からいただいた口コミ
                     </h3>
-                    <p class="testimonials-thanks">ご利用下さったお客様、ありがとうございました！</p>
+                    <p class="testimonials-thanks">ご利用下さったお客様<br>ありがとうございました！</p>
 
                     <div class="testimonial-slider-wrapper">
-                        <button class="testimonial-slider-btn testimonial-slider-prev" aria-label="前へ">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
                         <div class="testimonial-slider">
                             <!-- 静的口コミ -->
                             <div class="testimonial-card testimonial-slide">
@@ -798,9 +795,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             </div>
                             <?php endforeach; ?>
                         </div>
-                        <button class="testimonial-slider-btn testimonial-slider-next" aria-label="次へ">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
                     </div>
                     <div class="testimonial-slider-dots"></div>
                 </div>

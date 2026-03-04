@@ -340,8 +340,6 @@
         if (!slider) return;
 
         var slides = slider.querySelectorAll('.testimonial-slide');
-        var prevBtn = document.querySelector('.testimonial-slider-prev');
-        var nextBtn = document.querySelector('.testimonial-slider-next');
         var dotsContainer = document.querySelector('.testimonial-slider-dots');
         if (!slides.length || !dotsContainer) return;
 
@@ -374,18 +372,6 @@
         }
 
         slider.addEventListener('scroll', updateDots);
-
-        // 前後ボタン
-        if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                slider.scrollBy({ left: -getSlideStep(), behavior: 'smooth' });
-            });
-        }
-        if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                slider.scrollBy({ left: getSlideStep(), behavior: 'smooth' });
-            });
-        }
     }
     initTestimonialSlider();
 
