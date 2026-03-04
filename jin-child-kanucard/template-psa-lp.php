@@ -704,6 +704,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="testimonial-text">
                                     <strong>検品で3枚返却されて正解でした。</strong>残り7枚は全てPSA10。もしそのまま出していたら無駄金だった。プロに任せて本当に良かった。
                                 </p>
+                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
                                 <div class="testimonial-result">
                                     <span><i class="fas fa-arrow-right"></i> PSA10取得: 7/7枚 (100%)</span>
                                 </div>
@@ -722,6 +723,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="testimonial-text">
                                     70%保証プランで10枚依頼。結果は9枚PSA10、カードの価値が合計で約50万円上がった。代行料を払う価値のある投資でした。
                                 </p>
+                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
                                 <div class="testimonial-result">
                                     <span><i class="fas fa-arrow-right"></i> PSA10取得: 9/10枚 (90%)</span>
                                 </div>
@@ -740,6 +742,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="testimonial-text">
                                     100万円超のカードを依頼。アプリ内で進捗確認ができて安心感が違った。
                                 </p>
+                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
                                 <div class="testimonial-result">
                                     <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
                                 </div>
@@ -758,6 +761,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="testimonial-text">
                                     無料検品の結果はボタンで簡単に選択でき、操作も迷わずスムーズでした。バリューバルクの送料は1枚約300円で、かなり安くアメリカPSAを利用できました。
                                 </p>
+                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
                                 <div class="testimonial-result">
                                     <span><i class="fas fa-arrow-right"></i> コスパ抜群のバリューバルク</span>
                                 </div>
@@ -784,6 +788,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="testimonial-text">
                                     <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
                                 </p>
+                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
                                 <div class="testimonial-result">
                                     <span style="color: #888; font-size: 0.85em;">
                                         <i class="far fa-calendar-alt"></i>

@@ -1192,6 +1192,27 @@ h1, h2, h3, h4, h5, h6 {
     scroll-snap-align: start;
 }
 
+/* テキスト省略（タップで展開） */
+.testimonial-card .testimonial-text {
+    transition: max-height 0.3s ease;
+}
+
+.testimonial-card.is-collapsed .testimonial-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.testimonial-card .tap-hint {
+    display: none;
+    text-align: center;
+    color: var(--primary-light);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
 .testimonial-slider-btn {
     flex-shrink: 0;
     width: 44px;
@@ -3797,18 +3818,63 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .testimonial-slide {
-        flex: 0 0 85vw;
+        flex: 0 0 calc(50vw - 40px);
+    }
+
+    .testimonial-slider {
+        gap: 0.75rem;
+        padding: 0.5rem 0.25rem 1rem;
     }
 
     .testimonial-slider-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
     }
 
     .testimonial-card {
-        padding: 1.5rem;
-        border-radius: 16px;
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .testimonial-card .testimonial-header {
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .testimonial-card .testimonial-avatar {
+        font-size: 2rem;
+    }
+
+    .testimonial-card .testimonial-info h4 {
+        font-size: 0.85rem;
+    }
+
+    .testimonial-card .testimonial-info .stars i {
+        font-size: 0.7rem;
+    }
+
+    .testimonial-card .testimonial-text {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .testimonial-card .testimonial-result {
+        font-size: 0.75rem;
+    }
+
+    .testimonial-card::before {
+        font-size: 3rem;
+        top: 8px;
+        right: 12px;
+    }
+
+    .testimonial-card.is-collapsed .tap-hint {
+        display: block;
+    }
+
+    .testimonial-card:not(.is-collapsed) .tap-hint {
+        display: none;
     }
 
     .testimonial-quote {

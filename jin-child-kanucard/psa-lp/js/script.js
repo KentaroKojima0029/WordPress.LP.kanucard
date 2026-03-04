@@ -358,11 +358,15 @@
 
         var dots = dotsContainer.querySelectorAll('.testimonial-slider-dot');
 
+        function getSlideStep() {
+            var gap = parseFloat(getComputedStyle(slider).gap) || 24;
+            return slides[0].offsetWidth + gap;
+        }
+
         // スクロール位置からアクティブなドットを更新
         function updateDots() {
-            var sliderLeft = slider.scrollLeft;
-            var slideWidth = slides[0].offsetWidth + 24; // gap分
-            var idx = Math.round(sliderLeft / slideWidth);
+            var step = getSlideStep();
+            var idx = Math.round(slider.scrollLeft / step);
             idx = Math.max(0, Math.min(idx, slides.length - 1));
             dots.forEach(function(d, i) {
                 d.classList.toggle('active', i === idx);
@@ -374,18 +378,47 @@
         // 前後ボタン
         if (prevBtn) {
             prevBtn.addEventListener('click', function() {
-                var slideWidth = slides[0].offsetWidth + 24;
-                slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+                slider.scrollBy({ left: -getSlideStep(), behavior: 'smooth' });
             });
         }
         if (nextBtn) {
             nextBtn.addEventListener('click', function() {
-                var slideWidth = slides[0].offsetWidth + 24;
-                slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+                slider.scrollBy({ left: getSlideStep(), behavior: 'smooth' });
             });
         }
     }
     initTestimonialSlider();
+
+    /**
+     * 口コミカード タップ展開（モバイル）
+     */
+    function initTestimonialCollapse() {
+        var isMobile = window.matchMedia('(max-width: 768px)');
+        var cards = document.querySelectorAll('.testimonial-slide');
+
+        function applyCollapse(mobile) {
+            cards.forEach(function(card) {
+                if (mobile) {
+                    card.classList.add('is-collapsed');
+                } else {
+                    card.classList.remove('is-collapsed');
+                }
+            });
+        }
+
+        applyCollapse(isMobile.matches);
+        isMobile.addEventListener('change', function(e) {
+            applyCollapse(e.matches);
+        });
+
+        cards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                if (!isMobile.matches) return;
+                card.classList.toggle('is-collapsed');
+            });
+        });
+    }
+    initTestimonialCollapse();
 
     /**
      * 簡易見積もりモーダル
