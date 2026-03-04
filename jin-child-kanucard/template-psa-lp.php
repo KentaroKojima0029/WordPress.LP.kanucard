@@ -244,11 +244,16 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             /* Cards */
             .solution-card,
             .plan-card,
-            .testimonial-card,
             .flow-step {
                 width: 100% !important;
                 max-width: none !important;
                 min-width: auto !important;
+            }
+
+            /* スライダー内のカードはflex幅を維持 */
+            .testimonial-slide {
+                width: auto !important;
+                max-width: none !important;
             }
 
             /* Plan badge - attached to card top */
@@ -661,114 +666,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                 </div>
 
-                <div class="testimonials">
-                    <h3 class="subsection-title">
-                        <i class="fas fa-quote-left" style="color: var(--secondary); margin-right: 10px;"></i>
-                        実際にご利用いただいたお客様の声
-                    </h3>
-                    <p class="testimonials-thanks">ご利用下さったお客様、ありがとうございました！</p>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card" data-aos="fade-up">
-                            <div class="testimonial-quote">"</div>
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="testimonial-info">
-                                    <h4>T.K 様 <small>（初回利用）</small></h4>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="testimonial-text">
-                                <strong>検品で3枚返却されて正解でした。</strong>残り7枚は全てPSA10。もしそのまま出していたら無駄金だった。プロに任せて本当に良かった。
-                            </p>
-                            <div class="testimonial-result">
-                                <span><i class="fas fa-arrow-right"></i> PSA10取得: 7/7枚 (100%)</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-card" data-aos="fade-up" data-delay="100">
-                            <div class="testimonial-quote">"</div>
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="testimonial-info">
-                                    <h4>M.S 様 <small>（リピーター）</small></h4>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="testimonial-text">
-                                70%保証プランで10枚依頼。結果は9枚PSA10、カードの価値が合計で約50万円上がった。代行料を払う価値のある投資でした。
-                            </p>
-                            <div class="testimonial-result">
-                                <span><i class="fas fa-arrow-right"></i> PSA10取得: 9/10枚 (90%)</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-card" data-aos="fade-up" data-delay="200">
-                            <div class="testimonial-quote">"</div>
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="testimonial-info">
-                                    <h4>Y.N 様 <small>（高額カード）</small></h4>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="testimonial-text">
-                                100万円超のカードを依頼。アプリ内で進捗確認ができて安心感が違った。
-                            </p>
-                            <div class="testimonial-result">
-                                <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-card" data-aos="fade-up" data-delay="300">
-                            <div class="testimonial-quote">"</div>
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="testimonial-info">
-                                    <h4>H.T 様 <small>（バリューバルク）</small></h4>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="testimonial-text">
-                                無料検品の結果はボタンで簡単に選択でき、操作も迷わずスムーズでした。バリューバルクの送料は1枚約300円で、かなり安くアメリカPSAを利用できました。
-                            </p>
-                            <div class="testimonial-result">
-                                <span><i class="fas fa-arrow-right"></i> コスパ抜群のバリューバルク</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <?php
-                // 承認済み口コミを動的に表示
+                // 承認済み口コミを取得
                 $approved_reviews = array();
                 $all_reviews = get_option( 'psa_lp_reviews', array() );
                 foreach ( $all_reviews as $rev ) {
@@ -776,49 +675,130 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         $approved_reviews[] = $rev;
                     }
                 }
-                // 新しい順に表示
                 $approved_reviews = array_reverse( $approved_reviews );
-
-                if ( ! empty( $approved_reviews ) ) : ?>
-                <div class="testimonials" style="margin-top: 40px;">
+                ?>
+                <div class="testimonials">
                     <h3 class="subsection-title">
-                        <i class="fas fa-comments" style="color: var(--secondary); margin-right: 10px;"></i>
+                        <i class="fas fa-quote-left" style="color: var(--secondary); margin-right: 10px;"></i>
                         お客様からいただいた口コミ
                     </h3>
-                    <div class="testimonials-grid">
-                        <?php foreach ( $approved_reviews as $i => $rev ) : ?>
-                        <div class="testimonial-card" data-aos="fade-up" data-delay="<?php echo $i * 100; ?>">
-                            <div class="testimonial-quote">"</div>
-                            <div class="testimonial-header">
-                                <div class="testimonial-avatar">
-                                    <i class="fas fa-user-circle"></i>
-                                </div>
-                                <div class="testimonial-info">
-                                    <h4><?php echo esc_html( $rev['name'] ); ?> 様</h4>
-                                    <div class="stars">
-                                        <?php for ( $s = 0; $s < intval( $rev['rating'] ); $s++ ) : ?>
-                                            <i class="fas fa-star"></i>
-                                        <?php endfor; ?>
-                                        <?php for ( $s = intval( $rev['rating'] ); $s < 5; $s++ ) : ?>
-                                            <i class="far fa-star"></i>
-                                        <?php endfor; ?>
+                    <p class="testimonials-thanks">ご利用下さったお客様、ありがとうございました！</p>
+
+                    <div class="testimonial-slider-wrapper">
+                        <button class="testimonial-slider-btn testimonial-slider-prev" aria-label="前へ">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="testimonial-slider">
+                            <!-- 静的口コミ -->
+                            <div class="testimonial-card testimonial-slide">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-header">
+                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                                    <div class="testimonial-info">
+                                        <h4>T.K 様 <small>（初回利用）</small></h4>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="testimonial-text">
+                                    <strong>検品で3枚返却されて正解でした。</strong>残り7枚は全てPSA10。もしそのまま出していたら無駄金だった。プロに任せて本当に良かった。
+                                </p>
+                                <div class="testimonial-result">
+                                    <span><i class="fas fa-arrow-right"></i> PSA10取得: 7/7枚 (100%)</span>
+                                </div>
                             </div>
-                            <p class="testimonial-text">
-                                <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
-                            </p>
-                            <div class="testimonial-result">
-                                <span style="color: #888; font-size: 0.85em;">
-                                    <i class="far fa-calendar-alt"></i>
-                                    <?php echo esc_html( date( 'Y年n月j日', strtotime( $rev['date'] ) ) ); ?>
-                                </span>
+                            <div class="testimonial-card testimonial-slide">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-header">
+                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                                    <div class="testimonial-info">
+                                        <h4>M.S 様 <small>（リピーター）</small></h4>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    70%保証プランで10枚依頼。結果は9枚PSA10、カードの価値が合計で約50万円上がった。代行料を払う価値のある投資でした。
+                                </p>
+                                <div class="testimonial-result">
+                                    <span><i class="fas fa-arrow-right"></i> PSA10取得: 9/10枚 (90%)</span>
+                                </div>
                             </div>
+                            <div class="testimonial-card testimonial-slide">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-header">
+                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                                    <div class="testimonial-info">
+                                        <h4>Y.N 様 <small>（高額カード）</small></h4>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    100万円超のカードを依頼。アプリ内で進捗確認ができて安心感が違った。
+                                </p>
+                                <div class="testimonial-result">
+                                    <span><i class="fas fa-arrow-right"></i> 価値上昇: +200万円</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-card testimonial-slide">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-header">
+                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                                    <div class="testimonial-info">
+                                        <h4>H.T 様 <small>（バリューバルク）</small></h4>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    無料検品の結果はボタンで簡単に選択でき、操作も迷わずスムーズでした。バリューバルクの送料は1枚約300円で、かなり安くアメリカPSAを利用できました。
+                                </p>
+                                <div class="testimonial-result">
+                                    <span><i class="fas fa-arrow-right"></i> コスパ抜群のバリューバルク</span>
+                                </div>
+                            </div>
+
+                            <!-- 動的口コミ（承認済み） -->
+                            <?php foreach ( $approved_reviews as $rev ) : ?>
+                            <div class="testimonial-card testimonial-slide">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-header">
+                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                                    <div class="testimonial-info">
+                                        <h4><?php echo esc_html( $rev['name'] ); ?> 様</h4>
+                                        <div class="stars">
+                                            <?php for ( $s = 0; $s < intval( $rev['rating'] ); $s++ ) : ?>
+                                                <i class="fas fa-star"></i>
+                                            <?php endfor; ?>
+                                            <?php for ( $s = intval( $rev['rating'] ); $s < 5; $s++ ) : ?>
+                                                <i class="far fa-star"></i>
+                                            <?php endfor; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
+                                </p>
+                                <div class="testimonial-result">
+                                    <span style="color: #888; font-size: 0.85em;">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <?php echo esc_html( date( 'Y年n月j日', strtotime( $rev['date'] ) ) ); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
                         </div>
-                        <?php endforeach; ?>
+                        <button class="testimonial-slider-btn testimonial-slider-next" aria-label="次へ">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
+                    <div class="testimonial-slider-dots"></div>
                 </div>
-                <?php endif; ?>
 
             </div>
         </section>

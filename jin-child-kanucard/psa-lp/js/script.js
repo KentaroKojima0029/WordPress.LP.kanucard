@@ -333,6 +333,61 @@
     initReviewFormStarRating();
 
     /**
+     * 口コミスライダー
+     */
+    function initTestimonialSlider() {
+        var slider = document.querySelector('.testimonial-slider');
+        if (!slider) return;
+
+        var slides = slider.querySelectorAll('.testimonial-slide');
+        var prevBtn = document.querySelector('.testimonial-slider-prev');
+        var nextBtn = document.querySelector('.testimonial-slider-next');
+        var dotsContainer = document.querySelector('.testimonial-slider-dots');
+        if (!slides.length || !dotsContainer) return;
+
+        // ドットを生成
+        slides.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.className = 'testimonial-slider-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', (i + 1) + '件目');
+            dot.addEventListener('click', function() {
+                slides[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        var dots = dotsContainer.querySelectorAll('.testimonial-slider-dot');
+
+        // スクロール位置からアクティブなドットを更新
+        function updateDots() {
+            var sliderLeft = slider.scrollLeft;
+            var slideWidth = slides[0].offsetWidth + 24; // gap分
+            var idx = Math.round(sliderLeft / slideWidth);
+            idx = Math.max(0, Math.min(idx, slides.length - 1));
+            dots.forEach(function(d, i) {
+                d.classList.toggle('active', i === idx);
+            });
+        }
+
+        slider.addEventListener('scroll', updateDots);
+
+        // 前後ボタン
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                var slideWidth = slides[0].offsetWidth + 24;
+                slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                var slideWidth = slides[0].offsetWidth + 24;
+                slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            });
+        }
+    }
+    initTestimonialSlider();
+
+    /**
      * 簡易見積もりモーダル
      */
     function initEstimateModal() {
