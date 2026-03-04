@@ -297,6 +297,37 @@ function psa_lp_reviews_admin_page() {
         }
     }
 
+    // 口コミ承認処理（LPに表示）
+    if ( isset( $_GET['approve_review'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'approve_review_' . $_GET['approve_review'] ) ) {
+            foreach ( $reviews as &$r ) {
+                if ( $r['id'] === $_GET['approve_review'] ) {
+                    $r['status'] = 'approved';
+                    $r['read'] = true;
+                    break;
+                }
+            }
+            unset( $r );
+            update_option( 'psa_lp_reviews', $reviews );
+            echo '<div class="notice notice-success"><p>口コミを承認しました。LPに表示されます。</p></div>';
+        }
+    }
+
+    // 口コミ非公開処理（LPから非表示）
+    if ( isset( $_GET['unapprove_review'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'unapprove_review_' . $_GET['unapprove_review'] ) ) {
+            foreach ( $reviews as &$r ) {
+                if ( $r['id'] === $_GET['unapprove_review'] ) {
+                    $r['status'] = 'pending';
+                    break;
+                }
+            }
+            unset( $r );
+            update_option( 'psa_lp_reviews', $reviews );
+            echo '<div class="notice notice-success"><p>口コミを非公開にしました。</p></div>';
+        }
+    }
+
     // 未確認件数をカウント
     $unread_count = 0;
     foreach ( $reviews as $review ) {
@@ -311,6 +342,8 @@ function psa_lp_reviews_admin_page() {
         .psa-review-unread { background-color: #fff8e5 !important; }
         .psa-review-unread td { border-left: 3px solid #f0c14b; }
         .psa-badge-new { background: #d63638; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin-left: 5px; }
+        .psa-badge-approved { background: #00a32a; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+        .psa-badge-pending { background: #996800; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
     </style>
     <div class="wrap">
         <h1>PSA LP 口コミ管理</h1>
@@ -330,17 +363,21 @@ function psa_lp_reviews_admin_page() {
                 <thead>
                     <tr>
                         <th style="width: 40px;">状態</th>
+                        <th style="width: 60px;">公開</th>
                         <th style="width: 120px;">投稿日時</th>
                         <th style="width: 100px;">お名前</th>
                         <th style="width: 180px;">メールアドレス</th>
                         <th style="width: 80px;">評価</th>
                         <th>メッセージ</th>
-                        <th style="width: 150px;">操作</th>
+                        <th style="width: 200px;">操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ( $reviews_display as $review ): ?>
-                        <?php $is_unread = empty( $review['read'] ); ?>
+                        <?php
+                        $is_unread = empty( $review['read'] );
+                        $is_approved = ( isset( $review['status'] ) && $review['status'] === 'approved' );
+                        ?>
                         <tr class="<?php echo $is_unread ? 'psa-review-unread' : ''; ?>">
                             <td>
                                 <?php if ( $is_unread ): ?>
@@ -349,12 +386,26 @@ function psa_lp_reviews_admin_page() {
                                     <span style="color: #999;">✓</span>
                                 <?php endif; ?>
                             </td>
+                            <td>
+                                <?php if ( $is_approved ): ?>
+                                    <span class="psa-badge-approved">公開中</span>
+                                <?php else: ?>
+                                    <span class="psa-badge-pending">非公開</span>
+                                <?php endif; ?>
+                            </td>
                             <td><?php echo esc_html( $review['date'] ); ?></td>
                             <td><?php echo esc_html( $review['name'] ); ?></td>
                             <td><?php echo esc_html( isset( $review['email'] ) ? $review['email'] : '' ); ?></td>
                             <td><?php echo str_repeat( '★', $review['rating'] ) . str_repeat( '☆', 5 - $review['rating'] ); ?></td>
                             <td><?php echo nl2br( esc_html( $review['message'] ) ); ?></td>
                             <td>
+                                <?php if ( $is_approved ): ?>
+                                    <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&unapprove_review=' . $review['id'] ), 'unapprove_review_' . $review['id'] ); ?>"
+                                       class="button button-small" style="color: #996800;">非公開にする</a>
+                                <?php else: ?>
+                                    <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&approve_review=' . $review['id'] ), 'approve_review_' . $review['id'] ); ?>"
+                                       class="button button-small" style="background: #00a32a; color: #fff; border-color: #00a32a;">承認（公開）</a>
+                                <?php endif; ?>
                                 <?php if ( $is_unread ): ?>
                                     <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&mark_read=' . $review['id'] ), 'mark_read_' . $review['id'] ); ?>"
                                        class="button button-small button-primary">確認済み</a>

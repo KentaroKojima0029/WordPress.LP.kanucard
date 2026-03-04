@@ -767,6 +767,59 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                 </div>
 
+                <?php
+                // 承認済み口コミを動的に表示
+                $approved_reviews = array();
+                $all_reviews = get_option( 'psa_lp_reviews', array() );
+                foreach ( $all_reviews as $rev ) {
+                    if ( isset( $rev['status'] ) && $rev['status'] === 'approved' ) {
+                        $approved_reviews[] = $rev;
+                    }
+                }
+                // 新しい順に表示
+                $approved_reviews = array_reverse( $approved_reviews );
+
+                if ( ! empty( $approved_reviews ) ) : ?>
+                <div class="testimonials" style="margin-top: 40px;">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-comments" style="color: var(--secondary); margin-right: 10px;"></i>
+                        お客様からいただいた口コミ
+                    </h3>
+                    <div class="testimonials-grid">
+                        <?php foreach ( $approved_reviews as $i => $rev ) : ?>
+                        <div class="testimonial-card" data-aos="fade-up" data-delay="<?php echo $i * 100; ?>">
+                            <div class="testimonial-quote">"</div>
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4><?php echo esc_html( $rev['name'] ); ?> 様</h4>
+                                    <div class="stars">
+                                        <?php for ( $s = 0; $s < intval( $rev['rating'] ); $s++ ) : ?>
+                                            <i class="fas fa-star"></i>
+                                        <?php endfor; ?>
+                                        <?php for ( $s = intval( $rev['rating'] ); $s < 5; $s++ ) : ?>
+                                            <i class="far fa-star"></i>
+                                        <?php endfor; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">
+                                <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
+                            </p>
+                            <div class="testimonial-result">
+                                <span style="color: #888; font-size: 0.85em;">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <?php echo esc_html( date( 'Y年n月j日', strtotime( $rev['date'] ) ) ); ?>
+                                </span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
             </div>
         </section>
 
@@ -1344,6 +1397,21 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             maxlength="50"
                             required
                             value="<?php echo isset($_POST['review_name']) ? esc_attr($_POST['review_name']) : ''; ?>"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review_email">
+                            <i class="fas fa-envelope"></i> メールアドレス<span class="required">*</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="review_email"
+                            name="review_email"
+                            placeholder="例: example@email.com"
+                            maxlength="254"
+                            required
+                            value="<?php echo isset($_POST['review_email']) ? esc_attr($_POST['review_email']) : ''; ?>"
                         >
                     </div>
 
