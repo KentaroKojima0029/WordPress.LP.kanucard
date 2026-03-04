@@ -1083,19 +1083,19 @@ h1, h2, h3, h4, h5, h6 {
 
 .results-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 5rem;
 }
 
 .result-item {
     text-align: center;
-    padding: 2.5rem;
+    padding: 2rem 1.5rem;
     background: white;
     border-radius: 24px;
     box-shadow: var(--shadow-lg);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition: var(--transition-smooth);
 }
 
@@ -1115,7 +1115,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .result-number {
-    font-size: clamp(3rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 900;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
