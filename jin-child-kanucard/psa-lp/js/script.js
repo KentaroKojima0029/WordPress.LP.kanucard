@@ -449,6 +449,66 @@
 
         if (!modal) return;
 
+        // 管理者サイトから代行料率を取得して代行プランの選択肢を更新する
+        // PSA社プラン価格設定（commission_rates）テーブルの値を反映
+        function loadCommissionRatesFromAPI() {
+            const agencyPlanSelectEl = document.getElementById('agencyPlan');
+            if (!agencyPlanSelectEl) return;
+
+            fetch('https://daiko.kanucard.com/api/public/commission-rates', {
+                method: 'GET',
+                mode: 'cors'
+            })
+                .then(function(response) {
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.json();
+                })
+                .then(function(data) {
+                    if (!data.success || !data.rates) return;
+                    var rates = data.rates;
+
+                    // 各オプションを動的に更新（plan_type → percentage）
+                    var planMap = {
+                        'japan_normal': '日本 ノーマル',
+                        'japan_guarantee': '日本 70%保証',
+                        'usa_normal': 'アメリカ ノーマル',
+                        'usa_guarantee': 'アメリカ 70%保証'
+                    };
+                    var regionMap = {
+                        'japan_normal': 'japan',
+                        'japan_guarantee': 'japan',
+                        'usa_normal': 'usa',
+                        'usa_guarantee': 'usa'
+                    };
+
+                    // 既存のオプションをクリア（先頭の「選択してください」は残す）
+                    while (agencyPlanSelectEl.options.length > 1) {
+                        agencyPlanSelectEl.remove(1);
+                    }
+
+                    // 4つのプランを追加（料率はAPIから取得した値）
+                    Object.keys(planMap).forEach(function(planType) {
+                        var rate = rates[planType];
+                        if (rate === undefined || rate === null) return;
+                        var percent = (Number(rate) * 100).toFixed(1);
+                        var option = document.createElement('option');
+                        option.value = percent;  // 例: "2.9"
+                        option.setAttribute('data-region', regionMap[planType]);
+                        option.textContent = planMap[planType];
+                        agencyPlanSelectEl.appendChild(option);
+                    });
+
+                    console.log('[LP Estimate] Commission rates loaded from API:', rates);
+                })
+                .catch(function(error) {
+                    console.warn('[LP Estimate] Failed to load commission rates from API, using fallback values:', error);
+                    // フォールバック: HTMLにハードコードされた値をそのまま使用
+                });
+        }
+
+        // 初期化時に料率を取得
+        loadCommissionRatesFromAPI();
+
         // PSAプランのデータ
         const psaPlans = {
             japan: [
