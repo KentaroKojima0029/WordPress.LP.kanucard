@@ -642,7 +642,8 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                const agencyPlan = parseFloat(document.getElementById('agencyPlan').value);
+                const agencyPlanEl = document.getElementById('agencyPlan');
+                const agencyPlan = parseFloat(agencyPlanEl.value);
                 const psaPlan = parseFloat(document.getElementById('psaPlan').value);
                 const cardCount = parseInt(document.getElementById('cardCount').value.replace(/,/g, ''));
                 const cardValue = parseFloat(document.getElementById('cardValue').value.replace(/,/g, ''));
@@ -652,19 +653,37 @@
                     return;
                 }
 
+                // 選択されたプランの地域（japan/usa）を取得
+                const selectedOption = agencyPlanEl.options[agencyPlanEl.selectedIndex];
+                const region = selectedOption ? selectedOption.getAttribute('data-region') : null;
+                const isUSA = region === 'usa';
+
                 // PSA鑑定料（円/枚 × 枚数）
                 const psaFee = psaPlan * cardCount;
 
                 // 代行手数料（カード申告額 × %）
                 const agencyFee = cardValue * (agencyPlan / 100);
 
+                // 見込み関税額（アメリカのみ、申告額の10％）
+                const customsTax = isUSA ? cardValue * 0.10 : 0;
+
                 // 合計
-                const total = psaFee + agencyFee;
+                const total = psaFee + agencyFee + customsTax;
 
                 // 結果を表示
                 document.getElementById('resultPsaFee').textContent = formatCurrency(psaFee);
                 document.getElementById('resultAgencyFee').textContent = formatCurrency(agencyFee);
                 document.getElementById('resultTotal').textContent = formatCurrency(total);
+
+                // 関税額の表示制御（アメリカのみ表示）
+                const customsTaxRow = document.getElementById('resultCustomsTaxRow');
+                const customsTaxValue = document.getElementById('resultCustomsTax');
+                if (isUSA && customsTaxRow && customsTaxValue) {
+                    customsTaxValue.textContent = formatCurrency(customsTax);
+                    customsTaxRow.style.display = '';
+                } else if (customsTaxRow) {
+                    customsTaxRow.style.display = 'none';
+                }
 
                 resultDiv.style.display = 'block';
 
