@@ -1592,12 +1592,16 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <span class="label">見込み関税額（申告額の10％）</span>
                         <span class="value" id="resultCustomsTax">-</span>
                     </div>
+                    <div class="estimate-result-item">
+                        <span class="label">送料</span>
+                        <span class="value">※1</span>
+                    </div>
                     <div class="estimate-result-item total">
                         <span class="label">合計（税抜）</span>
                         <span class="value" id="resultTotal">-</span>
                     </div>
                 </div>
-                <p class="estimate-note">※ 送料負担額はご依頼プランによって異なります</p>
+                <p class="estimate-note">※1 送料負担額はご依頼プランによって異なります</p>
                 <p class="estimate-note">※ 為替レートや送料等により実際の金額は変動します</p>
             </div>
         </div>
