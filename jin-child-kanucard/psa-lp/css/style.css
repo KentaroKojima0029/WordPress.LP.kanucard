@@ -5231,14 +5231,9 @@ body.modal-open {
     margin-top: 1rem;
 }
 
-/* 注釈マーカー（※1 など） - 小さく異なるフォントで表示 */
+/* 注釈マーカー（※1 など） - カラーのみ変更（サイズ・フォントは統一） */
 .estimate-note-marker {
-    font-size: 0.7em;
-    font-family: Georgia, "Times New Roman", serif;
     color: #ca8a04;
-    font-weight: 500;
-    vertical-align: super;
-    letter-spacing: 0.02em;
 }
 
 /* Mobile adjustments for modal */
