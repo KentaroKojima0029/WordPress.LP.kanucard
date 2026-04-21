@@ -73,7 +73,7 @@
             <div class="container hero-content">
                 <h1 class="hero-title fade-in">
                     あなたの大切なカードを、<br class="sp-only">PSA10へ。<br>
-                    <span class="highlight">6,000枚以上</span>の実績が証明する確かな技術
+                    <span class="highlight" id="heroCardCount">6,000枚以上</span>の実績が証明する確かな技術
                 </h1>
                 <p class="hero-subtitle fade-in delay-1">
                     返金保証プラン・無料検品サービスで安心のPSA代行
@@ -81,7 +81,7 @@
                 <div class="hero-stats fade-in delay-2">
                     <div class="stat-item">
                         <i class="fas fa-trophy"></i>
-                        <span class="stat-number">6,000枚以上</span>
+                        <span class="stat-number" id="statCardCount">6,000枚以上</span>
                         <span class="stat-label">PSA10実績</span>
                     </div>
                     <div class="stat-item">
@@ -171,7 +171,7 @@
                             <i class="fas fa-trophy"></i>
                         </div>
                         <h3>安心の実績</h3>
-                        <p>6,000枚以上のPSA10実績。アメリカ本社への直接提出で確実性が違います</p>
+                        <p><span id="solutionCardCount">6,000枚以上</span>のPSA10実績。アメリカ本社への直接提出で確実性が違います</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                     <div class="solution-card" data-aos="fade-up" data-delay="400">
@@ -554,5 +554,19 @@
 
     <!-- Scripts -->
     <script src="js/script.js"></script>
+    <script>
+        fetch('https://daiko.kanucard.com/api/public/total-cards')
+            .then(r => r.json())
+            .then(data => {
+                if (data.success && data.total) {
+                    const text = data.total.toLocaleString() + '枚以上';
+                    ['heroCardCount', 'statCardCount', 'solutionCardCount'].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) el.textContent = text;
+                    });
+                }
+            })
+            .catch(() => {});
+    </script>
 </body>
 </html>
