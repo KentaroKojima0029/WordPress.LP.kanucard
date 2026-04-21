@@ -457,7 +457,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <span class="hero-title-line">あなたのカードの価値を、</span><br class="sp-only">
                     <span class="hero-title-line"><span class="highlight">さらに高く。</span></span><br>
                     <span class="hero-subtitle-line" style="font-size: 0.5em; font-weight: 400;">未鑑定カードを売却する前に、一度検討してください。</span><br>
-                    <small><span class="hero-subtitle-line">7,000枚以上のPSA10実績が証明する</span><br><span class="hero-subtitle-line">圧倒的な技術力</span></small>
+                    <small><span class="hero-subtitle-line"><span class="total-cards-text">7,000枚以上</span>のPSA10実績が証明する</span><br><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
                 <div class="hero-features fade-in delay-1">
                     <div class="hero-feature-item hero-link" onclick="var el = document.getElementById('guarantee-explanation'); if(el){ el.scrollIntoView({behavior: 'smooth', block: 'start'}); }">
@@ -482,7 +482,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-trophy"></i>
                         </div>
                         <div class="stat-content">
-                            <span class="stat-number">7,000<span class="stat-unit">枚超</span></span>
+                            <span class="stat-number"><span class="total-cards-num">7,000</span><span class="stat-unit">枚超</span></span>
                             <span class="stat-label">PSA10取得</span>
                         </div>
                     </div>
@@ -630,7 +630,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="solution-icon">
                             <i class="fas fa-medal"></i>
                         </div>
-                        <h3>7,000枚以上の実績</h3>
+                        <h3><span class="total-cards-text">7,000枚以上</span>の実績</h3>
                         <p>PSA10の取得率は90%超<br>顧客満足度の高い実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
@@ -1702,6 +1702,19 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 
     <!-- PSA LP Scripts -->
     <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js?v=<?php echo time(); ?>"></script>
+
+    <script>
+        fetch('https://daiko.kanucard.com/api/public/total-cards')
+            .then(r => r.json())
+            .then(data => {
+                if (data.success && data.total) {
+                    const text = data.total.toLocaleString() + '枚以上';
+                    document.querySelectorAll('.total-cards-text').forEach(el => { el.textContent = text; });
+                    document.querySelectorAll('.total-cards-num').forEach(el => { el.textContent = data.total.toLocaleString(); });
+                }
+            })
+            .catch(() => {});
+    </script>
 
     <?php wp_footer(); ?>
 </body>
