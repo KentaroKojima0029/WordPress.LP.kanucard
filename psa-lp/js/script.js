@@ -192,7 +192,7 @@
         function animateCounters() {
             counters.forEach(function(counter) {
                 const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000;
+                const duration = 1000;
                 const step = target / (duration / 16);
                 let current = 0;
 
