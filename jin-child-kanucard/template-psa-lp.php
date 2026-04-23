@@ -679,7 +679,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </div>
 
                 <?php
-                // 承認済み口コミを取得
+                // 承認済み口コミを取得し、投稿日時の降順（最新順）で並べる
                 $approved_reviews = array();
                 $all_reviews = get_option( 'psa_lp_reviews', array() );
                 foreach ( $all_reviews as $rev ) {
@@ -687,7 +687,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         $approved_reviews[] = $rev;
                     }
                 }
-                $approved_reviews = array_reverse( $approved_reviews );
+                usort( $approved_reviews, function( $a, $b ) {
+                    $ta = isset( $a['date'] ) ? strtotime( $a['date'] ) : 0;
+                    $tb = isset( $b['date'] ) ? strtotime( $b['date'] ) : 0;
+                    return $tb <=> $ta;
+                });
                 ?>
                 <div class="testimonials">
                     <h3 class="subsection-title">
@@ -698,6 +702,37 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 
                     <div class="testimonial-slider-wrapper">
                         <div class="testimonial-slider">
+                            <!-- 動的口コミ（承認済み・最新順） -->
+                            <?php foreach ( $approved_reviews as $rev ) : ?>
+                            <div class="testimonial-card testimonial-slide">
+                                <div class="testimonial-quote">"</div>
+                                <div class="testimonial-header">
+                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
+                                    <div class="testimonial-info">
+                                        <h4><?php echo esc_html( $rev['name'] ); ?> 様</h4>
+                                        <div class="stars">
+                                            <?php for ( $s = 0; $s < intval( $rev['rating'] ); $s++ ) : ?>
+                                                <i class="fas fa-star"></i>
+                                            <?php endfor; ?>
+                                            <?php for ( $s = intval( $rev['rating'] ); $s < 5; $s++ ) : ?>
+                                                <i class="far fa-star"></i>
+                                            <?php endfor; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
+                                </p>
+                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
+                                <div class="testimonial-result">
+                                    <span style="color: #888; font-size: 0.85em;">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <?php echo esc_html( date( 'Y年n月j日', strtotime( $rev['date'] ) ) ); ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+
                             <!-- 静的口コミ -->
                             <div class="testimonial-card testimonial-slide">
                                 <div class="testimonial-quote">"</div>
@@ -776,36 +811,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 </div>
                             </div>
 
-                            <!-- 動的口コミ（承認済み） -->
-                            <?php foreach ( $approved_reviews as $rev ) : ?>
-                            <div class="testimonial-card testimonial-slide">
-                                <div class="testimonial-quote">"</div>
-                                <div class="testimonial-header">
-                                    <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
-                                    <div class="testimonial-info">
-                                        <h4><?php echo esc_html( $rev['name'] ); ?> 様</h4>
-                                        <div class="stars">
-                                            <?php for ( $s = 0; $s < intval( $rev['rating'] ); $s++ ) : ?>
-                                                <i class="fas fa-star"></i>
-                                            <?php endfor; ?>
-                                            <?php for ( $s = intval( $rev['rating'] ); $s < 5; $s++ ) : ?>
-                                                <i class="far fa-star"></i>
-                                            <?php endfor; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="testimonial-text">
-                                    <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
-                                </p>
-                                <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
-                                <div class="testimonial-result">
-                                    <span style="color: #888; font-size: 0.85em;">
-                                        <i class="far fa-calendar-alt"></i>
-                                        <?php echo esc_html( date( 'Y年n月j日', strtotime( $rev['date'] ) ) ); ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="testimonial-slider-dots"></div>

@@ -328,6 +328,29 @@ function psa_lp_reviews_admin_page() {
         }
     }
 
+    // 口コミ編集保存処理（お名前・メッセージ）
+    if ( isset( $_POST['save_review'] ) && isset( $_POST['_wpnonce'] ) && isset( $_POST['review_id'] ) ) {
+        $rid = sanitize_text_field( $_POST['review_id'] );
+        if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_review_' . $rid ) ) {
+            $new_name = sanitize_text_field( wp_unslash( $_POST['review_name'] ?? '' ) );
+            $new_message = sanitize_textarea_field( wp_unslash( $_POST['review_message'] ?? '' ) );
+            $found = false;
+            foreach ( $reviews as &$r ) {
+                if ( $r['id'] === $rid ) {
+                    $r['name'] = $new_name;
+                    $r['message'] = $new_message;
+                    $found = true;
+                    break;
+                }
+            }
+            unset( $r );
+            if ( $found ) {
+                update_option( 'psa_lp_reviews', $reviews );
+                echo '<div class="notice notice-success"><p>口コミを更新しました。</p></div>';
+            }
+        }
+    }
+
     // 未確認件数をカウント
     $unread_count = 0;
     foreach ( $reviews as $review ) {
@@ -337,6 +360,7 @@ function psa_lp_reviews_admin_page() {
     }
 
     $reviews_display = array_reverse( $reviews ); // 新しい順に表示
+    $editing_id = isset( $_GET['edit_review'] ) ? sanitize_text_field( $_GET['edit_review'] ) : '';
     ?>
     <style>
         .psa-review-unread { background-color: #fff8e5 !important; }
@@ -344,6 +368,10 @@ function psa_lp_reviews_admin_page() {
         .psa-badge-new { background: #d63638; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin-left: 5px; }
         .psa-badge-approved { background: #00a32a; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
         .psa-badge-pending { background: #996800; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+        .psa-edit-row { background: #f0f6fc !important; }
+        .psa-edit-row td { padding: 12px !important; }
+        .psa-edit-row input[type="text"] { width: 100%; }
+        .psa-edit-row textarea { width: 100%; min-height: 80px; }
     </style>
     <div class="wrap">
         <h1>PSA LP 口コミ管理</h1>
@@ -377,7 +405,31 @@ function psa_lp_reviews_admin_page() {
                         <?php
                         $is_unread = empty( $review['read'] );
                         $is_approved = ( isset( $review['status'] ) && $review['status'] === 'approved' );
+                        $is_editing = ( $editing_id !== '' && $editing_id === $review['id'] );
                         ?>
+                        <?php if ( $is_editing ): ?>
+                        <tr class="psa-edit-row">
+                            <td colspan="8">
+                                <form method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=psa-lp-reviews' ) ); ?>">
+                                    <?php wp_nonce_field( 'save_review_' . $review['id'] ); ?>
+                                    <input type="hidden" name="review_id" value="<?php echo esc_attr( $review['id'] ); ?>">
+                                    <p><strong>投稿日時:</strong> <?php echo esc_html( $review['date'] ); ?>　|　<strong>評価:</strong> <?php echo str_repeat( '★', $review['rating'] ) . str_repeat( '☆', 5 - $review['rating'] ); ?></p>
+                                    <p>
+                                        <label><strong>お名前</strong></label><br>
+                                        <input type="text" name="review_name" value="<?php echo esc_attr( $review['name'] ); ?>" required>
+                                    </p>
+                                    <p>
+                                        <label><strong>メッセージ</strong></label><br>
+                                        <textarea name="review_message" required><?php echo esc_textarea( $review['message'] ); ?></textarea>
+                                    </p>
+                                    <p>
+                                        <button type="submit" name="save_review" class="button button-primary">保存</button>
+                                        <a href="<?php echo esc_url( admin_url( 'admin.php?page=psa-lp-reviews' ) ); ?>" class="button">キャンセル</a>
+                                    </p>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php else: ?>
                         <tr class="<?php echo $is_unread ? 'psa-review-unread' : ''; ?>">
                             <td>
                                 <?php if ( $is_unread ): ?>
@@ -399,6 +451,8 @@ function psa_lp_reviews_admin_page() {
                             <td><?php echo str_repeat( '★', $review['rating'] ) . str_repeat( '☆', 5 - $review['rating'] ); ?></td>
                             <td><?php echo nl2br( esc_html( $review['message'] ) ); ?></td>
                             <td>
+                                <a href="<?php echo esc_url( admin_url( 'admin.php?page=psa-lp-reviews&edit_review=' . $review['id'] ) ); ?>"
+                                   class="button button-small">編集</a>
                                 <?php if ( $is_approved ): ?>
                                     <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&unapprove_review=' . $review['id'] ), 'unapprove_review_' . $review['id'] ); ?>"
                                        class="button button-small" style="color: #996800;">非公開にする</a>
@@ -415,6 +469,7 @@ function psa_lp_reviews_admin_page() {
                                    class="button button-small">削除</a>
                             </td>
                         </tr>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
