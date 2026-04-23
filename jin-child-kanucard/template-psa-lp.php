@@ -138,7 +138,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         .psa-inspections-loaded .total-inspections-num { visibility: visible; }
         .psa10-rate-num { visibility: hidden; }
         .psa-rate-loaded .psa10-rate-num { visibility: visible; }
-        .psa10-rate-decimal { font-size: 0.7em; }
+        .psa10-rate-decimal, .psa10-rate-unit { font-size: 0.7em; }
     </style>
 
     <!-- Font Awesome -->
@@ -665,7 +665,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="result-label">PSA10取得数</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
-                        <div class="result-number"><span class="psa10-rate-num">94<span class="psa10-rate-decimal">.4</span></span>％<small>超</small></div>
+                        <div class="result-number"><span class="psa10-rate-num">94<span class="psa10-rate-decimal">.4</span></span><span class="psa10-rate-unit">％</span></div>
                         <div class="result-label">平均PSA10取得率</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="200">
