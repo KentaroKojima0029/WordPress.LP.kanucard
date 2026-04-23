@@ -661,7 +661,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </h2>
                 <div class="results-stats">
                     <div class="result-item" data-aos="zoom-in">
-                        <div class="result-number"><span data-count="7000">0</span><small>枚超</small></div>
+                        <div class="result-number"><span data-count="7000">0</span><small>枚</small></div>
                         <div class="result-label">PSA10取得数</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
