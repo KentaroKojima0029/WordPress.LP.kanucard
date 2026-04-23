@@ -136,6 +136,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         .psa-count-loaded .total-cards-num { visibility: visible; }
         .total-inspections-num { visibility: hidden; }
         .psa-inspections-loaded .total-inspections-num { visibility: visible; }
+        .psa10-rate-num { visibility: hidden; }
+        .psa-rate-loaded .psa10-rate-num { visibility: visible; }
     </style>
 
     <!-- Font Awesome -->
@@ -662,7 +664,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="result-label">PSA10取得数</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
-                        <div class="result-number">90％<small>超</small></div>
+                        <div class="result-number"><span class="psa10-rate-num">94.4</span>％<small>超</small></div>
                         <div class="result-label">平均PSA10取得率</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="200">
@@ -1753,6 +1755,38 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     done = true;
                     clearTimeout(timer);
                     apply(FALLBACK_NUM);
+                });
+        })();
+
+        // 平均PSA10取得率取得
+        (function() {
+            const FALLBACK_RATE = 94.4;
+            const TIMEOUT_MS = 4000;
+
+            const apply = (rate) => {
+                const text = (Number.isInteger(rate) ? rate.toString() : rate.toFixed(1));
+                document.querySelectorAll('.psa10-rate-num').forEach(el => { el.textContent = text; });
+                document.body.classList.add('psa-rate-loaded');
+            };
+
+            let done = false;
+            const timer = setTimeout(() => {
+                if (!done) { done = true; apply(FALLBACK_RATE); }
+            }, TIMEOUT_MS);
+
+            fetch('https://daiko.kanucard.com/api/public/psa10-rate')
+                .then(r => r.json())
+                .then(data => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    apply(data && data.success && typeof data.rate === 'number' && data.total > 0 ? data.rate : FALLBACK_RATE);
+                })
+                .catch(() => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    apply(FALLBACK_RATE);
                 });
         })();
 
