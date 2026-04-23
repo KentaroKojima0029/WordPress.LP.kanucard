@@ -603,7 +603,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 <h2 class="section-title">
                     なぜカヌカードが選ばれるのか
                     <small style="display: block; font-size: 0.5em; font-weight: 400; margin-top: 10px;">
-                        他社にはない5つの圧倒的優位性
+                        他社にはない5つの優位性
                     </small>
                 </h2>
                 <div class="solutions-grid">
