@@ -18,7 +18,15 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://daiko.kanucard.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        #heroCardCount, #statCardCount, #solutionCardCount { visibility: hidden; }
+        .psa-count-loaded #heroCardCount,
+        .psa-count-loaded #statCardCount,
+        .psa-count-loaded #solutionCardCount { visibility: visible; }
+    </style>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -555,18 +563,43 @@
     <!-- Scripts -->
     <script src="js/script.js"></script>
     <script>
-        fetch('https://daiko.kanucard.com/api/public/total-cards')
-            .then(r => r.json())
-            .then(data => {
-                if (data.success && data.total) {
-                    const text = data.total.toLocaleString() + '枚以上';
-                    ['heroCardCount', 'statCardCount', 'solutionCardCount'].forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el) el.textContent = text;
-                    });
-                }
-            })
-            .catch(() => {});
+        (function() {
+            const ids = ['heroCardCount', 'statCardCount', 'solutionCardCount'];
+            const FALLBACK_TEXT = '8,000枚以上';
+            const TIMEOUT_MS = 4000;
+
+            const apply = (text) => {
+                ids.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.textContent = text;
+                });
+                document.body.classList.add('psa-count-loaded');
+            };
+
+            let done = false;
+            const timer = setTimeout(() => {
+                if (!done) { done = true; apply(FALLBACK_TEXT); }
+            }, TIMEOUT_MS);
+
+            fetch('https://daiko.kanucard.com/api/public/total-cards')
+                .then(r => r.json())
+                .then(data => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    if (data && data.success && data.total) {
+                        apply(data.total.toLocaleString() + '枚以上');
+                    } else {
+                        apply(FALLBACK_TEXT);
+                    }
+                })
+                .catch(() => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    apply(FALLBACK_TEXT);
+                });
+        })();
     </script>
 </body>
 </html>
