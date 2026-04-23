@@ -665,11 +665,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="result-label">PSA10取得数</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
-                        <div class="result-number"><span class="psa10-rate-num">94<span class="psa10-rate-decimal">.4</span></span><span class="psa10-rate-unit">％</span></div>
+                        <div class="result-number"><span class="psa10-rate-num" data-count="94.4" data-decimal-class="psa10-rate-decimal">94<span class="psa10-rate-decimal">.4</span></span><span class="psa10-rate-unit">％</span></div>
                         <div class="result-label">平均PSA10取得率</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="200">
-                        <div class="result-number"><span data-count="98">0</span><small>%</small></div>
+                        <div class="result-number">98<small>%</small></div>
                         <div class="result-label">顧客満足度</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="300">
@@ -1770,7 +1770,16 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 const html = parts.length > 1
                     ? parts[0] + '<span class="psa10-rate-decimal">.' + parts[1] + '</span>'
                     : parts[0];
-                document.querySelectorAll('.psa10-rate-num').forEach(el => { el.innerHTML = html; });
+                document.querySelectorAll('.psa10-rate-num').forEach(el => {
+                    el.setAttribute('data-count', text);
+                    // カウントアニメ未トリガーまたは完了済みの判定:
+                    // 初期テキスト(94.4)のままなら未トリガー → data-countのみ更新で次のアニメに使われる
+                    // アニメ完了後(textContent === 旧値)なら表示も上書き
+                    const cur = (el.textContent || '').replace(/[, ]/g, '');
+                    if (cur && cur !== '0' && cur !== '0.0') {
+                        el.innerHTML = html;
+                    }
+                });
                 document.body.classList.add('psa-rate-loaded');
             };
 

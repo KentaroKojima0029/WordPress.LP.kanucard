@@ -167,7 +167,8 @@
      * カウンターアニメーション
      */
     function initCounterAnimation() {
-        const counters = document.querySelectorAll('.result-number[data-count]');
+        // .result-number 配下の data-count を持つ span を対象（旧セレクタは要素自体に data-count を要求していたため不発）
+        const counters = document.querySelectorAll('.result-number [data-count], .result-number[data-count]');
         let animated = false;
 
         const observerOptions = {
@@ -189,9 +190,26 @@
             observer.observe(counters[0].closest('.results-stats'));
         }
 
+        function render(counter, value, isDecimal, decimalClass) {
+            if (isDecimal) {
+                const v = value.toFixed(1);
+                const parts = v.split('.');
+                const intPart = Number(parts[0]).toLocaleString();
+                counter.innerHTML = decimalClass
+                    ? intPart + '<span class="' + decimalClass + '">.' + parts[1] + '</span>'
+                    : intPart + '.' + parts[1];
+            } else {
+                counter.textContent = Math.floor(value).toLocaleString();
+            }
+        }
+
         function animateCounters() {
             counters.forEach(function(counter) {
-                const target = parseInt(counter.getAttribute('data-count'));
+                const targetStr = counter.getAttribute('data-count');
+                const target = parseFloat(targetStr);
+                if (isNaN(target) || target <= 0) return;
+                const isDecimal = targetStr.indexOf('.') !== -1;
+                const decimalClass = counter.getAttribute('data-decimal-class') || '';
                 const duration = 1000;
                 const step = target / (duration / 16);
                 let current = 0;
@@ -199,10 +217,10 @@
                 const updateCounter = function() {
                     current += step;
                     if (current < target) {
-                        counter.textContent = Math.floor(current).toLocaleString();
+                        render(counter, current, isDecimal, decimalClass);
                         requestAnimationFrame(updateCounter);
                     } else {
-                        counter.textContent = target.toLocaleString();
+                        render(counter, target, isDecimal, decimalClass);
                     }
                 };
 
