@@ -127,7 +127,14 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://daiko.kanucard.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        .total-cards-text, .total-cards-num { visibility: hidden; }
+        .psa-count-loaded .total-cards-text,
+        .psa-count-loaded .total-cards-num { visibility: visible; }
+    </style>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1704,16 +1711,52 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js?v=<?php echo time(); ?>"></script>
 
     <script>
-        fetch('https://daiko.kanucard.com/api/public/total-cards')
-            .then(r => r.json())
-            .then(data => {
-                if (data.success && data.total) {
-                    const text = data.total.toLocaleString() + '枚以上';
-                    document.querySelectorAll('.total-cards-text').forEach(el => { el.textContent = text; });
-                    document.querySelectorAll('.total-cards-num').forEach(el => { el.textContent = data.total.toLocaleString(); });
-                }
-            })
-            .catch(() => {});
+        (function() {
+            const FALLBACK_NUM = 8000;
+            const TIMEOUT_MS = 4000;
+
+            const apply = (num) => {
+                const text = num.toLocaleString() + '枚以上';
+                const numText = num.toLocaleString();
+                document.querySelectorAll('.total-cards-text').forEach(el => { el.textContent = text; });
+                document.querySelectorAll('.total-cards-num').forEach(el => { el.textContent = numText; });
+                document.querySelectorAll('.result-number [data-count]').forEach(el => {
+                    const current = parseInt(el.getAttribute('data-count'), 10);
+                    if (current === 7000) {
+                        el.setAttribute('data-count', String(num));
+                        // カウントアニメ完了後の場合は表示も更新
+                        if (el.textContent && el.textContent !== '0' && parseInt(el.textContent.replace(/,/g, ''), 10) === 7000) {
+                            el.textContent = numText;
+                        }
+                    }
+                });
+                document.body.classList.add('psa-count-loaded');
+            };
+
+            let done = false;
+            const timer = setTimeout(() => {
+                if (!done) { done = true; apply(FALLBACK_NUM); }
+            }, TIMEOUT_MS);
+
+            fetch('https://daiko.kanucard.com/api/public/total-cards')
+                .then(r => r.json())
+                .then(data => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    if (data && data.success && data.total) {
+                        apply(data.total);
+                    } else {
+                        apply(FALLBACK_NUM);
+                    }
+                })
+                .catch(() => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    apply(FALLBACK_NUM);
+                });
+        })();
     </script>
 
     <?php wp_footer(); ?>
