@@ -699,7 +699,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <i class="fas fa-quote-left" style="color: var(--secondary); margin-right: 10px;"></i>
                         お客様からいただいた口コミ
                     </h3>
-                    <p class="testimonials-thanks">ご利用下さったお客様<br>ありがとうございました！</p>
+                    <p class="testimonials-thanks">ご利用ありがとうございました！</p>
 
                     <div class="testimonial-slider-wrapper">
                         <div class="testimonial-slider">
