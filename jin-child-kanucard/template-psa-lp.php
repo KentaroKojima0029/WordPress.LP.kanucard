@@ -195,9 +195,10 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             }
 
             .hero-title small {
-                font-size: 0.9rem !important;
+                font-size: 2.25rem !important;
                 display: block !important;
                 margin-top: 0.5rem !important;
+                line-height: 1.3 !important;
             }
 
             .hero-subtitle {
@@ -346,7 +347,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             }
 
             .hero-title small {
-                font-size: 0.8rem !important;
+                font-size: 2rem !important;
             }
 
             .section-title {
