@@ -134,6 +134,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         .total-cards-text, .total-cards-num { visibility: hidden; }
         .psa-count-loaded .total-cards-text,
         .psa-count-loaded .total-cards-num { visibility: visible; }
+        .total-inspections-num { visibility: hidden; }
+        .psa-inspections-loaded .total-inspections-num { visibility: visible; }
     </style>
 
     <!-- Font Awesome -->
@@ -668,8 +670,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="result-label">顧客満足度</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="300">
-                        <div class="result-number"><span data-count="0">0</span><small>件</small></div>
-                        <div class="result-label">事故・紛失</div>
+                        <div class="result-number"><span class="total-inspections-num" data-count="9718">0</span><small>枚</small></div>
+                        <div class="result-label">検品枚数</div>
                     </div>
                 </div>
 
@@ -1711,6 +1713,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js?v=<?php echo time(); ?>"></script>
 
     <script>
+        // PSA10実績カウント取得
         (function() {
             const FALLBACK_NUM = 8000;
             const TIMEOUT_MS = 4000;
@@ -1724,7 +1727,6 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     const current = parseInt(el.getAttribute('data-count'), 10);
                     if (current === 7000) {
                         el.setAttribute('data-count', String(num));
-                        // カウントアニメ完了後の場合は表示も更新
                         if (el.textContent && el.textContent !== '0' && parseInt(el.textContent.replace(/,/g, ''), 10) === 7000) {
                             el.textContent = numText;
                         }
@@ -1744,11 +1746,46 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     if (done) return;
                     done = true;
                     clearTimeout(timer);
-                    if (data && data.success && data.total) {
-                        apply(data.total);
-                    } else {
-                        apply(FALLBACK_NUM);
+                    apply(data && data.success && data.total ? data.total : FALLBACK_NUM);
+                })
+                .catch(() => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    apply(FALLBACK_NUM);
+                });
+        })();
+
+        // 検品枚数（累積申請枚数）取得
+        (function() {
+            const FALLBACK_NUM = 9718;
+            const TIMEOUT_MS = 4000;
+
+            const apply = (num) => {
+                const numText = num.toLocaleString();
+                document.querySelectorAll('.total-inspections-num').forEach(el => {
+                    el.setAttribute('data-count', String(num));
+                    // カウントアニメ完了後の場合のみ表示も上書き
+                    const cur = el.textContent ? parseInt(el.textContent.replace(/,/g, ''), 10) : 0;
+                    if (cur && cur !== 0) {
+                        el.textContent = numText;
                     }
+                });
+                document.body.classList.add('psa-inspections-loaded');
+            };
+
+            let done = false;
+            const timer = setTimeout(() => {
+                if (!done) { done = true; apply(FALLBACK_NUM); }
+            }, TIMEOUT_MS);
+
+            fetch('https://daiko.kanucard.com/api/public/total-inspections')
+                .then(r => r.json())
+                .then(data => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    apply(data && data.success && data.total ? data.total : FALLBACK_NUM);
                 })
                 .catch(() => {
                     if (done) return;
