@@ -653,6 +653,14 @@ function psa_lp_contacts_page() {
 }
 
 /**
+ * 利用者口コミ用の共通アイキャッチ画像のメディアID
+ * 変更が必要な場合はこの定数 or 'kanucard_review_eyecatch_id' option を更新する
+ */
+if ( ! defined( 'KANUCARD_REVIEW_EYECATCH_ID' ) ) {
+    define( 'KANUCARD_REVIEW_EYECATCH_ID', 1165 );
+}
+
+/**
  * 口コミ投稿時に「利用者口コミ」カテゴリの下書きを自動作成
  */
 function kanucard_create_review_draft( $name, $rating, $message ) {
@@ -686,7 +694,17 @@ function kanucard_create_review_draft( $name, $rating, $message ) {
         'post_category' => array( $cat_id ),
     );
 
-    wp_insert_post( $post_data );
+    $post_id = wp_insert_post( $post_data );
+
+    // 共通アイキャッチを設定（option 上書きがあれば優先）
+    if ( $post_id && ! is_wp_error( $post_id ) ) {
+        $eyecatch_id = (int) get_option( 'kanucard_review_eyecatch_id', KANUCARD_REVIEW_EYECATCH_ID );
+        if ( $eyecatch_id > 0 ) {
+            set_post_thumbnail( $post_id, $eyecatch_id );
+        }
+    }
+
+    return $post_id;
 }
 
 /**
