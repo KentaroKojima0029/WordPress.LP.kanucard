@@ -668,7 +668,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
                         <div class="result-number"><span class="psa10-rate-num" data-count="94.4" data-decimal-class="psa10-rate-decimal">94<span class="psa10-rate-decimal">.4</span></span><span class="psa10-rate-unit">％</span></div>
-                        <div class="result-label">平均PSA10取得率</div>
+                        <div class="result-label">平均PSA10取得率<br>※無料検品後の数値</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="200">
                         <div class="result-number">98<small>%</small></div>
@@ -676,7 +676,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="300">
                         <div class="result-number"><span class="total-inspections-num" data-count="9718">0</span><small>枚</small></div>
-                        <div class="result-label">検品枚数</div>
+                        <div class="result-label">総依頼枚数</div>
                     </div>
                 </div>
 
