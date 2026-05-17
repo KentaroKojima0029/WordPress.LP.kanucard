@@ -139,6 +139,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         .psa10-rate-num { visibility: hidden; }
         .psa-rate-loaded .psa10-rate-num { visibility: visible; }
         .psa10-rate-decimal, .psa10-rate-unit { font-size: 0.7em; }
+        .psa10-rate-inline .psa10-rate-decimal { font-size: 1em; }
     </style>
 
     <!-- Font Awesome -->
@@ -644,7 +645,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-medal"></i>
                         </div>
                         <h3><span class="total-cards-text">7,000枚以上</span>の実績</h3>
-                        <p>PSA10の取得率は90%超<br>顧客満足度の高い実績</p>
+                        <p>PSA10の取得率は<span class="psa10-rate-num psa10-rate-inline" data-count="94.4" data-decimal-class="psa10-rate-decimal">94<span class="psa10-rate-decimal">.4</span></span>%<br>顧客満足度の高い実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                 </div>
