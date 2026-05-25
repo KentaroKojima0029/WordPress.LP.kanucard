@@ -141,6 +141,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 
         if ( empty( $psa_review_error ) ) {
             // 口コミをデータベースに保存
+            // 取得直前にオブジェクトキャッシュを破棄して、必ず最新のDB値を読む
+            wp_cache_delete( 'psa_lp_reviews', 'options' );
+            wp_cache_delete( 'alloptions', 'options' );
+            wp_cache_delete( 'notoptions', 'options' );
+
             $reviews = get_option('psa_lp_reviews', array());
             if ( ! is_array( $reviews ) ) { $reviews = array(); }
             $psa_review_debug['reviews_before'] = count( $reviews );
@@ -158,7 +163,41 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             );
             $reviews[] = $new_review;
 
-            $psa_review_debug['update_option'] = update_option('psa_lp_reviews', $reviews);
+            // autoload を明示的に 'no' にすることで autoload サイズ上限による silent fail を回避
+            $psa_review_debug['update_option'] = update_option( 'psa_lp_reviews', $reviews, false );
+
+            // update_option が false を返した場合、または念のためのフォールバックとして
+            // wpdb 経由で直接 wp_options に書き込む
+            if ( ! $psa_review_debug['update_option'] ) {
+                global $wpdb;
+                $serialized = maybe_serialize( $reviews );
+                $existing   = $wpdb->get_var( $wpdb->prepare(
+                    "SELECT option_id FROM {$wpdb->options} WHERE option_name = %s",
+                    'psa_lp_reviews'
+                ) );
+                if ( $existing ) {
+                    $wpdb->update(
+                        $wpdb->options,
+                        array( 'option_value' => $serialized, 'autoload' => 'no' ),
+                        array( 'option_name' => 'psa_lp_reviews' )
+                    );
+                } else {
+                    $wpdb->insert(
+                        $wpdb->options,
+                        array(
+                            'option_name'  => 'psa_lp_reviews',
+                            'option_value' => $serialized,
+                            'autoload'     => 'no',
+                        )
+                    );
+                }
+                $psa_review_debug['update_option'] = 'fallback_wpdb';
+            }
+
+            // 書き込み直後にもキャッシュを無効化
+            wp_cache_delete( 'psa_lp_reviews', 'options' );
+            wp_cache_delete( 'alloptions', 'options' );
+            wp_cache_delete( 'notoptions', 'options' );
 
             // 直後に読み戻して件数を記録（実際にDBに書かれたか確認）
             $verify = get_option('psa_lp_reviews', array());

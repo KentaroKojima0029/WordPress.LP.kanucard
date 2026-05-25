@@ -256,7 +256,12 @@ function psa_lp_reviews_admin_menu() {
 add_action( 'admin_menu', 'psa_lp_reviews_admin_menu' );
 
 function psa_lp_reviews_admin_page() {
+    // オブジェクトキャッシュが古い値を返すケースがあるため強制無効化してから読む
+    wp_cache_delete( 'psa_lp_reviews', 'options' );
+    wp_cache_delete( 'alloptions', 'options' );
+    wp_cache_delete( 'notoptions', 'options' );
     $reviews = get_option( 'psa_lp_reviews', array() );
+    if ( ! is_array( $reviews ) ) { $reviews = array(); }
 
     // 口コミ削除処理
     if ( isset( $_GET['delete_review'] ) && isset( $_GET['_wpnonce'] ) ) {
