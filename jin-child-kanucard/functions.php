@@ -315,14 +315,28 @@ function psa_lp_reviews_admin_page() {
     }
 
     // 編集保存（お名前・メッセージ）
+    // post_meta（LP / 管理画面表示用）と post_content（WP投稿エリア表示用）の両方を更新し、
+    // 個人情報削除等の編集が WP 投稿側にも確実に反映されるようにする。
     if ( isset( $_POST['save_review'] ) && isset( $_POST['_wpnonce'] ) && isset( $_POST['review_id'] ) ) {
         $rid = intval( $_POST['review_id'] );
         if ( $rid && wp_verify_nonce( $_POST['_wpnonce'], 'save_review_' . $rid ) ) {
             $new_name    = sanitize_text_field( wp_unslash( $_POST['review_name'] ?? '' ) );
             $new_message = sanitize_textarea_field( wp_unslash( $_POST['review_message'] ?? '' ) );
+
             update_post_meta( $rid, '_psa_review_name', $new_name );
             update_post_meta( $rid, '_psa_review_message', $new_message );
-            echo '<div class="notice notice-success"><p>口コミを更新しました。</p></div>';
+
+            // 既存のメタから rating と attachment_id を読み出して post_content を再構築
+            $rating        = (int) get_post_meta( $rid, '_psa_review_rating', true );
+            $attachment_id = (int) get_post_meta( $rid, '_psa_review_attachment_id', true );
+            $new_content   = kanucard_build_review_content( $new_name, $rating, $new_message, $attachment_id );
+
+            wp_update_post( array(
+                'ID'           => $rid,
+                'post_content' => $new_content,
+            ) );
+
+            echo '<div class="notice notice-success"><p>口コミを更新しました。（WP投稿の本文にも反映済み）</p></div>';
         }
     }
 
@@ -840,6 +854,28 @@ function kanucard_get_reviews( $args = array() ) {
 }
 
 /**
+ * 口コミ投稿の post_content を組み立てる共通ビルダー。
+ * 作成時と管理画面の編集保存時の両方で使い、表示の整合性を保つ。
+ */
+function kanucard_build_review_content( $name, $rating, $message, $attachment_id = 0 ) {
+    $rating = max( 0, min( 5, (int) $rating ) );
+    $stars  = str_repeat( '★', $rating ) . str_repeat( '☆', 5 - $rating );
+
+    $content  = '<p><strong>投稿者：</strong>' . esc_html( $name ) . '</p>' . "\n";
+    $content .= '<p><strong>評価：</strong>' . $stars . '（' . $rating . '/5）</p>' . "\n";
+    $content .= '<p><strong>内容：</strong></p>' . "\n";
+    $content .= '<blockquote>' . nl2br( esc_html( $message ) ) . '</blockquote>';
+
+    if ( $attachment_id ) {
+        $img_html = wp_get_attachment_image( (int) $attachment_id, 'large' );
+        if ( $img_html ) {
+            $content .= "\n" . '<p><strong>添付画像：</strong></p>' . "\n" . $img_html;
+        }
+    }
+    return $content;
+}
+
+/**
  * 口コミ投稿時に「利用者口コミ」カテゴリの下書きを自動作成
  *
  * @param string $name           投稿者名
@@ -857,20 +893,8 @@ function kanucard_create_review_draft( $name, $rating, $message, $attachment_id 
     $date_str = current_time( 'Y年n月j日' );
     $title = '（' . $date_str . '）の口コミ';
 
-    // 本文：口コミ内容を整形
-    $stars = str_repeat( '★', $rating ) . str_repeat( '☆', 5 - $rating );
-    $content  = '<p><strong>投稿者：</strong>' . esc_html( $name ) . '</p>' . "\n";
-    $content .= '<p><strong>評価：</strong>' . $stars . '（' . $rating . '/5）</p>' . "\n";
-    $content .= '<p><strong>内容：</strong></p>' . "\n";
-    $content .= '<blockquote>' . nl2br( esc_html( $message ) ) . '</blockquote>';
-
-    // 添付画像が指定されていれば本文末尾に挿入（メディアライブラリに登録済み）
-    if ( $attachment_id ) {
-        $img_html = wp_get_attachment_image( $attachment_id, 'large' );
-        if ( $img_html ) {
-            $content .= "\n" . '<p><strong>添付画像：</strong></p>' . "\n" . $img_html;
-        }
-    }
+    // 本文を共通ビルダーで生成
+    $content = kanucard_build_review_content( $name, $rating, $message, $attachment_id );
 
     $post_data = array(
         'post_title'    => $title,
