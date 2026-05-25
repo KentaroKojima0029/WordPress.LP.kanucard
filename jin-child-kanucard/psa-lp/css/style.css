@@ -735,9 +735,20 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* スクロール位置調整 */
-#guarantee-explanation {
+/* スクロール位置調整: 固定ヘッダー（.site-header）がアンカー先のタイトルを覆わないように
+   各セクションにスクロールマージンを確保する */
+#guarantee-explanation,
+#review,
+section[id] {
     scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+    #guarantee-explanation,
+    #review,
+    section[id] {
+        scroll-margin-top: 80px;
+    }
 }
 
 .hero-stats {
