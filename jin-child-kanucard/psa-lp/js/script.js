@@ -345,9 +345,48 @@
         // 必要に応じて追加の処理をここに記述
     }
 
+    /**
+     * 口コミフォーム - 画像アップロードのプレビューとサイズ検証
+     */
+    function initReviewFormImagePreview() {
+        var input = document.getElementById('review_image');
+        var preview = document.getElementById('reviewImagePreview');
+        if (!input || !preview) return;
+        var previewImg = preview.querySelector('img');
+        var MAX_BYTES = 5 * 1024 * 1024; // 5MB
+
+        input.addEventListener('change', function() {
+            var file = input.files && input.files[0];
+            if (!file) {
+                preview.style.display = 'none';
+                previewImg.src = '';
+                return;
+            }
+            if (!/^image\/(jpeg|png|webp|gif)$/.test(file.type)) {
+                alert('対応していない画像形式です。JPG / PNG / WebP / GIF を選択してください。');
+                input.value = '';
+                preview.style.display = 'none';
+                return;
+            }
+            if (file.size > MAX_BYTES) {
+                alert('画像サイズが大きすぎます（最大5MB）。別の画像を選択してください。');
+                input.value = '';
+                preview.style.display = 'none';
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
     // 口コミフォーム機能を初期化
     initReviewFormCharCounter();
     initReviewFormStarRating();
+    initReviewFormImagePreview();
 
     /**
      * 口コミスライダー
@@ -421,11 +460,17 @@
             var name = card.querySelector('.testimonial-info h4');
             var stars = card.querySelector('.stars');
             var text = card.querySelector('.testimonial-text');
+            var imageWrap = card.querySelector('.testimonial-image-wrap');
             var result = card.querySelector('.testimonial-result');
 
             document.getElementById('reviewDetailName').innerHTML = name ? name.innerHTML : '';
             document.getElementById('reviewDetailStars').innerHTML = stars ? stars.innerHTML : '';
             document.getElementById('reviewDetailText').innerHTML = text ? text.innerHTML : '';
+            var detailImage = document.getElementById('reviewDetailImage');
+            if (detailImage) {
+                detailImage.innerHTML = imageWrap ? imageWrap.innerHTML : '';
+                detailImage.style.display = imageWrap ? '' : 'none';
+            }
             document.getElementById('reviewDetailResult').innerHTML = result ? result.innerHTML : '';
 
             overlay.classList.add('is-open');

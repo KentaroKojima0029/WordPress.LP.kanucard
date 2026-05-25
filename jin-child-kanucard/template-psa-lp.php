@@ -73,39 +73,71 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     } elseif ($review_rating < 1 || $review_rating > 5) {
         $psa_review_error = '評価は1〜5の範囲で選択してください。';
     } else {
-        // 口コミをデータベースに保存
-        $reviews = get_option('psa_lp_reviews', array());
-        $new_review = array(
-            'id' => uniqid(),
-            'name' => $review_name,
-            'email' => $review_email,
-            'rating' => $review_rating,
-            'message' => $review_message,
-            'date' => current_time('Y-m-d H:i:s'),
-            'status' => 'pending'
-        );
-        $reviews[] = $new_review;
-        update_option('psa_lp_reviews', $reviews);
+        // 画像アップロード処理（任意）
+        $attachment_id = 0;
+        if ( ! empty( $_FILES['review_image']['name'] ) && empty( $_FILES['review_image']['error'] ) ) {
+            $allowed_mimes = array( 'image/jpeg', 'image/png', 'image/webp', 'image/gif' );
+            $max_bytes     = 5 * 1024 * 1024;
+            $file          = $_FILES['review_image'];
+            $file_type     = wp_check_filetype( $file['name'] );
+            $mime_ok       = in_array( $file['type'], $allowed_mimes, true ) || in_array( $file_type['type'], $allowed_mimes, true );
 
-        // 口コミを「利用者口コミ」カテゴリの下書き投稿として作成
-        kanucard_create_review_draft( $review_name, $review_rating, $review_message );
+            if ( ! $mime_ok ) {
+                $psa_review_error = '画像の形式が無効です（JPG / PNG / WebP / GIF のみ対応）。';
+            } elseif ( $file['size'] > $max_bytes ) {
+                $psa_review_error = '画像サイズが大きすぎます（最大5MB）。';
+            } else {
+                require_once ABSPATH . 'wp-admin/includes/file.php';
+                require_once ABSPATH . 'wp-admin/includes/image.php';
+                require_once ABSPATH . 'wp-admin/includes/media.php';
+                $attachment_id = media_handle_upload( 'review_image', 0 );
+                if ( is_wp_error( $attachment_id ) ) {
+                    $psa_review_error = '画像のアップロードに失敗しました：' . $attachment_id->get_error_message();
+                    $attachment_id   = 0;
+                }
+            }
+        }
 
-        // メール送信を試みる
-        $to = 'contact@kanucard.com';
-        $subject = 'PSA代行LPに新しい口コミが投稿されました';
-        $email_message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
-        $email_message .= "お名前: " . $review_name . "\n";
-        $email_message .= "評価: " . str_repeat('★', $review_rating) . str_repeat('☆', 5 - $review_rating) . " (" . $review_rating . "/5)\n";
-        $email_message .= "メッセージ:\n" . $review_message . "\n\n";
-        $email_message .= "投稿日時: " . current_time('Y-m-d H:i:s') . "\n";
-        $headers = array('Content-Type: text/plain; charset=UTF-8');
-        wp_mail($to, $subject, $email_message, $headers);
+        if ( empty( $psa_review_error ) ) {
+            // 口コミをデータベースに保存
+            $reviews     = get_option('psa_lp_reviews', array());
+            $new_review  = array(
+                'id'            => uniqid(),
+                'name'          => $review_name,
+                'email'         => $review_email,
+                'rating'        => $review_rating,
+                'message'       => $review_message,
+                'date'          => current_time('Y-m-d H:i:s'),
+                'status'        => 'pending',
+                'attachment_id' => $attachment_id,
+                'show_image'    => true, // 承認時にデフォルトで画像も表示
+            );
+            $reviews[] = $new_review;
+            update_option('psa_lp_reviews', $reviews);
 
-        // PRGパターン: リダイレクトして重複送信を防止
-        $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
-        $redirect_url = add_query_arg('review_submitted', '1', $current_url) . '#review';
-        wp_safe_redirect($redirect_url);
-        exit;
+            // 口コミを「利用者口コミ」カテゴリの下書き投稿として作成
+            kanucard_create_review_draft( $review_name, $review_rating, $review_message, $attachment_id );
+
+            // メール送信を試みる
+            $to = 'contact@kanucard.com';
+            $subject = 'PSA代行LPに新しい口コミが投稿されました';
+            $email_message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
+            $email_message .= "お名前: " . $review_name . "\n";
+            $email_message .= "評価: " . str_repeat('★', $review_rating) . str_repeat('☆', 5 - $review_rating) . " (" . $review_rating . "/5)\n";
+            $email_message .= "メッセージ:\n" . $review_message . "\n\n";
+            if ( $attachment_id ) {
+                $email_message .= "添付画像: " . wp_get_attachment_url( $attachment_id ) . "\n\n";
+            }
+            $email_message .= "投稿日時: " . current_time('Y-m-d H:i:s') . "\n";
+            $headers = array('Content-Type: text/plain; charset=UTF-8');
+            wp_mail($to, $subject, $email_message, $headers);
+
+            // PRGパターン: リダイレクトして重複送信を防止
+            $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
+            $redirect_url = add_query_arg('review_submitted', '1', $current_url) . '#review';
+            wp_safe_redirect($redirect_url);
+            exit;
+        }
     }
 }
 ?>
@@ -701,7 +733,14 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="testimonial-slider">
                             <!-- 動的口コミ（承認済み・最新順） -->
                             <?php foreach ( $approved_reviews as $rev ) : ?>
-                            <div class="testimonial-card testimonial-slide">
+                            <?php
+                            $rev_att_id     = isset( $rev['attachment_id'] ) ? (int) $rev['attachment_id'] : 0;
+                            $rev_show_image = ! empty( $rev['show_image'] );
+                            $rev_image_html = ( $rev_att_id && $rev_show_image )
+                                ? wp_get_attachment_image( $rev_att_id, 'medium', false, array( 'class' => 'testimonial-image', 'loading' => 'lazy', 'alt' => '' ) )
+                                : '';
+                            ?>
+                            <div class="testimonial-card testimonial-slide<?php echo $rev_image_html ? ' has-image' : ''; ?>">
                                 <div class="testimonial-quote">"</div>
                                 <div class="testimonial-header">
                                     <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
@@ -720,6 +759,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 <p class="testimonial-text">
                                     <?php echo nl2br( esc_html( $rev['message'] ) ); ?>
                                 </p>
+                                <?php if ( $rev_image_html ) : ?>
+                                    <div class="testimonial-image-wrap">
+                                        <?php echo $rev_image_html; ?>
+                                    </div>
+                                <?php endif; ?>
                                 <p class="tap-hint"><i class="fas fa-hand-pointer"></i> タップで全文表示</p>
                                 <div class="testimonial-result">
                                     <span style="color: #888; font-size: 0.85em;">
@@ -825,6 +869,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             </div>
                         </div>
                         <div class="review-detail-text" id="reviewDetailText"></div>
+                        <div class="review-detail-image" id="reviewDetailImage"></div>
                         <div class="review-detail-result" id="reviewDetailResult"></div>
                     </div>
                 </div>
@@ -1391,7 +1436,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                 <?php endif; ?>
 
-                <form method="post" class="review-form" id="reviewForm">
+                <form method="post" class="review-form" id="reviewForm" enctype="multipart/form-data">
                     <?php wp_nonce_field('psa_review_form', 'psa_review_nonce'); ?>
 
                     <div class="form-group">
@@ -1460,6 +1505,25 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             required
                         ><?php echo isset($_POST['review_message']) ? esc_textarea($_POST['review_message']) : ''; ?></textarea>
                         <p class="char-count"><span id="charCount">0</span> / 1000文字</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review_image">
+                            <i class="fas fa-image"></i> 画像（任意）
+                        </label>
+                        <input
+                            type="file"
+                            id="review_image"
+                            name="review_image"
+                            accept="image/jpeg,image/png,image/webp,image/gif"
+                        >
+                        <p class="form-note">
+                            鑑定結果や届いたカードなどの画像を添付できます。<br>
+                            ※ JPG / PNG / WebP / GIF、最大5MBまで。掲載可否は管理者が確認のうえ決定します。
+                        </p>
+                        <div id="reviewImagePreview" class="review-image-preview" style="display:none; margin-top:10px;">
+                            <img src="" alt="プレビュー" style="max-width:200px; max-height:200px; border-radius:6px; border:1px solid #ddd;">
+                        </div>
                     </div>
 
                     <div class="form-submit">

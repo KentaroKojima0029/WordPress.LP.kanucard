@@ -328,6 +328,21 @@ function psa_lp_reviews_admin_page() {
         }
     }
 
+    // 「LPに画像を表示」のトグル処理
+    if ( isset( $_GET['toggle_image'] ) && isset( $_GET['_wpnonce'] ) ) {
+        if ( wp_verify_nonce( $_GET['_wpnonce'], 'toggle_image_' . $_GET['toggle_image'] ) ) {
+            foreach ( $reviews as &$r ) {
+                if ( $r['id'] === $_GET['toggle_image'] ) {
+                    $r['show_image'] = empty( $r['show_image'] );
+                    break;
+                }
+            }
+            unset( $r );
+            update_option( 'psa_lp_reviews', $reviews );
+            echo '<div class="notice notice-success"><p>画像の表示設定を更新しました。</p></div>';
+        }
+    }
+
     // 口コミ編集保存処理（お名前・メッセージ）
     if ( isset( $_POST['save_review'] ) && isset( $_POST['_wpnonce'] ) && isset( $_POST['review_id'] ) ) {
         $rid = sanitize_text_field( $_POST['review_id'] );
@@ -372,6 +387,10 @@ function psa_lp_reviews_admin_page() {
         .psa-edit-row td { padding: 12px !important; }
         .psa-edit-row input[type="text"] { width: 100%; }
         .psa-edit-row textarea { width: 100%; min-height: 80px; }
+        .psa-review-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; display: block; }
+        .psa-review-thumb-link { display: inline-block; }
+        .psa-badge-image-on { background: #2271b1; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+        .psa-badge-image-off { background: #8c8f94; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
     </style>
     <div class="wrap">
         <h1>PSA LP 口コミ管理</h1>
@@ -392,12 +411,13 @@ function psa_lp_reviews_admin_page() {
                     <tr>
                         <th style="width: 40px;">状態</th>
                         <th style="width: 60px;">公開</th>
+                        <th style="width: 80px;">画像</th>
                         <th style="width: 120px;">投稿日時</th>
                         <th style="width: 100px;">お名前</th>
                         <th style="width: 180px;">メールアドレス</th>
                         <th style="width: 80px;">評価</th>
                         <th>メッセージ</th>
-                        <th style="width: 200px;">操作</th>
+                        <th style="width: 240px;">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -409,7 +429,7 @@ function psa_lp_reviews_admin_page() {
                         ?>
                         <?php if ( $is_editing ): ?>
                         <tr class="psa-edit-row">
-                            <td colspan="8">
+                            <td colspan="9">
                                 <form method="post" action="<?php echo esc_url( admin_url( 'admin.php?page=psa-lp-reviews' ) ); ?>">
                                     <?php wp_nonce_field( 'save_review_' . $review['id'] ); ?>
                                     <input type="hidden" name="review_id" value="<?php echo esc_attr( $review['id'] ); ?>">
@@ -445,6 +465,28 @@ function psa_lp_reviews_admin_page() {
                                     <span class="psa-badge-pending">非公開</span>
                                 <?php endif; ?>
                             </td>
+                            <td>
+                                <?php
+                                $att_id    = isset( $review['attachment_id'] ) ? (int) $review['attachment_id'] : 0;
+                                $show_img  = ! empty( $review['show_image'] );
+                                if ( $att_id ) :
+                                    $thumb_url = wp_get_attachment_image_url( $att_id, 'thumbnail' );
+                                    $full_url  = wp_get_attachment_url( $att_id );
+                                    ?>
+                                    <a href="<?php echo esc_url( $full_url ); ?>" target="_blank" rel="noopener" class="psa-review-thumb-link" title="クリックで原寸表示">
+                                        <img src="<?php echo esc_url( $thumb_url ); ?>" alt="" class="psa-review-thumb">
+                                    </a>
+                                    <div style="margin-top:4px;">
+                                        <?php if ( $show_img ): ?>
+                                            <span class="psa-badge-image-on" title="LPの口コミエリアに画像も表示されます">LP表示中</span>
+                                        <?php else: ?>
+                                            <span class="psa-badge-image-off" title="承認しても画像は出ません">LP非表示</span>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php else: ?>
+                                    <span style="color:#999;">—</span>
+                                <?php endif; ?>
+                            </td>
                             <td><?php echo esc_html( $review['date'] ); ?></td>
                             <td><?php echo esc_html( $review['name'] ); ?></td>
                             <td><?php echo esc_html( isset( $review['email'] ) ? $review['email'] : '' ); ?></td>
@@ -459,6 +501,12 @@ function psa_lp_reviews_admin_page() {
                                 <?php else: ?>
                                     <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&approve_review=' . $review['id'] ), 'approve_review_' . $review['id'] ); ?>"
                                        class="button button-small" style="background: #00a32a; color: #fff; border-color: #00a32a;">承認（公開）</a>
+                                <?php endif; ?>
+                                <?php if ( $att_id ): ?>
+                                    <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&toggle_image=' . $review['id'] ), 'toggle_image_' . $review['id'] ); ?>"
+                                       class="button button-small" title="LP上で画像を表示するか切り替え">
+                                        <?php echo $show_img ? '画像を隠す' : '画像を表示'; ?>
+                                    </a>
                                 <?php endif; ?>
                                 <?php if ( $is_unread ): ?>
                                     <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&mark_read=' . $review['id'] ), 'mark_read_' . $review['id'] ); ?>"
@@ -662,8 +710,13 @@ if ( ! defined( 'KANUCARD_REVIEW_EYECATCH_ID' ) ) {
 
 /**
  * 口コミ投稿時に「利用者口コミ」カテゴリの下書きを自動作成
+ *
+ * @param string $name           投稿者名
+ * @param int    $rating         星評価
+ * @param string $message        本文
+ * @param int    $attachment_id  ユーザー添付画像のメディアID（0 = なし）
  */
-function kanucard_create_review_draft( $name, $rating, $message ) {
+function kanucard_create_review_draft( $name, $rating, $message, $attachment_id = 0 ) {
     // 「利用者口コミ」カテゴリを取得（なければ作成）
     $cat_name = '利用者口コミ';
     $cat = get_term_by( 'name', $cat_name, 'category' );
@@ -685,6 +738,14 @@ function kanucard_create_review_draft( $name, $rating, $message ) {
     $content .= '<p><strong>内容：</strong></p>' . "\n";
     $content .= '<blockquote>' . nl2br( esc_html( $message ) ) . '</blockquote>';
 
+    // 添付画像が指定されていれば本文末尾に挿入（メディアライブラリに登録済み）
+    if ( $attachment_id ) {
+        $img_html = wp_get_attachment_image( $attachment_id, 'large' );
+        if ( $img_html ) {
+            $content .= "\n" . '<p><strong>添付画像：</strong></p>' . "\n" . $img_html;
+        }
+    }
+
     $post_data = array(
         'post_title'    => $title,
         'post_content'  => $content,
@@ -696,11 +757,17 @@ function kanucard_create_review_draft( $name, $rating, $message ) {
 
     $post_id = wp_insert_post( $post_data );
 
-    // 共通アイキャッチを設定（option 上書きがあれば優先）
+    // アイキャッチを設定：投稿者添付画像があればそれを優先、なければ共通画像
     if ( $post_id && ! is_wp_error( $post_id ) ) {
-        $eyecatch_id = (int) get_option( 'kanucard_review_eyecatch_id', KANUCARD_REVIEW_EYECATCH_ID );
-        if ( $eyecatch_id > 0 ) {
-            set_post_thumbnail( $post_id, $eyecatch_id );
+        if ( $attachment_id ) {
+            set_post_thumbnail( $post_id, $attachment_id );
+            // 添付画像をこの投稿に紐付け（メディアライブラリ上の親子関係）
+            wp_update_post( array( 'ID' => $attachment_id, 'post_parent' => $post_id ) );
+        } else {
+            $eyecatch_id = (int) get_option( 'kanucard_review_eyecatch_id', KANUCARD_REVIEW_EYECATCH_ID );
+            if ( $eyecatch_id > 0 ) {
+                set_post_thumbnail( $post_id, $eyecatch_id );
+            }
         }
     }
 
