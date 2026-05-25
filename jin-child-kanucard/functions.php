@@ -256,131 +256,86 @@ function psa_lp_reviews_admin_menu() {
 add_action( 'admin_menu', 'psa_lp_reviews_admin_menu' );
 
 function psa_lp_reviews_admin_page() {
-    // オブジェクトキャッシュが古い値を返すケースがあるため強制無効化してから読む
-    wp_cache_delete( 'psa_lp_reviews', 'options' );
-    wp_cache_delete( 'alloptions', 'options' );
-    wp_cache_delete( 'notoptions', 'options' );
-    $reviews = get_option( 'psa_lp_reviews', array() );
-    if ( ! is_array( $reviews ) ) { $reviews = array(); }
-
-    // 口コミ削除処理
+    // 削除処理（投稿を完全削除）
     if ( isset( $_GET['delete_review'] ) && isset( $_GET['_wpnonce'] ) ) {
-        if ( wp_verify_nonce( $_GET['_wpnonce'], 'delete_review_' . $_GET['delete_review'] ) ) {
-            $reviews = array_filter( $reviews, function( $r ) {
-                return $r['id'] !== $_GET['delete_review'];
-            });
-            update_option( 'psa_lp_reviews', array_values( $reviews ) );
-            $reviews = array_values( $reviews );
+        $rid = intval( $_GET['delete_review'] );
+        if ( $rid && wp_verify_nonce( $_GET['_wpnonce'], 'delete_review_' . $rid ) ) {
+            wp_delete_post( $rid, true );
             echo '<div class="notice notice-success"><p>口コミを削除しました。</p></div>';
         }
     }
 
-    // 確認済みにする処理
+    // 確認済みにする
     if ( isset( $_GET['mark_read'] ) && isset( $_GET['_wpnonce'] ) ) {
-        if ( wp_verify_nonce( $_GET['_wpnonce'], 'mark_read_' . $_GET['mark_read'] ) ) {
-            foreach ( $reviews as &$r ) {
-                if ( $r['id'] === $_GET['mark_read'] ) {
-                    $r['read'] = true;
-                    break;
-                }
-            }
-            unset( $r );
-            update_option( 'psa_lp_reviews', $reviews );
+        $rid = intval( $_GET['mark_read'] );
+        if ( $rid && wp_verify_nonce( $_GET['_wpnonce'], 'mark_read_' . $rid ) ) {
+            update_post_meta( $rid, '_psa_review_read', 1 );
             echo '<div class="notice notice-success"><p>確認済みにしました。</p></div>';
         }
     }
 
-    // 全て確認済みにする処理
+    // 全て確認済みにする
     if ( isset( $_GET['mark_all_read'] ) && isset( $_GET['_wpnonce'] ) ) {
         if ( wp_verify_nonce( $_GET['_wpnonce'], 'mark_all_read' ) ) {
-            foreach ( $reviews as &$r ) {
-                $r['read'] = true;
+            $all = kanucard_get_reviews();
+            foreach ( $all as $rv ) {
+                update_post_meta( $rv['id'], '_psa_review_read', 1 );
             }
-            unset( $r );
-            update_option( 'psa_lp_reviews', $reviews );
             echo '<div class="notice notice-success"><p>全て確認済みにしました。</p></div>';
         }
     }
 
-    // 口コミ承認処理（LPに表示）
+    // 口コミ承認（LPに表示）→ 投稿ステータスを publish に
     if ( isset( $_GET['approve_review'] ) && isset( $_GET['_wpnonce'] ) ) {
-        if ( wp_verify_nonce( $_GET['_wpnonce'], 'approve_review_' . $_GET['approve_review'] ) ) {
-            foreach ( $reviews as &$r ) {
-                if ( $r['id'] === $_GET['approve_review'] ) {
-                    $r['status'] = 'approved';
-                    $r['read'] = true;
-                    break;
-                }
-            }
-            unset( $r );
-            update_option( 'psa_lp_reviews', $reviews );
+        $rid = intval( $_GET['approve_review'] );
+        if ( $rid && wp_verify_nonce( $_GET['_wpnonce'], 'approve_review_' . $rid ) ) {
+            wp_update_post( array( 'ID' => $rid, 'post_status' => 'publish' ) );
+            update_post_meta( $rid, '_psa_review_read', 1 );
             echo '<div class="notice notice-success"><p>口コミを承認しました。LPに表示されます。</p></div>';
         }
     }
 
-    // 口コミ非公開処理（LPから非表示）
+    // 口コミ非公開（LPから非表示）→ 投稿ステータスを draft に
     if ( isset( $_GET['unapprove_review'] ) && isset( $_GET['_wpnonce'] ) ) {
-        if ( wp_verify_nonce( $_GET['_wpnonce'], 'unapprove_review_' . $_GET['unapprove_review'] ) ) {
-            foreach ( $reviews as &$r ) {
-                if ( $r['id'] === $_GET['unapprove_review'] ) {
-                    $r['status'] = 'pending';
-                    break;
-                }
-            }
-            unset( $r );
-            update_option( 'psa_lp_reviews', $reviews );
+        $rid = intval( $_GET['unapprove_review'] );
+        if ( $rid && wp_verify_nonce( $_GET['_wpnonce'], 'unapprove_review_' . $rid ) ) {
+            wp_update_post( array( 'ID' => $rid, 'post_status' => 'draft' ) );
             echo '<div class="notice notice-success"><p>口コミを非公開にしました。</p></div>';
         }
     }
 
-    // 「LPに画像を表示」のトグル処理
+    // 「LPに画像を表示」のトグル
     if ( isset( $_GET['toggle_image'] ) && isset( $_GET['_wpnonce'] ) ) {
-        if ( wp_verify_nonce( $_GET['_wpnonce'], 'toggle_image_' . $_GET['toggle_image'] ) ) {
-            foreach ( $reviews as &$r ) {
-                if ( $r['id'] === $_GET['toggle_image'] ) {
-                    $r['show_image'] = empty( $r['show_image'] );
-                    break;
-                }
-            }
-            unset( $r );
-            update_option( 'psa_lp_reviews', $reviews );
+        $rid = intval( $_GET['toggle_image'] );
+        if ( $rid && wp_verify_nonce( $_GET['_wpnonce'], 'toggle_image_' . $rid ) ) {
+            $cur = (bool) get_post_meta( $rid, '_psa_review_show_image', true );
+            update_post_meta( $rid, '_psa_review_show_image', $cur ? 0 : 1 );
             echo '<div class="notice notice-success"><p>画像の表示設定を更新しました。</p></div>';
         }
     }
 
-    // 口コミ編集保存処理（お名前・メッセージ）
+    // 編集保存（お名前・メッセージ）
     if ( isset( $_POST['save_review'] ) && isset( $_POST['_wpnonce'] ) && isset( $_POST['review_id'] ) ) {
-        $rid = sanitize_text_field( $_POST['review_id'] );
-        if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_review_' . $rid ) ) {
-            $new_name = sanitize_text_field( wp_unslash( $_POST['review_name'] ?? '' ) );
+        $rid = intval( $_POST['review_id'] );
+        if ( $rid && wp_verify_nonce( $_POST['_wpnonce'], 'save_review_' . $rid ) ) {
+            $new_name    = sanitize_text_field( wp_unslash( $_POST['review_name'] ?? '' ) );
             $new_message = sanitize_textarea_field( wp_unslash( $_POST['review_message'] ?? '' ) );
-            $found = false;
-            foreach ( $reviews as &$r ) {
-                if ( $r['id'] === $rid ) {
-                    $r['name'] = $new_name;
-                    $r['message'] = $new_message;
-                    $found = true;
-                    break;
-                }
-            }
-            unset( $r );
-            if ( $found ) {
-                update_option( 'psa_lp_reviews', $reviews );
-                echo '<div class="notice notice-success"><p>口コミを更新しました。</p></div>';
-            }
+            update_post_meta( $rid, '_psa_review_name', $new_name );
+            update_post_meta( $rid, '_psa_review_message', $new_message );
+            echo '<div class="notice notice-success"><p>口コミを更新しました。</p></div>';
         }
     }
 
-    // 未確認件数をカウント
+    // 一覧データを取得（投稿ベース）
+    $reviews_display = kanucard_get_reviews();
+
     $unread_count = 0;
-    foreach ( $reviews as $review ) {
-        if ( empty( $review['read'] ) ) {
-            $unread_count++;
-        }
+    foreach ( $reviews_display as $review ) {
+        if ( empty( $review['read'] ) ) { $unread_count++; }
     }
 
-    $reviews_display = array_reverse( $reviews ); // 新しい順に表示
-    $editing_id = isset( $_GET['edit_review'] ) ? sanitize_text_field( $_GET['edit_review'] ) : '';
+    $reviews = $reviews_display; // 既存のテンプレ参照を保つため別名でも参照可
+    $editing_id = isset( $_GET['edit_review'] ) ? intval( $_GET['edit_review'] ) : 0;
     ?>
     <style>
         .psa-review-unread { background-color: #fff8e5 !important; }
@@ -495,7 +450,7 @@ function psa_lp_reviews_admin_page() {
                         <?php
                         $is_unread = empty( $review['read'] );
                         $is_approved = ( isset( $review['status'] ) && $review['status'] === 'approved' );
-                        $is_editing = ( $editing_id !== '' && $editing_id === $review['id'] );
+                        $is_editing = ( $editing_id > 0 && (int) $review['id'] === $editing_id );
                         ?>
                         <?php if ( $is_editing ): ?>
                         <tr class="psa-edit-row">
@@ -779,23 +734,118 @@ if ( ! defined( 'KANUCARD_REVIEW_EYECATCH_ID' ) ) {
 }
 
 /**
+ * 「利用者口コミ」カテゴリの term_id を取得（なければ作成）
+ */
+function kanucard_get_review_category_id() {
+    static $cached = null;
+    if ( $cached !== null ) { return $cached; }
+    $cat_name = '利用者口コミ';
+    $cat = get_term_by( 'name', $cat_name, 'category' );
+    if ( ! $cat ) {
+        $result = wp_insert_term( $cat_name, 'category' );
+        $cached = is_wp_error( $result ) ? 0 : (int) $result['term_id'];
+    } else {
+        $cached = (int) $cat->term_id;
+    }
+    return $cached;
+}
+
+/**
+ * 投稿から正規化された口コミ配列を作る。
+ * 新規投稿は post_meta が完備されているのでそれを返す。
+ * 過去投稿（メタなし）は post_title / post_content から復元する。
+ */
+function kanucard_review_from_post( $post ) {
+    $pid = $post->ID;
+
+    $name = get_post_meta( $pid, '_psa_review_name', true );
+    $rating = (int) get_post_meta( $pid, '_psa_review_rating', true );
+    $message = get_post_meta( $pid, '_psa_review_message', true );
+
+    // 過去の post には meta が入っていない。post_content から fallback で抽出
+    if ( $name === '' && $message === '' ) {
+        $content = $post->post_content;
+
+        if ( preg_match( '/<strong>投稿者：<\/strong>(.+?)<\/p>/u', $content, $m ) ) {
+            $name = trim( wp_strip_all_tags( $m[1] ) );
+        }
+        if ( ! $rating && preg_match( '/(\d+)\s*\/\s*5/u', $content, $m ) ) {
+            $rating = (int) $m[1];
+        }
+        if ( ! $rating && preg_match_all( '/★/u', $content, $m ) ) {
+            $rating = count( $m[0] );
+        }
+        if ( preg_match( '/<blockquote>(.+?)<\/blockquote>/us', $content, $m ) ) {
+            $raw = $m[1];
+            $raw = str_ireplace( array( '<br />', '<br/>', '<br>' ), "\n", $raw );
+            $message = trim( wp_strip_all_tags( $raw ) );
+        }
+    }
+
+    $attachment_id = (int) get_post_meta( $pid, '_psa_review_attachment_id', true );
+    if ( ! $attachment_id ) {
+        // fallback: アイキャッチが共通画像でなければ投稿者添付として扱う
+        $thumb_id = (int) get_post_thumbnail_id( $pid );
+        $eyecatch = (int) get_option( 'kanucard_review_eyecatch_id', defined( 'KANUCARD_REVIEW_EYECATCH_ID' ) ? KANUCARD_REVIEW_EYECATCH_ID : 0 );
+        if ( $thumb_id && $thumb_id !== $eyecatch ) {
+            $attachment_id = $thumb_id;
+        }
+    }
+
+    return array(
+        'id'            => (string) $pid,
+        'name'          => $name !== '' ? $name : '匿名',
+        'email'         => (string) get_post_meta( $pid, '_psa_review_email', true ),
+        'rating'        => max( 0, min( 5, $rating ) ),
+        'message'       => $message,
+        'date'          => $post->post_date,
+        'status'        => ( $post->post_status === 'publish' ) ? 'approved' : 'pending',
+        'attachment_id' => $attachment_id,
+        'show_image'    => metadata_exists( 'post', $pid, '_psa_review_show_image' )
+                            ? (bool) get_post_meta( $pid, '_psa_review_show_image', true )
+                            : true,
+        'read'          => (bool) get_post_meta( $pid, '_psa_review_read', true ),
+    );
+}
+
+/**
+ * 「利用者口コミ」カテゴリの投稿を全件取得し、口コミ配列に変換して返す
+ *
+ * @param array $args wp_query 用追加引数（'post_status' など）
+ * @return array
+ */
+function kanucard_get_reviews( $args = array() ) {
+    $cat_id = kanucard_get_review_category_id();
+    if ( ! $cat_id ) { return array(); }
+
+    $defaults = array(
+        'category'       => $cat_id,
+        'post_type'      => 'post',
+        'post_status'    => array( 'draft', 'pending', 'publish' ),
+        'posts_per_page' => -1,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'suppress_filters' => true,
+    );
+    $query_args = array_merge( $defaults, $args );
+
+    $posts = get_posts( $query_args );
+    return array_map( 'kanucard_review_from_post', $posts );
+}
+
+/**
  * 口コミ投稿時に「利用者口コミ」カテゴリの下書きを自動作成
  *
  * @param string $name           投稿者名
  * @param int    $rating         星評価
  * @param string $message        本文
  * @param int    $attachment_id  ユーザー添付画像のメディアID（0 = なし）
+ * @param string $email          投稿者メールアドレス
  */
-function kanucard_create_review_draft( $name, $rating, $message, $attachment_id = 0 ) {
+function kanucard_create_review_draft( $name, $rating, $message, $attachment_id = 0, $email = '' ) {
     // 「利用者口コミ」カテゴリを取得（なければ作成）
-    $cat_name = '利用者口コミ';
-    $cat = get_term_by( 'name', $cat_name, 'category' );
-    if ( ! $cat ) {
-        $result = wp_insert_term( $cat_name, 'category' );
-        $cat_id = is_wp_error( $result ) ? 1 : $result['term_id'];
-    } else {
-        $cat_id = $cat->term_id;
-    }
+    $cat_id = kanucard_get_review_category_id();
+    if ( ! $cat_id ) { $cat_id = 1; }
 
     // タイトル：（YYYY年M月D日）の口コミ
     $date_str = current_time( 'Y年n月j日' );
@@ -839,6 +889,15 @@ function kanucard_create_review_draft( $name, $rating, $message, $attachment_id 
                 set_post_thumbnail( $post_id, $eyecatch_id );
             }
         }
+
+        // すべてのメタを保存（admin / LP 表示はこのメタから直接読む）
+        update_post_meta( $post_id, '_psa_review_name',          (string) $name );
+        update_post_meta( $post_id, '_psa_review_email',         (string) $email );
+        update_post_meta( $post_id, '_psa_review_rating',        (int) $rating );
+        update_post_meta( $post_id, '_psa_review_message',       (string) $message );
+        update_post_meta( $post_id, '_psa_review_attachment_id', (int) $attachment_id );
+        update_post_meta( $post_id, '_psa_review_show_image',    1 );
+        update_post_meta( $post_id, '_psa_review_read',          0 );
     }
 
     return $post_id;

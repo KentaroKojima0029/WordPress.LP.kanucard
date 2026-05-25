@@ -140,90 +140,13 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
         }
 
         if ( empty( $psa_review_error ) ) {
-            // 口コミをデータベースに保存
-            // 取得直前にオブジェクトキャッシュを破棄して、必ず最新のDB値を読む
-            wp_cache_delete( 'psa_lp_reviews', 'options' );
-            wp_cache_delete( 'alloptions', 'options' );
-            wp_cache_delete( 'notoptions', 'options' );
-
-            $reviews = get_option('psa_lp_reviews', array());
-            if ( ! is_array( $reviews ) ) { $reviews = array(); }
-            $psa_review_debug['reviews_before'] = count( $reviews );
-
-            $new_review = array(
-                'id'            => uniqid(),
-                'name'          => $review_name,
-                'email'         => $review_email,
-                'rating'        => $review_rating,
-                'message'       => $review_message,
-                'date'          => current_time('Y-m-d H:i:s'),
-                'status'        => 'pending',
-                'attachment_id' => $attachment_id,
-                'show_image'    => true,
-            );
-            $reviews[] = $new_review;
-
-            // autoload を明示的に 'no' にすることで autoload サイズ上限による silent fail を回避
-            $psa_review_debug['update_option'] = update_option( 'psa_lp_reviews', $reviews, false );
-
-            // update_option が false を返した場合、または念のためのフォールバックとして
-            // wpdb 経由で直接 wp_options に書き込む
-            if ( ! $psa_review_debug['update_option'] ) {
-                global $wpdb;
-                $serialized       = maybe_serialize( $reviews );
-                $existing_row_id  = $wpdb->get_var( $wpdb->prepare(
-                    "SELECT option_id FROM {$wpdb->options} WHERE option_name = %s",
-                    'psa_lp_reviews'
-                ) );
-                $psa_review_debug['wpdb_existing_id'] = $existing_row_id ? (int) $existing_row_id : null;
-
-                if ( $existing_row_id ) {
-                    $rows_affected = $wpdb->update(
-                        $wpdb->options,
-                        array( 'option_value' => $serialized, 'autoload' => 'no' ),
-                        array( 'option_name' => 'psa_lp_reviews' )
-                    );
-                } else {
-                    $rows_affected = $wpdb->insert(
-                        $wpdb->options,
-                        array(
-                            'option_name'  => 'psa_lp_reviews',
-                            'option_value' => $serialized,
-                            'autoload'     => 'no',
-                        )
-                    );
-                }
-                $psa_review_debug['wpdb_rows_affected'] = $rows_affected;
-                $psa_review_debug['wpdb_last_error']    = $wpdb->last_error;
-                $psa_review_debug['update_option']      = 'fallback_wpdb';
-            }
-
-            // 書き込み直後にもキャッシュを無効化
-            wp_cache_delete( 'psa_lp_reviews', 'options' );
-            wp_cache_delete( 'alloptions', 'options' );
-            wp_cache_delete( 'notoptions', 'options' );
-
-            // 直後に読み戻して件数を記録（実際にDBに書かれたか確認）
-            $verify = get_option('psa_lp_reviews', array());
-            $psa_review_debug['reviews_after'] = is_array( $verify ) ? count( $verify ) : -1;
-
-            // wp_options から DIRECT に再読み（WP のキャッシュ・フィルタを完全にバイパス）
-            global $wpdb;
-            $raw_value = $wpdb->get_var( $wpdb->prepare(
-                "SELECT option_value FROM {$wpdb->options} WHERE option_name = %s",
-                'psa_lp_reviews'
-            ) );
-            if ( $raw_value !== null ) {
-                $raw_arr = maybe_unserialize( $raw_value );
-                $psa_review_debug['db_direct_count'] = is_array( $raw_arr ) ? count( $raw_arr ) : 'not_array';
-                $psa_review_debug['db_direct_bytes'] = strlen( $raw_value );
-            } else {
-                $psa_review_debug['db_direct_count'] = 'row_missing';
-            }
-
-            // 「利用者口コミ」カテゴリ下書きを作成（戻り値 = post ID or 0/WP_Error）
-            $draft_id = kanucard_create_review_draft( $review_name, $review_rating, $review_message, $attachment_id );
+            // 口コミは「利用者口コミ」カテゴリの draft 投稿 + post_meta として保存。
+            // 旧 psa_lp_reviews オプションは書き込み不可になっていたため廃止。
+            $draft_id = kanucard_create_review_draft( $review_name, $review_rating, $review_message, $attachment_id, $review_email );
             $psa_review_debug['draft_post_id'] = is_wp_error( $draft_id ) ? 'wp_error: ' . $draft_id->get_error_message() : (int) $draft_id;
+            $psa_review_debug['update_option'] = 'post_based';
+            $psa_review_debug['reviews_before'] = 'n/a';
+            $psa_review_debug['reviews_after']  = 'n/a';
 
             // 診断ログを保存（後段の wp_mail/redirect でこける可能性に備えて redirect 前に書き出す）
             $log_history   = get_option('psa_lp_reviews_debug', array());
@@ -832,19 +755,10 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </div>
 
                 <?php
-                // 承認済み口コミを取得し、投稿日時の降順（最新順）で並べる
-                $approved_reviews = array();
-                $all_reviews = get_option( 'psa_lp_reviews', array() );
-                foreach ( $all_reviews as $rev ) {
-                    if ( isset( $rev['status'] ) && $rev['status'] === 'approved' ) {
-                        $approved_reviews[] = $rev;
-                    }
-                }
-                usort( $approved_reviews, function( $a, $b ) {
-                    $ta = isset( $a['date'] ) ? strtotime( $a['date'] ) : 0;
-                    $tb = isset( $b['date'] ) ? strtotime( $b['date'] ) : 0;
-                    return $tb <=> $ta;
-                });
+                // 承認済み口コミ＝「利用者口コミ」カテゴリの publish 投稿を最新順に取得
+                $approved_reviews = function_exists( 'kanucard_get_reviews' )
+                    ? kanucard_get_reviews( array( 'post_status' => 'publish' ) )
+                    : array();
                 ?>
                 <div class="testimonials">
                     <h3 class="subsection-title">
