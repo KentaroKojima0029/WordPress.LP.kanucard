@@ -792,9 +792,15 @@ function kanucard_review_from_post( $post ) {
         }
     }
 
+    // 名前の正規化: 末尾の敬称（様/さん/サン/殿/さま/サマ/くん/ちゃん）を全てストリップ。
+    // テンプレート側で「 様」を付与するため、二重敬称（"山田 様 様"）を防ぐ。
+    $name = trim( $name );
+    $name = preg_replace( '/(?:[ \x{3000}　]*(?:様|さま|サマ|さん|サン|殿|くん|ちゃん))+$/u', '', $name );
+    $name = trim( $name );
+
     return array(
         'id'            => (string) $pid,
-        'name'          => $name !== '' ? $name : '匿名',
+        'name'          => $name, // 空の場合は空文字。テンプレート側で表示を分岐
         'email'         => (string) get_post_meta( $pid, '_psa_review_email', true ),
         'rating'        => max( 0, min( 5, $rating ) ),
         'message'       => $message,

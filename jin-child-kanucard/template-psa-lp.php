@@ -778,12 +778,16 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                 ? wp_get_attachment_image( $rev_att_id, 'medium', false, array( 'class' => 'testimonial-image', 'loading' => 'lazy', 'alt' => '' ) )
                                 : '';
                             ?>
+                            <?php
+                            $rev_name_raw     = isset( $rev['name'] ) ? trim( $rev['name'] ) : '';
+                            $rev_display_name = $rev_name_raw !== '' ? $rev_name_raw . ' 様' : '匿名';
+                            ?>
                             <div class="testimonial-card testimonial-slide<?php echo $rev_image_html ? ' has-image' : ''; ?>">
                                 <div class="testimonial-quote">"</div>
                                 <div class="testimonial-header">
                                     <div class="testimonial-avatar"><i class="fas fa-user-circle"></i></div>
                                     <div class="testimonial-info">
-                                        <h4><?php echo esc_html( $rev['name'] ); ?> 様</h4>
+                                        <h4><?php echo esc_html( $rev_display_name ); ?></h4>
                                         <div class="stars">
                                             <?php for ( $s = 0; $s < intval( $rev['rating'] ); $s++ ) : ?>
                                                 <i class="fas fa-star"></i>
