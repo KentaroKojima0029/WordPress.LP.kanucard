@@ -114,12 +114,12 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PSA鑑定代行 | 実績7,000枚以上・返金保証 | カヌカード</title>
-    <meta name="description" content="PSA鑑定代行なら実績7,000枚以上のカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のメッセージサポート完備。">
+    <title>PSA鑑定代行 | 返金保証 | カヌカード</title>
+    <meta name="description" content="PSA鑑定代行ならカヌカード。70%保証プランで返金保証付き、無料検品サービスでPSA10を狙えるカードのみ厳選。初心者でも安心のメッセージサポート完備。">
 
     <!-- OGP -->
-    <meta property="og:title" content="PSA鑑定代行 | 実績7,000枚以上・返金保証 | カヌカード">
-    <meta property="og:description" content="7,000枚以上のPSA10実績。70%保証プランで安心の返金保証付き。">
+    <meta property="og:title" content="PSA鑑定代行 | 返金保証 | カヌカード">
+    <meta property="og:description" content="70%保証プランで安心の返金保証付き。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo get_permalink(); ?>">
     <meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
@@ -131,13 +131,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        .total-cards-text, .total-cards-num { visibility: hidden; }
-        .psa-count-loaded .total-cards-text,
-        .psa-count-loaded .total-cards-num { visibility: visible; }
-        .total-inspections-num { visibility: hidden; }
-        .psa-inspections-loaded .total-inspections-num { visibility: visible; }
-        .psa10-rate-num { visibility: hidden; }
-        .psa-rate-loaded .psa10-rate-num { visibility: visible; }
+        /* API取得前は "-" を表示（誤解を避けるため数値ハードコードは置かない） */
         .psa10-rate-decimal, .psa10-rate-unit { font-size: 0.7em; }
         .psa10-rate-inline .psa10-rate-decimal { font-size: 1em; }
         .result-label-note { font-size: 0.7em; }
@@ -369,7 +363,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             "name": "株式会社カヌカード",
             "url": "https://kanucard.com"
         },
-        "description": "PSA鑑定代行サービス。7,000枚以上のPSA10実績、70%保証プランで返金保証付き。",
+        "description": "PSA鑑定代行サービス。70%保証プランで返金保証付き。",
         "areaServed": "JP"
     }
     </script>
@@ -472,7 +466,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     <span class="hero-title-line">あなたのカードの価値を、</span><br class="sp-only">
                     <span class="hero-title-line"><span class="highlight">さらに高く。</span></span><br>
                     <span class="hero-subtitle-line" style="font-size: 0.5em; font-weight: 400;">未鑑定カードを売却する前に、一度検討してください。</span><br>
-                    <small><span class="hero-subtitle-line"><span class="total-cards-text">7,000枚以上</span>のPSA10</span><br><span class="hero-subtitle-line">実績が証明する</span><br><span class="hero-subtitle-line">圧倒的な技術力</span></small>
+                    <small><span class="hero-subtitle-line"><span class="total-cards-text">-</span>のPSA10</span><br><span class="hero-subtitle-line">実績が証明する</span><br><span class="hero-subtitle-line">圧倒的な技術力</span></small>
                 </h1>
                 <div class="hero-features fade-in delay-1">
                     <div class="hero-feature-item hero-link" onclick="var el = document.getElementById('guarantee-explanation'); if(el){ el.scrollIntoView({behavior: 'smooth', block: 'start'}); }">
@@ -497,7 +491,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                             <i class="fas fa-trophy"></i>
                         </div>
                         <div class="stat-content">
-                            <span class="stat-number"><span class="total-cards-num">7,000</span><span class="stat-unit">枚超</span></span>
+                            <span class="stat-number"><span class="total-cards-num">-</span><span class="stat-unit">枚超</span></span>
                             <span class="stat-label">PSA10取得</span>
                         </div>
                     </div>
@@ -645,8 +639,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="solution-icon">
                             <i class="fas fa-medal"></i>
                         </div>
-                        <h3><span class="total-cards-text">7,000枚以上</span>の実績</h3>
-                        <p>PSA10の取得率は<span class="psa10-rate-num psa10-rate-inline" data-count="94.4" data-decimal-class="psa10-rate-decimal">94<span class="psa10-rate-decimal">.4</span></span>%<br>顧客満足度の高い実績</p>
+                        <h3><span class="total-cards-text">-</span>の実績</h3>
+                        <p>PSA10の取得率は<span class="psa10-rate-num psa10-rate-inline" data-decimal-class="psa10-rate-decimal">-</span>%<br>顧客満足度の高い実績</p>
                         <span class="check-badge"><i class="fas fa-check"></i></span>
                     </div>
                 </div>
@@ -664,11 +658,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 </h2>
                 <div class="results-stats">
                     <div class="result-item" data-aos="zoom-in">
-                        <div class="result-number"><span data-count="7000">0</span><small>枚</small></div>
+                        <div class="result-number"><span class="lp-counter-cards">-</span><small>枚</small></div>
                         <div class="result-label">PSA10取得数</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="100">
-                        <div class="result-number"><span class="psa10-rate-num" data-count="94.4" data-decimal-class="psa10-rate-decimal">94<span class="psa10-rate-decimal">.4</span></span><span class="psa10-rate-unit">％</span></div>
+                        <div class="result-number"><span class="psa10-rate-num lp-counter-rate" data-decimal-class="psa10-rate-decimal">-</span><span class="psa10-rate-unit">％</span></div>
                         <div class="result-label">平均PSA10取得率<br><span class="result-label-note">※無料検品後の数値</span></div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="200">
@@ -676,7 +670,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                         <div class="result-label">顧客満足度</div>
                     </div>
                     <div class="result-item" data-aos="zoom-in" data-delay="300">
-                        <div class="result-number"><span class="total-inspections-num" data-count="9718">0</span><small>枚</small></div>
+                        <div class="result-number"><span class="total-inspections-num lp-counter-inspections">-</span><small>枚</small></div>
                         <div class="result-label">総依頼枚数</div>
                     </div>
                 </div>
@@ -1724,132 +1718,150 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     <script src="<?php echo $theme_url; ?>/psa-lp/js/script.js?v=<?php echo time(); ?>"></script>
 
     <script>
-        // PSA10実績カウント取得
+        // 共通ユーティリティ: 「-」表示と count-up アニメーション
+        // - API未取得 / 失敗時は常に "-" を保持（誤解を避ける）
+        // - 値取得後、対象要素が viewport 内なら即アニメ。圏外なら scroll で 1回だけ起動。
+        window.__lpStats = (function() {
+            const PLACEHOLDER = '-';
+
+            function isInViewport(el) {
+                if (!el) return false;
+                const rect = el.getBoundingClientRect();
+                const vh = window.innerHeight || document.documentElement.clientHeight;
+                return rect.bottom > 0 && rect.top < vh;
+            }
+
+            function renderInt(el, value) {
+                el.textContent = Math.floor(value).toLocaleString();
+            }
+
+            function renderDecimal(el, value, decimalClass) {
+                const v = value.toFixed(1);
+                const parts = v.split('.');
+                const intPart = Number(parts[0]).toLocaleString();
+                el.innerHTML = decimalClass
+                    ? intPart + '<span class="' + decimalClass + '">.' + parts[1] + '</span>'
+                    : intPart + '.' + parts[1];
+            }
+
+            function animate(el, target, opts) {
+                const isDecimal = !!(opts && opts.decimal);
+                const decimalClass = (opts && opts.decimalClass) || el.getAttribute('data-decimal-class') || '';
+                const duration = 1000;
+                const step = target / (duration / 16);
+                let current = 0;
+                const tick = () => {
+                    current += step;
+                    if (current < target) {
+                        isDecimal ? renderDecimal(el, current, decimalClass) : renderInt(el, current);
+                        requestAnimationFrame(tick);
+                    } else {
+                        isDecimal ? renderDecimal(el, target, decimalClass) : renderInt(el, target);
+                    }
+                };
+                tick();
+            }
+
+            function setStatic(el, finalText) {
+                el.textContent = finalText;
+            }
+
+            // 要素に「最終値」を即セット or アニメで反映。viewport 圏外なら scroll を待つ
+            function applyToElement(el, target, opts) {
+                if (!el) return;
+                const animateWhenReady = () => {
+                    if (opts && opts.animate) {
+                        animate(el, target, opts);
+                    } else {
+                        // 静的要素は即表示（"枚以上" などの接尾辞付き）
+                        const finalText = (opts && opts.formatter) ? opts.formatter(target) : String(target);
+                        setStatic(el, finalText);
+                    }
+                };
+                if (isInViewport(el)) {
+                    animateWhenReady();
+                } else if (opts && opts.animate) {
+                    const onScroll = () => {
+                        if (isInViewport(el)) {
+                            window.removeEventListener('scroll', onScroll, { passive: true });
+                            animateWhenReady();
+                        }
+                    };
+                    window.addEventListener('scroll', onScroll, { passive: true });
+                    onScroll(); // 念のため即時チェック
+                } else {
+                    // 静的要素は viewport 関係なく即セット
+                    animateWhenReady();
+                }
+            }
+
+            return {
+                PLACEHOLDER,
+                applyToElement,
+                fetchWithTimeout: function(url, ms) {
+                    return new Promise((resolve) => {
+                        let done = false;
+                        const t = setTimeout(() => { if (!done) { done = true; resolve(null); } }, ms);
+                        fetch(url)
+                            .then(r => r.json())
+                            .then(data => { if (!done) { done = true; clearTimeout(t); resolve(data); } })
+                            .catch(() => { if (!done) { done = true; clearTimeout(t); resolve(null); } });
+                    });
+                }
+            };
+        })();
+
+        // PSA10実績カウント取得（hero/section の「7,000枚以上」相当 + results の count-up）
         (function() {
-            const FALLBACK_NUM = 8000;
+            const Stats = window.__lpStats;
             const TIMEOUT_MS = 4000;
 
-            const apply = (num) => {
-                const text = num.toLocaleString() + '枚以上';
+            Stats.fetchWithTimeout('https://daiko.kanucard.com/api/public/total-cards', TIMEOUT_MS).then(data => {
+                if (!(data && data.success && data.total)) return;  // 失敗時は "-" のまま
+                const num = data.total;
+                const textWithSuffix = num.toLocaleString() + '枚以上';
                 const numText = num.toLocaleString();
-                document.querySelectorAll('.total-cards-text').forEach(el => { el.textContent = text; });
-                document.querySelectorAll('.total-cards-num').forEach(el => { el.textContent = numText; });
-                document.querySelectorAll('.result-number [data-count]').forEach(el => {
-                    const current = parseInt(el.getAttribute('data-count'), 10);
-                    if (current === 7000) {
-                        el.setAttribute('data-count', String(num));
-                        if (el.textContent && el.textContent !== '0' && parseInt(el.textContent.replace(/,/g, ''), 10) === 7000) {
-                            el.textContent = numText;
-                        }
-                    }
-                });
-                document.body.classList.add('psa-count-loaded');
-            };
-
-            let done = false;
-            const timer = setTimeout(() => {
-                if (!done) { done = true; apply(FALLBACK_NUM); }
-            }, TIMEOUT_MS);
-
-            fetch('https://daiko.kanucard.com/api/public/total-cards')
-                .then(r => r.json())
-                .then(data => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    apply(data && data.success && data.total ? data.total : FALLBACK_NUM);
-                })
-                .catch(() => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    apply(FALLBACK_NUM);
-                });
+                document.querySelectorAll('.total-cards-text').forEach(el => Stats.applyToElement(el, textWithSuffix, { formatter: v => v }));
+                document.querySelectorAll('.total-cards-num').forEach(el => Stats.applyToElement(el, numText, { formatter: v => v }));
+                document.querySelectorAll('.lp-counter-cards').forEach(el => Stats.applyToElement(el, num, { animate: true }));
+            });
         })();
 
         // 平均PSA10取得率取得
         (function() {
-            const FALLBACK_RATE = 94.4;
+            const Stats = window.__lpStats;
             const TIMEOUT_MS = 4000;
 
-            const apply = (rate) => {
-                const text = (Number.isInteger(rate) ? rate.toString() : rate.toFixed(1));
-                const parts = text.split('.');
-                const html = parts.length > 1
-                    ? parts[0] + '<span class="psa10-rate-decimal">.' + parts[1] + '</span>'
-                    : parts[0];
-                document.querySelectorAll('.psa10-rate-num').forEach(el => {
-                    el.setAttribute('data-count', text);
-                    // カウントアニメ未トリガーまたは完了済みの判定:
-                    // 初期テキスト(94.4)のままなら未トリガー → data-countのみ更新で次のアニメに使われる
-                    // アニメ完了後(textContent === 旧値)なら表示も上書き
-                    const cur = (el.textContent || '').replace(/[, ]/g, '');
-                    if (cur && cur !== '0' && cur !== '0.0') {
-                        el.innerHTML = html;
-                    }
+            Stats.fetchWithTimeout('https://daiko.kanucard.com/api/public/psa10-rate', TIMEOUT_MS).then(data => {
+                if (!(data && data.success && typeof data.rate === 'number' && data.total > 0)) return;
+                const rate = data.rate;
+                const inlineText = Number.isInteger(rate) ? rate.toString() : rate.toFixed(1);
+                // インライン表示（.psa10-rate-inline）は静的に置換
+                document.querySelectorAll('.psa10-rate-num.psa10-rate-inline').forEach(el => {
+                    const parts = inlineText.split('.');
+                    el.innerHTML = parts.length > 1
+                        ? parts[0] + '<span class="psa10-rate-decimal">.' + parts[1] + '</span>'
+                        : parts[0];
                 });
-                document.body.classList.add('psa-rate-loaded');
-            };
-
-            let done = false;
-            const timer = setTimeout(() => {
-                if (!done) { done = true; apply(FALLBACK_RATE); }
-            }, TIMEOUT_MS);
-
-            fetch('https://daiko.kanucard.com/api/public/psa10-rate')
-                .then(r => r.json())
-                .then(data => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    apply(data && data.success && typeof data.rate === 'number' && data.total > 0 ? data.rate : FALLBACK_RATE);
-                })
-                .catch(() => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    apply(FALLBACK_RATE);
+                // results の count-up 要素はアニメ
+                document.querySelectorAll('.lp-counter-rate').forEach(el => {
+                    Stats.applyToElement(el, rate, { animate: true, decimal: true, decimalClass: 'psa10-rate-decimal' });
                 });
+            });
         })();
 
         // 検品枚数（累積申請枚数）取得
         (function() {
-            const FALLBACK_NUM = 9718;
+            const Stats = window.__lpStats;
             const TIMEOUT_MS = 4000;
 
-            const apply = (num) => {
-                const numText = num.toLocaleString();
-                document.querySelectorAll('.total-inspections-num').forEach(el => {
-                    el.setAttribute('data-count', String(num));
-                    // カウントアニメ完了後の場合のみ表示も上書き
-                    const cur = el.textContent ? parseInt(el.textContent.replace(/,/g, ''), 10) : 0;
-                    if (cur && cur !== 0) {
-                        el.textContent = numText;
-                    }
-                });
-                document.body.classList.add('psa-inspections-loaded');
-            };
-
-            let done = false;
-            const timer = setTimeout(() => {
-                if (!done) { done = true; apply(FALLBACK_NUM); }
-            }, TIMEOUT_MS);
-
-            fetch('https://daiko.kanucard.com/api/public/total-inspections')
-                .then(r => r.json())
-                .then(data => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    apply(data && data.success && data.total ? data.total : FALLBACK_NUM);
-                })
-                .catch(() => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    apply(FALLBACK_NUM);
-                });
+            Stats.fetchWithTimeout('https://daiko.kanucard.com/api/public/total-inspections', TIMEOUT_MS).then(data => {
+                if (!(data && data.success && data.total)) return;
+                const num = data.total;
+                document.querySelectorAll('.lp-counter-inspections').forEach(el => Stats.applyToElement(el, num, { animate: true }));
+            });
         })();
+
     </script>
 
     <?php wp_footer(); ?>
