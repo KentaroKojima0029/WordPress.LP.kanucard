@@ -442,7 +442,20 @@ function psa_lp_reviews_admin_page() {
                                 update_option=<?php echo var_export( $entry['update_option'] ?? null, true ); ?>
                                 / before=<?php echo var_export( $entry['reviews_before'] ?? null, true ); ?>件
                                 → after=<?php echo var_export( $entry['reviews_after'] ?? null, true ); ?>件
-                                / draft=<?php echo esc_html( var_export( $entry['draft_post_id'] ?? null, true ) ); ?>
+                                <?php if ( isset( $entry['db_direct_count'] ) ) : ?>
+                                    <br>
+                                    <strong>DB DIRECT:</strong> <?php echo esc_html( var_export( $entry['db_direct_count'], true ) ); ?>件
+                                    (raw <?php echo esc_html( var_export( $entry['db_direct_bytes'] ?? 0, true ) ); ?>B)
+                                <?php endif; ?>
+                                <?php if ( isset( $entry['wpdb_existing_id'] ) || isset( $entry['wpdb_rows_affected'] ) ) : ?>
+                                    <br>
+                                    <strong>wpdb fallback:</strong>
+                                    existing_id=<?php echo esc_html( var_export( $entry['wpdb_existing_id'] ?? null, true ) ); ?>
+                                    / rows_affected=<?php echo esc_html( var_export( $entry['wpdb_rows_affected'] ?? null, true ) ); ?>
+                                    / last_error=<?php echo esc_html( $entry['wpdb_last_error'] ?? 'none' ); ?>
+                                <?php endif; ?>
+                                <br>
+                                draft=<?php echo esc_html( var_export( $entry['draft_post_id'] ?? null, true ) ); ?>
                                 / redirect=<?php echo $entry['redirect'] ? '✓' : '✗'; ?>
                             </div>
                         <?php endforeach; ?>
