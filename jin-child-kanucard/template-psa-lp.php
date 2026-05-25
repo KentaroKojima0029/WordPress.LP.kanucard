@@ -1508,22 +1508,65 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
 
                     <div class="form-group">
-                        <label for="review_image">
-                            <i class="fas fa-image"></i> 画像（任意）
+                        <label>
+                            <i class="fas fa-image"></i> 画像を添付（任意）
                         </label>
+
+                        <!-- 実ファイルinputは見えない位置に。アクセシビリティのため tabindex=-1 -->
                         <input
                             type="file"
                             id="review_image"
                             name="review_image"
                             accept="image/jpeg,image/png,image/webp,image/gif"
+                            class="review-image-input"
+                            tabindex="-1"
+                            aria-hidden="true"
                         >
-                        <p class="form-note">
-                            鑑定結果や届いたカードなどの画像を添付できます。<br>
-                            ※ JPG / PNG / WebP / GIF、最大5MBまで。掲載可否は管理者が確認のうえ決定します。
-                        </p>
-                        <div id="reviewImagePreview" class="review-image-preview" style="display:none; margin-top:10px;">
-                            <img src="" alt="プレビュー" style="max-width:200px; max-height:200px; border-radius:6px; border:1px solid #ddd;">
+
+                        <div class="review-image-uploader" id="reviewImageUploader">
+                            <!-- 未選択時に表示するピッカー -->
+                            <div class="review-image-picker" id="reviewImagePicker">
+                                <div class="review-image-picker-icon">
+                                    <i class="fas fa-camera-retro"></i>
+                                </div>
+                                <p class="review-image-picker-title">鑑定結果や届いたカードの<br class="sp-only">写真を添付できます</p>
+                                <p class="review-image-picker-sub">下のボタンから撮影・選択してください</p>
+                                <div class="review-image-picker-buttons">
+                                    <button type="button" class="review-image-btn review-image-btn-camera" id="reviewImageBtnCamera">
+                                        <i class="fas fa-camera"></i>
+                                        <span>写真を撮る</span>
+                                    </button>
+                                    <button type="button" class="review-image-btn review-image-btn-gallery" id="reviewImageBtnGallery">
+                                        <i class="fas fa-images"></i>
+                                        <span>画像を選択</span>
+                                    </button>
+                                </div>
+                                <p class="review-image-picker-note">JPG / PNG / WebP / GIF・最大5MB</p>
+                            </div>
+
+                            <!-- 画像選択後のプレビュー -->
+                            <div class="review-image-preview" id="reviewImagePreview" hidden>
+                                <div class="review-image-preview-thumb">
+                                    <img src="" alt="プレビュー">
+                                </div>
+                                <div class="review-image-preview-meta">
+                                    <p class="review-image-preview-name" id="reviewImagePreviewName"></p>
+                                    <p class="review-image-preview-size" id="reviewImagePreviewSize"></p>
+                                    <div class="review-image-preview-actions">
+                                        <button type="button" class="review-image-btn-mini review-image-btn-replace" id="reviewImageBtnReplace">
+                                            <i class="fas fa-sync-alt"></i> 別の画像を選び直す
+                                        </button>
+                                        <button type="button" class="review-image-btn-mini review-image-btn-remove" id="reviewImageBtnRemove">
+                                            <i class="fas fa-trash-alt"></i> 削除
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <p class="form-note">
+                            ※ 掲載可否は管理者が確認のうえ決定します。お顔や個人情報が写り込んだ画像はご遠慮ください。
+                        </p>
                     </div>
 
                     <div class="form-submit">

@@ -346,39 +346,84 @@
     }
 
     /**
-     * 口コミフォーム - 画像アップロードのプレビューとサイズ検証
+     * 口コミフォーム - 画像アップロード（カメラ起動 / 画像選択 / プレビュー）
      */
     function initReviewFormImagePreview() {
-        var input = document.getElementById('review_image');
-        var preview = document.getElementById('reviewImagePreview');
-        if (!input || !preview) return;
-        var previewImg = preview.querySelector('img');
+        var input        = document.getElementById('review_image');
+        var picker       = document.getElementById('reviewImagePicker');
+        var preview      = document.getElementById('reviewImagePreview');
+        if (!input || !picker || !preview) return;
+
+        var btnCamera   = document.getElementById('reviewImageBtnCamera');
+        var btnGallery  = document.getElementById('reviewImageBtnGallery');
+        var btnReplace  = document.getElementById('reviewImageBtnReplace');
+        var btnRemove   = document.getElementById('reviewImageBtnRemove');
+        var previewImg  = preview.querySelector('img');
+        var previewName = document.getElementById('reviewImagePreviewName');
+        var previewSize = document.getElementById('reviewImagePreviewSize');
+
         var MAX_BYTES = 5 * 1024 * 1024; // 5MB
+
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+        }
+
+        function showPicker() {
+            picker.hidden = false;
+            preview.hidden = true;
+            previewImg.src = '';
+            previewName.textContent = '';
+            previewSize.textContent = '';
+        }
+
+        function showPreview(file, dataUrl) {
+            previewImg.src = dataUrl;
+            previewName.textContent = file.name;
+            previewSize.textContent = formatSize(file.size);
+            picker.hidden = true;
+            preview.hidden = false;
+        }
+
+        // カメラ起動 / 画像選択ボタンから input をプログラマティックに開く
+        function openInput(useCamera) {
+            // モバイルでカメラを起動するには capture 属性が必要。
+            // デスクトップブラウザは無視するので両方共通でファイルダイアログが開く。
+            if (useCamera) {
+                input.setAttribute('capture', 'environment');
+            } else {
+                input.removeAttribute('capture');
+            }
+            input.click();
+        }
+
+        if (btnCamera) btnCamera.addEventListener('click', function() { openInput(true); });
+        if (btnGallery) btnGallery.addEventListener('click', function() { openInput(false); });
+        if (btnReplace) btnReplace.addEventListener('click', function() { openInput(false); });
+        if (btnRemove) btnRemove.addEventListener('click', function() {
+            input.value = '';
+            showPicker();
+        });
 
         input.addEventListener('change', function() {
             var file = input.files && input.files[0];
-            if (!file) {
-                preview.style.display = 'none';
-                previewImg.src = '';
-                return;
-            }
+            if (!file) { showPicker(); return; }
+
             if (!/^image\/(jpeg|png|webp|gif)$/.test(file.type)) {
                 alert('対応していない画像形式です。JPG / PNG / WebP / GIF を選択してください。');
                 input.value = '';
-                preview.style.display = 'none';
+                showPicker();
                 return;
             }
             if (file.size > MAX_BYTES) {
                 alert('画像サイズが大きすぎます（最大5MB）。別の画像を選択してください。');
                 input.value = '';
-                preview.style.display = 'none';
+                showPicker();
                 return;
             }
             var reader = new FileReader();
-            reader.onload = function(e) {
-                previewImg.src = e.target.result;
-                preview.style.display = 'block';
-            };
+            reader.onload = function(e) { showPreview(file, e.target.result); };
             reader.readAsDataURL(file);
         });
     }

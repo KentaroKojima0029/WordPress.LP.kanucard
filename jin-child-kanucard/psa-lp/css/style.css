@@ -4857,6 +4857,223 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
+/* ===== 口コミ投稿フォーム：画像アップロードUI ===== */
+.review-image-input {
+    /* DOM上には残すが視覚的には隠す。アクセシブルにファイル input を保持 */
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.review-image-uploader {
+    margin-top: 8px;
+}
+
+.review-image-picker {
+    border: 2px dashed #cbd5e1;
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.review-image-picker:hover {
+    border-color: #94a3b8;
+    background: #f1f5f9;
+}
+
+.review-image-picker-icon {
+    font-size: 2.5rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.review-image-picker-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.25rem 0 0.25rem;
+    line-height: 1.5;
+}
+
+.review-image-picker-sub {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 1rem;
+}
+
+.review-image-picker-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.review-image-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    line-height: 1;
+}
+
+.review-image-btn i {
+    font-size: 1.1rem;
+}
+
+.review-image-btn-camera {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.review-image-btn-camera:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.review-image-btn-gallery {
+    background: #fff;
+    color: #1e293b;
+    border: 2px solid #cbd5e1;
+}
+
+.review-image-btn-gallery:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.review-image-picker-note {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* プレビュー */
+.review-image-preview {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    padding: 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.review-image-preview-thumb {
+    flex: 0 0 auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+}
+
+.review-image-preview-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.review-image-preview-meta {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.review-image-preview-name {
+    font-size: 0.9rem;
+    color: #0f172a;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+}
+
+.review-image-preview-size {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin: 0 0 0.6rem;
+}
+
+.review-image-preview-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.review-image-btn-mini {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #475569;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.review-image-btn-mini:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.review-image-btn-remove {
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.review-image-btn-remove:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+@media (max-width: 480px) {
+    .review-image-picker {
+        padding: 22px 14px;
+    }
+    .review-image-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.85rem 1rem;
+    }
+    .review-image-preview {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .review-image-preview-thumb {
+        width: 140px;
+        height: 140px;
+    }
+    .review-image-preview-meta {
+        align-items: center;
+    }
+}
+
 /* Success and Error Messages */
 .review-success-message,
 .review-error-message {
