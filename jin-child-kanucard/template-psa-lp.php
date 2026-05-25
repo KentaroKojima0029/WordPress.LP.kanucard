@@ -60,6 +60,39 @@ if (isset($_POST['submit_contact']) && isset($_POST['psa_contact_nonce']) && wp_
 
 // 口コミフォーム処理（リダイレクトのためHTML出力前に実行）
 $psa_review_error = '';
+
+/**
+ * 診断ログ: 口コミ投稿フローの各チェックポイントを記録。
+ * 管理画面（PSA LP 口コミ管理）の上部に最新10件を表示し、
+ * 「成功モーダルは出るのに保存されない」等のミスマッチを切り分けるための
+ * デバッグ用途。安定運用後に削除可。
+ */
+$psa_review_debug = array(
+    'time'           => current_time('Y-m-d H:i:s'),
+    'has_post'       => isset($_POST['submit_review']),
+    'nonce_present'  => isset($_POST['psa_review_nonce']),
+    'nonce_valid'    => false,
+    'name_len'       => isset($_POST['review_name']) ? strlen($_POST['review_name']) : 0,
+    'email'          => isset($_POST['review_email']) ? sanitize_email($_POST['review_email']) : '',
+    'rating'         => isset($_POST['review_rating']) ? intval($_POST['review_rating']) : 0,
+    'msg_len'        => isset($_POST['review_message']) ? strlen($_POST['review_message']) : 0,
+    'file_name'      => $_FILES['review_image']['name'] ?? '',
+    'file_size'      => $_FILES['review_image']['size'] ?? 0,
+    'file_error'     => $_FILES['review_image']['error'] ?? null,
+    'validation'     => null,    // 'ok' | 'error message'
+    'image_upload'   => 'skipped', // 'skipped' | 'ok' | 'error message'
+    'attachment_id'  => 0,
+    'reviews_before' => null,
+    'reviews_after'  => null,
+    'update_option'  => null,    // bool | null
+    'draft_post_id'  => null,
+    'redirect'       => false,
+);
+
+if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce'])) {
+    $psa_review_debug['nonce_valid'] = (bool) wp_verify_nonce($_POST['psa_review_nonce'], 'psa_review_form');
+}
+
 if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_verify_nonce($_POST['psa_review_nonce'], 'psa_review_form')) {
     $review_name = sanitize_text_field($_POST['review_name']);
     $review_email = sanitize_email($_POST['review_email']);
@@ -73,6 +106,8 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
     } elseif ($review_rating < 1 || $review_rating > 5) {
         $psa_review_error = '評価は1〜5の範囲で選択してください。';
     } else {
+        $psa_review_debug['validation'] = 'ok';
+
         // 画像アップロード処理（任意）
         $attachment_id = 0;
         if ( ! empty( $_FILES['review_image']['name'] ) && empty( $_FILES['review_image']['error'] ) ) {
@@ -83,25 +118,34 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             $mime_ok       = in_array( $file['type'], $allowed_mimes, true ) || in_array( $file_type['type'], $allowed_mimes, true );
 
             if ( ! $mime_ok ) {
-                $psa_review_error = '画像の形式が無効です（JPG / PNG / WebP / GIF のみ対応）。';
+                $psa_review_error             = '画像の形式が無効です（JPG / PNG / WebP / GIF のみ対応）。';
+                $psa_review_debug['image_upload'] = 'mime_invalid: ' . $file['type'] . ' / wp_check: ' . ( $file_type['type'] ?? 'n/a' );
             } elseif ( $file['size'] > $max_bytes ) {
-                $psa_review_error = '画像サイズが大きすぎます（最大5MB）。';
+                $psa_review_error                 = '画像サイズが大きすぎます（最大5MB）。';
+                $psa_review_debug['image_upload'] = 'too_large: ' . $file['size'];
             } else {
                 require_once ABSPATH . 'wp-admin/includes/file.php';
                 require_once ABSPATH . 'wp-admin/includes/image.php';
                 require_once ABSPATH . 'wp-admin/includes/media.php';
                 $attachment_id = media_handle_upload( 'review_image', 0 );
                 if ( is_wp_error( $attachment_id ) ) {
-                    $psa_review_error = '画像のアップロードに失敗しました：' . $attachment_id->get_error_message();
-                    $attachment_id   = 0;
+                    $psa_review_error                 = '画像のアップロードに失敗しました：' . $attachment_id->get_error_message();
+                    $psa_review_debug['image_upload'] = 'wp_error: ' . $attachment_id->get_error_message();
+                    $attachment_id                    = 0;
+                } else {
+                    $psa_review_debug['image_upload']  = 'ok';
+                    $psa_review_debug['attachment_id'] = (int) $attachment_id;
                 }
             }
         }
 
         if ( empty( $psa_review_error ) ) {
             // 口コミをデータベースに保存
-            $reviews     = get_option('psa_lp_reviews', array());
-            $new_review  = array(
+            $reviews = get_option('psa_lp_reviews', array());
+            if ( ! is_array( $reviews ) ) { $reviews = array(); }
+            $psa_review_debug['reviews_before'] = count( $reviews );
+
+            $new_review = array(
                 'id'            => uniqid(),
                 'name'          => $review_name,
                 'email'         => $review_email,
@@ -110,18 +154,31 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 'date'          => current_time('Y-m-d H:i:s'),
                 'status'        => 'pending',
                 'attachment_id' => $attachment_id,
-                'show_image'    => true, // 承認時にデフォルトで画像も表示
+                'show_image'    => true,
             );
             $reviews[] = $new_review;
-            update_option('psa_lp_reviews', $reviews);
 
-            // 口コミを「利用者口コミ」カテゴリの下書き投稿として作成
-            kanucard_create_review_draft( $review_name, $review_rating, $review_message, $attachment_id );
+            $psa_review_debug['update_option'] = update_option('psa_lp_reviews', $reviews);
 
-            // メール送信を試みる
+            // 直後に読み戻して件数を記録（実際にDBに書かれたか確認）
+            $verify = get_option('psa_lp_reviews', array());
+            $psa_review_debug['reviews_after'] = is_array( $verify ) ? count( $verify ) : -1;
+
+            // 「利用者口コミ」カテゴリ下書きを作成（戻り値 = post ID or 0/WP_Error）
+            $draft_id = kanucard_create_review_draft( $review_name, $review_rating, $review_message, $attachment_id );
+            $psa_review_debug['draft_post_id'] = is_wp_error( $draft_id ) ? 'wp_error: ' . $draft_id->get_error_message() : (int) $draft_id;
+
+            // 診断ログを保存（後段の wp_mail/redirect でこける可能性に備えて redirect 前に書き出す）
+            $log_history   = get_option('psa_lp_reviews_debug', array());
+            if ( ! is_array( $log_history ) ) { $log_history = array(); }
+            $log_history[] = $psa_review_debug;
+            if ( count( $log_history ) > 10 ) { $log_history = array_slice( $log_history, -10 ); }
+            update_option('psa_lp_reviews_debug', $log_history);
+
+            // メール送信
             $to = 'contact@kanucard.com';
             $subject = 'PSA代行LPに新しい口コミが投稿されました';
-            $email_message = "PSA代行LPに新しい口コミが投稿されました。\n\n";
+            $email_message  = "PSA代行LPに新しい口コミが投稿されました。\n\n";
             $email_message .= "お名前: " . $review_name . "\n";
             $email_message .= "評価: " . str_repeat('★', $review_rating) . str_repeat('☆', 5 - $review_rating) . " (" . $review_rating . "/5)\n";
             $email_message .= "メッセージ:\n" . $review_message . "\n\n";
@@ -133,12 +190,22 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             wp_mail($to, $subject, $email_message, $headers);
 
             // PRGパターン: リダイレクトして重複送信を防止
-            $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
+            $current_url  = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
             $redirect_url = add_query_arg('review_submitted', '1', $current_url) . '#review';
+            $psa_review_debug['redirect'] = true;
+
             wp_safe_redirect($redirect_url);
             exit;
         }
     }
+
+    // エラーで終わるケース：診断ログを残す
+    $log_history   = get_option('psa_lp_reviews_debug', array());
+    if ( ! is_array( $log_history ) ) { $log_history = array(); }
+    $psa_review_debug['validation'] = $psa_review_error;
+    $log_history[] = $psa_review_debug;
+    if ( count( $log_history ) > 10 ) { $log_history = array_slice( $log_history, -10 ); }
+    update_option('psa_lp_reviews_debug', $log_history);
 }
 ?>
 <!DOCTYPE html>

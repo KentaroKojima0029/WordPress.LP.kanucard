@@ -394,6 +394,58 @@ function psa_lp_reviews_admin_page() {
     </style>
     <div class="wrap">
         <h1>PSA LP 口コミ管理</h1>
+
+        <?php
+        // ===== 診断ログ表示（デバッグ用・安定後は削除） =====
+        $debug_history = get_option( 'psa_lp_reviews_debug', array() );
+        if ( isset( $_GET['clear_review_debug'] ) && isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'clear_review_debug' ) ) {
+            delete_option( 'psa_lp_reviews_debug' );
+            $debug_history = array();
+            echo '<div class="notice notice-success"><p>診断ログをクリアしました。</p></div>';
+        }
+        if ( ! empty( $debug_history ) ) :
+            $debug_recent = array_reverse( $debug_history );
+            ?>
+            <div class="notice notice-info" style="padding:12px 16px;">
+                <p style="margin:0 0 8px;">
+                    <strong>🔧 口コミ投稿フロー診断ログ（最新<?php echo count( $debug_recent ); ?>件）</strong>
+                    <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=psa-lp-reviews&clear_review_debug=1' ), 'clear_review_debug' ); ?>"
+                       class="button button-small" style="margin-left:10px;">ログをクリア</a>
+                </p>
+                <details style="margin-top:8px;">
+                    <summary style="cursor:pointer; color:#2271b1;">詳細を開く</summary>
+                    <div style="margin-top:10px; max-height:400px; overflow:auto; background:#fff; padding:10px; border:1px solid #c3c4c7; border-radius:4px;">
+                        <?php foreach ( $debug_recent as $entry ) : ?>
+                            <div style="border-bottom:1px solid #eee; padding:8px 0; font-family:monospace; font-size:12px; line-height:1.6;">
+                                <strong>[<?php echo esc_html( $entry['time'] ?? '?' ); ?>]</strong>
+                                POST=<?php echo $entry['has_post'] ? '✓' : '✗'; ?>
+                                / nonce=<?php echo $entry['nonce_valid'] ? '✓' : '✗'; ?>
+                                / name=<?php echo intval( $entry['name_len'] ?? 0 ); ?>chars
+                                / email=<?php echo esc_html( $entry['email'] ?? '' ); ?>
+                                / rating=<?php echo intval( $entry['rating'] ?? 0 ); ?>
+                                / msg=<?php echo intval( $entry['msg_len'] ?? 0 ); ?>chars
+                                <br>
+                                <strong>validation:</strong> <?php echo esc_html( $entry['validation'] ?? 'n/a' ); ?>
+                                / <strong>image:</strong> <?php echo esc_html( $entry['image_upload'] ?? '?' ); ?>
+                                <?php if ( ! empty( $entry['file_name'] ) ) : ?>
+                                    (file=<?php echo esc_html( $entry['file_name'] ); ?>,
+                                    size=<?php echo intval( $entry['file_size'] ); ?>B,
+                                    err=<?php echo esc_html( var_export( $entry['file_error'], true ) ); ?>)
+                                <?php endif; ?>
+                                <br>
+                                <strong>save:</strong>
+                                update_option=<?php echo var_export( $entry['update_option'] ?? null, true ); ?>
+                                / before=<?php echo var_export( $entry['reviews_before'] ?? null, true ); ?>件
+                                → after=<?php echo var_export( $entry['reviews_after'] ?? null, true ); ?>件
+                                / draft=<?php echo esc_html( var_export( $entry['draft_post_id'] ?? null, true ) ); ?>
+                                / redirect=<?php echo $entry['redirect'] ? '✓' : '✗'; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </details>
+            </div>
+        <?php endif; ?>
+
         <p>
             投稿された口コミ一覧です。（<?php echo count( $reviews ); ?>件）
             <?php if ( $unread_count > 0 ): ?>
