@@ -4964,7 +4964,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-/* プレビュー */
+/* プレビュー（画像選択後のみ表示） */
 .review-image-preview {
     display: flex;
     gap: 1rem;
@@ -4973,6 +4973,12 @@ h1, h2, h3, h4, h5, h6 {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 14px;
+}
+
+/* HTML5 hidden 属性が display:flex に上書きされないように明示 */
+.review-image-picker[hidden],
+.review-image-preview[hidden] {
+    display: none !important;
 }
 
 .review-image-preview-thumb {
