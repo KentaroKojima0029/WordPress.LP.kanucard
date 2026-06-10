@@ -562,7 +562,7 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                     </div>
                 </div>
                 <p class="hero-subtitle fade-in delay-1">
-                    <span style="font-size: 0.95em; opacity: 0.9;">失敗したくないあなたのための<br>プロフェッショナルPSA代行</span>
+                    <span style="font-size: 0.95em; opacity: 0.9;">失敗したくない<br>あなたのPSA代行</span>
                 </p>
                 <div class="hero-stats fade-in delay-2">
                     <div class="stat-card">
