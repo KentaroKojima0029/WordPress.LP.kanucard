@@ -101,15 +101,19 @@
     /**
      * 初期ロード時のハッシュ（例: #review）へのスクロール補正
      *
-     * QRコード等で「.../psa-lp/#review」を直接開くと、ブラウザは解析時点で
-     * ネイティブにジャンプするが、#review より上の画像（width/height 未指定）が
-     * まだ読み込まれておらず高さがほぼ0のため、目的セクションが本来より上に位置する。
-     * その後に画像が読み込まれて上のコンテンツが伸び、ジャンプ先が下へ押し下げられ、
-     * 結果的に一つ上の「よくあるご質問」セクションに着地してしまう。
+     * QRコード等で「.../psa-lp/#review」を直接開くと、#review より上には
+     * width/height 未指定の画像が多数あり、読み込み完了までは高さがほぼ0のため、
+     * 目的セクションが本来より上に位置する。画像が順次ロードされると上のコンテンツが
+     * 伸びて #review が下へ押し下げられ、結果的に一つ上の「よくあるご質問」に着地する。
      *
-     * 対策: レイアウトが確定する window.load 以降に、ハッシュ先へ再スクロールする。
+     * 重要: この押し下げは load イベント後も（低速回線では数秒間）続くため、
+     * 「load 直後に数回だけ補正」では不十分だった（実機で FAQ に着地する症状が残る）。
+     * そこで、画像などの load をキャプチャで受けるたびに位置を合わせ直し、
+     * レイアウトが変化し続ける限り #review にピン留めする。
+     * ユーザーが操作した時点で追従を止め、スクロールを奪わないようにする。
+     *
      * 位置合わせは既存の scroll-margin-top（固定ヘッダー分）を活かすため
-     * scrollIntoView を使用。画像デコード/フォント適用の遅延に備えて複数回補正する。
+     * scrollIntoView を使用。behavior:'auto' で CSS の scroll-behavior:smooth を上書きする。
      */
     function initHashScrollOnLoad() {
         // ブラウザの自動スクロール復元がネイティブジャンプと競合するのを防ぐ
@@ -133,19 +137,41 @@
             return;
         }
 
-        function scrollToTarget() {
-            // behavior:'auto' で CSS の scroll-behavior:smooth を上書きし、
-            // 複数回の補正がアニメーションで競合しないようにする。
-            // block:'start' + scroll-margin-top で固定ヘッダー分を確保。
-            target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        var active = true;
+        function align() {
+            if (active) {
+                target.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
         }
 
-        // 画像等の読み込み完了（＝レイアウト確定）後に確実に合わせ、
-        // 遅延デコード/フォント適用にも追従するため少し待って再補正する。
+        // ユーザーが操作したら以後は追従しない（スクロール操作を奪わない）
+        ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(function(ev) {
+            window.addEventListener(ev, function() { active = false; }, { passive: true, once: true });
+        });
+
+        // 初期位置合わせ
+        align();
+
+        // capture=true にすると、子孫要素（img 等）の load はバブルしないが
+        // キャプチャ段階では window まで届く。#review より上の画像が順次ロードされる
+        // たびに再補正することで、低速回線でも押し下げに追従し続ける。
+        window.addEventListener('load', align, true);
+
+        // 全リソース完了（window.load）後、残りのレイアウト確定（フォント適用等）に備え
+        // 短時間だけ毎フレーム補正して自動終了する。
         window.addEventListener('load', function() {
-            scrollToTarget();
-            setTimeout(scrollToTarget, 150);
-            setTimeout(scrollToTarget, 500);
+            if (!active) return;
+            var deadline = null;
+            requestAnimationFrame(function raf(now) {
+                if (!active) return;
+                align();
+                if (deadline === null) deadline = now + 800;
+                if (now < deadline) {
+                    requestAnimationFrame(raf);
+                } else {
+                    active = false;
+                }
+            });
         });
     }
 
