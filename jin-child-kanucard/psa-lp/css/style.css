@@ -1183,6 +1183,7 @@ section[id] {
 
 .testimonial-slider {
     display: flex;
+    align-items: flex-start; /* 各カードを内容の高さに保ち、最長カードへ引き伸ばさない（余白防止） */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -1221,7 +1222,10 @@ section[id] {
     opacity: 0.7;
 }
 
-/* 口コミモーダル */
+/* 折り畳み時は全画面幅で「タップで全文表示」ヒントを出す（デスクトップ含む） */
+.testimonial-card.is-collapsed .tap-hint {
+    display: block;
+}
 .review-detail-overlay {
     display: none;
     position: fixed;

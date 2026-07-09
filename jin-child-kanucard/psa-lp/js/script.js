@@ -558,25 +558,16 @@
      * 口コミカード タップでモーダル全文表示（モバイル）
      */
     function initTestimonialModal() {
-        var isMobile = window.matchMedia('(max-width: 768px)');
         var cards = document.querySelectorAll('.testimonial-slide');
         var overlay = document.getElementById('reviewDetailOverlay');
         var closeBtn = document.getElementById('reviewDetailClose');
         if (!overlay || !cards.length) return;
 
-        function applyCollapse(mobile) {
-            cards.forEach(function(card) {
-                if (mobile) {
-                    card.classList.add('is-collapsed');
-                } else {
-                    card.classList.remove('is-collapsed');
-                }
-            });
-        }
-
-        applyCollapse(isMobile.matches);
-        isMobile.addEventListener('change', function(e) {
-            applyCollapse(e.matches);
+        // デスクトップ・モバイル共通で口コミを折り畳み（数行にクリップ）、
+        // クリック/タップで全文モーダルを表示する。長文口コミがカードを引き伸ばして
+        // 余白を生む問題（デスクトップで全文表示だった）を解消する。
+        cards.forEach(function(card) {
+            card.classList.add('is-collapsed');
         });
 
         function openModal(card) {
@@ -608,7 +599,6 @@
         cards.forEach(function(card) {
             card.style.cursor = 'pointer';
             card.addEventListener('click', function(e) {
-                if (!isMobile.matches) return;
                 openModal(card);
             });
         });
