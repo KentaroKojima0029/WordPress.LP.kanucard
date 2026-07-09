@@ -33,6 +33,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         initAOS();
         initSmoothScroll();
+        initHashScrollOnLoad();
         initHeaderScroll();
         initMobileMenu();
         initFAQ();
@@ -94,6 +95,57 @@
                     closeMobileMenu();
                 }
             });
+        });
+    }
+
+    /**
+     * 初期ロード時のハッシュ（例: #review）へのスクロール補正
+     *
+     * QRコード等で「.../psa-lp/#review」を直接開くと、ブラウザは解析時点で
+     * ネイティブにジャンプするが、#review より上の画像（width/height 未指定）が
+     * まだ読み込まれておらず高さがほぼ0のため、目的セクションが本来より上に位置する。
+     * その後に画像が読み込まれて上のコンテンツが伸び、ジャンプ先が下へ押し下げられ、
+     * 結果的に一つ上の「よくあるご質問」セクションに着地してしまう。
+     *
+     * 対策: レイアウトが確定する window.load 以降に、ハッシュ先へ再スクロールする。
+     * 位置合わせは既存の scroll-margin-top（固定ヘッダー分）を活かすため
+     * scrollIntoView を使用。画像デコード/フォント適用の遅延に備えて複数回補正する。
+     */
+    function initHashScrollOnLoad() {
+        // ブラウザの自動スクロール復元がネイティブジャンプと競合するのを防ぐ
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        var hash = window.location.hash;
+        if (!hash || hash.length < 2) {
+            return;
+        }
+
+        var target;
+        try {
+            target = document.querySelector(hash);
+        } catch (e) {
+            // 不正なセレクタ（例: 数字始まりのID）は無視
+            return;
+        }
+        if (!target) {
+            return;
+        }
+
+        function scrollToTarget() {
+            // behavior:'auto' で CSS の scroll-behavior:smooth を上書きし、
+            // 複数回の補正がアニメーションで競合しないようにする。
+            // block:'start' + scroll-margin-top で固定ヘッダー分を確保。
+            target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+
+        // 画像等の読み込み完了（＝レイアウト確定）後に確実に合わせ、
+        // 遅延デコード/フォント適用にも追従するため少し待って再補正する。
+        window.addEventListener('load', function() {
+            scrollToTarget();
+            setTimeout(scrollToTarget, 150);
+            setTimeout(scrollToTarget, 500);
         });
     }
 
