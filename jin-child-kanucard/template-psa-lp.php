@@ -657,6 +657,11 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                 if (grade === 'PSA9') return '#475569';
                 return '#94a3b8';
             }
+            function escapeHtmlLp(s) {
+                return String(s).replace(/[&<>"']/g, function(c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
             function formatDate(iso) {
                 var p = String(iso || '').split('-');
                 if (p.length !== 3) return iso;
@@ -682,9 +687,12 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
                                  + formatDate(row.date) + '</div>';
                             lastDate = row.date;
                         }
-                        html += '<div style="display: flex; justify-content: space-between; align-items: center; padding: 7px 4px; border-bottom: 1px dashed #e2e8f0; font-size: 0.95em;">'
+                        html += '<div style="padding: 7px 4px; border-bottom: 1px dashed #e2e8f0; font-size: 0.95em;">'
+                             + '<div style="display: flex; justify-content: space-between; align-items: center;">'
                              + '<span style="letter-spacing: 1px; color: #334155;">' + row.cert + '</span>'
                              + '<span style="font-weight: 700; color: ' + gradeColor(row.grade) + ';">' + row.grade + '</span>'
+                             + '</div>'
+                             + (row.cardName ? '<div style="font-size: 0.85em; color: #64748b; margin-top: 2px;">' + escapeHtmlLp(row.cardName) + '</div>' : '')
                              + '</div>';
                     });
                     box.innerHTML = html;
