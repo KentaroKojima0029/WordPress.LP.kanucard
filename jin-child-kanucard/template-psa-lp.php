@@ -634,6 +634,68 @@ if (isset($_POST['submit_review']) && isset($_POST['psa_review_nonce']) && wp_ve
             </div>
         </section>
 
+        <!-- Recent Grading Results Section（これまでの鑑定結果。データは管理者サイトの公開APIから取得） -->
+        <section class="recent-results-section" id="recent-results" style="padding: 56px 20px; background: #f8fafc;">
+            <div class="container">
+                <h2 class="section-title">これまでの鑑定結果</h2>
+                <p style="text-align: center; color: #64748b; font-size: 0.85em; margin: -8px 0 24px;">※無料検品以外の結果も含みます</p>
+                <div id="recentResultsList"
+                     style="max-width: 560px; margin: 0 auto; background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 6px 22px 14px; max-height: 430px; overflow-y: auto; box-shadow: 0 2px 10px rgba(0,0,0,0.05); -webkit-overflow-scrolling: touch;">
+                    <p style="text-align: center; color: #94a3b8; padding: 24px 0;">読み込み中...</p>
+                </div>
+            </div>
+        </section>
+        <script>
+        (function() {
+            var API = 'https://daiko.kanucard.com/api/public/recent-grading-results';
+            var box = document.getElementById('recentResultsList');
+            var section = document.getElementById('recent-results');
+            if (!box || !section) return;
+
+            function gradeColor(grade) {
+                if (grade === 'PSA10') return '#b45309'; // ゴールド系
+                if (grade === 'PSA9') return '#475569';
+                return '#94a3b8';
+            }
+            function formatDate(iso) {
+                var p = String(iso || '').split('-');
+                if (p.length !== 3) return iso;
+                return p[0] + '年' + Number(p[1]) + '月' + Number(p[2]) + '日';
+            }
+
+            var controller = ('AbortController' in window) ? new AbortController() : null;
+            var timer = controller ? setTimeout(function() { controller.abort(); }, 8000) : null;
+
+            fetch(API, controller ? { signal: controller.signal } : {})
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (timer) clearTimeout(timer);
+                    if (!data || !data.success || !Array.isArray(data.results) || data.results.length === 0) {
+                        section.style.display = 'none';
+                        return;
+                    }
+                    var html = '';
+                    var lastDate = null;
+                    data.results.forEach(function(row) {
+                        if (row.date !== lastDate) {
+                            html += '<div style="font-weight: 700; color: #0f172a; margin: 16px 0 4px; padding-bottom: 4px; border-bottom: 2px solid #fbbf24; font-size: 0.95em;">'
+                                 + formatDate(row.date) + '</div>';
+                            lastDate = row.date;
+                        }
+                        html += '<div style="display: flex; justify-content: space-between; align-items: center; padding: 7px 4px; border-bottom: 1px dashed #e2e8f0; font-size: 0.95em;">'
+                             + '<span style="letter-spacing: 1px; color: #334155;">' + row.cert + '</span>'
+                             + '<span style="font-weight: 700; color: ' + gradeColor(row.grade) + ';">' + row.grade + '</span>'
+                             + '</div>';
+                    });
+                    box.innerHTML = html;
+                })
+                .catch(function() {
+                    // 取得失敗時はセクションごと非表示（LPの見た目を壊さない）
+                    section.style.display = 'none';
+                });
+        })();
+        </script>
+
         <!-- Problem Section -->
         <section class="problem-section" id="problems">
             <div class="container">
